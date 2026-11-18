@@ -1,0 +1,180 @@
+{
+  "_meta": {
+    "description": "Grupos de comunicación y propietarios. Cada dato de propiedad enlaza a su fuente pública.",
+    "license": "CC BY-SA 4.0",
+    "retrieved": "2026-11-18"
+  },
+  "groups": [
+    {
+      "id": "prisa",
+      "name": "Grupo PRISA",
+      "kind": "Grupo de comunicación cotizado en bolsa",
+      "owners": "Sociedad anónima cotizada; el accionariado es público y cambia con el tiempo (consúltalo en la CNMV).",
+      "sources": [
+        {"title": "Wikipedia: Grupo Prisa", "url": "https://es.wikipedia.org/wiki/Prisa"},
+        {"title": "Wikidata: El País (propiedad: Grupo Prisa)", "url": "https://www.wikidata.org/wiki/Q50009"}
+      ]
+    },
+    {
+      "id": "unidad-editorial",
+      "name": "Unidad Editorial",
+      "kind": "Grupo editorial",
+      "owners": "Filial española de RCS MediaGroup (Italia).",
+      "sources": [
+        {"title": "Wikipedia: Unidad Editorial", "url": "https://es.wikipedia.org/wiki/Unidad_Editorial"},
+        {"title": "Wikipedia: El Mundo (ficha: propietario RCS Mediagroup)", "url": "https://es.wikipedia.org/wiki/El_Mundo_(España)"}
+      ]
+    },
+    {
+      "id": "vocento",
+      "name": "Vocento",
+      "kind": "Grupo de comunicación cotizado en bolsa",
+      "owners": "Sociedad anónima cotizada con presencia de familias históricas de la prensa vasca y madrileña en su accionariado.",
+      "sources": [
+        {"title": "Wikipedia: Vocento", "url": "https://es.wikipedia.org/wiki/Vocento"}
+      ]
+    },
+    {
+      "id": "planeta",
+      "name": "Grupo Planeta / Atresmedia",
+      "kind": "Grupo multimedia",
+      "owners": "Grupo Planeta es el accionista de referencia de Atresmedia (junto a De Agostini) y editor de La Razón.",
+      "sources": [
+        {"title": "Wikidata: Atresmedia (propiedad: Grupo Planeta; De Agostini)", "url": "https://www.wikidata.org/wiki/Q3118227"},
+        {"title": "Wikidata: La Razón (propiedad: Grupo Planeta)", "url": "https://www.wikidata.org/wiki/Q191433"},
+        {"title": "Wikipedia: Grupo Planeta", "url": "https://es.wikipedia.org/wiki/Grupo_Planeta"}
+      ]
+    },
+    {
+      "id": "mediaset",
+      "name": "Mediaset España (MFE-MediaForEurope)",
+      "kind": "Grupo audiovisual",
+      "owners": "Controlado por MFE-MediaForEurope, cuyo accionista principal es Fininvest.",
+      "sources": [
+        {"title": "Wikipedia: Telecinco (propietario MFE-MediaForEurope)", "url": "https://es.wikipedia.org/wiki/Telecinco"},
+        {"title": "Wikidata: Mediaset España (propiedad: Fininvest)", "url": "https://www.wikidata.org/wiki/Q2638120"}
+      ]
+    },
+    {
+      "id": "godo",
+      "name": "Grupo Godó",
+      "kind": "Grupo de comunicación familiar",
+      "owners": "Familia Godó.",
+      "sources": [
+        {"title": "Wikipedia: Grupo Godó", "url": "https://es.wikipedia.org/wiki/Grupo_Godó"},
+        {"title": "Wikipedia: La Vanguardia", "url": "https://es.wikipedia.org/wiki/La_Vanguardia"}
+      ]
+    },
+    {
+      "id": "prensa-iberica",
+      "name": "Prensa Ibérica",
+      "kind": "Grupo de prensa regional",
+      "owners": "Grupo de propiedad familiar (familia Moll).",
+      "sources": [
+        {"title": "Wikipedia: Prensa Ibérica", "url": "https://es.wikipedia.org/wiki/Prensa_Ibérica"},
+        {"title": "Wikipedia: El Periódico (propietario Prensa Ibérica)", "url": "https://es.wikipedia.org/wiki/El_Periódico_de_Catalunya"}
+      ]
+    },
+    {
+      "id": "henneo",
+      "name": "Henneo",
+      "kind": "Grupo de comunicación familiar",
+      "owners": "Heraldo de Aragón, S.A. (familia Yarza).",
+      "sources": [
+        {"title": "Wikipedia: 20 Minutos («desde julio de 2015 es propiedad de Grupo Henneo»)", "url": "https://es.wikipedia.org/wiki/20_Minutos"},
+        {"title": "Wikipedia: Heraldo de Aragón (familia Yarza)", "url": "https://es.wikipedia.org/wiki/Heraldo_de_Aragón"}
+      ]
+    },
+    {
+      "id": "joly",
+      "name": "Grupo Joly",
+      "kind": "Grupo de prensa regional (Andalucía)",
+      "owners": "Grupo de propiedad familiar (familia Joly).",
+      "sources": [
+        {"title": "Wikipedia: Grupo Joly", "url": "https://es.wikipedia.org/wiki/Grupo_Joly"}
+      ]
+    },
+    {
+      "id": "voz-galicia",
+      "name": "Corporación Voz de Galicia",
+      "kind": "Grupo de comunicación regional",
+      "owners": "Fundación Santiago Rey Fernández-Latorre (según la ficha de Wikipedia).",
+      "sources": [
+        {"title": "Wikipedia: La Voz de Galicia", "url": "https://es.wikipedia.org/wiki/La_Voz_de_Galicia"}
+      ]
+    },
+    {
+      "id": "cee",
+      "name": "Conferencia Episcopal Española",
+      "kind": "Institución religiosa",
+      "owners": "Propiedad de la Conferencia Episcopal Española (Iglesia católica).",
+      "sources": [
+        {"title": "Wikipedia: COPE (propietario Conferencia Episcopal Española)", "url": "https://es.wikipedia.org/wiki/COPE"}
+      ]
+    },
+    {
+      "id": "rtve",
+      "name": "Corporación RTVE",
+      "kind": "Medio público estatal",
+      "owners": "Corporación pública estatal (participada por la SEPI). Su consejo de administración lo eligen las Cortes Generales.",
+      "sources": [
+        {"title": "Wikipedia: Radiotelevisión Española", "url": "https://es.wikipedia.org/wiki/Radiotelevisión_Española"}
+      ]
+    },
+    {
+      "id": "efe",
+      "name": "Agencia EFE",
+      "kind": "Agencia pública estatal",
+      "owners": "Sociedad mercantil estatal (Gobierno de España, a través de la SEPI).",
+      "sources": [
+        {"title": "Wikipedia: Agencia EFE", "url": "https://es.wikipedia.org/wiki/Agencia_EFE"},
+        {"title": "Wikidata: Agencia EFE (propiedad: Gobierno de España)", "url": "https://www.wikidata.org/wiki/Q1274521"}
+      ]
+    },
+    {
+      "id": "libertad-digital-sa",
+      "name": "Libertad Digital, S.A.",
+      "kind": "Editora independiente",
+      "owners": "Libertad Digital, S.A.; la ficha de Wikipedia señala a Federico Jiménez Losantos como propietario.",
+      "sources": [
+        {"title": "Wikipedia: Libertad Digital", "url": "https://es.wikipedia.org/wiki/Libertad_Digital"}
+      ]
+    },
+    {
+      "id": "acdp",
+      "name": "Ediciones Católicos y Vida Pública",
+      "kind": "Editora vinculada a la Asociación Católica de Propagandistas",
+      "owners": "Ediciones Católicos y Vida Pública.",
+      "sources": [
+        {"title": "Wikipedia: El Debate (periódico digital)", "url": "https://es.wikipedia.org/wiki/El_Debate_(periódico_digital)"}
+      ]
+    },
+    {
+      "id": "el-leon",
+      "name": "El León de El Español Publicaciones",
+      "kind": "Editora independiente",
+      "owners": "Fundada por Pedro J. Ramírez, que figura como propietario en Wikidata.",
+      "sources": [
+        {"title": "Wikidata: El Español (propiedad: Pedro J. Ramírez)", "url": "https://www.wikidata.org/wiki/Q20652713"}
+      ]
+    },
+    {
+      "id": "diario-prensa-digital",
+      "name": "Diario de Prensa Digital, S.L.",
+      "kind": "Editora independiente",
+      "owners": "Más del 70 % del capital en manos de personas que trabajan en la redacción (según Wikipedia).",
+      "sources": [
+        {"title": "Wikipedia: elDiario.es", "url": "https://es.wikipedia.org/wiki/ElDiario.es"}
+      ]
+    },
+    {
+      "id": "pce",
+      "name": "Partido Comunista de España",
+      "kind": "Partido político",
+      "owners": "Órgano de expresión del Partido Comunista de España.",
+      "sources": [
+        {"title": "Wikipedia: Mundo Obrero", "url": "https://es.wikipedia.org/wiki/Mundo_Obrero"}
+      ]
+    }
+  ]
+}
