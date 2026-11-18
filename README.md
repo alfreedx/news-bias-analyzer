@@ -1,0 +1,166 @@
+# Contraste
+
+[![CI](https://github.com/alfreedx/news-bias-analyzer/actions/workflows/ci.yml/badge.svg)](https://github.com/alfreedx/news-bias-analyzer/actions/workflows/ci.yml)
+[![Verify sources](https://github.com/alfreedx/news-bias-analyzer/actions/workflows/verify-sources.yml/badge.svg)](https://github.com/alfreedx/news-bias-analyzer/actions/workflows/verify-sources.yml)
+[![Code: MIT](https://img.shields.io/badge/c%C3%B3digo-MIT-1c1a16.svg)](LICENSE)
+[![Data: CC BY-SA 4.0](https://img.shields.io/badge/datos-CC%20BY--SA%204.0-a3271c.svg)](DATA_LICENSE.md)
+![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3b372f.svg)
+
+**Busca una noticia y descubre quién la cuenta, desde qué orientación ideológica y quién es el dueño de cada medio.**
+
+*A Spanish news search engine that shows, next to every headline, the outlet's political leaning (sourced from
+Media Bias/Fact Check, Wikipedia and Wikidata), its factual reliability, who owns it, and related fact-checks.*
+
+![Resultados de búsqueda en Contraste](docs/screenshot-search.png)
+
+## Qué ofrece
+
+| | |
+|---|---|
+| **Orientación del medio** | Posición izquierda–derecha calculada **solo** a partir de fuentes externas citadas (Media Bias/Fact Check, Wikipedia, Wikidata). Sin fuentes, el medio aparece como «sin evaluar». |
+| **Fiabilidad factual** | Calificación de Media Bias/Fact Check y acreditación IFCN de los verificadores. |
+| **Propiedad** | Grupo de comunicación de cada cabecera y quién está detrás de él. |
+| **Historias agrupadas** | Los titulares de distintos medios sobre el mismo hecho, juntos, para comparar el enfoque. |
+| **Radiografía de la cobertura** | Reparto ideológico, concentración por grupos y avisos de *punto ciego* cuando un lado del espectro apenas cubre el tema. |
+| **Verificaciones** | Desmentidos relacionados de Maldita.es, Newtral y EFE Verifica. |
+| **Señales del titular** | Cebo, lenguaje cargado, exclamaciones. Son heurísticas y la interfaz lo indica. |
+
+Sin cookies, sin rastreadores, sin cuentas y sin coste.
+
+<table>
+  <tr>
+    <td><img src="docs/screenshot-home.png" alt="Portada con las historias más cubiertas"></td>
+    <td><img src="docs/screenshot-media.png" alt="Ficha de un medio con las fuentes de su evaluación"></td>
+  </tr>
+</table>
+
+---
+
+## Cómo funciona
+
+```
+ RSS oficiales de ~45 medios ─┐
+ + verificadores              ├─► ingesta cada 20 min ─► SQLite + FTS5 ─► FastAPI + Jinja2 ─► HTML sin JS obligatorio
+ (defusedxml, 5 MB, 15 s)     ┘   (peticiones condicionales ETag)            │
+                                                                             └─ data/media.json + data/groups.json
+                                                                                (fuentes citadas, CC BY-SA)
+```
+
+| Pieza | Elección | Por qué |
+|---|---|---|
+| Backend | **FastAPI** | Ligero, tipado, fácil de desplegar gratis. |
+| Búsqueda | **SQLite FTS5** | Búsqueda de texto completo sin servidor externo, insensible a tildes. |
+| Noticias | **RSS oficiales** | Gratuito, legal y sin depender de las condiciones de Google News. |
+| Catálogo | **JSON versionado** | Cada cambio queda auditado en Git con su fuente. Sustituye a Supabase. |
+| Frontend | **Plantillas + CSS propio** | Sin dependencias de terceros, funciona sin JavaScript, CSP estricta. |
+
+### Decisiones de diseño
+
+- **Sin base de datos externa.** El catálogo de medios vive en `data/`, versionado y revisable, sin
+  claves ni servicios que se pausen. El índice de noticias es un SQLite local que se reconstruye solo.
+- **Sin opinión propia.** Ninguna posición se escribe a mano: se deriva de etiquetas publicadas por
+  terceros mediante tablas públicas, y cada ficha enlaza sus fuentes.
+- **Privacidad por defecto.** El navegador no contacta con ningún dominio distinto del propio sitio.
+
+## Puesta en marcha
+
+Requisitos: Python 3.11 o superior.
+
+```bash
+git clone https://github.com/alfreedx/news-bias-analyzer.git
+cd news-bias-analyzer
+python -m venv .venv
+# Windows: .venv\Scripts\activate    ·   Linux/macOS: source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env                 # opcional: todos los valores tienen un valor por defecto
+python -m app.cli ingest             # primera lectura de los feeds (~30 s)
+uvicorn app.main:app --reload --no-access-log
+```
+
+Abre <http://localhost:8000>. La aplicación vuelve a leer los feeds cada 20 minutos mientras está encendida.
+
+### Con Docker
+
+```bash
+docker build -t contraste .
+docker run -d --name contraste -p 8000:8000 \
+  -e ALLOWED_HOSTS=localhost,127.0.0.1 \
+  -v contraste-data:/data --read-only --tmpfs /tmp \
+  contraste
+```
+
+### Despliegue gratuito
+
+Cualquier servicio que ejecute un contenedor Docker sirve (por ejemplo, Hugging Face Spaces o Render
+en su plan gratuito en el momento de escribir esto). Si el disco del servicio es efímero no pasa nada:
+el índice se reconstruye solo al arrancar.
+
+En producción configura como mínimo:
+
+| Variable | Valor |
+|---|---|
+| `ALLOWED_HOSTS` | Tu dominio, p. ej. `contraste.example.org` |
+| `HTTPS_ONLY` | `true` (activa HSTS) |
+| `TRUST_PROXY_HEADERS` | `true` solo si hay un proxy de confianza delante |
+| `SITE_URL`, `REPO_URL` | URLs públicas |
+
+Mantén `GOOGLE_NEWS_ENABLED=false` en una instancia pública: las condiciones del RSS de Google News
+solo permiten uso personal y no comercial.
+
+## Estructura
+
+```
+app/
+  main.py        rutas, ingesta en segundo plano, ayudas de plantilla
+  catalog.py     carga y valida data/*.json, asocia URLs a medios
+  scoring.py     tablas públicas etiqueta → posición (la «metodología» en código)
+  analysis.py    agrupación de historias, cobertura, puntos ciegos
+  feeds.py       descarga y análisis seguro de RSS/Atom
+  db.py          SQLite + FTS5, consultas parametrizadas
+  security.py    cabeceras de seguridad y limitador de peticiones
+  templates/     HTML (Jinja2)   ·   static/  CSS, JS e icono
+data/            catálogo de medios y grupos (CC BY-SA 4.0)
+scripts/         verify_sources.py: comprueba fuentes y calificaciones
+tests/           pytest
+```
+
+## API
+
+| Ruta | Descripción |
+|---|---|
+| `GET /api/buscar?q=texto&dias=7\|30\|todo` | Historias, cobertura y verificaciones en JSON |
+| `GET /api/medios` | Catálogo completo con evaluaciones |
+| `GET /api/salud` | Estado del servicio |
+
+## Calidad y seguridad
+
+```bash
+pip install -r requirements-dev.txt
+ruff check app tests scripts
+python -m pytest
+pip-audit -r requirements.txt
+python scripts/verify_sources.py    # ¿siguen vivas las fuentes? ¿ha cambiado alguna calificación?
+```
+
+Las medidas de seguridad y privacidad están detalladas en [SECURITY.md](SECURITY.md) y en la página
+`/privacidad` de la propia web.
+
+## Limitaciones conocidas
+
+- Solo aparecen en los resultados los medios con RSS accesible; algunos (SER, Público, elEconomista…)
+  lo bloquean o no lo publican. Están en el catálogo pero no en el índice.
+- El índice empieza vacío y guarda 120 días: las búsquedas sobre temas antiguos no darán resultados.
+- La agrupación de historias y las señales del titular son heurísticas sencillas.
+- Hay medios sin evaluación externa publicada; se muestran como «sin evaluar» en lugar de inventar una posición.
+
+## Licencias
+
+- **Código**: [MIT](LICENSE).
+- **Datos** (`data/`): [CC BY-SA 4.0](DATA_LICENSE.md), por incluir información adaptada de Wikipedia.
+- Los titulares y marcas pertenecen a sus medios; la aplicación solo muestra titular, extracto y enlace.
+- Las calificaciones de Media Bias/Fact Check pertenecen a MBFC y se citan con enlace a la reseña original.
+
+## Contribuir
+
+Las correcciones de datos son especialmente bienvenidas. Lee [CONTRIBUTING.md](CONTRIBUTING.md) y el
+[código de conducta](CODE_OF_CONDUCT.md). Para vulnerabilidades, consulta [SECURITY.md](SECURITY.md).
