@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% from "_macros.html" import chip, factual, meter %}
+{% set a = m.assessment %}
+{% block title %}{{ m.name }} · Contraste{% endblock %}
+{% block description %}{{ m.name }}: orientación según fuentes externas, fiabilidad y propietarios.{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <p class="kicker"><a href="/medios">Medios</a> / {{ m.type }}</p>
+  <h1>{{ m.name }}</h1>
+  <p class="page-head__lead">
+    {{ m.type }} · {{ m.scope }}{% if m.region %} ({{ m.region }}){% endif %}{% if m.founded %} · desde {{ m.founded }}{% endif %}
+    · {% for d in m.domains %}<a href="https://{{ d }}" rel="noopener noreferrer">{{ d }}</a>{% if not loop.last %}, {% endif %}{% endfor %}
+  </p>
+</header>
+
+<div class="profile">
+  <section class="profile__main">
+    <h2 class="section-title">Orientación ideológica</h2>
+    {% if a.rated %}
+      <p class="verdict">{{ chip(m) }} <span class="verdict__score">puntuación media {{ "%+.2f"|format(a.score) }}</span> <span class="muted">· {{ a.agreement }}</span></p>
+      {{ meter(a.score, a.label) }}
+    {% else %}
+      <p class="verdict">{{ chip(m) }}</p>
+      <p>No hemos encontrado ninguna fuente externa contrastable que publique la orientación de este medio. Preferimos no inventarla. Si conoces alguna, <a href="{{ settings.repo_url }}/issues/new" rel="noopener noreferrer">propónla</a>.</p>
+    {% endif %}
+
+    {% if a.territorial %}
+    <p class="territorial"><span class="small muted">Eje territorial:</span> {% for t in a.territorial %}<span class="tag">{{ t }}</span>{% endfor %}</p>
+    {% endif %}
+
+    {% if a.evidence %}
+    <h3 class="sub">Qué dicen las fuentes</h3>
+    <ol class="evidence">
+      {% for e in a.evidence %}
+      <li class="evidence__item">
+        <p class="evidence__src"><a href="{{ e.url }}" rel="noopener noreferrer">{{ e.source }}</a></p>
+        <p class="evidence__labels">{% for l in e.labels %}<span class="tag">{{ l }}</span>{% endfor %}</p>
+        {% if e.quote %}<blockquote class="evidence__quote">{{ e.quote }}</blockquote>{% endif %}
+        <p class="evidence__pos small muted">Equivale a {% if e.position is not none %}{{ "%+.2f"|format(e.position) }} ({{ POSITION_LABELS[bucket(e.position)] }}){% else %}— (etiqueta solo territorial){% endif %}</p>
+      </li>
+      {% endfor %}
+    </ol>
+    {% endif %}
+
+    <h2 class="section-title">Fiabilidad factual</h2>
+    {% if a.factual_level is not none %}
+      <p>{{ factual(m) }} según <a href="{{ a.factual_url }}" rel="noopener noreferrer">Media Bias/Fact Check</a>, que valora el historial de verificaciones fallidas, el uso de fuentes y las rectificaciones.</p>
+    {% elif a.ifcn %}
+      <p>{{ factual(m) }}. {% if a.ifcn_evidence %}<a href="{{ a.ifcn_evidence.url }}" rel="noopener noreferrer">Fuente</a>: «{{ a.ifcn_evidence.quote }}»{% endif %}</p>
+    {% else %}
+      <p class="muted">Sin evaluación externa publicada. Esto no significa que sea poco fiable: solo que no hay una calificación contrastable.</p>
+    {% endif %}
+  </section>
+
+  <aside class="profile__side">
+    <h2 class="section-title">Propiedad</h2>
+    {% if m.group %}
+      <p><a class="strong" href="/grupos/{{ m.group.id }}">{{ m.group.name }}</a></p>
+      <p class="small">{{ m.group.owners }}</p>
+      {% set siblings = m.group.media|rejectattr('id', 'equalto', m.id)|list %}
+      {% if siblings %}
+      <p class="small muted">Mismo grupo: {% for s in siblings %}<a href="/medios/{{ s.id }}">{{ s.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+      {% endif %}
+    {% elif m.publisher %}
+      <p class="strong">{{ m.publisher }}</p>
+      <p class="small muted">Editora sin grupo de comunicación conocido en nuestro catálogo.</p>
+    {% else %}
+      <p class="muted">Sin datos de propiedad en el catálogo.</p>
+    {% endif %}
+
+    <h2 class="section-title">Últimos titulares</h2>
+    {% if latest %}
+    <ul class="latest">
+      {% for r in latest %}
+      <li><a href="{{ r.url }}" rel="noopener noreferrer" target="_blank">{{ r.title }}</a> <span class="small muted">{{ time_ago(r.published) }}</span></li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="muted small">{% if m.feeds %}Todavía no hemos leído su RSS.{% else %}Este medio no ofrece un RSS accesible; aparece en los resultados solo si activas proveedores externos.{% endif %}</p>
+    {% endif %}
+  </aside>
+</div>
+{% endblock %}

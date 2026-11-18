@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% from "_macros.html" import chip, factual %}
+{% block title %}Medios · Contraste{% endblock %}
+{% block description %}Catálogo de medios españoles: orientación según fuentes externas, fiabilidad y grupo propietario.{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <p class="kicker">Catálogo</p>
+  <h1>Los medios y sus dueños</h1>
+  <p class="page-head__lead">{{ media|length }} cabeceras y {{ factcheckers|length }} verificadores. La orientación de cada medio se calcula a partir de lo que publican fuentes externas; si no hay fuentes, lo decimos. <a href="/metodologia">Cómo se calcula</a>.</p>
+</header>
+
+<section aria-labelledby="map-title" class="map-section">
+  <h2 id="map-title" class="section-title">Mapa ideológico</h2>
+  <div class="spectrum-map">
+    <div class="spectrum-map__axis" aria-hidden="true">
+      <span><span class="long">Izquierda</span><span class="short">Izq.</span></span><span><span class="long">Centroizq.</span><span class="short">C. izq.</span></span><span><span class="long">Centro</span><span class="short">Centro</span></span><span><span class="long">Centroder.</span><span class="short">C. der.</span></span><span><span class="long">Derecha</span><span class="short">Der.</span></span>
+    </div>
+    <ol class="spectrum-map__rows">
+      {% for m in media if m.assessment.rated %}
+      <li class="spectrum-map__row">
+        <a class="spectrum-map__pin at-{{ score_step(m.assessment.score) }} pin--{{ pos_class(m.assessment.position) }}" href="/medios/{{ m.id }}" title="{{ m.name }} · {{ m.assessment.label }} ({{ m.assessment.score }})">
+          <span class="spectrum-map__name">{{ m.name }}</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+  <p class="muted small">Cada punto es la media de las posiciones que asignan las fuentes externas (escala −2 a +2). La línea de cada fila marca la posición exacta.</p>
+</section>
+
+<section aria-labelledby="table-title">
+  <h2 id="table-title" class="section-title">Todas las cabeceras</h2>
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr><th scope="col">Medio</th><th scope="col">Tipo</th><th scope="col">Grupo / editora</th><th scope="col">Orientación</th><th scope="col">Fiabilidad</th><th scope="col">Índice</th></tr>
+      </thead>
+      <tbody>
+        {% for m in media %}
+        <tr>
+          <th scope="row"><a href="/medios/{{ m.id }}">{{ m.name }}</a>{% if m.region %}<span class="table__sub">{{ m.region }}</span>{% endif %}</th>
+          <td>{{ m.type }}</td>
+          <td>{% if m.group %}<a href="/grupos/{{ m.group.id }}">{{ m.group.name }}</a>{% elif m.publisher %}{{ m.publisher }}{% else %}<span class="muted">—</span>{% endif %}</td>
+          <td>{{ chip(m) }}{% for t in m.assessment.territorial %}<span class="tag">{{ t }}</span>{% endfor %}</td>
+          <td>{% if m.assessment.factual_level is not none %}{{ factual(m) }}{% else %}<span class="muted small">Sin evaluación</span>{% endif %}</td>
+          <td>{% if m.id in feed_ok %}<span class="ok" title="Leemos su RSS oficial">RSS</span>{% elif m.feeds %}<span class="muted small" title="Su RSS no responde ahora mismo">RSS caído</span>{% else %}<span class="muted small" title="No publica un RSS accesible">—</span>{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section aria-labelledby="groups-title">
+  <h2 id="groups-title" class="section-title">Grupos de comunicación</h2>
+  <ul class="cards">
+    {% for g in groups %}
+    <li class="card">
+      <a class="card__title" href="/grupos/{{ g.id }}">{{ g.name }}</a>
+      <p class="card__meta">{{ g.kind }}</p>
+      <p class="card__text">{{ g.media|map(attribute='name')|join(', ') }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section aria-labelledby="fc-title">
+  <h2 id="fc-title" class="section-title">Verificadores</h2>
+  <ul class="cards">
+    {% for m in factcheckers %}
+    <li class="card">
+      <a class="card__title" href="/medios/{{ m.id }}">{{ m.name }}</a>
+      <p class="card__meta">{{ factual(m) or 'Verificador' }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

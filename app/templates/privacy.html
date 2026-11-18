@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Privacidad · Contraste{% endblock %}
+
+{% block content %}
+<article class="prose">
+  <p class="kicker">Privacidad</p>
+  <h1>Lo que no hacemos con tus datos</h1>
+  <p class="lead">Resumen: no hay cookies, ni cuentas, ni analítica, ni publicidad. No guardamos lo que buscas.</p>
+
+  <h2>Qué no hay</h2>
+  <ul>
+    <li><strong>Cookies</strong>: ninguna, ni propias ni de terceros. Por eso no ves un banner de cookies.</li>
+    <li><strong>Rastreadores y analítica</strong>: ninguno. Todos los archivos (estilos, scripts, iconos) se sirven desde este mismo servidor; tu navegador no contacta con ningún otro dominio al cargar la página.</li>
+    <li><strong>Registro de búsquedas</strong>: la aplicación no escribe en disco lo que buscas. Se guarda unos minutos en memoria para responder más rápido si alguien repite la misma búsqueda, y después se descarta.</li>
+  </ul>
+
+  <h2>Qué se procesa y por qué</h2>
+  <ul>
+    <li><strong>Dirección IP</strong>: para limitar abusos (como máximo {{ settings.rate_limit_per_minute }} búsquedas por minuto) usamos un resumen criptográfico de tu IP con una clave aleatoria que solo vive en memoria y cambia cada día. Se borra al cabo de un minuto y nunca se guarda en claro. Base jurídica: interés legítimo en mantener el servicio disponible (art. 6.1.f RGPD).</li>
+    <li><strong>Al pulsar un titular</strong> vas directamente a la web del medio, con la política de privacidad de ese medio. Enviamos la cabecera <code>Referrer-Policy: no-referrer</code>, así que el medio no sabe que llegaste desde aquí ni qué buscaste.</li>
+    <li>Si la persona que administra esta instancia ha activado el proveedor opcional de Google News, tu búsqueda se envía a Google desde nuestro servidor (no desde tu navegador, y sin datos tuyos).</li>
+  </ul>
+
+  <h2>Alojamiento</h2>
+  <p>El proveedor de alojamiento puede registrar, como cualquier servidor web, datos técnicos de conexión. Si despliegas tu propia copia, revisa la configuración de registros de tu proveedor y de tu proxy inverso.</p>
+
+  <h2>Tus derechos</h2>
+  <p>Como no guardamos datos personales, normalmente no habrá nada que consultar, rectificar o borrar. Para cualquier duda, abre una incidencia en el <a href="{{ settings.repo_url }}" rel="noopener noreferrer">repositorio del proyecto</a>.</p>
+</article>
+{% endblock %}

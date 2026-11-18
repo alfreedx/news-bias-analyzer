@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ code }} · Contraste{% endblock %}
+{% block content %}
+<div class="error-page">
+  <p class="error-page__code">{{ code }}</p>
+  <h1>{% if code == 404 %}Esta página no existe{% elif code == 429 %}Demasiadas peticiones{% else %}Algo ha fallado{% endif %}</h1>
+  <p><a href="/">Volver a la portada</a> o <a href="/medios">ver el catálogo de medios</a>.</p>
+</div>
+{% endblock %}

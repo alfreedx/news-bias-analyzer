@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% from "_macros.html" import chip, byline, spectrum_dots %}
+{% block body_class %}page-home{% endblock %}
+
+{% block masthead %}
+<div class="masthead__brand wrap">
+  <h1 class="logo logo--big"><a href="/">Contraste</a></h1>
+  <p class="tagline">Quién cuenta cada noticia, desde dónde y quién está detrás.</p>
+</div>
+{% endblock %}
+
+{% block content %}
+<section class="hero" aria-labelledby="search-title">
+  <h2 id="search-title" class="visually-hidden">Buscar</h2>
+  <form class="searchbar searchbar--hero" action="/buscar" method="get" role="search">
+    <label class="visually-hidden" for="q">¿Qué noticia quieres contrastar?</label>
+    <input id="q" name="q" type="search" placeholder="¿Qué noticia quieres contrastar?" maxlength="120" autocomplete="off" spellcheck="false" autofocus>
+    <button type="submit">Contrastar</button>
+  </form>
+  <p class="hero__hint">
+    Prueba con
+    <a href="/buscar?q=vivienda">vivienda</a>,
+    <a href="/buscar?q=presupuestos">presupuestos</a>,
+    <a href="/buscar?q=inmigración">inmigración</a> o
+    <a href="/buscar?q=financiación+autonómica">financiación autonómica</a>.
+  </p>
+</section>
+
+<section class="explain" aria-label="Qué hace Contraste">
+  <div class="explain__item">
+    <span class="explain__num">1</span>
+    <h3>Mismo hecho, varios relatos</h3>
+    <p>Agrupamos los titulares que hablan del mismo suceso para que compares cómo lo cuenta cada medio.</p>
+  </div>
+  <div class="explain__item">
+    <span class="explain__num">2</span>
+    <h3>Orientación contrastada</h3>
+    <p>La posición de cada medio sale de fuentes externas citadas (Media Bias/Fact Check, Wikipedia, Wikidata), nunca de nuestra opinión.</p>
+  </div>
+  <div class="explain__item">
+    <span class="explain__num">3</span>
+    <h3>Dueños y verificaciones</h3>
+    <p>Te mostramos a qué grupo pertenece cada cabecera y si los verificadores han desmentido algo relacionado.</p>
+  </div>
+</section>
+
+<section class="front" aria-labelledby="front-title">
+  <div class="section-head">
+    <h2 id="front-title">En portada ahora</h2>
+    <p class="section-head__meta">Las historias que más medios están cubriendo en las últimas 36 horas</p>
+  </div>
+
+  {% if stories %}
+  <ol class="front__list">
+    {% for s in stories %}
+    <li class="front__item">
+      <a class="front__title" href="/buscar?q={{ s.topic_query|urlencode }}&amp;dias=7">{{ s.lead.title }}</a>
+      <div class="front__meta">
+        {{ spectrum_dots(s.positions) }}
+        <span>{{ s.outlets }} medios</span>
+        <span class="front__spread">{{ s.spread_label }}</span>
+      </div>
+      <ul class="front__outlets">
+        {% for a in s.articles[:6] %}<li>{{ chip(a.media) }} {{ a.source_name }}</li>{% endfor %}
+        {% if s.articles|length > 6 %}<li class="muted">y {{ s.articles|length - 6 }} más</li>{% endif %}
+      </ul>
+    </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <p class="empty">
+    {% if ingesting %}Estamos leyendo las portadas de los medios por primera vez. Vuelve a cargar la página en un minuto.
+    {% else %}Todavía no hay titulares indexados. Comprueba que la ingesta está activada (<code>INGEST_ENABLED=true</code>).{% endif %}
+  </p>
+  {% endif %}
+</section>
+
+<p class="indexstats">
+  {{ "{:,}".format(stats.articles).replace(",", ".") }} titulares de {{ stats.media }} medios en el índice
+  {% if stats.last_fetch %}· actualizado {{ time_ago(stats.last_fetch) }}{% endif %}
+  · <a href="/medios">ver los {{ catalog.news_media|length }} medios del catálogo</a>
+</p>
+{% endblock %}

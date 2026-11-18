@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% from "_macros.html" import chip, factual %}
+{% block title %}{{ g.name }} · Contraste{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <p class="kicker"><a href="/medios">Medios</a> / Grupo</p>
+  <h1>{{ g.name }}</h1>
+  <p class="page-head__lead">{{ g.kind }}</p>
+</header>
+
+<div class="profile">
+  <section class="profile__main">
+    <h2 class="section-title">Propietarios</h2>
+    <p>{{ g.owners }}</p>
+
+    <h2 class="section-title">Cabeceras del grupo</h2>
+    <ul class="group-media">
+      {% for m in g.media %}
+      <li>
+        <a class="strong" href="/medios/{{ m.id }}">{{ m.name }}</a>
+        <span class="small muted">{{ m.type }}</span>
+        {{ chip(m) }} {{ factual(m) }}
+      </li>
+      {% endfor %}
+    </ul>
+    <p class="small muted">Que varios medios compartan dueño no implica que compartan línea editorial, pero es un dato relevante para valorar cuántas voces distintas cuentan una noticia.</p>
+  </section>
+  <aside class="profile__side">
+    <h2 class="section-title">Fuentes</h2>
+    <ul class="sources">
+      {% for s in g.sources %}<li><a href="{{ s.url }}" rel="noopener noreferrer">{{ s.title }}</a></li>{% endfor %}
+    </ul>
+  </aside>
+</div>
+{% endblock %}

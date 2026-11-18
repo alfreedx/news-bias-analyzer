@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Contraste{% endblock %}</title>
+  <meta name="description" content="{% block description %}Busca una noticia y descubre quién la cuenta, desde qué orientación ideológica y quién es el dueño de cada medio.{% endblock %}">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="no-referrer">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/css/style.css?v={{ version }}">
+  <script src="/static/js/app.js?v={{ version }}" defer></script>
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <header class="masthead">
+    <div class="masthead__bar wrap">
+      <span class="masthead__date">{{ long_date() }}</span>
+      <nav class="masthead__nav" aria-label="Principal">
+        <a href="/medios" {% if request.url.path.startswith('/medios') or request.url.path.startswith('/grupos') %}aria-current="page"{% endif %}>Medios</a>
+        <a href="/metodologia" {% if request.url.path == '/metodologia' %}aria-current="page"{% endif %}>Metodología</a>
+        <a href="/acerca" {% if request.url.path == '/acerca' %}aria-current="page"{% endif %}>Acerca</a>
+      </nav>
+    </div>
+    {% block masthead %}
+    <div class="masthead__brand masthead__brand--small wrap">
+      <a href="/" class="logo">Contraste</a>
+      <form class="searchbar searchbar--inline" action="/buscar" method="get" role="search">
+        <label class="visually-hidden" for="q-top">Buscar noticias</label>
+        <input id="q-top" name="q" type="search" value="{{ query or '' }}" placeholder="Busca un tema…" maxlength="120" autocomplete="off" spellcheck="false">
+        <button type="submit">Buscar</button>
+      </form>
+    </div>
+    {% endblock %}
+  </header>
+
+  <main id="main" class="wrap">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div>
+        <p class="footer__brand">Contraste</p>
+        <p class="footer__text">Buscador independiente y sin ánimo de lucro. No usamos cookies ni rastreadores, y no guardamos lo que buscas.</p>
+      </div>
+      <div>
+        <p class="footer__head">Proyecto</p>
+        <ul>
+          <li><a href="/metodologia">Cómo evaluamos a los medios</a></li>
+          <li><a href="/privacidad">Privacidad</a></li>
+          <li><a href="/acerca">Acerca y aviso legal</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__head">Código y datos</p>
+        <ul>
+          <li><a href="{{ settings.repo_url }}" rel="noopener noreferrer">Código fuente (MIT)</a></li>
+          <li><a href="{{ settings.repo_url }}/blob/main/data/media.json" rel="noopener noreferrer">Datos de medios (CC BY-SA 4.0)</a></li>
+          <li><a href="{{ settings.repo_url }}/issues" rel="noopener noreferrer">Proponer una corrección</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

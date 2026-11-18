@@ -1,0 +1,49 @@
+{% macro chip(media) -%}
+  {%- if media and media.assessment.rated -%}
+    <span class="chip chip--{{ pos_class(media.assessment.position) }}" title="Orientación según fuentes externas: {{ media.assessment.label }}">{{ media.assessment.label }}</span>
+  {%- elif media -%}
+    <span class="chip chip--na" title="No hay evaluaciones externas publicadas sobre este medio">Sin evaluar</span>
+  {%- else -%}
+    <span class="chip chip--na" title="Este medio no está en nuestro catálogo">Desconocido</span>
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro factual(media) -%}
+  {%- if media and media.assessment.factual_level is not none -%}
+    <span class="fact fact--{{ media.assessment.factual_level }}" title="Fiabilidad factual según Media Bias/Fact Check">Fiabilidad: {{ media.assessment.factual_label }}</span>
+  {%- elif media and media.assessment.ifcn -%}
+    <span class="fact fact--4">Verificador IFCN</span>
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro byline(a, show_group=True) -%}
+  <span class="byline">
+    {%- if a.media -%}<a class="byline__media" href="/medios/{{ a.media.id }}">{{ a.source_name }}</a>{%- else -%}<span class="byline__media">{{ a.source_name }}</span>{%- endif -%}
+    {%- if show_group and a.media and a.media.group %}<span class="byline__sep" aria-hidden="true">·</span><a class="byline__group" href="/grupos/{{ a.media.group.id }}">{{ a.media.group.name }}</a>{%- endif -%}
+    <span class="byline__sep" aria-hidden="true">·</span><time datetime="{{ iso(a.published) }}">{{ time_ago(a.published) }}</time>
+  </span>
+{%- endmacro %}
+
+{% macro signals(a) -%}
+  {%- if a.signals -%}
+  <span class="signals" title="Señales automáticas del titular. Orientativas: consulta la metodología.">
+    {%- for s in a.signals %}<span class="signal">{{ s }}</span>{% endfor -%}
+  </span>
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro spectrum_dots(positions) -%}
+  <span class="dots" aria-label="Orientaciones que cubren la historia">
+    {%- for p in [-2, -1, 0, 1, 2] %}<span class="dot dot--{{ pos_class(p) }}{% if p in positions %} is-on{% endif %}" title="{{ POSITION_LABELS[p] }}"></span>{% endfor -%}
+  </span>
+{%- endmacro %}
+
+{% macro meter(score, label) -%}
+  <div class="meter" role="img" aria-label="Posición estimada: {{ label }}">
+    <div class="meter__track">
+      <span class="meter__seg meter__seg--l2"></span><span class="meter__seg meter__seg--l1"></span><span class="meter__seg meter__seg--c0"></span><span class="meter__seg meter__seg--r1"></span><span class="meter__seg meter__seg--r2"></span>
+      {% if score is not none %}<span class="meter__marker at-{{ score_step(score) }}"></span>{% endif %}
+    </div>
+    <div class="meter__labels"><span>Izquierda</span><span>Centro</span><span>Derecha</span></div>
+  </div>
+{%- endmacro %}

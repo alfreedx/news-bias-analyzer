@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% from "_macros.html" import chip, factual, byline, signals, spectrum_dots %}
+{% block title %}{% if query %}{{ query }} · {% endif %}Contraste{% endblock %}
+{% block body_class %}page-search{% endblock %}
+
+{% block content %}
+<div class="search-head">
+  <form class="period" action="/buscar" method="get">
+    <input type="hidden" name="q" value="{{ query }}">
+    <span class="period__label">Periodo</span>
+    {% for key, label in [("7", "7 días"), ("30", "30 días"), ("todo", "Todo el índice")] %}
+      <button type="submit" name="dias" value="{{ key }}" {% if days_key == key %}aria-pressed="true"{% endif %}>{{ label }}</button>
+    {% endfor %}
+  </form>
+  {% if query %}<h1 class="search-head__title">«{{ query }}»</h1>{% endif %}
+</div>
+
+{% if error %}<p class="empty">{{ error }}</p>{% endif %}
+
+{% if result %}
+{% set cov = result.coverage %}
+{% if not result.articles %}
+  <div class="empty">
+    <p>No hemos encontrado titulares sobre «{{ query }}» en este periodo.</p>
+    <p>Prueba con menos palabras, otro sinónimo o amplía el periodo a <a href="/buscar?q={{ query|urlencode }}&amp;dias=todo">todo el índice</a>.</p>
+  </div>
+{% else %}
+<div class="layout">
+  <div class="sidebar">
+  <aside class="panel panel--summary" aria-labelledby="panel-title">
+    <h2 id="panel-title" class="panel__title">Radiografía de la cobertura</h2>
+    <p class="panel__lead"><strong>{{ cov.total }}</strong> titulares · <strong>{{ cov.outlets }}</strong> medios</p>
+
+    <div class="stack" role="img" aria-label="Reparto por orientación: {% for p, n in cov.by_position.items() %}{{ POSITION_LABELS[p] }} {{ n }}{% if not loop.last %}, {% endif %}{% endfor %}">
+      {% for p, n in cov.by_position.items() %}{% if n %}<span class="stack__seg stack__seg--{{ pos_class(p) }} w-{{ pct(n, cov.rated) }}" title="{{ POSITION_LABELS[p] }}: {{ n }}"></span>{% endif %}{% endfor %}
+    </div>
+    <ul class="legend">
+      {% for p, n in cov.by_position.items() %}
+      <li><span class="dot dot--{{ pos_class(p) }} is-on"></span>{{ POSITION_LABELS[p] }} <span class="legend__n">{{ n }}</span></li>
+      {% endfor %}
+      <li><span class="dot dot--na is-on"></span>Sin evaluar <span class="legend__n">{{ cov.total - cov.rated }}</span></li>
+    </ul>
+
+    {% for w in cov.warnings %}
+    <div class="alert alert--{{ w.kind }}">
+      <p class="alert__title">{{ w.title }}</p>
+      <p>{{ w.text }}</p>
+    </div>
+    {% endfor %}
+  </aside>
+
+  <aside class="panel panel--more" aria-label="Propiedad y verificaciones">
+    <h3 class="panel__sub panel__sub--first">Quién está detrás</h3>
+    <ul class="bars">
+      {% for name, n in cov.by_group[:8] %}
+      <li><span class="bars__label">{{ name }}</span><span class="bars__n">{{ n }}</span><span class="bars__bar"><span class="w-{{ pct(n, cov.total) }}"></span></span></li>
+      {% endfor %}
+    </ul>
+
+    <h3 class="panel__sub">Verificaciones relacionadas</h3>
+    {% if result.factchecks %}
+    <ul class="checks">
+      {% for a in result.factchecks %}
+      <li>
+        <a href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
+        <span class="checks__by">{{ a.source_name }} · {{ time_ago(a.published) }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="muted small">Ningún verificador (Maldita, Newtral, EFE Verifica) ha publicado nada que coincida en este periodo.</p>
+    {% endif %}
+  </aside>
+  </div>
+
+  <section class="results" aria-labelledby="results-title">
+    <h2 id="results-title" class="visually-hidden">Resultados</h2>
+
+    <div class="filters" data-filters hidden>
+      <div class="filters__row" role="group" aria-label="Filtrar por orientación">
+        <button type="button" class="pill is-active" data-pos="all" aria-pressed="true">Todas</button>
+        {% for p in [-2, -1, 0, 1, 2] %}
+        <button type="button" class="pill pill--{{ pos_class(p) }}" data-pos="{{ p }}" aria-pressed="false">{{ POSITION_LABELS[p] }}</button>
+        {% endfor %}
+        <button type="button" class="pill pill--na" data-pos="na" aria-pressed="false">Sin evaluar</button>
+      </div>
+      <div class="filters__row">
+        <label class="select">
+          <span>Grupo</span>
+          <select data-group-filter>
+            <option value="">Todos</option>
+            {% for g in groups %}<option value="{{ g }}">{{ g }}</option>{% endfor %}
+          </select>
+        </label>
+        <label class="select">
+          <span>Ver</span>
+          <select data-view>
+            <option value="stories">Historias agrupadas</option>
+            <option value="flat">Todos los titulares</option>
+          </select>
+        </label>
+        <label class="select">
+          <span>Orden</span>
+          <select data-sort>
+            <option value="relevance">Relevancia</option>
+            <option value="recent">Más recientes</option>
+          </select>
+        </label>
+      </div>
+      <p class="filters__count" data-count aria-live="polite"></p>
+    </div>
+
+    <div data-stories>
+    {% for s in result.stories %}
+      {% if s.articles|length > 1 %}
+      <article class="story">
+        <header class="story__head">
+          <p class="story__kicker">{{ spectrum_dots(s.positions) }} {{ s.outlets }} medios · {{ s.spread_label }}</p>
+          <h3 class="story__title">{{ s.lead.title }}</h3>
+        </header>
+        <ul class="story__list">
+          {% for a in s.articles %}
+          <li class="item" data-item data-pos="{{ a.position if a.position is not none else 'na' }}" data-group="{{ a.media.group.name if a.media and a.media.group else '' }}" data-time="{{ a.published }}" data-rel="{{ loop.index0 }}">
+            <div class="item__aside">{{ chip(a.media) }}</div>
+            <div class="item__body">
+              <a class="item__title" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
+              <div class="item__meta">{{ byline(a) }} {{ factual(a.media) }} {{ signals(a) }}</div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </article>
+      {% else %}
+      {% set a = s.lead %}
+      <article class="single item" data-item data-pos="{{ a.position if a.position is not none else 'na' }}" data-group="{{ a.media.group.name if a.media and a.media.group else '' }}" data-time="{{ a.published }}">
+        <div class="item__aside">{{ chip(a.media) }}</div>
+        <div class="item__body">
+          <a class="item__title" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
+          {% if a.summary %}<p class="item__summary">{{ a.summary|truncate(220) }}</p>{% endif %}
+          <div class="item__meta">{{ byline(a) }} {{ factual(a.media) }} {{ signals(a) }}</div>
+        </div>
+      </article>
+      {% endif %}
+    {% endfor %}
+    </div>
+    <p class="empty" data-no-match hidden>Ningún titular coincide con los filtros.</p>
+  </section>
+</div>
+{% endif %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Metodología · Contraste{% endblock %}
+{% block description %}Cómo calcula Contraste la orientación y la fiabilidad de cada medio, y qué limitaciones tiene.{% endblock %}
+
+{% block content %}
+<article class="prose">
+  <p class="kicker">Metodología</p>
+  <h1>Cómo evaluamos a los medios</h1>
+  <p class="lead">Contraste no opina sobre los medios. Recoge lo que han publicado fuentes externas reconocidas, lo traduce a una escala común con reglas fijas y públicas, y enlaza siempre a la fuente original para que puedas comprobarlo.</p>
+
+  <h2>1. De dónde salen los datos</h2>
+  <ul>
+    <li><strong>Media Bias/Fact Check (MBFC)</strong>: organización independiente que califica el sesgo y la fiabilidad factual de miles de medios con una metodología publicada. Usamos su «Bias Rating» y su «Factual Reporting».</li>
+    <li><strong>Wikipedia en español</strong>: el campo «ideología» de la ficha de cada periódico o, si no existe, una frase literal del artículo que citamos entre comillas.</li>
+    <li><strong>Wikidata</strong>: la propiedad «orientación política» (P1387) y «propiedad de» (P127).</li>
+    <li><strong>International Fact-Checking Network (IFCN)</strong>: pertenencia de los verificadores a la red, según la fuente citada.</li>
+  </ul>
+  <p>Todos los datos están en el archivo <a href="{{ settings.repo_url }}/blob/main/data/media.json" rel="noopener noreferrer"><code>data/media.json</code></a>, con la URL de cada fuente. Un script (<code>scripts/verify_sources.py</code>) comprueba periódicamente que cada enlace sigue vivo y que las calificaciones de MBFC no han cambiado.</p>
+
+  <h2>2. La escala</h2>
+  <p>Usamos cinco posiciones en el eje izquierda–derecha. Cada etiqueta publicada por una fuente se traduce con esta tabla:</p>
+  <div class="table-wrap">
+    <table class="table">
+      <thead><tr><th scope="col">Posición</th><th scope="col">Valor</th><th scope="col">Etiquetas que la producen</th></tr></thead>
+      <tbody>
+        {% for p, labels in by_pos.items() %}
+        <tr>
+          <th scope="row"><span class="chip chip--{{ pos_class(p) }}">{{ POSITION_LABELS[p] }}</span></th>
+          <td>{{ "%+d"|format(p) }}</td>
+          <td class="small">{{ labels|sort|join(', ') }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p>Si una fuente da varias etiquetas (por ejemplo «Conservadurismo, Monarquismo»), hacemos su media. Después hacemos la media entre fuentes y la redondeamos a la posición más cercana. Indicamos si las fuentes <em>coinciden</em>, <em>coinciden parcialmente</em> o <em>discrepan</em>.</p>
+  <p>Las etiquetas del <strong>eje territorial</strong> ({{ territorial|join(', ') }}) no mueven la posición izquierda–derecha: se muestran aparte, porque en España son una dimensión distinta.</p>
+  <p>Si no hay ninguna fuente, el medio aparece como <span class="chip chip--na">Sin evaluar</span>. No rellenamos huecos con nuestra opinión.</p>
+
+  <h2>3. Fiabilidad factual</h2>
+  <p>Viene exclusivamente de MBFC, que valora el historial de verificaciones fallidas, el uso de fuentes y la política de rectificaciones:</p>
+  <ul>
+    {% for k, (lvl, label) in factual.items() %}<li><code>{{ k }}</code> → {{ label }}</li>{% endfor %}
+  </ul>
+  <p>Orientación y fiabilidad son cosas distintas: un medio puede tener una línea editorial muy marcada y ser riguroso con los hechos, o al revés.</p>
+
+  <h2>4. Análisis de cada búsqueda</h2>
+  <ul>
+    <li><strong>Historias agrupadas</strong>: agrupamos los titulares que comparten la mayoría de sus palabras clave. Es un método sencillo; a veces separa la misma noticia o junta dos parecidas.</li>
+    <li><strong>Punto ciego</strong>: si hay al menos seis titulares de medios evaluados y uno de los dos lados aporta el 10 % o menos, lo avisamos.</li>
+    <li><strong>Cobertura concentrada</strong>: si dos grupos de comunicación suman la mitad o más de los resultados.</li>
+    <li><strong>Señales del titular</strong>: detectamos automáticamente expresiones de cebo («no creerás…»), lenguaje cargado («escándalo», «humillación»…), exclamaciones y mayúsculas enfáticas. Son pistas para leer con atención, no un veredicto.</li>
+    <li><strong>Verificaciones relacionadas</strong>: buscamos tu consulta en los artículos de Maldita.es, Newtral y EFE Verifica.</li>
+  </ul>
+
+  <h2>5. De dónde salen las noticias</h2>
+  <p>Leemos cada {{ settings.ingest_interval_minutes }} minutos los <strong>canales RSS oficiales</strong> que publican los propios medios y guardamos solo el titular, la entradilla, el enlace y la fecha durante {{ settings.retention_days }} días. Siempre enlazamos al medio original; no reproducimos los artículos.</p>
+  <p>Algunos medios no ofrecen RSS o lo bloquean a lectores automáticos; respetamos ese bloqueo. Por eso no aparecen en los resultados aunque estén en el catálogo.</p>
+
+  <h2>6. Limitaciones</h2>
+  <ul>
+    <li>Las fuentes externas también tienen sesgos y pueden quedarse anticuadas. Por eso las enlazamos y mostramos su fecha de consulta.</li>
+    <li>Un medio es un conjunto de periodistas, secciones y opiniones: su orientación media no dice nada de una noticia concreta.</li>
+    <li>El catálogo es incompleto. Puedes proponer medios o correcciones en el repositorio.</li>
+  </ul>
+</article>
+{% endblock %}
