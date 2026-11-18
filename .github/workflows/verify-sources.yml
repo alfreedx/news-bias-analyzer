@@ -1,0 +1,26 @@
+name: Verify sources
+
+# Weekly check that every cited source is still online and that the
+# Media Bias/Fact Check ratings in data/media.json have not changed.
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python scripts/verify_sources.py
+        env:
+          VERIFY_CONTACT: ${{ github.server_url }}/${{ github.repository }}

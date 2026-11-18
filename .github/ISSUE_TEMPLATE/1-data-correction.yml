@@ -1,0 +1,33 @@
+name: Corrección o alta de un medio
+description: Propón un cambio en la orientación, fiabilidad, propietarios o feed de un medio.
+labels: [datos]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Toda afirmación necesita una **fuente pública enlazable** (Media Bias/Fact Check, Wikipedia o Wikidata).
+        Sin fuente no podemos aceptar el cambio. Consulta la [guía de contribución](https://github.com/alfreedx/news-bias-analyzer/blob/main/CONTRIBUTING.md).
+  - type: input
+    id: media
+    attributes:
+      label: Medio
+      placeholder: "El País"
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Qué hay que cambiar
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: URL de la fuente
+      placeholder: https://
+    validations:
+      required: true
+  - type: textarea
+    id: quote
+    attributes:
+      label: Cita literal de la fuente (si aplica)
