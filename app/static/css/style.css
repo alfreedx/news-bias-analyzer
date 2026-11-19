@@ -618,6 +618,8 @@ h1, h2, .story__title, .search-head__title { font-variation-settings: "opsz" 48;
 .consensus__lead { font-size: 1.05rem; color: var(--ink-2); margin: 0 0 10px; }
 .consensus__sub { font: 600 .74rem var(--sans); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 22px 0 6px; }
 .consensus__origin, .consensus__head { font-size: .92rem; color: var(--ink-2); margin: 10px 0 0; overflow-wrap: anywhere; }
+.consensus__note { font-size: .92rem; color: var(--ink-2); margin: 0 0 8px; }
+.consensus__side { font: 600 .82rem var(--sans); color: var(--ink-2); margin: 12px 0 4px; }
 .pieces { list-style: none; padding: 0; margin: 0; }
 .piece { padding: 9px 0 9px 12px; border-left: 3px solid var(--rule-strong); border-bottom: 1px dotted var(--rule); min-width: 0; margin-bottom: 4px; }
 .pieces--one .piece--left { border-left-color: var(--l1); }

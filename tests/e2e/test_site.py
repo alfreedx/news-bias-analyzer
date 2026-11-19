@@ -215,6 +215,10 @@ def test_story_page_loads_clean_without_overflow(page: Page, base_url, story_pat
     assert sw <= cw
     expect(page.get_by_role("heading", name="En lo que coinciden")).to_be_visible()
     expect(page.get_by_text("no prueba que algo sea cierto")).to_be_visible()
+    for name in ("Palabras y expresiones compartidas", "Palabras que solo usa un lado"):
+        heading = page.get_by_role("heading", name=name)
+        if heading.count():  # present only when the story has enough voices and terms
+            expect(heading).to_be_visible()
 
 
 def test_story_page_details_expand(page: Page, base_url, story_path):

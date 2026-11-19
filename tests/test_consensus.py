@@ -9,8 +9,10 @@ from app.consensus import (
     extract_numbers,
     extract_pieces,
     extract_quotes,
+    extract_terms,
     norm_number,
     representative_headline,
+    term_stem,
 )
 
 cat = get_catalog()
@@ -201,3 +203,110 @@ def test_max_pieces_limit():
     summary = " ".join(f"{n} muertos," for n in range(1, 15))
     c = consensus(spread(lambda m: summary))
     assert len(c.pieces) == 8
+
+
+# --- words and expressions -------------------------------------------------------------
+def term_keys(text):
+    return {k for k, _ in extract_terms(text)}
+
+
+def test_terms_phrases_allow_inner_connectors_not_edges():
+    got = term_keys("Planeó apartar a su hijo del negocio")
+    assert "apartar a su hijo" in got and "hijo del negocio" in got
+    assert "apartar a" not in got and "a su hijo" not in got and "su hijo" not in got
+    assert "ano sabatico" in term_keys("Se tomó un año sabático") and "ano" not in term_keys("Se tomó un año")
+
+
+def test_terms_break_at_punctuation_stopwords_and_digits():
+    got = term_keys("Sube el paro, baja el empleo: 25 casos nuevos que preocupan")
+    assert "paro baja" not in got and "paro" in got  # the comma splits phrases
+    assert "empleo" in got
+    assert not any("25" in k for k in got)
+    assert "empleo 25" not in got and "caso nuevo" not in got  # digits and stopwords split phrases
+    assert not any(len(k.split()) > 5 for k in got)
+
+
+def test_terms_plural_folding_keeps_verbs_apart():
+    assert term_stem("terapeutas") == term_stem("terapeuta") == "terapeuta"
+    assert term_stem("papeles") == "papel"
+    assert term_keys("la terapeuta") & term_keys("las terapeutas") == {"terapeuta"}
+    assert "planeo" in term_keys("Planeó apartar") and "planea" in term_keys("Planea apartar")
+    assert "planeo" not in term_keys("Planea apartar")
+
+
+def test_terms_display_in_most_frequent_spelling():
+    media = LEFT[:2] + CENTER[:1] + RIGHT[:2]
+    texts = ["Dice. Terapeutas. Más", "Dice. Las terapeutas. Más"] + ["Dice. Una terapeuta. Más"] * 3
+    arts = [art(m, f"Ya hoy {chr(97 + i) * 2}", t) for i, (m, t) in enumerate(zip(media, texts, strict=True))]
+    c = consensus(arts)
+    assert next(p for p in c.terms if p.key == "terapeuta").text == "terapeuta"
+
+
+def story(texts):
+    """One article per outlet: texts maps media id -> summary."""
+    return [art(m, f"Ya hoy {chr(97 + i) * 2}", t) for i, (m, t) in enumerate(texts.items())]
+
+
+def test_shared_terms_thresholds_and_sides():
+    base = {m: "La terapeuta lo cuenta." for m in ("eldiario-es", "publico", "abc", "okdiario")}
+    assert "terapeuta" in [p.key for p in consensus(story(base)).terms]
+    two = dict(list(base.items())[:2] + [("abc", "Otra cosa distinta."), ("okdiario", "Algo diferente.")])
+    assert consensus(story(two)).terms == []  # only 2 voices
+    same_side = {m: "La terapeuta lo cuenta." for m in ("abc", "okdiario", "el-mundo")}
+    assert consensus(story(same_side)).terms == []  # only one side
+    piece = consensus(story(base)).terms[0]
+    assert piece.voices == 4 and piece.sides == ["left", "right"] and "ABC" in piece.outlets
+
+
+def test_shared_terms_exclude_names_outlets_generic_and_numbers():
+    text = "Isak Andic habló. La terapeuta. Gobierno y El Mundo. Sobre 2025. La semana"
+    c = consensus(story({m: text for m in ("eldiario-es", "publico", "abc", "okdiario")}))
+    keys_ = {p.key for p in c.terms}
+    assert "terapeuta" in keys_
+    assert not keys_ & {"isak", "andic", "gobierno", "mundo", "2025", "semana"}
+    assert not any("isak" in k or "andic" in k or "el mundo" in k for k in keys_)
+    assert all(len(p.key) >= 4 for p in c.terms if " " not in p.key)
+
+
+def test_shared_terms_capitalised_midsentence_words_are_names_not_terms():
+    c = consensus(story({m: "Habló la terapeuta con Perico" for m in ("eldiario-es", "publico", "abc", "okdiario")}))
+    assert not any("perico" in p.key for p in c.terms)
+
+
+def test_shared_terms_contained_in_longer_phrase_are_dropped():
+    same = {m: "Quiso. Apartar a su hijo. Negocio familiar." for m in ("eldiario-es", "publico", "abc", "okdiario")}
+    keys_ = {p.key for p in consensus(story(same)).terms}
+    assert "apartar a su hijo" in keys_
+    assert "apartar" not in keys_ and "hijo" not in keys_ and "negocio" not in keys_
+    # a single word with clearly more voices than the phrase survives
+    mixed = story({**same, "infolibre": "Habló del hijo.", "el-mundo": "Un hijo ausente."})
+    keys_ = {p.key for p in consensus(mixed).terms}
+    assert "hijo" in keys_ and "apartar a su hijo" in keys_
+
+
+def test_one_sided_terms_need_opposite_coverage_and_no_use_by_other_side():
+    arts = story({"eldiario-es": "Un recorte brutal en sanidad.", "publico": "Un recorte brutal hoy.",
+                  "abc": "Ajuste necesario en sanidad.", "okdiario": "Ajuste necesario ahora."})
+    c = consensus(arts)
+    left = {o.piece.key for o in c.one_sided_terms_of("left")}
+    right = {o.piece.key for o in c.one_sided_terms_of("right")}
+    assert "recorte brutal" in left and "ajuste necesario" in right
+    assert "sanidad" not in left | right  # both sides use it
+    assert next(o for o in c.one_sided_terms if o.piece.key == "recorte brutal").piece.voices == 2
+
+
+def test_one_sided_terms_without_two_opposite_voices_are_dropped():
+    arts = story({"eldiario-es": "Un recorte brutal.", "publico": "Un recorte brutal.", "infolibre": "Un recorte brutal.",
+                  "abc": "Ajuste necesario."})
+    assert consensus(arts).one_sided_terms == []
+    # center voices count as neither side but a term they use is not exclusive to one side
+    arts = story({"eldiario-es": "Un recorte brutal.", "publico": "Un recorte brutal.", "efe": "Un recorte brutal.",
+                  "abc": "Ajuste.", "okdiario": "Ajuste."})
+    assert not [o for o in consensus(arts).one_sided_terms if o.piece.key == "recorte brutal"]
+
+
+def test_one_sided_terms_limits_per_side():
+    words = "alfa beta gamma delta epsilon zeta theta iota kappa lambda".split()
+    text = " ".join(f"termino{w}" for w in words)
+    arts = story({"eldiario-es": text, "publico": text, "abc": "Otro asunto.", "okdiario": "Otro asunto."})
+    assert len(consensus(arts).one_sided_terms_of("left")) <= 6

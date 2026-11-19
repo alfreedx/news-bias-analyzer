@@ -21,6 +21,11 @@ MIN_GROUPS = 2      # distinct owners a coincident piece must span
 MAX_PIECES = 8
 MAX_ONE_SIDED = 5
 MIN_ONE_SIDED_VOICES = 2
+MAX_TERMS = 8
+MAX_ONE_SIDED_TERMS = 6   # per side
+MIN_TERM_LEN = 4          # letters of a single word to count as a term
+MAX_PHRASE_SPAN = 5       # tokens of a phrase, connectors included
+MAX_PHRASE_CONTENT = 3    # content words of a phrase
 QUOTE_WORDS = (3, 15)
 
 SIDE_LABEL = {"left": "izquierda", "center": "centro", "right": "derecha"}
@@ -322,6 +327,11 @@ class Consensus:
     one_sided: list[OneSided]
     headline: Article | None
     agencies: list[tuple[str, int]]
+    terms: list[Piece] = field(default_factory=list)
+    one_sided_terms: list[OneSided] = field(default_factory=list)
+
+    def one_sided_terms_of(self, side: str) -> list[OneSided]:
+        return [o for o in self.one_sided_terms if o.side == side]
 
 
 def _piece_table(voices: list[Voice]) -> tuple[dict[tuple[str, str], set[int]], dict[tuple[str, str], Counter]]:
@@ -384,6 +394,182 @@ def _sort_key(p: Piece):
     return (-p.voices, KIND_ORDER[p.kind], -len(p.text), p.key)
 
 
+# --- Words and expressions ---------------------------------------------------------------
+# Inside a phrase these may appear, never at its edges.
+PHRASE_CONNECTORS = frozenset({"de", "del", "a", "al", "la", "el", "su", "sus", "en", "con", "por", "para"})
+# News boilerplate that is not content (folded). Only used for terms.
+TERM_STOP = frozenset(
+    """dijo dicho afirmo asegura aseguro explica explico anuncia anuncio senala senalo cree creen quiere quieren
+    podria podrian debe deben tiene tenia hizo hacer hacen estar estado estaban sido seria ahora siempre nunca
+    despues luego ademas cuatro cinco seis siete ocho nueve diez primer primera primero segundo segunda tercer
+    ultimo ultima ultimos ultimas semana semanas mes meses lunes martes miercoles jueves viernes sabado domingo
+    claves caso casos mismo misma mismos mismas cada solo todas toda mucho mucha muchos muchas gran grande
+    vivo informacion articulo""".split()
+)
+# Words that make no sense alone (they do inside a phrase: «año sabático»).
+_WEAK_ALONE = frozenset({"ano", "anos"})
+_PHRASE_BREAK = re.compile(r"[^\w\s'-]|\d", re.UNICODE)
+
+
+def term_stem(token: str) -> str:
+    """Very light plural folding on a folded word: «terapeutas» -> «terapeuta», «papeles» -> «papel»."""
+    if len(token) >= 5 and token.endswith("s"):
+        token = token[:-1]
+        if len(token) >= 6 and token.endswith("e") and token[-2] in "nrlzd":
+            token = token[:-1]
+    return token
+
+
+_TERM_STOP_STEMS = frozenset(term_stem(w) for w in GENERIC | TERM_STOP)
+
+
+def _is_content(folded: str) -> bool:
+    if folded in PHRASE_CONNECTORS or (folded in STOPWORDS and folded not in _WEAK_ALONE):
+        return False
+    return len(folded) >= 3 and not any(c.isdigit() for c in folded) and "'" not in folded
+
+
+Seg = list[tuple[str, str, bool]]
+
+
+def _segments(text: str) -> list[Seg]:
+    """Runs of words with no punctuation or digit between them: (folded, shown, capitalised mid-sentence)."""
+    segments: list[Seg] = []
+    cur: Seg = []
+    for m in _TOKEN_RE.finditer(text):
+        word = m["w"]
+        if word is None or _PHRASE_BREAK.search(word) or not any(c.isalpha() for c in word):
+            if cur:
+                segments.append(cur)
+            cur = []
+            continue
+        cur.append((fold(word), word, bool(cur) and _is_cap(word)))
+    if cur:
+        segments.append(cur)
+    return segments
+
+
+def _shown(seg: Seg, i: int, j: int) -> str:
+    return " ".join(w if cap else w.lower() for _, w, cap in seg[i:j + 1])
+
+
+def extract_terms(text: str) -> list[tuple[str, str]]:
+    """Content words and 2-3-word phrases as [(key, shown)].
+
+    A phrase spans at most 5 words and has 2 or 3 content words; its edges are content words and inside it
+    may carry connectors (de, del, a, al, la, el, su, sus, en, con, por, para). The key is the folded text
+    with plural folding on content words, so «terapeuta» and «terapeutas» coincide.
+    """
+    out: dict[str, str] = {}
+    for seg in _segments(text):
+        n = len(seg)
+        content = [_is_content(f) for f, _, _ in seg]
+        for i in range(n):
+            if not content[i]:
+                continue
+            if len(seg[i][0]) >= MIN_TERM_LEN and seg[i][0] not in _WEAK_ALONE:
+                out.setdefault(term_stem(seg[i][0]), _shown(seg, i, i))
+            n_content = 1
+            for j in range(i + 1, min(n, i + MAX_PHRASE_SPAN)):
+                if content[j]:
+                    n_content += 1
+                    if n_content > MAX_PHRASE_CONTENT:
+                        break
+                    parts = [term_stem(seg[k][0]) if content[k] else seg[k][0] for k in range(i, j + 1)]
+                    out.setdefault(" ".join(parts), _shown(seg, i, j))
+                elif seg[j][0] not in PHRASE_CONNECTORS:
+                    break
+    return list(out.items())
+
+
+def _stem_set(keys) -> set[str]:
+    return {term_stem(w) for k in keys for w in k.split() if w not in PHRASE_CONNECTORS}
+
+
+def _term_table(voices: list[Voice]) -> tuple[dict[str, set[int]], dict[str, Counter]]:
+    holders: dict[str, set[int]] = {}
+    spellings: dict[str, Counter] = {}
+    for i, v in enumerate(voices):
+        seen: set[str] = set()
+        for a in v.articles:
+            text = f"{a.title}. {a.summary}" if a.summary else a.title
+            for key, shown in extract_terms(text):
+                holders.setdefault(key, set()).add(i)
+                if key not in seen:
+                    spellings.setdefault(key, Counter())[shown] += 1
+                    seen.add(key)
+    return holders, spellings
+
+
+def _term_excluded(key: str, covered: set[str], outlet_names: frozenset[str]) -> bool:
+    content = [w for w in key.split() if w not in PHRASE_CONNECTORS]
+    if all(w in _TERM_STOP_STEMS for w in content) or any(w in covered for w in content):
+        return True
+    padded = f" {key} "
+    return any(f" {name} " in padded for name in outlet_names)
+
+
+def _make_term(key: str, idx: set[int], voices: list[Voice], spellings: dict, side_of_voice: list) -> Piece:
+    n_content = sum(w not in PHRASE_CONNECTORS for w in key.split())
+    sides = [s for s in SIDE_ORDER if any(side_of_voice[i] == s for i in idx)]
+    outlets = sorted({o for i in idx for o in voices[i].outlets}, key=str.lower)
+    kind = "expresión" if n_content > 1 else "palabra"
+    return Piece(kind, key, spellings[key].most_common(1)[0][0], len(idx), sides, outlets)
+
+
+def _term_rank(p: Piece):
+    return (-p.voices, -len(p.key.split()), -len(p.key), p.key)
+
+
+def _drop_contained_terms(terms: list[Piece]) -> list[Piece]:
+    """Drop a word or phrase inside a longer one backed by at least as many voices minus one."""
+    kept = []
+    for p in terms:
+        padded = f" {p.key} "
+        if any(len(q.key.split()) > len(p.key.split()) and q.voices >= p.voices - 1 and padded in f" {q.key} "
+               for q in terms):
+            continue
+        kept.append(p)
+    return kept
+
+
+def shared_and_one_sided_terms(voices: list[Voice], name_keys: set[str], outlet_names: frozenset[str], *,
+                               min_voices: int = MIN_VOICES, min_sides: int = MIN_SIDES,
+                               min_groups: int = MIN_GROUPS) -> tuple[list[Piece], list[OneSided]]:
+    """Words and phrases shared by independent voices of several sides, and those only one side uses."""
+    holders, spellings = _term_table(voices)
+    side_of_voice = [v.side for v in voices]
+    covered = _stem_set(name_keys)
+    # a capitalised word in mid-sentence is a name: the name pieces cover those
+    holders = {k: idx for k, idx in holders.items()
+               if not any(w[:1].isupper() for w in spellings[k].most_common(1)[0][0].split())
+               and not _term_excluded(k, covered, outlet_names)}
+
+    shared = []
+    for key, idx in holders.items():
+        sides = {side_of_voice[i] for i in idx} - {None}
+        if len(idx) >= min_voices and len({voices[i].key for i in idx}) >= min_groups and len(sides) >= min_sides:
+            shared.append(_make_term(key, idx, voices, spellings, side_of_voice))
+    shared.sort(key=_term_rank)
+    shared = _drop_contained_terms(shared)[:MAX_TERMS]
+    shown = {p.key for p in shared}
+
+    one_sided: list[OneSided] = []
+    for side, opposite in (("left", "right"), ("right", "left")):
+        if sum(s == opposite for s in side_of_voice) < MIN_ONE_SIDED_VOICES:
+            continue
+        cands = []
+        for key, idx in holders.items():
+            if key in shown:
+                continue
+            sides = {side_of_voice[i] for i in idx} - {None}
+            if sides == {side} and sum(side_of_voice[i] == side for i in idx) >= MIN_ONE_SIDED_VOICES:
+                cands.append(_make_term(key, idx, voices, spellings, side_of_voice))
+        cands.sort(key=_term_rank)
+        one_sided += [OneSided(side, p) for p in _drop_contained_terms(cands)[:MAX_ONE_SIDED_TERMS]]
+    return shared, one_sided
+
+
 @lru_cache(maxsize=1)
 def _outlet_names() -> frozenset[str]:
     from .catalog import get_catalog
@@ -415,7 +601,9 @@ def consensus(articles: list[Article], *, min_voices: int = MIN_VOICES, min_side
         if len(idx) >= min_voices and len(groups) >= min_groups and len(sides) >= min_sides:
             pieces.append(_make_piece(kind, key, idx, voices, spellings, side_of_voice))
     pieces.sort(key=_sort_key)
-    pieces = _drop_contained(pieces)[:MAX_PIECES]
+    name_keys = {p.key for p in pieces if p.kind == "nombre"}
+    pieces = _drop_contained(pieces)
+    pieces = pieces[:MAX_PIECES]
 
     shown = {(p.kind, p.key) for p in pieces}
     candidates: list[OneSided] = []
@@ -432,4 +620,6 @@ def consensus(articles: list[Article], *, min_voices: int = MIN_VOICES, min_side
     candidates.sort(key=lambda o: _sort_key(o.piece))
     keep = {id(p) for p in _drop_contained([o.piece for o in candidates])}
     one_sided = [o for o in candidates if id(o.piece) in keep][:MAX_ONE_SIDED]
-    return Consensus(len(voices), True, pieces, one_sided, headline, agencies)
+    terms, one_sided_terms = shared_and_one_sided_terms(voices, name_keys, _outlet_names(), min_voices=min_voices,
+                                                        min_sides=min_sides, min_groups=min_groups)
+    return Consensus(len(voices), True, pieces, one_sided, headline, agencies, terms, one_sided_terms)

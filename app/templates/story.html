@@ -67,6 +67,22 @@
       {% else %}
       <p class="consensus__lead">Entre las {{ c.voices }} fuentes independientes de esta historia no hay ningún dato concreto (cifra, nombre, cita o fecha) que repitan al menos tres, de distintos grupos y tendencias.</p>
       {% endif %}
+      {% if c.terms %}
+      <h3 class="consensus__sub">Palabras y expresiones compartidas</h3>
+      <p class="consensus__note">De qué trata la historia: términos que usan al menos tres fuentes independientes de distintos grupos y tendencias.</p>
+      <ul class="pieces pieces--terms">
+        {% for p in c.terms %}
+        <li class="piece piece--{{ p.kind|replace('ó', 'o') }}">
+          <p class="piece__text"><span class="piece__kind">{{ p.kind }}</span> <span class="piece__value">{{ p.text }}</span>
+            <span class="piece__n">· {{ p.voices }} fuentes ({{ p.sides_label }})</span></p>
+          <details class="piece__outlets">
+            <summary>Ver medios</summary>
+            <p>{{ p.outlets|join(", ") }}</p>
+          </details>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
       {% for name, n in c.agencies %}
       <p class="consensus__origin">Origen común: {{ name }}. {{ n }} medios reproducen su texto y se cuentan como una sola fuente.</p>
       {% endfor %}
@@ -87,6 +103,28 @@
         </li>
         {% endfor %}
       </ul>
+      {% endif %}
+      {% if c.one_sided_terms %}
+      <h3 class="consensus__sub">Palabras que solo usa un lado</h3>
+      <p class="consensus__note">Pueden indicar un enfoque distinto, no necesariamente un error.</p>
+      {% for side, label in (("left", "Solo en medios de izquierda"), ("right", "Solo en medios de derecha")) %}
+      {% set items = c.one_sided_terms_of(side) %}
+      {% if items %}
+      <h4 class="consensus__side">{{ label }}</h4>
+      <ul class="pieces pieces--one pieces--terms">
+        {% for o in items %}
+        <li class="piece piece--{{ o.piece.kind|replace('ó', 'o') }} piece--{{ o.side }}">
+          <p class="piece__text"><span class="piece__kind">{{ o.piece.kind }}</span> <span class="piece__value">{{ o.piece.text }}</span>
+            <span class="piece__n">· {{ o.piece.voices }} fuentes</span></p>
+          <details class="piece__outlets">
+            <summary>Ver medios</summary>
+            <p>{{ o.piece.outlets|join(", ") }}</p>
+          </details>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% endfor %}
       {% endif %}
       {% endif %}
       <p class="callout">Que varios medios coincidan no prueba que algo sea cierto: indica que fuentes independientes lo han publicado. <a href="#verificaciones">Consulta las verificaciones.</a> <a href="/metodologia#coincidencias">Cómo se calcula</a>.</p>
