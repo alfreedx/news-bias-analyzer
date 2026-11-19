@@ -38,6 +38,7 @@ class Media:
     publisher: str | None = None
     factchecker: bool = False
     owner_source: str | None = None
+    speciality: str | None = None  # factual: the subject the outlet itself is about (e.g. «economía»); never a stance
     facts: dict = field(default_factory=dict)  # Wikidata facts (scripts/enrich_media.py); empty when unknown
     group: Group | None = None
     assessment: Assessment = field(default_factory=Assessment)
@@ -59,6 +60,7 @@ class Media:
             "group_id": self.group.id if self.group else None,
             "publisher": self.publisher,
             "factchecker": self.factchecker,
+            "speciality": self.speciality,
             "tags": [{"label": t.label, "source": t.source, "url": t.permalink, "axis": t.axis,
                       "retrieved": t.retrieved} for t in a.tags],
             "ideology": {"score": a.score, "position": a.position, "label": a.label, "agreement": a.agreement},
@@ -98,6 +100,7 @@ class Catalog:
                 publisher=raw.get("publisher"),
                 factchecker=raw.get("factchecker", False),
                 owner_source=raw.get("owner_source"),
+                speciality=raw.get("speciality"),
                 facts=raw.get("facts", {}),
             )
             if item.id in self.media:

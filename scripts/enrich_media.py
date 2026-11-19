@@ -283,11 +283,16 @@ def main() -> int:
     written, review, used = 0, [], {}
     for m in media:
         if m["id"] not in qids:
-            m.pop("facts", None)
+            # Unresolved can just mean a throttled lookup: keep whatever was verified before.
+            if m.get("facts"):
+                review.append(f"{m['id']}: no QID resolved this run; previous facts kept")
             continue
         qid, how = qids[m["id"]]
         ent = entities.get(qid)
-        if not ent or "missing" in ent:
+        if not ent:
+            review.append(f"{m['id']}: {qid} could not be fetched ({how}); previous facts kept")
+            continue
+        if "missing" in ent:
             review.append(f"{m['id']}: {qid} not found in Wikidata ({how})")
             m.pop("facts", None)
             continue

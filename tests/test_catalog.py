@@ -68,3 +68,15 @@ def test_tags_are_attributed_quotes():
     labels = {(t.source, t.label) for t in abc.tags}
     assert ("Wikipedia (es)", "Monarquismo") in labels
     assert all(t.url.startswith("https://") for t in abc.tags)
+
+
+def test_economy_speciality_is_factual_and_adds_no_stance():
+    cat = get_catalog()
+    eco = [m for m in cat.media.values() if m.speciality == "economía"]
+    assert {"expansion", "cinco-dias", "el-economista", "forbes-espana"} <= {m.id for m in eco}
+    for m in eco:
+        assert m.to_public()["speciality"] == "economía"
+        if not m.evidence:  # no cited label, no position
+            assert not m.assessment.rated
+    forbes = cat.media["forbes-espana"]
+    assert forbes.publisher == "SpainMedia" and "wikidata.org" in forbes.owner_source and forbes.facts["qid"]

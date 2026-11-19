@@ -122,7 +122,8 @@
    "founded": 1989,
    "group": "unidad-editorial",
    "feeds": [
-    "https://e00-elmundo.uecdn.es/elmundo/rss/portada.xml"
+    "https://e00-elmundo.uecdn.es/elmundo/rss/portada.xml",
+    "https://e00-elmundo.uecdn.es/elmundo/rss/economia.xml"
    ],
    "evidence": [
     {
@@ -217,7 +218,9 @@
    "founded": 1903,
    "group": "vocento",
    "feeds": [
-    "https://www.abc.es/rss/2.0/portada/"
+    "https://www.abc.es/rss/2.0/portada/",
+    "https://www.abc.es/rss/2.0/economia/",
+    "https://www.abc.es/rss/2.0/tecnologia/"
    ],
    "evidence": [
     {
@@ -301,7 +304,9 @@
    "founded": 1881,
    "group": "godo",
    "feeds": [
-    "https://www.lavanguardia.com/rss/home.xml"
+    "https://www.lavanguardia.com/rss/home.xml",
+    "https://www.lavanguardia.com/rss/economia.xml",
+    "https://www.lavanguardia.com/rss/tecnologia.xml"
    ],
    "evidence": [
     {
@@ -386,7 +391,9 @@
    "group": null,
    "publisher": "Titania Compañía Editorial, S. L.",
    "feeds": [
-    "https://rss.elconfidencial.com/espana/"
+    "https://rss.elconfidencial.com/espana/",
+    "https://rss.elconfidencial.com/economia/",
+    "https://rss.elconfidencial.com/tecnologia/"
    ],
    "evidence": [
     {
@@ -432,7 +439,8 @@
    "founded": 2012,
    "group": "diario-prensa-digital",
    "feeds": [
-    "https://www.eldiario.es/rss/"
+    "https://www.eldiario.es/rss/",
+    "https://www.eldiario.es/rss/economia/"
    ],
    "evidence": [
     {
@@ -572,7 +580,8 @@
    "founded": 1998,
    "group": "planeta",
    "feeds": [
-    "https://www.larazon.es/?outputType=xml"
+    "https://www.larazon.es/?outputType=xml",
+    "https://www.larazon.es/economia/?outputType=xml"
    ],
    "evidence": [
     {
@@ -646,7 +655,9 @@
    "founded": 2000,
    "group": "henneo",
    "feeds": [
-    "https://www.20minutos.es/rss/"
+    "https://www.20minutos.es/rss/",
+    "https://www.20minutos.es/rss/economia/",
+    "https://www.20minutos.es/rss/tecnologia/"
    ],
    "evidence": [],
    "facts": {
@@ -701,7 +712,9 @@
    "founded": 2015,
    "group": "el-leon",
    "feeds": [
-    "https://www.elespanol.com/rss/"
+    "https://www.elespanol.com/rss/",
+    "https://www.elespanol.com/rss/invertia/",
+    "https://www.elespanol.com/rss/omicrono/"
    ],
    "evidence": [
     {
@@ -773,7 +786,8 @@
    "group": null,
    "publisher": "Dos Mil Palabras SL",
    "feeds": [
-    "https://okdiario.com/feed"
+    "https://okdiario.com/feed",
+    "https://okdiario.com/economia/feed"
    ],
    "evidence": [
     {
@@ -839,7 +853,8 @@
    "founded": 2000,
    "group": "libertad-digital-sa",
    "feeds": [
-    "https://feeds2.feedburner.com/libertaddigital/portada"
+    "https://feeds2.feedburner.com/libertaddigital/portada",
+    "https://www.libertaddigital.com/rss/economia.xml"
    ],
    "evidence": [
     {
@@ -1057,7 +1072,8 @@
    "group": null,
    "feeds": [
     "https://www.europapress.es/rss/rss.aspx",
-    "https://www.europapress.es/rss/rss.aspx?ch=00066"
+    "https://www.europapress.es/rss/rss.aspx?ch=00066",
+    "https://www.europapress.es/rss/rss.aspx?ch=00136"
    ],
    "evidence": [
     {
@@ -1531,7 +1547,10 @@
    "founded": 1986,
    "group": "unidad-editorial",
    "feeds": [
-    "https://e00-expansion.uecdn.es/rss/portada.xml"
+    "https://e00-expansion.uecdn.es/rss/portada.xml",
+    "https://e00-expansion.uecdn.es/rss/economia.xml",
+    "https://e00-expansion.uecdn.es/rss/empresas.xml",
+    "https://e00-expansion.uecdn.es/rss/tecnologia.xml"
    ],
    "evidence": [],
    "facts": {
@@ -1575,7 +1594,8 @@
       ]
      }
     ]
-   }
+   },
+   "speciality": "economía"
   },
   {
    "id": "cinco-dias",
@@ -1633,7 +1653,8 @@
       ]
      }
     ]
-   }
+   },
+   "speciality": "economía"
   },
   {
    "id": "el-economista",
@@ -1645,7 +1666,10 @@
    "scope": "Nacional",
    "founded": 2006,
    "group": null,
-   "feeds": [],
+   "feeds": [
+    "https://www.eleconomista.es/rss/rss-category.php?category=economia",
+    "https://www.eleconomista.es/rss/rss-category.php?category=tecnologia"
+   ],
    "evidence": [
     {
      "source": "wikipedia",
@@ -1677,7 +1701,8 @@
     "founded": 2006,
     "source": "https://www.wikidata.org/wiki/Q2839040",
     "retrieved": "2026-11-19"
-   }
+   },
+   "speciality": "economía"
   },
   {
    "id": "huffpost",
@@ -1935,7 +1960,8 @@
    "group": null,
    "publisher": "Park Row Digital, S.L.",
    "feeds": [
-    "https://www.elindependiente.com/feed/"
+    "https://www.elindependiente.com/feed/",
+    "https://www.elindependiente.com/economia/feed/"
    ],
    "evidence": [
     {
@@ -2299,7 +2325,8 @@
    "founded": 1882,
    "group": "voz-galicia",
    "feeds": [
-    "https://www.lavozdegalicia.es/index.xml"
+    "https://www.lavozdegalicia.es/index.xml",
+    "https://www.lavozdegalicia.es/economia/index.xml"
    ],
    "evidence": [],
    "facts": {
@@ -2341,7 +2368,8 @@
    "founded": 1910,
    "group": "vocento",
    "feeds": [
-    "https://www.elcorreo.com/rss/2.0/portada"
+    "https://www.elcorreo.com/rss/2.0/portada",
+    "https://www.elcorreo.com/rss/2.0/?section=economia"
    ],
    "evidence": [
     {
@@ -3505,7 +3533,8 @@
       ]
      }
     ]
-   }
+   },
+   "speciality": "economía"
   },
   {
    "id": "la-verdad",
@@ -5120,6 +5149,62 @@
     "founded": 2019,
     "source": "https://www.wikidata.org/wiki/Q63434811",
     "retrieved": "2026-11-19"
+   }
+  },
+  {
+   "id": "forbes-espana",
+   "name": "Forbes España",
+   "domains": [
+    "forbes.es"
+   ],
+   "type": "Revista",
+   "scope": "Nacional",
+   "founded": 2013,
+   "group": null,
+   "publisher": "SpainMedia",
+   "owner_source": "https://www.wikidata.org/wiki/Q108523161",
+   "speciality": "economía",
+   "factchecker": false,
+   "feeds": [
+    "https://forbes.es/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q108523161",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "revista"
+    ],
+    "kinds_qids": [
+     "Q41298"
+    ],
+    "owners": [
+     "SpainMedia"
+    ],
+    "owners_qids": [
+     "Q25406891"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2013,
+    "source": "https://www.wikidata.org/wiki/Q108523161",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q25406891",
+      "label": "SpainMedia",
+      "kinds_qids": [
+       "Q2085381"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
    }
   }
  ]
