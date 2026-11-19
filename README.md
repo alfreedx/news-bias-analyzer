@@ -97,7 +97,7 @@ docker run -d --name contraste -p 8000:8000 \
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/alfreedx/news-bias-analyzer)
 
 El repositorio incluye un [`render.yaml`](render.yaml) que crea un servicio web gratuito a partir del
-`Dockerfile`, con HTTPS, cabeceras de seguridad y despliegue automático en cada cambio de `main`.
+`Dockerfile`, con HTTPS y cabeceras de seguridad. El job `deploy` de CI lanza el despliegue (Deploy Hook de Render, guardado como secreto `RENDER_DEPLOY_HOOK`) solo cuando pasan los tests, el e2e y la imagen Docker.
 El nombre público que asigna Render (`RENDER_EXTERNAL_HOSTNAME`) se admite automáticamente.
 El plan gratuito se suspende tras 15 minutos sin visitas: la primera visita tarda unos segundos y el
 índice se reconstruye solo desde los RSS.

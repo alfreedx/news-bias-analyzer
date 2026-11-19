@@ -7,7 +7,8 @@ services:
     plan: free
     region: frankfurt
     branch: main
-    autoDeploy: true
+    # Deploys are triggered by CI (deploy job) only after tests, e2e and the Docker build pass.
+    autoDeploy: false
     healthCheckPath: /api/salud
     envVars:
       - key: PORT

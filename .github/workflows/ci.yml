@@ -67,3 +67,18 @@ jobs:
       - name: Container logs
         if: failure()
         run: docker logs contraste
+
+  deploy:
+    # Triggers the Render deploy only after every check passed on main.
+    # The hook URL is a secret (Render → service → Settings → Deploy Hook).
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [test, e2e, docker]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Trigger Render deploy
+        env:
+          HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then echo "RENDER_DEPLOY_HOOK not set; skipping"; exit 0; fi
+          curl -fsS -X POST --max-time 60 -o /dev/null "$HOOK" && echo "Deploy requested"
