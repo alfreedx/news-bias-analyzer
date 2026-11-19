@@ -60,7 +60,25 @@
   </ul>
   <p>Orientación y fiabilidad son cosas distintas: un medio puede tener una línea editorial muy marcada y ser riguroso con los hechos, o al revés.</p>
 
-  <h2>4. Análisis de cada búsqueda</h2>
+  <h2 id="ficha">4. Ficha del medio y clasificaciones derivadas</h2>
+  <p>La ficha de cada medio reúne <strong>hechos</strong> leídos de <a href="https://www.wikidata.org/" rel="noopener noreferrer">Wikidata</a> (dominio público, CC0): fundación, tipo, lengua, sede y propiedad o editor. Solo escribimos lo que Wikidata publica, cada dato enlaza a su elemento con la fecha de consulta, y la verificación semanal avisa si cambian. Si un dato falta, falta: no lo suponemos.</p>
+  <p>A partir de esos hechos y del catálogo calculamos en código las siguientes clasificaciones. Son descripciones de la propiedad, no juicios: <strong>nunca se convierten en adjetivos ideológicos</strong>.</p>
+  <ul>
+    <li><strong>Ámbito</strong>: Nacional o Regional, según el catálogo.</li>
+    <li><strong>Sin grupo registrado</strong>: se muestra «{{ rules.no_group }}» cuando el medio no figura en ningún grupo de <code>groups.json</code> y Wikidata no da ningún propietario que a su vez pertenezca a otra entidad. No decimos que sea «independiente»: solo que no consta ninguna agrupación.</li>
+    <li><strong>Titularidad pública</strong> («Medio de titularidad pública (…)», con el titular entre paréntesis): cuando se cumple alguna de estas condiciones, por este orden.
+      <ol>
+        <li>Wikidata lo clasifica (propiedad <code>P31</code>), o clasifica a su propietario, como: {% for q, l in rules.public_kinds %}<a href="https://www.wikidata.org/wiki/{{ q }}" rel="noopener noreferrer">{{ l }}</a>{% if not loop.last %}, {% endif %}{% endfor %}; o su propietario (<code>P127</code>/<code>P123</code>), o el propietario de este, es {% for q, l in rules.public_owners %}<a href="https://www.wikidata.org/wiki/{{ q }}" rel="noopener noreferrer">{{ l }}</a>{% endfor %}.</li>
+        <li>El medio pertenece a un grupo del catálogo cuyo tipo empieza por {% for k in rules.group_kinds %}«{{ k }}»{% if not loop.last %} o {% endif %}{% endfor %} (cada grupo cita sus fuentes).</li>
+        <li>El catálogo lo registra como {% for k in rules.types %}«{{ k }}»{% if not loop.last %} o {% endif %}{% endfor %} con un editor y una fuente de la propiedad.</li>
+      </ol></li>
+    <li><strong>Propiedad de una institución religiosa</strong>: solo cuando el propietario (o el propietario de este) que figura en Wikidata es {% for q, l in rules.religious_owners %}<a href="https://www.wikidata.org/wiki/{{ q }}" rel="noopener noreferrer">{{ l }}</a>{% endfor %}, o cuando su grupo del catálogo es de tipo «{{ rules.religious_group_kinds|join('», «') }}». Se enuncia el propietario como hecho; no implica ninguna línea editorial.</li>
+    <li><strong>Lengua</strong>: la que Wikidata indica como lengua de la obra (<code>P407</code>).</li>
+    <li><strong>Eje territorial</strong> (regionalismo, nacionalismo, etc.): <em>no</em> se deriva aquí. Solo existe cuando una fuente citada lo publica como etiqueta (véase «Etiquetas citadas») y es filtrable en el catálogo.</li>
+  </ul>
+  <p>Resultado actual en el catálogo ({{ counts.total }} cabeceras; {{ counts["con-ficha"] }} con ficha de Wikidata): {{ counts.publica }} de titularidad pública, {{ counts.grupo }} en un grupo de comunicación, {{ counts["sin-grupo"] }} sin grupo registrado y {{ counts.religiosa }} con propietario religioso.</p>
+
+  <h2>5. Análisis de cada búsqueda</h2>
   <ul>
     <li><strong>Historias agrupadas</strong>: agrupamos los titulares que comparten la mayoría de sus palabras clave. Es un método sencillo; a veces separa la misma noticia o junta dos parecidas.</li>
     <li><strong>Punto ciego</strong>: si hay al menos seis titulares de medios evaluados y uno de los dos lados aporta el 10 % o menos, lo avisamos.</li>
@@ -69,11 +87,23 @@
     <li><strong>Verificaciones relacionadas</strong>: buscamos tu consulta en los artículos de Maldita.es, Newtral y EFE Verifica.</li>
   </ul>
 
-  <h2>5. De dónde salen las noticias</h2>
+  <h2 id="coincidencias">6. En lo que coinciden: historias y fuentes independientes</h2>
+  <p>Cada historia que mostramos se guarda con una dirección propia (<code>/historia/…</code>): al leer los canales RSS asignamos los titulares nuevos de las últimas 72 horas a la historia existente con la que comparten más palabras clave (la misma regla que usa el agrupado de las búsquedas) o, si al menos dos coinciden entre sí, abrimos una nueva. El título es el titular que más palabras comparte con los demás. No se guardan historias de un solo titular.</p>
+  <p>En cada historia buscamos los datos que repiten varios medios, con reglas fijas y sin inteligencia artificial:</p>
+  <ul>
+    <li><strong>Fuentes independientes («voces»)</strong>: los titulares idénticos (copias sindicadas) cuentan una vez; todos los medios de un mismo grupo o editora cuentan como una sola voz; y los textos que llevan la misma marca de agencia («(EFE)», «Europa Press», «(EP)», «Agencia EFE», «agencias») cuentan como una sola fuente, cuyo nombre indicamos como «origen común». Una voz de agencia no tiene orientación.</li>
+    <li><strong>Piezas que extraemos</strong> del titular y la entradilla de cada voz: <em>cifras</em> con su unidad (porcentajes, importes, magnitudes, víctimas; «1,5» y «1.5» son lo mismo), <em>nombres propios</em> (series de una a cuatro palabras con mayúscula, con «de», «del», «la», «y»… dentro; ignoramos una palabra suelta que abre una frase y unas pocas palabras genéricas como «Gobierno»), <em>citas</em> entre comillas de 3 a 15 palabras y <em>fechas</em> («el 29 de noviembre», «29-N»). Se comparan sin tildes ni mayúsculas y mostramos la grafía más frecuente.</li>
+    <li><strong>Coincidente</strong>: una pieza que aparece en al menos 3 voces de al menos 2 grupos distintos y que abarca al menos 2 lados (izquierda, centro, derecha) según las etiquetas ya publicadas. Las voces sin etiqueta cuentan como voces, no como lados; si un grupo tiene medios de varios lados, se le asigna el más frecuente. Mostramos hasta 8.</li>
+    <li><strong>Solo lo cuenta un lado</strong>: piezas que mencionan al menos 2 voces, todas del mismo lado (izquierda o derecha), mientras el lado opuesto sí cubre la historia sin mencionarlas. Hasta 5.</li>
+    <li>Si hay menos de 3 fuentes independientes, no sacamos coincidencias y lo decimos.</li>
+  </ul>
+  <p>Limitaciones: las reglas no entienden el significado (una cita parafraseada no coincide, un nombre común con mayúscula puede colarse) y solo leen titular y entradilla, no el artículo. <strong>Que varios medios coincidan no prueba que algo sea cierto</strong>: indica que fuentes independientes lo han publicado. Para eso están las verificaciones.</p>
+
+  <h2>7. De dónde salen las noticias</h2>
   <p>Leemos cada {{ settings.ingest_interval_minutes }} minutos los <strong>canales RSS oficiales</strong> que publican los propios medios y guardamos solo el titular, la entradilla, el enlace y la fecha durante {{ settings.retention_days }} días. Siempre enlazamos al medio original; no reproducimos los artículos.</p>
   <p>Algunos medios no ofrecen RSS o lo bloquean a lectores automáticos; respetamos ese bloqueo. Por eso no aparecen en los resultados aunque estén en el catálogo.</p>
 
-  <h2>6. Limitaciones</h2>
+  <h2>8. Limitaciones</h2>
   <ul>
     <li>Las fuentes externas también tienen sesgos y pueden quedarse anticuadas. Por eso las enlazamos y mostramos su fecha de consulta.</li>
     <li>Un medio es un conjunto de periodistas, secciones y opiniones: su orientación media no dice nada de una noticia concreta.</li>

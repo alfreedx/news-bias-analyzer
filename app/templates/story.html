@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% from "_macros.html" import chip, factual, row_byline, comparison, signals, spectrum_dots, tags, coverage_panel %}
+{% block title %}{{ title }} · Contraste{% endblock %}
+{% block description %}{{ story.outlets }} medios cuentan esta noticia. Qué datos repiten fuentes independientes de distintos grupos y tendencias, y qué solo cuenta un lado.{% endblock %}
+{% block body_class %}page-story{% endblock %}
+
+{% block content %}
+{% set c = consensus %}
+<header class="page-head story-head">
+  <nav class="crumbs" aria-label="Ruta"><a href="/">Contraste</a><span aria-hidden="true">/</span>Historia</nav>
+  <h1 class="story-head__title">{{ title }}</h1>
+  <p class="story__meta">{{ spectrum_dots(story.positions) }}
+    <span>{{ story.outlets }} medios · {{ story.groups }} grupos o editoras</span>
+    <span>{{ story.spread_label }}</span>
+    <span>Del <time datetime="{{ iso(first) }}">{{ time_ago(first) }}</time> al <time datetime="{{ iso(last) }}">{{ time_ago(last) }}</time></span>
+  </p>
+</header>
+
+<div class="layout">
+  <div class="sidebar">
+  {{ coverage_panel(cov) }}
+
+  <aside class="panel panel--more" aria-label="Propiedad y verificaciones">
+    <h3 class="panel__sub panel__sub--first">Quién está detrás</h3>
+    <ul class="bars">
+      {% for name, n in cov.by_group[:8] %}
+      <li><span class="bars__label">{{ name }}</span><span class="bars__n">{{ n }}</span><span class="bars__bar"><span class="w-{{ pct(n, cov.total) }}"></span></span></li>
+      {% endfor %}
+    </ul>
+
+    <h3 class="panel__sub" id="verificaciones">Verificaciones relacionadas</h3>
+    {% if factchecks %}
+    <ul class="checks">
+      {% for a in factchecks %}
+      <li>
+        <a href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
+        <span class="checks__by">{{ a.source_name }} · {{ time_ago(a.published) }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="muted small">Ningún verificador (Maldita, Newtral, EFE Verifica) ha publicado nada que coincida.</p>
+    {% endif %}
+  </aside>
+  </div>
+
+  <div class="results">
+    <section class="consensus" aria-labelledby="consensus-title">
+      <h2 id="consensus-title" class="section-title">En lo que coinciden</h2>
+      {% if not c.enough %}
+      <p class="empty empty--tight">Aún no hay suficientes fuentes independientes para extraer coincidencias ({{ c.voices }} de las 3 necesarias). <a href="/metodologia#coincidencias">Cómo contamos las fuentes</a>.</p>
+      {% else %}
+      {% if c.pieces %}
+      <p class="consensus__lead">Datos que repiten hasta {{ c.pieces[0].voices }} fuentes independientes de distintos grupos y tendencias.</p>
+      <ul class="pieces">
+        {% for p in c.pieces %}
+        <li class="piece piece--{{ p.kind }}">
+          <p class="piece__text"><span class="piece__kind">{{ p.kind }}</span> <span class="piece__value">{{ p.text }}</span>
+            <span class="piece__n">· {{ p.voices }} fuentes ({{ p.sides_label }})</span></p>
+          <details class="piece__outlets">
+            <summary>Ver medios</summary>
+            <p>{{ p.outlets|join(", ") }}</p>
+          </details>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="consensus__lead">Entre las {{ c.voices }} fuentes independientes de esta historia no hay ningún dato concreto (cifra, nombre, cita o fecha) que repitan al menos tres, de distintos grupos y tendencias.</p>
+      {% endif %}
+      {% for name, n in c.agencies %}
+      <p class="consensus__origin">Origen común: {{ name }}. {{ n }} medios reproducen su texto y se cuentan como una sola fuente.</p>
+      {% endfor %}
+      {% if c.headline %}
+      <p class="consensus__head small">Titular más representativo (el que más palabras comparte con los demás): <a href="{{ c.headline.url }}" rel="noopener noreferrer" target="_blank">{{ c.headline.title }}</a> ({{ c.headline.source_name }}).</p>
+      {% endif %}
+      {% if c.one_sided %}
+      <h3 class="consensus__sub">Solo lo cuenta un lado</h3>
+      <ul class="pieces pieces--one">
+        {% for o in c.one_sided %}
+        <li class="piece piece--{{ o.piece.kind }} piece--{{ o.side }}">
+          <p class="piece__text"><span class="piece__kind">{{ o.piece.kind }}</span> <span class="piece__value">{{ o.piece.text }}</span>
+            <span class="piece__n">· Solo lo mencionan medios de {{ o.side_label }} ({{ o.piece.voices }} fuentes)</span></p>
+          <details class="piece__outlets">
+            <summary>Ver medios</summary>
+            <p>{{ o.piece.outlets|join(", ") }}</p>
+          </details>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% endif %}
+      <p class="callout">Que varios medios coincidan no prueba que algo sea cierto: indica que fuentes independientes lo han publicado. <a href="#verificaciones">Consulta las verificaciones.</a> <a href="/metodologia#coincidencias">Cómo se calcula</a>.</p>
+    </section>
+
+    {{ comparison(story) }}
+
+    <section aria-labelledby="rows-title">
+      <h2 id="rows-title" class="section-title">Los titulares</h2>
+      <ul class="story__list">
+        {% for r in story.rows %}
+        {% set a = r.lead %}
+        <li class="item">
+          <div class="item__aside">{{ chip(a.media) }}</div>
+          <div class="item__body">
+            <a class="item__title" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
+            <div class="item__meta">{{ row_byline(r) }} {{ factual(a.media) }} {{ signals(a) }}</div>
+            {{ tags(a.media, limit=3) }}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+  </div>
+</div>
+{% endblock %}

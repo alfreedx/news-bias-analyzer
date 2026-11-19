@@ -20,13 +20,25 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from . import __version__
-from .analysis import Article, cluster, coverage, make_article, rank
+from .analysis import Article, Story, blind_spots, cluster, coverage, coverage_summary, make_article, rank, story_score
 from .catalog import get_catalog
 from .config import BASE_DIR, settings
+from .consensus import consensus
 from .db import Database
+from .facts import (
+    NO_GROUP_TEXT,
+    OWNERSHIP_LABELS,
+    PUBLIC_GROUP_KIND_PREFIXES,
+    PUBLIC_KIND_QIDS,
+    PUBLIC_OWNER_QIDS,
+    PUBLIC_TYPE_PREFIXES,
+    RELIGIOUS_GROUP_KINDS,
+    RELIGIOUS_OWNER_QIDS,
+)
 from .feeds import ingest_all, search_google_news
 from .scoring import DESCRIPTIVE_LABELS, FACTUAL_MAP, IDEOLOGY_MAP, POSITION_LABELS, TERRITORIAL_LABELS, bucket
 from .security import RateLimitMiddleware, SecurityHeadersMiddleware
+from .stories import assign_stories, central_article, majority_story
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("newsbias")
@@ -47,6 +59,7 @@ DAY_OPTIONS = {"7": 7, "30": 30, "todo": 0}
 # --- Background ingestion ------------------------------------------------------
 class State:
     front_page: list = []
+    blind_spots: list = []
     front_updated: int = 0
     ingesting: bool = False
 
@@ -54,14 +67,23 @@ class State:
 state = State()
 
 
+def link_stories(stories: list[Story]) -> None:
+    """Point each clustered story at the persisted story holding most of its headlines (None when none does)."""
+    story_of = db.story_ids_for([a.id for s in stories for a in s.articles if a.id is not None])
+    for s in stories:
+        s.story_id = majority_story(s.articles, story_of)
+
+
 def build_front_page() -> None:
     since = int(time.time()) - 36 * 3600
     rows = db.recent(since=since, media_ids=[m.id for m in catalog.news_media])
     arts = [make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"], published=r["published"],
-                         media_id=r["media_id"]) for r in rows]
+                         media_id=r["media_id"], author=r["author"], article_id=r["id"]) for r in rows]
     stories = [s for s in cluster(arts) if s.outlets >= 3]
-    stories.sort(key=lambda s: (s.outlets, max(a.published for a in s.articles)), reverse=True)
+    stories.sort(key=lambda s: (s.score, max(a.published for a in s.articles)), reverse=True)
+    link_stories(stories)
     state.front_page = stories[:8]
+    state.blind_spots = blind_spots(stories)
     state.front_updated = int(time.time())
 
 
@@ -70,6 +92,7 @@ async def ingest_loop() -> None:
         state.ingesting = True
         try:
             await ingest_all(catalog, db)
+            await asyncio.to_thread(assign_stories, db, catalog)
             await asyncio.to_thread(build_front_page)
             _cache.clear()
         except Exception:  # keep the loop alive whatever happens
@@ -153,6 +176,7 @@ def pct(part: float, whole: float) -> int:
 
 templates.env.globals.update(
     long_date=long_date, time_ago=time_ago, iso=iso, pos_class=pos_class, score_step=score_step, pct=pct,
+    coverage_summary=coverage_summary,
     POSITION_LABELS=POSITION_LABELS, bucket=bucket, settings=settings, version=__version__,
 )
 
@@ -183,7 +207,7 @@ async def run_search(query: str, days: int) -> dict:
     bm25 = {r["url"]: r["rank"] for r in rows}
     articles: list[Article] = [
         make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"], published=r["published"],
-                     media_id=r["media_id"])
+                     media_id=r["media_id"], author=r["author"], article_id=r["id"])
         for r in rows
     ]
 
@@ -203,11 +227,13 @@ async def run_search(query: str, days: int) -> dict:
     rank(articles, bm25)
     factchecks = [a for a in articles if a.media and a.media.factchecker][:6]
     news = [a for a in articles if not (a.media and a.media.factchecker)]
+    stories = cluster(news)
+    await asyncio.to_thread(link_stories, stories)
     result = {
         "query": query,
         "days": days,
         "articles": news,
-        "stories": cluster(news),
+        "stories": stories,
         "coverage": coverage(news),
         "factchecks": factchecks,
     }
@@ -225,12 +251,16 @@ def parse_days(value: str) -> tuple[str, int]:
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     stats = await asyncio.to_thread(db.stats)
-    return render(request, "home.html", stories=state.front_page, stats=stats, catalog=catalog,
-                  ingesting=state.ingesting)
+    return render(request, "home.html", stories=state.front_page, blind_spots=state.blind_spots,
+                  stats=stats, catalog=catalog, ingesting=state.ingesting)
 
 
 @app.get("/buscar", response_class=HTMLResponse)
-async def search_page(request: Request, q: str = Query("", max_length=500), dias: str = "30"):
+async def search_page(request: Request, q: str = Query("", max_length=500), dias: str = "30",
+                      autor: str = Query("", max_length=200)):
+    name = clean_query(autor)
+    if name:
+        return await author_page(request, name)
     query = clean_query(q)
     days_key, days = parse_days(dias)
     if len(query) < MIN_QUERY:
@@ -242,6 +272,52 @@ async def search_page(request: Request, q: str = Query("", max_length=500), dias
                   error=None)
 
 
+async def author_page(request: Request, name: str):
+    """Headlines signed with exactly this name and the outlets where it appears. No profile, no inference."""
+    rows = await asyncio.to_thread(db.by_author, name)
+    counts = await asyncio.to_thread(db.author_outlets, name)
+    articles = [make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"],
+                             published=r["published"], media_id=r["media_id"], author=r["author"]) for r in rows]
+    outlets = [(catalog.media.get(c["media_id"]), c["n"]) for c in counts]
+    return render(request, "author.html", author=name, articles=articles,
+                  outlets=[(m, n) for m, n in outlets if m], total=sum(n for _, n in outlets))
+
+
+def load_story(story_id: int) -> dict | None:
+    if story_id > 2**62:
+        return None
+    row = db.get_story(story_id)
+    if row is None:
+        return None
+    articles = [make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"], published=r["published"],
+                             media_id=r["media_id"], author=r["author"], article_id=r["id"])
+                for r in db.story_article_rows(story_id)]
+    articles = [a for a in articles if not (a.media and a.media.factchecker)]
+    if not articles:
+        return None
+    rank(articles)
+    story = Story(articles, seed=central_article(articles), story_id=story_id)
+    story.score = story_score(articles)
+    story.articles.sort(key=lambda a: (a.position is None, a.position if a.position is not None else 0))
+    first = min(a.published for a in articles)
+    checks = []
+    if story.topic_query:
+        hits = db.search(story.topic_query, since=first - 86400)
+        checks = [a for a in (make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"],
+                                           published=r["published"], media_id=r["media_id"]) for r in hits)
+                  if a.media and a.media.factchecker][:6]
+    return {"story": story, "title": row["title"], "cov": coverage(articles), "consensus": consensus(articles),
+            "factchecks": checks, "first": first, "last": max(a.published for a in articles)}
+
+
+@app.get("/historia/{story_id:int}", response_class=HTMLResponse)
+async def story_page(request: Request, story_id: int):
+    data = await asyncio.to_thread(load_story, story_id)
+    if data is None:
+        raise HTTPException(404)
+    return render(request, "story.html", **data)
+
+
 @app.get("/medios", response_class=HTMLResponse)
 async def media_index(request: Request):
     media = sorted(catalog.news_media, key=lambda m: (m.assessment.score is None, m.assessment.score or 0, m.name))
@@ -249,9 +325,12 @@ async def media_index(request: Request):
     feed_ok = {f["media_id"] for f in stats["feeds"] if f["last_success"]}
     all_labels = sorted({t.label for m in media for t in m.assessment.tags}, key=str.lower)
     regions = sorted({m.region or "Nacional" for m in media})
+    languages = sorted({lang for m in media for lang in m.derived.languages})
+    territorial = sorted({t for m in media for t in m.assessment.territorial})
     return render(request, "media_index.html", media=media, factcheckers=catalog.factcheckers,
                   groups=sorted(catalog.groups.values(), key=lambda g: -len(g.media)), feed_ok=feed_ok,
-                  all_labels=all_labels, regions=regions)
+                  all_labels=all_labels, regions=regions, languages=languages, territorial=territorial,
+                  ownership=OWNERSHIP_LABELS)
 
 
 @app.get("/medios/{media_id}", response_class=HTMLResponse)
@@ -284,8 +363,23 @@ async def methodology(request: Request):
         side = "left" if a.position < 0 else "right" if a.position > 0 else "center"
         audit[side][0] += 1
         audit[side][1] += len(a.tags)
+    news = catalog.news_media
+    counts = {
+        "publica": sum(m.derived.ownership == "publica" for m in news),
+        "grupo": sum(m.derived.ownership == "grupo" for m in news),
+        "sin-grupo": sum(m.derived.ownership == "sin-grupo" for m in news),
+        "religiosa": sum(bool(m.derived.religious_text) for m in news),
+        "con-ficha": sum(bool(m.facts) for m in news),
+        "total": len(news),
+    }
+    rules = {
+        "public_kinds": sorted(PUBLIC_KIND_QIDS.items()), "public_owners": sorted(PUBLIC_OWNER_QIDS.items()),
+        "religious_owners": sorted(RELIGIOUS_OWNER_QIDS.items()), "group_kinds": PUBLIC_GROUP_KIND_PREFIXES,
+        "types": PUBLIC_TYPE_PREFIXES, "religious_group_kinds": RELIGIOUS_GROUP_KINDS, "no_group": NO_GROUP_TEXT,
+    }
     return render(request, "methodology.html", by_pos=by_pos, territorial=sorted(TERRITORIAL_LABELS.values()),
-                  factual=FACTUAL_MAP, audit=audit, descriptive=sorted(DESCRIPTIVE_LABELS))
+                  factual=FACTUAL_MAP, audit=audit, descriptive=sorted(DESCRIPTIVE_LABELS), counts=counts,
+                  rules=rules)
 
 
 @app.get("/privacidad", response_class=HTMLResponse)
@@ -331,7 +425,7 @@ async def health():
 # --- Misc ----------------------------------------------------------------------
 @app.get("/robots.txt", response_class=PlainTextResponse)
 async def robots():
-    return "User-agent: *\nDisallow: /buscar\nDisallow: /api/\n"
+    return "User-agent: *\nAllow: /historia/\nDisallow: /buscar\nDisallow: /api/\n"
 
 
 @app.get("/.well-known/security.txt", response_class=PlainTextResponse)
