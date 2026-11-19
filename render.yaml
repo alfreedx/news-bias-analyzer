@@ -24,6 +24,6 @@ services:
       - key: INGEST_ENABLED
         value: "true"
       - key: INGEST_INTERVAL_MINUTES
-        value: "20"
+        value: "10"
       - key: GOOGLE_NEWS_ENABLED
         value: "false"

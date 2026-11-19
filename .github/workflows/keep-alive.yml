@@ -1,0 +1,21 @@
+name: Keep demo awake
+
+# Render's free plan suspends the service after 15 minutes without traffic, and the
+# next visitor then waits ~50 s. A light health check every 10 minutes avoids that.
+# One free service running all month stays within Render's 750 free instance hours.
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Ping health endpoint
+        env:
+          URL: ${{ vars.DEMO_URL || 'https://contraste-hs0i.onrender.com' }}
+        run: curl -fsS --max-time 90 --retry 2 -o /dev/null -w "%{http_code} %{time_total}s\n" "$URL/api/salud"
