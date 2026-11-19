@@ -46,6 +46,20 @@ NON_MEDIA_KINDS = {"programa de televisión", "serie de televisión", "editorial
 # Not a language: Wikidata uses it for outlets that publish in several.
 NON_LANGUAGES = {"plurilingüe", "multilingüe"}
 
+MINORITY_LANGUAGES = {"catalán": "catalán", "gallego": "gallego", "euskera": "euskera", "asturiano": "asturiano"}
+
+
+def language_note(languages: list[str]) -> str | None:
+    """«en catalán» for outlets whose languages (Wikidata) include a co-official one and not Spanish."""
+    low = [x.lower() for x in languages]
+    if "español" in low:
+        return None
+    found = [MINORITY_LANGUAGES[x] for x in low if x in MINORITY_LANGUAGES]
+    if not found:
+        return None
+    return "en " + (found[0] if len(found) == 1 else ", ".join(found[:-1]) + " y " + found[-1])
+
+
 @dataclass
 class Derived:
     ownership: str = "sin-grupo"  # publica | grupo | sin-grupo

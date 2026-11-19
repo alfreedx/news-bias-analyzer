@@ -10,6 +10,7 @@ import unicodedata
 from collections import OrderedDict
 from contextlib import asynccontextmanager
 from datetime import UTC, datetime
+from urllib.parse import quote
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from fastapi import FastAPI, HTTPException, Query, Request
@@ -23,7 +24,7 @@ from . import __version__
 from .analysis import Article, Story, blind_spots, cluster, coverage, coverage_summary, make_article, rank, story_score
 from .catalog import get_catalog
 from .config import BASE_DIR, settings
-from .consensus import consensus
+from .consensus import SIDE_LABEL, Consensus, consensus
 from .db import Database
 from .facts import (
     NO_GROUP_TEXT,
@@ -156,6 +157,11 @@ def time_ago(ts: int) -> str:
     return f"{d.day} {MONTHS[d.month - 1][:3]} {d.year}"
 
 
+def clock(ts: int) -> str:
+    d = datetime.fromtimestamp(ts, TZ)
+    return f"{d.day} {MONTHS[d.month - 1][:3]}, {d:%H:%M}"
+
+
 def iso(ts: int) -> str:
     return datetime.fromtimestamp(ts, UTC).isoformat()
 
@@ -174,7 +180,21 @@ def pct(part: float, whole: float) -> int:
     return 0 if not whole else max(0, min(100, round(part / whole * 100)))
 
 
+def urlq(value: object) -> str:
+    """Percent-encode a value for use inside a query string (nothing is left unescaped)."""
+    return quote(str(value), safe="")
+
+
+def issue_url(title: str, story_id: int) -> str:
+    """Prefilled GitHub issue for a badly grouped story: only the story address and its title, no tracking."""
+    page = f"{settings.site_url.rstrip('/')}/historia/{story_id}"
+    body = "\n".join([f"Historia: {page}", f"Título: {title}", "", "¿Qué titulares no pertenecen a esta historia?"])
+    return f"{settings.repo_url}/issues/new?title={urlq('Historia mal agrupada: ' + title[:100])}&body={urlq(body)}"
+
+
+templates.env.filters["urlq"] = urlq
 templates.env.globals.update(
+    issue_url=issue_url, clock=clock,
     long_date=long_date, time_ago=time_ago, iso=iso, pos_class=pos_class, score_step=score_step, pct=pct,
     coverage_summary=coverage_summary,
     POSITION_LABELS=POSITION_LABELS, bucket=bucket, settings=settings, version=__version__,
@@ -195,15 +215,15 @@ def clean_query(raw: str) -> str:
     return " ".join(text.split())[:MAX_QUERY]
 
 
-async def run_search(query: str, days: int) -> dict:
-    key = (query.lower(), days)
+async def run_search(query: str, days: int, broad: bool = False) -> dict:
+    key = (query.lower(), days, broad)
     cached = _cache.get(key)
     if cached and time.time() - cached[0] < CACHE_TTL:
         _cache.move_to_end(key)
         return cached[1]
 
     since = int(time.time()) - days * 86400 if days else None
-    rows = await asyncio.to_thread(db.search, query, since=since)
+    rows, hidden = await asyncio.to_thread(lambda: db.search_ex(query, since=since, broad=broad))
     bm25 = {r["url"]: r["rank"] for r in rows}
     articles: list[Article] = [
         make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"], published=r["published"],
@@ -232,6 +252,8 @@ async def run_search(query: str, days: int) -> dict:
     result = {
         "query": query,
         "days": days,
+        "broad": broad,
+        "hidden_summary": hidden,
         "articles": news,
         "stories": stories,
         "coverage": coverage(news),
@@ -257,7 +279,7 @@ async def home(request: Request):
 
 @app.get("/buscar", response_class=HTMLResponse)
 async def search_page(request: Request, q: str = Query("", max_length=500), dias: str = "30",
-                      autor: str = Query("", max_length=200)):
+                      autor: str = Query("", max_length=200), amplio: str = ""):
     name = clean_query(autor)
     if name:
         return await author_page(request, name)
@@ -266,10 +288,11 @@ async def search_page(request: Request, q: str = Query("", max_length=500), dias
     if len(query) < MIN_QUERY:
         return render(request, "search.html", query=query, days_key=days_key, result=None,
                       error="Escribe al menos dos letras." if q else None)
-    result = await run_search(query, days)
+    broad = amplio == "1"
+    result = await run_search(query, days, broad)
     groups = sorted({a.media.group.name for a in result["articles"] if a.media and a.media.group})
     return render(request, "search.html", query=query, days_key=days_key, result=result, groups=groups,
-                  error=None)
+                  broad=broad, error=None)
 
 
 async def author_page(request: Request, name: str):
@@ -281,6 +304,29 @@ async def author_page(request: Request, name: str):
     outlets = [(catalog.media.get(c["media_id"]), c["n"]) for c in counts]
     return render(request, "author.html", author=name, articles=articles,
                   outlets=[(m, n) for m, n in outlets if m], total=sum(n for _, n in outlets))
+
+
+def _join(items: list[str]) -> str:
+    return items[0] if len(items) == 1 else ", ".join(items[:-1]) + " y " + items[-1] if items else ""
+
+
+def story_summary(c: Consensus, story: Story) -> dict:
+    """The «En resumen» lines of a story page, built from the consensus alone (no model, no opinion)."""
+    points: list[str] = []
+    seen: set[str] = set()
+    for p in [*c.terms, *c.pieces]:
+        if p.text.lower() not in seen and len(points) < 4:
+            seen.add(p.text.lower())
+            points.append(p.text)
+    sides = [SIDE_LABEL[k] for k in ("left", "center", "right") if story.side_counts[k]]
+    differences = []
+    for side in ("left", "right"):
+        texts = [o.piece.text for o in c.one_sided_terms_of(side)][:3]
+        texts = texts or [o.piece.text for o in c.one_sided if o.side == side][:2]
+        if texts:
+            differences.append((SIDE_LABEL[side], texts))
+    return {"points": points if c.enough else [], "voices": c.voices, "enough": c.enough and bool(points),
+            "sides_text": _join(sides), "differences": differences}
 
 
 def load_story(story_id: int) -> dict | None:
@@ -306,8 +352,10 @@ def load_story(story_id: int) -> dict | None:
         checks = [a for a in (make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"],
                                            published=r["published"], media_id=r["media_id"]) for r in hits)
                   if a.media and a.media.factchecker][:6]
-    return {"story": story, "title": row["title"], "cov": coverage(articles), "consensus": consensus(articles),
-            "factchecks": checks, "first": first, "last": max(a.published for a in articles)}
+    c = consensus(articles)
+    return {"story": story, "title": row["title"], "cov": coverage(articles), "consensus": c,
+            "summary": story_summary(c, story), "factchecks": checks, "first": first,
+            "last": max(a.published for a in articles)}
 
 
 @app.get("/historia/{story_id:int}", response_class=HTMLResponse)
@@ -380,6 +428,11 @@ async def methodology(request: Request):
     return render(request, "methodology.html", by_pos=by_pos, territorial=sorted(TERRITORIAL_LABELS.values()),
                   factual=FACTUAL_MAP, audit=audit, descriptive=sorted(DESCRIPTIVE_LABELS), counts=counts,
                   rules=rules)
+
+
+@app.get("/como-leer", response_class=HTMLResponse)
+async def how_to_read(request: Request):
+    return render(request, "como_leer.html")
 
 
 @app.get("/privacidad", response_class=HTMLResponse)

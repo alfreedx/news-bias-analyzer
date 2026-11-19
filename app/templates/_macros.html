@@ -1,18 +1,18 @@
 {% macro chip(media) -%}
   {%- if media and media.assessment.rated -%}
-    <span class="chip chip--{{ pos_class(media.assessment.position) }}" title="Orientación según fuentes externas: {{ media.assessment.label }}">{{ media.assessment.label }}</span>
+    <span class="chip chip--{{ pos_class(media.assessment.position) }}" title="{{ media.assessment.label }}: posición que fuentes externas citadas dan a este medio en la escala izquierda–derecha. No es una opinión de Contraste.">{{ media.assessment.label }}</span>
   {%- elif media -%}
     <span class="chip chip--na" title="Ninguna fuente externa ha publicado una orientación para este medio. No significa que sea neutral.">Sin etiqueta</span>
   {%- else -%}
-    <span class="chip chip--na" title="Este medio no está en nuestro catálogo">Desconocido</span>
+    <span class="chip chip--na" title="Este medio no está en nuestro catálogo, así que no tiene etiqueta.">Desconocido</span>
   {%- endif -%}
 {%- endmacro %}
 
 {% macro factual(media) -%}
   {%- if media and media.assessment.factual_level is not none -%}
-    <span class="fact fact--{{ media.assessment.factual_level }}" title="Fiabilidad factual según Media Bias/Fact Check">Fiabilidad: {{ media.assessment.factual_label }}</span>
+    <span class="fact fact--{{ media.assessment.factual_level }}" title="Fiabilidad según Media Bias/Fact Check (MBFC), una organización externa: mide su historial de datos verificables. No es una valoración de Contraste.">Fiabilidad: {{ media.assessment.factual_label }}</span>
   {%- elif media and media.assessment.ifcn -%}
-    <span class="fact fact--4">Verificador IFCN</span>
+    <span class="fact fact--4" title="Verificador acreditado en la International Fact-Checking Network (IFCN), según la fuente citada.">Verificador IFCN</span>
   {%- endif -%}
 {%- endmacro %}
 
@@ -23,18 +23,19 @@
 {% macro byline(a, show_group=True) -%}
   <span class="byline">
     {%- if a.media -%}<a class="byline__media" href="/medios/{{ a.media.id }}">{{ a.source_name }}</a>{%- else -%}<span class="byline__media">{{ a.source_name }}</span>{%- endif -%}
+    {%- if a.lang_note %}<span class="byline__sep" aria-hidden="true">·</span><span class="byline__lang">{{ a.lang_note }}</span>{%- endif -%}
     {%- if show_group and a.media and a.media.group %}<span class="byline__sep" aria-hidden="true">·</span><a class="byline__group" href="/grupos/{{ a.media.group.id }}">{{ a.media.group.name }}</a>{%- endif -%}
     {{ author_by(a.author) }}
     <span class="byline__sep" aria-hidden="true">·</span><time datetime="{{ iso(a.published) }}">{{ time_ago(a.published) }}</time>
   </span>
 {%- endmacro %}
 
-{% macro signals(a) -%}
-  {%- if a.signals -%}
-  <span class="signals" title="Señales automáticas del titular. Orientativas: consulta la metodología.">
-    {%- for s in a.signals %}<span class="signal">{{ s }}</span>{% endfor -%}
-  </span>
-  {%- endif -%}
+{% macro subtitle(item, n=220) -%}
+  {%- if item.subtitle %}<p class="item__summary">{{ item.subtitle|truncate(n) }}</p>{% endif -%}
+{%- endmacro %}
+
+{% macro help(term, label="¿Qué es esto?") -%}
+<a class="help" href="/como-leer#{{ term }}">{{ label }}</a>
 {%- endmacro %}
 
 {% macro spectrum_dots(positions) -%}
@@ -60,7 +61,7 @@
   {%- if items -%}
   <span class="qtags">
     {%- for t in (items[:limit] if limit else items) %}<a class="qtag" href="{{ t.permalink }}" rel="noopener noreferrer" title="Etiqueta tal como la publica {{ t.source }}{% if t.retrieved %} (consultada el {{ t.retrieved }}){% endif %}. No es una valoración de Contraste."><span class="qtag__src">{{ t.source.split(' ')[0] }}</span>{{ t.label }}</a>{% endfor -%}
-    {%- if limit and items|length > limit %}<span class="qtag qtag--more">+{{ items|length - limit }}</span>{% endif -%}
+    {%- if limit and items|length > limit %}<a class="qtag qtag--more" href="/medios/{{ media.id }}" title="Ver las {{ items|length - limit }} etiquetas restantes en la ficha del medio">+{{ items|length - limit }}</a>{% endif -%}
   </span>
   {%- endif -%}
   {%- endif -%}
@@ -81,6 +82,7 @@
       {%- if a.media -%}<a class="byline__media" href="/medios/{{ a.media.id }}">{{ a.source_name }}</a>{%- else -%}<span class="byline__media">{{ a.source_name }}</span>{%- endif -%}
     {%- endfor -%}
     {%- if rest > 0 %} y {{ rest }} más{% endif -%}
+    {%- if r.lang_note %}<span class="byline__sep" aria-hidden="true">·</span><span class="byline__lang">{{ r.lang_note }}</span>{%- endif -%}
     {%- if r.group %}<span class="byline__sep" aria-hidden="true">·</span><a class="byline__group" href="/grupos/{{ r.group.id }}">{{ r.group.name }}</a>{%- endif -%}
     {{ author_by(r.author) }}
     <span class="byline__sep" aria-hidden="true">·</span><time datetime="{{ iso(r.lead.published) }}">{{ time_ago(r.lead.published) }}</time>
@@ -98,9 +100,10 @@
         <p class="compare__side">{{ label }}</p>
         {%- if a %}
         <a class="compare__headline" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
+        {{ subtitle(a, 140) }}
         <p class="compare__outlet">{{ a.source_name }}{% if a.author %} · Por <a class="byline__author" href="/buscar?autor={{ a.author|urlencode }}">{{ a.author }}</a>{% endif %}</p>
         {%- else %}
-        <p class="compare__none">Ningún medio de este lado lo ha publicado</p>
+        <p class="compare__none">No hemos encontrado este tema en medios de este lado (puede que no lo hayan publicado o que no esté en su RSS)</p>
         {%- endif %}
       </div>
       {%- endfor %}
@@ -112,19 +115,20 @@
 
 {% macro coverage_panel(cov) -%}
 <aside class="panel panel--summary" aria-labelledby="panel-title">
-    <h2 id="panel-title" class="panel__title">Radiografía de la cobertura</h2>
-    <p class="panel__lead"><strong>{{ cov.total }}</strong> titulares · <strong>{{ cov.outlets }}</strong> medios</p>
+    <h2 id="panel-title" class="panel__title">Quién la cuenta</h2>
+    <p class="panel__lead"><strong>{{ cov.total }}</strong> titulares de <strong>{{ cov.outlets }}</strong> medios</p>
     <p class="panel__summary">{{ coverage_summary(cov) }}</p>
 
-    <div class="stack" role="img" aria-label="Reparto por orientación: {% for p, n in cov.by_position.items() %}{{ POSITION_LABELS[p] }} {{ n }}{% if not loop.last %}, {% endif %}{% endfor %}">
-      {% for p, n in cov.by_position.items() %}{% if n %}<span class="stack__seg stack__seg--{{ pos_class(p) }} w-{{ pct(n, cov.rated) }}" title="{{ POSITION_LABELS[p] }}: {{ n }}"></span>{% endif %}{% endfor %}
+    <div class="stack" role="img" aria-label="Reparto por orientación: {% for p, n in cov.by_position.items() %}{{ POSITION_LABELS[p] }} {{ n }}, {% endfor %}sin etiqueta publicada {{ cov.total - cov.rated }}">
+      {% for p, n in cov.by_position.items() %}{% if n %}<span class="stack__seg stack__seg--{{ pos_class(p) }} w-{{ pct(n, cov.total) }}" title="{{ POSITION_LABELS[p] }}: {{ n }}"></span>{% endif %}{% endfor %}{% if cov.total > cov.rated %}<span class="stack__seg stack__seg--na w-{{ pct(cov.total - cov.rated, cov.total) }}" title="Sin etiqueta publicada: {{ cov.total - cov.rated }}"></span>{% endif %}
     </div>
     <ul class="legend">
       {% for p, n in cov.by_position.items() %}
       <li><span class="dot dot--{{ pos_class(p) }} is-on"></span>{{ POSITION_LABELS[p] }} <span class="legend__n">{{ n }}</span></li>
       {% endfor %}
-      <li><span class="dot dot--na is-on"></span>Sin etiqueta publicada <span class="legend__n">{{ cov.total - cov.rated }}</span></li>
+      <li><span class="dot dot--na is-on"></span>Sin etiqueta <span class="legend__n">{{ cov.total - cov.rated }}</span></li>
     </ul>
+    <p class="panel__help small">{{ help("izquierda", "¿Qué significan estas etiquetas?") }} · {{ help("sin-etiqueta", "¿Qué es «sin etiqueta»?") }}</p>
 
     {% for w in cov.warnings %}
     <div class="alert alert--{{ w.kind }}">

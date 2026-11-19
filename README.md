@@ -22,9 +22,10 @@ Media Bias/Fact Check, Wikipedia and Wikidata), its factual reliability, who own
 | **Fiabilidad factual** | Calificación de Media Bias/Fact Check y acreditación IFCN de los verificadores. |
 | **Propiedad** | Grupo de comunicación de cada cabecera y quién está detrás de él. |
 | **Historias agrupadas** | Los titulares de distintos medios sobre el mismo hecho, juntos, para comparar el enfoque. |
-| **Radiografía de la cobertura** | Reparto ideológico, concentración por grupos y avisos de *punto ciego* cuando un lado del espectro apenas cubre el tema. |
+| **Quién la cuenta** | Reparto por posición (con el porcentaje «sin etiqueta» explícito), concentración por grupos y avisos cuando un lado apenas cubre el tema. |
+| **En resumen** | En cada historia: qué coinciden en contar, qué cambia según el medio y qué han verificado Maldita, Newtral o EFE Verifica; con cronología y aviso de agrupación automática. |
+| **Cómo leer** | Glosario `/como-leer` con los términos del sitio. |
 | **Verificaciones** | Desmentidos relacionados de Maldita.es, Newtral y EFE Verifica. |
-| **Señales del titular** | Cebo, lenguaje cargado, exclamaciones. Son heurísticas y la interfaz lo indica. |
 
 Sin cookies, sin rastreadores, sin cuentas y sin coste.
 
@@ -41,7 +42,7 @@ Sin cookies, sin rastreadores, sin cuentas y sin coste.
 
 ```
  RSS oficiales de ~75 medios ─┐
- + verificadores              ├─► ingesta cada 20 min ─► SQLite + FTS5 ─► FastAPI + Jinja2 ─► HTML sin JS obligatorio
+ + verificadores              ├─► ingesta cada 10 min ─► SQLite + FTS5 ─► FastAPI + Jinja2 ─► HTML sin JS obligatorio
  (defusedxml, 5 MB, 15 s)     ┘   (peticiones condicionales ETag)            │
                                                                              └─ data/media.json + data/groups.json
                                                                                 (fuentes citadas, CC BY-SA)
@@ -78,7 +79,7 @@ python -m app.cli ingest             # primera lectura de los feeds (~30 s)
 uvicorn app.main:app --reload --no-access-log
 ```
 
-Abre <http://localhost:8000>. La aplicación vuelve a leer los feeds cada 20 minutos mientras está encendida.
+Abre <http://localhost:8000>. La aplicación vuelve a leer los feeds cada 10 minutos mientras está encendida.
 
 ### Con Docker
 
@@ -125,7 +126,7 @@ app/
   main.py        rutas, ingesta en segundo plano, ayudas de plantilla
   catalog.py     carga y valida data/*.json, asocia URLs a medios
   scoring.py     tablas públicas etiqueta → posición (la «metodología» en código)
-  analysis.py    agrupación de historias, cobertura, puntos ciegos
+  analysis.py    agrupación de historias, cobertura, noticias que cuenta sobre todo un lado
   feeds.py       descarga y análisis seguro de RSS/Atom
   db.py          SQLite + FTS5, consultas parametrizadas
   security.py    cabeceras de seguridad y limitador de peticiones
@@ -162,7 +163,7 @@ Las medidas de seguridad y privacidad están detalladas en [SECURITY.md](SECURIT
 - Solo aparecen en los resultados los medios con RSS accesible; algunos (SER, Público, elEconomista…)
   lo bloquean o no lo publican. Están en el catálogo pero no en el índice.
 - El índice empieza vacío y guarda 120 días: las búsquedas sobre temas antiguos no darán resultados.
-- La agrupación de historias y las señales del titular son heurísticas sencillas.
+- La agrupación de historias es una heurística sencilla.
 - Hay medios sin evaluación externa publicada; se muestran como «sin etiqueta publicada» en lugar de inventar una posición.
 - Las etiquetas de Wikipedia rara vez citan su propia fuente. Por eso se fijan a una revisión concreta y el CI semanal avisa si cambian.
 

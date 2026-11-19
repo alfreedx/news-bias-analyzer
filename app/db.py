@@ -72,6 +72,20 @@ CREATE INDEX IF NOT EXISTS idx_story_articles_article ON story_articles(article_
 
 _TOKEN = re.compile(r"\w+", re.UNICODE)
 MAX_QUERY_TOKENS = 8
+TITLE_WEIGHT, SUMMARY_WEIGHT = 10.0, 1.0
+MIN_TITLE_MATCHES = 15  # from this many title matches on, summary-only matches are hidden by default
+LEAD_CHARS = 160  # a summary-only match is kept when every query word appears this early in the summary
+
+
+def in_lead(query: str, summary: str | None) -> bool:
+    """True when all query words appear in the opening of the summary (the subtitle is about it).
+
+    «Teatro de autócratas» + «Xi Jinping maneja a su antojo…» is about Xi Jinping; a crime report that
+    says «…en su vivienda» at the end of its summary is not about housing.
+    """
+    lead = fold((summary or "")[:LEAD_CHARS])
+    words = [w for w in fold(query).split() if len(w) > 1 and w not in STOPWORDS]
+    return bool(words) and all(w[:5] in lead for w in words)
 
 
 def _stem(token: str) -> str:
@@ -97,6 +111,11 @@ def build_fts_query(query: str) -> str | None:
         return None
     parts = [f'"{_stem(t)}"*' if len(t) >= 4 else f'"{t}"' for t in tokens]
     return " AND ".join(parts)
+
+
+def _title_only(fts: str) -> str:
+    """The same expression restricted to the title column (any token in the title counts as a title match)."""
+    return "title : (" + fts.replace(" AND ", " OR ") + ")"
 
 
 class Database:
@@ -184,22 +203,41 @@ class Database:
             )
 
     # --- reads ------------------------------------------------------------
-    def search(self, query: str, *, since: int | None = None, limit: int = 400) -> list[sqlite3.Row]:
+    def search_ex(self, query: str, *, since: int | None = None, limit: int = 400,
+                  broad: bool = False) -> tuple[list[sqlite3.Row], int]:
+        """Ranked matches plus how many summary-only matches were left out.
+
+        Title matches weigh ten times a summary match (bm25 column weights; the FTS columns are title, summary).
+        When at least MIN_TITLE_MATCHES headlines match in the title, results whose match is only in the RSS
+        summary are dropped unless `broad` is set.
+        """
         fts = build_fts_query(query)
         if not fts:
-            return []
+            return [], 0
         sql = (
-            "SELECT a.*, bm25(articles_fts, 10.0, 2.0) AS rank FROM articles_fts "
+            "SELECT a.*, bm25(articles_fts, ?, ?) AS rank FROM articles_fts "
             "JOIN articles a ON a.id = articles_fts.rowid WHERE articles_fts MATCH ?"
         )
-        params: list = [fts]
+        params: list = [TITLE_WEIGHT, SUMMARY_WEIGHT, fts]
         if since:
             sql += " AND a.published >= ?"
             params.append(since)
         sql += " ORDER BY rank LIMIT ?"
         params.append(limit)
         with self.connect() as conn:
-            return conn.execute(sql, params).fetchall()
+            rows = conn.execute(sql, params).fetchall()
+            if broad or len(rows) < MIN_TITLE_MATCHES:
+                return rows, 0
+            title_ids = {r[0] for r in conn.execute(
+                "SELECT rowid FROM articles_fts WHERE articles_fts MATCH ?", (_title_only(fts),))}
+        kept = [r for r in rows if r["id"] in title_ids or in_lead(query, r["summary"])]
+        if sum(r["id"] in title_ids for r in kept) < MIN_TITLE_MATCHES:
+            return rows, 0
+        return kept, len(rows) - len(kept)
+
+    def search(self, query: str, *, since: int | None = None, limit: int = 400,
+               broad: bool = False) -> list[sqlite3.Row]:
+        return self.search_ex(query, since=since, limit=limit, broad=broad)[0]
 
     def recent(self, *, since: int, media_ids: list[str] | None = None, limit: int = 4000) -> list[sqlite3.Row]:
         sql = "SELECT * FROM articles WHERE published >= ?"

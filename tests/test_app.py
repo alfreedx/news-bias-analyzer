@@ -21,7 +21,7 @@ def client():
 
 
 @pytest.mark.parametrize("path", ["/", "/medios", "/medios/el-pais", "/medios/20minutos", "/grupos/prisa",
-                                  "/metodologia", "/privacidad", "/acerca", "/buscar", "/buscar?q=vivienda",
+                                  "/metodologia", "/como-leer", "/privacidad", "/acerca", "/buscar", "/buscar?q=vivienda",
                                   "/api/medios", "/api/salud", "/robots.txt", "/.well-known/security.txt"])
 def test_pages_ok(client, path):
     r = client.get(path)
@@ -99,11 +99,11 @@ def test_home_renders_blind_spots_section(client):
     main.state.blind_spots = blind_spots([Story(arts, seed=arts[0])])
     try:
         html = client.get("/").text
-        assert "Puntos ciegos" in html and "Cubierta sobre todo por medios de derecha" in html
+        assert "Noticias que cuenta sobre todo un lado" in html and "La cuentan sobre todo medios de derecha" in html
         assert "style=" not in html
     finally:
         main.state.blind_spots = []
-    assert "Puntos ciegos" not in client.get("/").text
+    assert "Noticias que cuenta sobre todo un lado" not in client.get("/").text
 
 
 def test_author_filter_route(client):
@@ -138,7 +138,13 @@ def test_story_route_and_links(client):
     assert r.status_code == 200 and "En lo que coinciden" in r.text and "set-cookie" not in r.headers
     for banned in ("probado", "verdad", "hecho comprobado"):
         assert banned not in r.text.lower()
-    assert "no prueba que algo sea cierto" in r.text
+    assert "Coincidir no prueba que algo sea cierto" in r.text
+    assert "En resumen" in r.text and "Qué coinciden en contar" in r.text
+    assert r.text.index("En resumen") < r.text.index("Quién la cuenta")
+    assert "Cronología" in r.text and "Primera publicación en nuestro índice" in r.text
+    assert "Agrupado automáticamente por palabras comunes" in r.text
+    assert "github.com/alfreedx/news-bias-analyzer/issues/new?title=" in r.text
+    assert "Titular tipo cebo" not in r.text and 'class="signal' not in r.text
     assert "style=" not in r.text and "<script>" not in r.text
     assert "12,5 millones" in r.text and "<details" in r.text
     main.build_front_page()
@@ -148,3 +154,82 @@ def test_story_route_and_links(client):
     assert client.get("/historia/abc").status_code == 404
     assert "Allow: /historia/" in client.get("/robots.txt").text
     assert "Disallow: /buscar" in client.get("/robots.txt").text
+
+
+def test_como_leer_page_and_anchors(client):
+    r = client.get("/como-leer")
+    assert r.status_code == 200 and "Cómo leer Contraste" in r.text
+    for term in ("izquierda", "centroizquierda", "centro", "centroderecha", "derecha", "sin-etiqueta",
+                 "grupo-de-comunicacion", "fiabilidad", "verificador", "fuente-independiente",
+                 "titulares-sindicados", "noticias-de-un-lado", "agrupacion-automatica"):
+        assert f'id="{term}"' in r.text, term
+    assert "style=" not in r.text
+    home = client.get("/").text
+    assert 'href="/como-leer"' in home and "Cómo leer" in home
+    assert "Contraste no sustituye leer la noticia completa" in home
+
+
+def test_help_links_and_chip_titles(client):
+    html = client.get("/buscar?q=vivienda").text
+    assert "/como-leer#sin-etiqueta" in html and "Quién la cuenta" in html
+    assert "Radiografía" not in html
+    assert 'title="Ninguna fuente externa' in html or 'title="Izquierda' in html or "Orientación" in html or "posición que fuentes" in html
+
+
+def test_issue_link_is_encoded_and_minimal():
+    url = main.issue_url('Título & "raro" #1 ñ', 42)
+    assert url.startswith(main.settings.repo_url + "/issues/new?title=")
+    assert "&body=" in url and " " not in url and '"' not in url and "#" not in url.split("?", 1)[1]
+    assert "%2Fhistoria%2F42" in url
+    assert url.count("?") == 1 and "utm_" not in url
+
+
+def test_story_summary_lines():
+    from app.analysis import Story, make_article
+    from app.consensus import Consensus, OneSided, Piece
+    art = make_article(main.catalog, title="x y z", url="https://x.test/1", summary="", published=1, media_id="abc")
+    story = Story([art], seed=art)
+    p = lambda t: Piece("palabra", t, t, 3, ["left", "right"], ["A"])  # noqa: E731
+    c = Consensus(5, True, [], [], None, [], terms=[p("terapeuta"), p("año sabático")],
+                  one_sided_terms=[OneSided("left", p("cuidados"))])
+    s = main.story_summary(c, story)
+    assert s["enough"] and s["points"] == ["terapeuta", "año sabático"]
+    assert s["differences"] == [("izquierda", ["cuidados"])]
+    poor = main.story_summary(Consensus(2, False, [], [], None, []), story)
+    assert not poor["enough"] and poor["points"] == [] and poor["differences"] == []
+
+
+def test_search_hides_summary_only_matches_with_amplio_link(client):
+    now = int(time.time())
+    rows = [(f"https://abc.es/pp{i}", "abc", f"Los presupuestos del año número {i}", "", now) for i in range(15)]
+    rows.append(("https://abc.es/ppx", "abc", "Un suceso cualquiera", "Lo ocurrido ayer por la tarde en el barrio terminó con la intervención de la policía local y de varios equipos sanitarios, que atendieron a los vecinos afectados durante horas en los presupuestos", now))
+    main.db.insert_articles(rows)
+    main._cache.clear()
+    html = client.get("/buscar?q=presupuestos").text
+    assert "Un suceso cualquiera" not in html and "amplio=1" in html
+    assert "Incluir coincidencias solo en la entradilla" in html
+    wide = client.get("/buscar?q=presupuestos&amplio=1").text
+    assert "Un suceso cualquiera" in wide
+
+
+def test_story_rows_show_summary_unless_it_repeats_the_title(client):
+    from app.analysis import make_article
+    from app.stories import assign_stories
+    now = int(time.time())
+    main.db.insert_articles([
+        ("https://eldiario.es/sub1", "eldiario-es", "Teatro de autócratas en la cumbre asiática", "Xi Jinping maneja a su antojo el primer encuentro.", now),
+        ("https://abc.es/sub2", "abc", "Teatro de autócratas en la cumbre asiática hoy", "Teatro de autócratas en la cumbre asiática hoy", now),
+        ("https://publico.es/sub3", "publico", "Autócratas teatro cumbre asiática Xi Putin", "", now),
+        ("https://okd.es/sub4", "okdiario", "Cumbre asiática teatro autócratas Xi Trump", "Cumbre asiática teatro autócratas Xi Trump: más detalles", now),
+    ])
+    assign_stories(main.db, main.catalog)
+    with main.db.connect() as c:
+        sid = c.execute("SELECT story_id FROM story_articles sa JOIN articles a ON a.id = sa.article_id "
+                        "WHERE a.url = 'https://abc.es/sub2'").fetchone()[0]
+    html = client.get(f"/historia/{sid}").text
+    assert "Xi Jinping maneja a su antojo" in html
+    assert '<p class="item__summary">Xi Jinping' in html
+    assert '<p class="item__summary">Teatro' not in html
+    assert "más detalles" not in html
+    same = make_article(main.catalog, title="Igual", url="https://x.test/i", summary="igual", published=1)
+    assert same.subtitle == ""

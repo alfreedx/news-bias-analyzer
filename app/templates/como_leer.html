@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Cómo leer Contraste · Contraste{% endblock %}
+{% block description %}Qué hace y qué no hace Contraste, y qué significa cada término que verás en el sitio.{% endblock %}
+
+{% block content %}
+<article class="prose glossary">
+  <h1>Cómo leer Contraste</h1>
+  <p class="lead">Contraste compara quién cuenta cada noticia y cómo la titula. No dice qué es verdad.</p>
+  <ul class="glossary__intro">
+    <li>Agrupa los titulares de distintos medios que hablan del mismo suceso y muestra qué repiten y qué cambia según el medio.</li>
+    <li>No detecta bulos por sí mismo: enlaza las verificaciones que han publicado Maldita, Newtral y EFE Verifica.</li>
+    <li>Las etiquetas de cada medio son citas de fuentes externas, no opiniones de Contraste.</li>
+    <li>«Sin etiqueta» significa que ninguna fuente externa ha publicado una orientación para ese medio. No significa que sea neutral.</li>
+    <li>Solo leemos titulares y entradillas públicas: lee siempre la noticia completa en el medio.</li>
+  </ul>
+
+  <h2>Términos que verás en el sitio</h2>
+  <dl class="glossary__terms">
+    <dt id="izquierda">Izquierda</dt>
+    <dd>Posición −2 de la escala de cinco puntos (izquierda, centroizquierda, centro, centroderecha, derecha). La asignan las etiquetas que publican fuentes externas citadas (Media Bias/Fact Check, Wikipedia, Wikidata) con una tabla fija. <a href="/metodologia">Ver la tabla</a>.</dd>
+    <dt id="centroizquierda">Centroizquierda</dt>
+    <dd>Posición −1 de la escala: una fuente externa citada sitúa al medio a la izquierda del centro, pero no en el extremo.</dd>
+    <dt id="centro">Centro</dt>
+    <dd>Posición 0: las fuentes externas citadas lo sitúan en el centro. Es una etiqueta de esas fuentes, no un juicio de neutralidad.</dd>
+    <dt id="centroderecha">Centroderecha</dt>
+    <dd>Posición +1: una fuente externa citada sitúa al medio a la derecha del centro, pero no en el extremo.</dd>
+    <dt id="derecha">Derecha</dt>
+    <dd>Posición +2 de la escala, según las etiquetas de las fuentes externas citadas.</dd>
+    <dt id="sin-etiqueta">Sin etiqueta</dt>
+    <dd>Ninguna fuente externa ha publicado una orientación para ese medio. No significa que sea neutral: significa que no tenemos dato. En las barras de cobertura aparece como un tramo rayado.</dd>
+    <dt id="grupo-de-comunicacion">Grupo de comunicación</dt>
+    <dd>Empresa o entidad propietaria de varias cabeceras. Se muestra como un hecho sobre la propiedad, con su fuente, nunca como un adjetivo.</dd>
+    <dt id="fiabilidad">Fiabilidad (MBFC)</dt>
+    <dd>Calificación de «Factual Reporting» de Media Bias/Fact Check, una organización externa: valora el historial de datos comprobables de un medio. No es de Contraste y no dice nada de una noticia concreta.</dd>
+    <dt id="verificador">Verificador</dt>
+    <dd>Medio dedicado a comprobar afirmaciones, como Maldita.es, Newtral o EFE Verifica. Mostramos sus titulares relacionados con la historia; el veredicto es el suyo, no el nuestro.</dd>
+    <dt id="fuente-independiente">Fuente independiente (voz)</dt>
+    <dd>Cada fuente que cuenta una vez. Los titulares idénticos, los medios de un mismo grupo y los textos con la misma marca de agencia cuentan como una sola.</dd>
+    <dt id="titulares-sindicados">Titulares sindicados</dt>
+    <dd>El mismo titular publicado tal cual por varios medios (normalmente por una agencia o un grupo). Los mostramos en una sola fila.</dd>
+    <dt id="noticias-de-un-lado">Noticias que cuenta sobre todo un lado</dt>
+    <dd>Antes «puntos ciegos». Más del 80 % de los medios con etiqueta que la publican son de un mismo lado. Puede ser una exclusiva, un tema de nicho o una omisión del otro lado.</dd>
+    <dt id="agrupacion-automatica">Agrupación automática</dt>
+    <dd>Juntamos los titulares que comparten la mayoría de sus palabras clave. Es un método sencillo y puede mezclar noticias distintas o separar una misma. Si ves un error, avísanos desde la propia historia.</dd>
+  </dl>
+  <p><a href="/metodologia">Metodología completa</a></p>
+</article>
+{% endblock %}

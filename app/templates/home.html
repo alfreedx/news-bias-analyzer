@@ -26,19 +26,19 @@
   </p>
 </section>
 
-<section class="explain" aria-label="Qué hace Contraste">
-  <div class="explain__item">
-    <h3>Mismo hecho, varios relatos</h3>
-    <p>Agrupamos los titulares que hablan del mismo suceso para que compares cómo lo cuenta cada medio.</p>
-  </div>
-  <div class="explain__item">
-    <h3>Orientación contrastada</h3>
-    <p>La posición de cada medio sale de fuentes externas citadas (Media Bias/Fact Check, Wikipedia, Wikidata), nunca de nuestra opinión.</p>
-  </div>
-  <div class="explain__item">
-    <h3>Dueños y verificaciones</h3>
-    <p>Te mostramos a qué grupo pertenece cada cabecera y si los verificadores han desmentido algo relacionado.</p>
-  </div>
+<section class="how" aria-labelledby="how-title">
+  <h2 id="how-title" class="how__title">Cómo funciona</h2>
+  <ol class="how__steps">
+    <li>Busca un tema.</li>
+    <li>Ves quién lo cuenta y cómo lo titula cada lado.</li>
+    <li>Compruebas qué coincide y qué han verificado.</li>
+  </ol>
+  <p class="how__more">
+    {% if stories and stories[0].story_id %}Mira un ejemplo: <a href="/historia/{{ stories[0].story_id }}">{{ stories[0].lead.title }}</a>.
+    {% elif stories %}Mira un ejemplo: <a href="/buscar?q={{ stories[0].topic_query|urlq }}&amp;dias=7">{{ stories[0].lead.title }}</a>.
+    {% else %}Mira un ejemplo: <a href="/buscar?q=vivienda">vivienda</a>.{% endif %}
+    <a href="/como-leer">Cómo leer Contraste</a>
+  </p>
 </section>
 
 <section class="front" aria-labelledby="front-title">
@@ -51,7 +51,7 @@
   <ol class="front__list">
     {% for s in stories %}
     <li class="front__item">
-      <a class="front__title" href="{% if s.story_id %}/historia/{{ s.story_id }}{% else %}/buscar?q={{ s.topic_query|urlencode }}&amp;dias=7{% endif %}">{{ s.lead.title }}</a>
+      <a class="front__title" href="{% if s.story_id %}/historia/{{ s.story_id }}{% else %}/buscar?q={{ s.topic_query|urlq }}&amp;dias=7{% endif %}">{{ s.lead.title }}</a>
       <div class="front__meta">
         {{ spectrum_dots(s.positions) }}
         <span>{{ s.outlets }} medios</span>
@@ -76,15 +76,15 @@
 {% if blind_spots %}
 <section class="blind" aria-labelledby="blind-title">
   <div class="section-head">
-    <h2 id="blind-title">Puntos ciegos</h2>
-    <p class="section-head__meta">Historias de las últimas 36 horas que casi solo cuentan medios de un lado</p>
+    <h2 id="blind-title">Noticias que cuenta sobre todo un lado</h2>
+    <p class="section-head__meta">Más del 80 % de los medios con etiqueta que la publican son de un mismo lado. Puede ser una exclusiva, un tema de nicho o una omisión del otro lado. <a href="/como-leer#noticias-de-un-lado">¿Qué es esto?</a></p>
   </div>
   <ul class="blind__list">
     {% for b in blind_spots %}
     <li class="blind__item">
-      <p class="blind__kind">Cubierta sobre todo por medios de {{ "izquierda" if b.side == "left" else "derecha" }}</p>
-      <a class="blind__title" href="{% if b.story.story_id %}/historia/{{ b.story.story_id }}{% else %}/buscar?q={{ b.story.topic_query|urlencode }}&amp;dias=7{% endif %}">{{ b.story.lead.title }}</a>
-      <p class="blind__meta">{{ b.side_outlets }} de {{ b.labelled }} medios con etiqueta publicada · {{ b.story.outlets }} medios en total</p>
+      <p class="blind__kind">La cuentan sobre todo medios de {{ "izquierda" if b.side == "left" else "derecha" }}</p>
+      <a class="blind__title" href="{% if b.story.story_id %}/historia/{{ b.story.story_id }}{% else %}/buscar?q={{ b.story.topic_query|urlq }}&amp;dias=7{% endif %}">{{ b.story.lead.title }}</a>
+      <p class="blind__meta">{{ b.story.outlets }} medios; {{ b.labelled }} tienen etiqueta publicada, {{ b.side_outlets }} de ellos de {{ "izquierda" if b.side == "left" else "derecha" }}</p>
     </li>
     {% endfor %}
   </ul>

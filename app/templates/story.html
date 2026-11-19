@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import chip, factual, row_byline, comparison, signals, spectrum_dots, tags, coverage_panel %}
+{% from "_macros.html" import subtitle, chip, factual, row_byline, comparison, spectrum_dots, tags, coverage_panel, help %}
 {% block title %}{{ title }} · Contraste{% endblock %}
 {% block description %}{{ story.outlets }} medios cuentan esta noticia. Qué datos repiten fuentes independientes de distintos grupos y tendencias, y qué solo cuenta un lado.{% endblock %}
 {% block body_class %}page-story{% endblock %}
@@ -16,31 +16,64 @@
   </p>
 </header>
 
+<section class="resumen" aria-labelledby="resumen-title">
+  <h2 id="resumen-title" class="resumen__title">En resumen</h2>
+  <dl class="resumen__list">
+    <div class="resumen__row">
+      <dt>Qué coinciden en contar</dt>
+      <dd>
+        {% if summary.enough %}
+        <span class="resumen__points">{{ summary.points|join(" · ") }}</span>
+        <span class="resumen__note">{{ summary.voices }} fuentes independientes de {{ summary.sides_text or "medios sin etiqueta" }}.</span>
+        {% else %}
+        Aún hay pocas fuentes independientes para comparar.
+        {% endif %}
+      </dd>
+    </div>
+    <div class="resumen__row">
+      <dt>Qué cambia según el medio</dt>
+      <dd>
+        {% if summary.differences %}
+        {% for side, texts in summary.differences %}<span class="resumen__diff"><strong>Solo medios de {{ side }}:</strong> {{ texts|join(" · ") }}.</span> {% endfor %}
+        {% elif summary.enough %}
+        No hay diferencias claras de vocabulario entre lados.
+        {% else %}
+        Aún hay pocas fuentes independientes para comparar.
+        {% endif %}
+      </dd>
+    </div>
+    <div class="resumen__row" id="verificaciones">
+      <dt>Verificaciones</dt>
+      <dd>
+        {% if factchecks %}
+        <ul class="checks checks--inline">
+          {% for a in factchecks %}
+          <li><a href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a> <span class="checks__by">{{ a.source_name }} · {{ time_ago(a.published) }}</span></li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        Ningún verificador (Maldita, Newtral, EFE Verifica) lo ha publicado todavía.
+        {% endif %}
+      </dd>
+    </div>
+  </dl>
+</section>
+<p class="caveat"><strong>Coincidir no prueba que algo sea cierto.</strong> Contraste solo compara titulares y entradillas públicas: lee las noticias completas en cada medio.</p>
+<p class="grouping small muted">Agrupado automáticamente por palabras comunes; puede mezclar noticias distintas. <a href="{{ issue_url(title, story.story_id) }}" rel="noopener noreferrer" target="_blank">¿Mal agrupada? Avísanos</a> · {{ help("agrupacion-automatica", "¿Qué es esto?") }}</p>
+
 <div class="layout">
   <div class="sidebar">
   {{ coverage_panel(cov) }}
 
-  <aside class="panel panel--more" aria-label="Propiedad y verificaciones">
+  <aside class="panel panel--more" aria-label="Propiedad">
     <h3 class="panel__sub panel__sub--first">Quién está detrás</h3>
     <ul class="bars">
       {% for name, n in cov.by_group[:8] %}
       <li><span class="bars__label">{{ name }}</span><span class="bars__n">{{ n }}</span><span class="bars__bar"><span class="w-{{ pct(n, cov.total) }}"></span></span></li>
       {% endfor %}
     </ul>
+    <p class="small">{{ help("grupo-de-comunicacion", "¿Qué es un grupo de comunicación?") }}</p>
 
-    <h3 class="panel__sub" id="verificaciones">Verificaciones relacionadas</h3>
-    {% if factchecks %}
-    <ul class="checks">
-      {% for a in factchecks %}
-      <li>
-        <a href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
-        <span class="checks__by">{{ a.source_name }} · {{ time_ago(a.published) }}</span>
-      </li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p class="muted small">Ningún verificador (Maldita, Newtral, EFE Verifica) ha publicado nada que coincida.</p>
-    {% endif %}
   </aside>
   </div>
 
@@ -127,10 +160,25 @@
       {% endfor %}
       {% endif %}
       {% endif %}
-      <p class="callout">Que varios medios coincidan no prueba que algo sea cierto: indica que fuentes independientes lo han publicado. <a href="#verificaciones">Consulta las verificaciones.</a> <a href="/metodologia#coincidencias">Cómo se calcula</a>.</p>
+      <p class="small muted">Coincidir indica que fuentes independientes lo han publicado, no que sea cierto. <a href="#verificaciones">Consulta las verificaciones.</a> <a href="/metodologia#coincidencias">Cómo se calcula</a>. {{ help("fuente-independiente", "¿Qué es una fuente independiente?") }}</p>
     </section>
 
     {{ comparison(story) }}
+
+    <section aria-labelledby="crono-title">
+      <h2 id="crono-title" class="section-title">Cronología</h2>
+      <p class="small muted">Hora según el RSS de cada medio; el orden refleja lo que consta en nuestro índice, no necesariamente quién fue primero.</p>
+      <ol class="crono">
+        {% for r in story.timeline %}
+        <li class="crono__item">
+          <time class="crono__time" datetime="{{ iso(r.first) }}">{{ clock(r.first) }}</time>
+          <div class="crono__body"><a href="{{ r.lead.url }}" rel="noopener noreferrer" target="_blank">{{ r.lead.title }}</a>
+            {{ subtitle(r, 160) }}
+            <span class="crono__by">{{ r.articles|map(attribute="source_name")|join(", ") }}{% if loop.first %} · <strong>Primera publicación en nuestro índice</strong>{% endif %}</span></div>
+        </li>
+        {% endfor %}
+      </ol>
+    </section>
 
     <section aria-labelledby="rows-title">
       <h2 id="rows-title" class="section-title">Los titulares</h2>
@@ -141,8 +189,9 @@
           <div class="item__aside">{{ chip(a.media) }}</div>
           <div class="item__body">
             <a class="item__title" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
-            <div class="item__meta">{{ row_byline(r) }} {{ factual(a.media) }} {{ signals(a) }}</div>
-            {{ tags(a.media, limit=3) }}
+            {{ subtitle(r) }}
+            <div class="item__meta">{{ row_byline(r) }} {{ factual(a.media) }}</div>
+            {{ tags(a.media, limit=1) }}
           </div>
         </li>
         {% endfor %}

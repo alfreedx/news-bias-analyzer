@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import chip, factual, byline, row_byline, comparison, signals, spectrum_dots, tags, coverage_panel %}
+{% from "_macros.html" import subtitle, chip, factual, byline, row_byline, comparison, spectrum_dots, tags, coverage_panel %}
 {% block title %}{% if query %}{{ query }} · {% endif %}Contraste{% endblock %}
 {% block body_class %}page-search{% endblock %}
 
@@ -7,6 +7,7 @@
 <div class="search-head">
   <form class="period" action="/buscar" method="get">
     <input type="hidden" name="q" value="{{ query }}">
+    {% if broad %}<input type="hidden" name="amplio" value="1">{% endif %}
     <span class="period__label">Periodo</span>
     {% for key, label in [("7", "7 días"), ("30", "30 días"), ("todo", "Todo el índice")] %}
       <button type="submit" name="dias" value="{{ key }}" {% if days_key == key %}aria-pressed="true"{% endif %}>{{ label }}</button>
@@ -22,7 +23,7 @@
 {% if not result.articles %}
   <div class="empty">
     <p>No hemos encontrado titulares sobre «{{ query }}» en este periodo.</p>
-    <p>Prueba con menos palabras, otro sinónimo o amplía el periodo a <a href="/buscar?q={{ query|urlencode }}&amp;dias=todo">todo el índice</a>.</p>
+    <p>Prueba con menos palabras, otro sinónimo o amplía el periodo a <a href="/buscar?q={{ query|urlq }}&amp;dias=todo">todo el índice</a>.</p>
   </div>
 {% else %}
 <div class="layout">
@@ -56,7 +57,14 @@
   <section class="results" aria-labelledby="results-title">
     <h2 id="results-title" class="visually-hidden">Resultados</h2>
 
-    <div class="filters" data-filters hidden>
+    {% if result.hidden_summary %}
+    <p class="notice">Mostramos los titulares que contienen «{{ query }}». Hemos dejado fuera {{ result.hidden_summary }} resultado{{ "s" if result.hidden_summary != 1 }} que solo lo mencionan en la entradilla. <a href="/buscar?q={{ query|urlq }}&amp;dias={{ days_key }}&amp;amplio=1">Incluir coincidencias solo en la entradilla</a></p>
+    {% elif result.broad %}
+    <p class="notice">Se incluyen las coincidencias solo en la entradilla. <a href="/buscar?q={{ query|urlq }}&amp;dias={{ days_key }}">Mostrar solo titulares</a></p>
+    {% endif %}
+
+    <details class="filters" data-filters hidden>
+      <summary class="filters__toggle">Filtrar y ordenar <span class="filters__count" data-count aria-live="polite"></span></summary>
       <div class="filters__row" role="group" aria-label="Filtrar por orientación">
         <button type="button" class="pill is-active" data-pos="all" aria-pressed="true">Todas</button>
         {% for p in [-2, -1, 0, 1, 2] %}
@@ -87,8 +95,7 @@
           </select>
         </label>
       </div>
-      <p class="filters__count" data-count aria-live="polite"></p>
-    </div>
+    </details>
 
     <div data-stories>
     {% for s in result.stories %}
@@ -106,8 +113,9 @@
             <div class="item__aside">{{ chip(a.media) }}</div>
             <div class="item__body">
               <a class="item__title" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
-              <div class="item__meta">{{ row_byline(r) }} {{ factual(a.media) }} {{ signals(a) }}</div>
-              {{ tags(a.media, limit=3) }}
+              {{ subtitle(r) }}
+              <div class="item__meta">{{ row_byline(r) }} {{ factual(a.media) }}</div>
+              {{ tags(a.media, limit=1) }}
             </div>
           </li>
           {% endfor %}
@@ -119,9 +127,9 @@
         <div class="item__aside">{{ chip(a.media) }}</div>
         <div class="item__body">
           <a class="item__title" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
-          {% if a.summary %}<p class="item__summary">{{ a.summary|truncate(220) }}</p>{% endif %}
-          <div class="item__meta">{{ byline(a) }} {{ factual(a.media) }} {{ signals(a) }}</div>
-              {{ tags(a.media, limit=3) }}
+          {{ subtitle(a) }}
+          <div class="item__meta">{{ byline(a) }} {{ factual(a.media) }}</div>
+              {{ tags(a.media, limit=1) }}
         </div>
       </article>
       {% endif %}

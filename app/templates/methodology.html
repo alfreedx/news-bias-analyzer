@@ -5,6 +5,7 @@
 {% block content %}
 <article class="prose">
   <h1>Cómo evaluamos a los medios</h1>
+  <p class="small"><a href="/como-leer">¿Primera vez aquí? Lee la guía breve «Cómo leer Contraste».</a></p>
   <p class="lead">Contraste no opina sobre los medios. Recoge lo que han publicado fuentes externas reconocidas, lo traduce a una escala común con reglas fijas y públicas, y enlaza siempre a la fuente original para que puedas comprobarlo.</p>
 
   <h2>1. De dónde salen los datos</h2>
@@ -80,11 +81,15 @@
 
   <h2>5. Análisis de cada búsqueda</h2>
   <ul>
-    <li><strong>Historias agrupadas</strong>: agrupamos los titulares que comparten la mayoría de sus palabras clave. Es un método sencillo; a veces separa la misma noticia o junta dos parecidas.</li>
-    <li><strong>Punto ciego</strong>: si hay al menos seis titulares de medios evaluados y uno de los dos lados aporta el 10 % o menos, lo avisamos.</li>
+    <li><strong>Historias agrupadas</strong>: agrupamos los titulares que comparten la mayoría de sus palabras clave. Es un método sencillo; a veces separa la misma noticia o junta dos parecidas. Cada historia lleva un enlace para avisarnos si está mal agrupada.</li>
+    <li><strong>Quién la cuenta</strong> (antes «radiografía de la cobertura»): reparto de los titulares por posición del medio, con el porcentaje de titulares sin etiqueta como segmento propio. Cuando hay titulares de medios sin etiqueta publicada, la frase resumen indica sobre cuántos titulares se calcula y, si menos de la mitad tienen etiqueta, avisa de que el dato es solo orientativo.</li>
+    <li><strong>Noticias que cuenta sobre todo un lado</strong> (antes «puntos ciegos»): historias con al menos tres medios con etiqueta, más del 80 % de ellos de un mismo lado. Puede ser una exclusiva, un tema de nicho o una omisión del otro lado; no sabemos cuál. En una búsqueda, si hay al menos seis titulares de medios con etiqueta y uno de los lados aporta el 10 % o menos, lo avisamos.</li>
     <li><strong>Cobertura concentrada</strong>: si dos grupos de comunicación suman la mitad o más de los resultados.</li>
-    <li><strong>Señales del titular</strong>: detectamos automáticamente expresiones de cebo («no creerás…»), lenguaje cargado («escándalo», «humillación»…), exclamaciones y mayúsculas enfáticas. Son pistas para leer con atención, no un veredicto.</li>
-    <li><strong>Verificaciones relacionadas</strong>: buscamos tu consulta en los artículos de Maldita.es, Newtral y EFE Verifica.</li>
+    <li><strong>Relevancia de la búsqueda</strong>: las coincidencias en el titular pesan diez veces más que las de la entradilla del RSS. Si hay quince o más titulares que contienen la búsqueda, ocultamos por defecto los que solo la mencionan en la entradilla; un enlace permite incluirlos.</li>
+    <li><strong>Resumen de cada historia</strong>: las tres líneas de «En resumen» se construyen con las reglas de la sección 6 (sin inteligencia artificial) y con las verificaciones que Maldita.es, Newtral y EFE Verifica han publicado sobre el tema. Coincidir no prueba que algo sea cierto.</li>
+    <li><strong>Cronología</strong>: ordena los titulares de una historia por la hora que indica el RSS de cada medio. «Primera publicación en nuestro índice» no significa que fuera la primera del mundo.</li>
+    <li><strong>Sin señales del titular</strong>: Contraste no puntúa ni etiqueta titulares como «cebo» o «cargados»: sería una opinión sin fuente citada.</li>
+    <li><strong>Verificaciones</strong>: buscamos tu consulta en los artículos de Maldita.es, Newtral y EFE Verifica.</li>
   </ul>
 
   <h2 id="coincidencias">6. En lo que coinciden: historias y fuentes independientes</h2>

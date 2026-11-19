@@ -14,6 +14,7 @@ PAGES = [
     "/buscar?autor=Ana+P%C3%A9rez",
     "/grupos/prisa",
     "/metodologia",
+    "/como-leer",
     "/privacidad",
     "/acerca",
 ]
@@ -28,6 +29,13 @@ def story_path(base_url):
     m = re.search(r'href="(/historia/\d+)"', html)
     assert m, "front page does not link to a persisted story"
     return m.group(1)
+
+
+def open_filters(page: Page) -> None:
+    box = page.locator("details[data-filters]")
+    expect(box).to_be_visible()
+    if box.get_attribute("open") is None:
+        box.locator("summary").click()
 
 
 def count(page: Page) -> int:
@@ -58,13 +66,14 @@ def test_no_horizontal_overflow(page: Page, base_url, path, width, height):
 
 def test_search_shows_results_and_coverage(page: Page, base_url):
     page.goto(base_url + SEARCH)
-    expect(page.get_by_role("heading", name="Radiografía de la cobertura")).to_be_visible()
+    expect(page.get_by_role("heading", name="Quién la cuenta")).to_be_visible()
     assert page.locator("[data-item]").count() > 0
     expect(page.locator("[data-filters]")).to_be_visible()
 
 
 def test_position_pill_filters_items(page: Page, base_url):
     page.goto(base_url + SEARCH)
+    open_filters(page)
     total = count(page)
     positions = {p for p in page.locator("[data-item]").evaluate_all("els => els.map(e => e.dataset.pos)")}
     assert len(positions) >= 2, f"need several positions, got {positions}"
@@ -82,6 +91,7 @@ def test_position_pill_filters_items(page: Page, base_url):
 
 def test_flat_view_and_recent_sort(page: Page, base_url):
     page.goto(base_url + SEARCH)
+    open_filters(page)
     page.locator("[data-view]").select_option("flat")
     page.locator("[data-sort]").select_option("recent")
     visible = [i for i in page.locator("[data-item]").all() if i.is_visible()]
@@ -140,7 +150,7 @@ def test_comparison_block(browser, base_url, width):
     xs = {round(c.bounding_box()["x"]) for c in cols.all()}
     ys = {round(c.bounding_box()["y"]) for c in cols.all()}
     assert (len(xs) == 1) if width == 390 else (len(ys) == 1)
-    assert "Ningún medio de este lado" in block.inner_text()
+    assert "No hemos encontrado este tema en medios de este lado" in block.inner_text()
     sw, cw = page.evaluate("[document.documentElement.scrollWidth, document.documentElement.clientWidth]")
     assert sw <= cw
     ctx.close()
@@ -214,7 +224,7 @@ def test_story_page_loads_clean_without_overflow(page: Page, base_url, story_pat
     sw, cw = page.evaluate("[document.documentElement.scrollWidth, document.documentElement.clientWidth]")
     assert sw <= cw
     expect(page.get_by_role("heading", name="En lo que coinciden")).to_be_visible()
-    expect(page.get_by_text("no prueba que algo sea cierto")).to_be_visible()
+    expect(page.get_by_text("no prueba que algo sea cierto").first).to_be_visible()
     for name in ("Palabras y expresiones compartidas", "Palabras que solo usa un lado"):
         heading = page.get_by_role("heading", name=name)
         if heading.count():  # present only when the story has enough voices and terms
@@ -242,3 +252,56 @@ def test_story_page_works_without_javascript(browser, base_url, story_path):
         assert page.locator(".piece__outlets[open]").count() == 1
     finally:
         ctx.close()
+
+
+def test_filters_folded_in_details_closed_by_default(page: Page, base_url):
+    page.goto(base_url + SEARCH)
+    box = page.locator("details[data-filters]")
+    expect(box).to_be_visible()
+    assert box.get_attribute("open") is None
+    expect(page.locator(".pill[data-pos='all']")).to_be_hidden()
+    expect(page.locator("input[name='q']").first).to_be_visible()
+    expect(page.get_by_role("button", name="30 días")).to_be_visible()
+    box.locator("summary").click()
+    expect(page.locator(".pill[data-pos='all']")).to_be_visible()
+
+
+def test_coverage_bar_shows_unlabelled_segment(page: Page, base_url):
+    page.goto(base_url + SEARCH)
+    # the seeded outlets are all labelled, so no hatched segment (unit tests cover the unlabelled case)
+    assert page.locator(".stack__seg--na").count() == 0
+    expect(page.locator(".panel__summary")).not_to_contain_text("Calculado sobre")
+    assert "Sin etiqueta" in page.locator(".legend").inner_text()
+
+
+def test_como_leer_page(page: Page, base_url):
+    problems = []
+    page.on("console", lambda m: problems.append(m.text) if m.type in ("error", "warning") else None)
+    page.on("pageerror", lambda e: problems.append(str(e)))
+    page.goto(base_url + "/como-leer", wait_until="networkidle")
+    assert not problems, problems
+    expect(page.get_by_role("heading", level=1)).to_have_text("Cómo leer Contraste")
+    for term in ("sin-etiqueta", "fiabilidad", "agrupacion-automatica"):
+        expect(page.locator(f"dt#{term}")).to_be_visible()
+    page.goto(base_url + "/como-leer#sin-etiqueta")
+    expect(page.locator("dt#sin-etiqueta")).to_be_in_viewport()
+    page.goto(base_url + "/")
+    page.get_by_role("link", name="Cómo leer", exact=True).first.click()
+    page.wait_for_url(re.compile(r"/como-leer$"))
+
+
+def test_story_page_summary_box_visible_first(page: Page, base_url, story_path):
+    page.goto(base_url + story_path)
+    box = page.locator(".resumen")
+    expect(box).to_be_visible()
+    text = box.inner_text()
+    for label in ("Qué coinciden en contar", "Qué cambia según el medio", "Verificaciones"):
+        assert label in text
+    expect(page.get_by_text("Coincidir no prueba que algo sea cierto")).to_be_visible()
+    expect(page.get_by_role("link", name="¿Mal agrupada? Avísanos")).to_be_visible()
+    assert page.get_by_role("heading", name="Cronología").count() == 1
+    assert page.get_by_text("Primera publicación en nuestro índice").count() == 1
+    y_box = box.bounding_box()["y"]
+    y_panel = page.locator(".panel--summary").bounding_box()["y"]
+    assert y_box < y_panel
+    assert page.locator(".signal").count() == 0

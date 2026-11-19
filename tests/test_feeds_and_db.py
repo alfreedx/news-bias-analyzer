@@ -4,7 +4,7 @@ from app.analysis import cluster, coverage, make_article
 from app.catalog import get_catalog
 from app.db import Database, build_fts_query
 from app.feeds import parse_feed
-from app.text import clean_text, headline_signals
+from app.text import clean_text
 
 RSS = b"""<?xml version="1.0"?>
 <rss version="2.0"><channel><title>t</title>
@@ -91,11 +91,6 @@ def test_clustering_and_coverage():
     assert arts[2].source_name == "Medio desconocido"
 
 
-def test_headline_signals():
-    assert "Titular tipo cebo" in headline_signals("No vas a creer lo que pasó en el pleno")
-    assert "Lenguaje cargado" in headline_signals("Escándalo en el Congreso")
-    assert headline_signals("El Congreso aprueba los presupuestos") == []
-
 
 def test_clean_text_truncates():
     assert clean_text("<b>a</b> " * 500, max_len=20).endswith("…")
@@ -163,3 +158,29 @@ def test_clean_author_newsroom_and_comma_spacing():
     from app.feeds import clean_author
     assert clean_author("Redacción El Debate", "El Debate") is None
     assert clean_author("Jesús García Bueno,Rebeca Carranco") == "Jesús García Bueno, Rebeca Carranco"
+
+
+def test_search_weights_titles_and_hides_summary_only_matches(tmp_path):
+    db = Database(tmp_path / "w.sqlite3")
+    now = int(time.time())
+    rows = [("https://a.es/crimen", "abc", "Detenido por un crimen doméstico", "Lo ocurrido ayer por la tarde en el barrio terminó con la intervención de la policía local y de varios equipos sanitarios, que atendieron a los vecinos afectados durante horas en una vivienda", now)]
+    rows += [(f"https://a.es/t{i}", "abc", f"Plan de vivienda número {i} del Gobierno", "Resumen", now) for i in range(14)]
+    db.insert_articles(rows)
+    # 14 title matches: below the threshold, summary-only match is kept, but ranks last
+    found = db.search("vivienda")
+    assert len(found) == 15 and found[-1]["url"] == "https://a.es/crimen"
+    assert db.search_ex("vivienda")[1] == 0
+    db.insert_articles([("https://a.es/t99", "abc", "Otra vivienda más", "", now)])
+    rows, hidden = db.search_ex("vivienda")
+    assert hidden == 1 and len(rows) == 15
+    assert all("vivienda" in r["title"].lower() for r in rows)
+    rows, hidden = db.search_ex("vivienda", broad=True)
+    assert hidden == 0 and len(rows) == 16 and rows[-1]["url"] == "https://a.es/crimen"
+    assert len(db.search("vivienda", broad=True)) == 16
+
+
+def test_summary_lead_counts_as_about_the_topic():
+    from app.db import in_lead
+    assert in_lead("xi jinping", "Xi Jinping maneja a su antojo el primer encuentro con Trump y Putin")
+    assert not in_lead("vivienda", "Un hombre fue detenido ayer por la tarde tras una discusión con su pareja "
+                                   "que terminó con la intervención de la Guardia Civil y de los servicios sanitarios en el portal de su vivienda")

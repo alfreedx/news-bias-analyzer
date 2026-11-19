@@ -8,8 +8,9 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 
 from .catalog import Catalog, Media
+from .facts import language_note
 from .scoring import POSITION_LABELS
-from .text import _WORD, fold, headline_signals, keywords
+from .text import _WORD, fold, keywords
 
 POSITIONS = [-2, -1, 0, 1, 2]
 
@@ -37,7 +38,6 @@ class Article:
     media: Media | None
     source_name: str
     relevance: float = 0.0
-    signals: list[str] = field(default_factory=list)
     keys: set[str] = field(default_factory=set)
     author: str | None = None  # byline as published; nothing else is known or inferred about the person
     id: int | None = None  # row id in the local index (None for live Google News results)
@@ -45,6 +45,19 @@ class Article:
     @property
     def position(self) -> int | None:
         return self.media.assessment.position if self.media else None
+
+    @property
+    def subtitle(self) -> str:
+        """The RSS summary when it adds something to the headline (not empty, not a repeat of it)."""
+        text, title = norm_title(self.summary or ""), norm_title(self.title)
+        if not text or text == title or text.startswith(title):
+            return ""
+        return self.summary
+
+    @property
+    def lang_note(self) -> str | None:
+        """«en catalán» etc. when the outlet's languages (Wikidata) are minority ones and not Spanish."""
+        return language_note(self.media.derived.languages) if self.media else None
 
     def to_public(self) -> dict:
         return {
@@ -55,7 +68,6 @@ class Article:
             "source": self.source_name,
             "author": self.author,
             "media": self.media.to_public() if self.media else None,
-            "signals": self.signals,
         }
 
 
@@ -76,6 +88,19 @@ class Row:
     @property
     def published(self) -> int:
         return max(a.published for a in self.articles)
+
+    @property
+    def subtitle(self) -> str:
+        return self.lead.subtitle
+
+    @property
+    def first(self) -> int:
+        """Earliest publication time among the copies (as given by each outlet's RSS)."""
+        return min(a.published for a in self.articles)
+
+    @property
+    def lang_note(self) -> str | None:
+        return self.lead.lang_note
 
     @property
     def author(self) -> str | None:
@@ -126,6 +151,11 @@ class Story:
         return dedupe(self.articles)
 
     @property
+    def timeline(self) -> list[Row]:
+        """Deduplicated rows ordered by first publication time (oldest first)."""
+        return sorted(self.rows, key=lambda r: (r.first, r.lead.source_name))
+
+    @property
     def groups(self) -> int:
         """Distinct owners (group, else publisher, else the outlet itself)."""
         return len({_owner(a) for a in self.articles})
@@ -171,14 +201,14 @@ class Story:
     def spread_label(self) -> str:
         pos = self.positions
         if not pos:
-            return "Medios sin etiqueta publicada"
+            return "Solo medios sin etiqueta publicada"
         if pos[0] < 0 < pos[-1]:
-            return "Contada desde ambos lados"
+            return "La publican medios de izquierda y de derecha"
         if pos[-1] < 0:
-            return "Solo medios de izquierda"
+            return "Solo la publican medios de izquierda"
         if pos[0] > 0:
-            return "Solo medios de derecha"
-        return "Cobertura parcial"
+            return "Solo la publican medios de derecha"
+        return "La publican medios de centro y de un solo lado"
 
 
 def owner(a: Article) -> str:
@@ -231,7 +261,7 @@ def blind_spots(stories: list[Story], limit: int = 4, min_labelled: int = 3, thr
 
 
 def coverage_summary(cov: Coverage) -> str:
-    """Plain-language, purely descriptive reading of the coverage counts."""
+    """Plain-language, purely descriptive reading of the coverage counts, with its base stated explicitly."""
     parts = []
     unrated = cov.total - cov.rated
     if cov.rated:
@@ -248,12 +278,15 @@ def coverage_summary(cov: Coverage) -> str:
         for i in range(1, len(texts)):
             texts[i] = texts[i].replace("procede de medios situados", "de medios situados", 1)
         body = texts[0] if len(texts) == 1 else ", ".join(texts[:-1]) + " y " + texts[-1]
-        parts.append(f"De {'los ' + str(cov.rated) + ' titulares' if cov.rated != 1 else 'el único titular'} "
+        parts.append(f"{'De los ' + str(cov.rated) + ' titulares' if cov.rated != 1 else 'Del único titular'} "
                      f"de medios con etiqueta, {body}.")
     else:
         parts.append("Ningún titular procede de medios con etiqueta publicada.")
     if unrated and cov.rated:
-        parts.append(f"{unrated} titular{'es son' if unrated != 1 else ' es'} de medios sin etiqueta publicada.")
+        parts.append(f"Calculado sobre {cov.rated} de {cov.total} titulares "
+                     "(el resto son de medios sin etiqueta publicada).")
+        if cov.rated * 2 < cov.total:
+            parts.append("Dato orientativo: menos de la mitad de los titulares tienen etiqueta.")
     return " ".join(parts)
 
 
@@ -298,7 +331,6 @@ def make_article(catalog: Catalog, *, title: str, url: str, summary: str, publis
         published=published,
         media=media,
         source_name=media.name if media else (source_name or "Medio desconocido"),
-        signals=headline_signals(title),
         keys=keywords(title),
         author=author,
         id=article_id,
@@ -409,10 +441,6 @@ def coverage(articles: list[Article]) -> Coverage:
             warnings.append({"kind": "concentration", "title": "Cobertura concentrada",
                              "text": f"El {round(top_share * 100)} % de los resultados pertenece a {names}. "
                                      "Varios titulares pueden compartir línea editorial y propietarios."})
-    if total and rated / total < 0.5:
-        warnings.append({"kind": "unrated", "title": "Muchos medios sin etiqueta publicada",
-                         "text": "Más de la mitad de los resultados vienen de medios sin una evaluación externa "
-                                 "publicada. El reparto ideológico es solo orientativo."})
 
     by_media = [(media_ref[name], name, n) for name, n in media_counts.most_common()]
     return Coverage(

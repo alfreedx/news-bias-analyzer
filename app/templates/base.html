@@ -19,6 +19,7 @@
     <div class="masthead__bar wrap">
       <span class="masthead__date">{{ long_date() }}</span>
       <nav class="masthead__nav" aria-label="Principal">
+        <a href="/como-leer" {% if request.url.path == '/como-leer' %}aria-current="page"{% endif %}>Cómo leer</a>
         <a href="/medios" {% if request.url.path.startswith('/medios') or request.url.path.startswith('/grupos') %}aria-current="page"{% endif %}>Medios</a>
         <a href="/metodologia" {% if request.url.path == '/metodologia' %}aria-current="page"{% endif %}>Metodología</a>
         <a href="/acerca" {% if request.url.path == '/acerca' %}aria-current="page"{% endif %}>Acerca</a>
@@ -49,6 +50,7 @@
       <div>
         <p class="footer__head">Proyecto</p>
         <ul>
+          <li><a href="/como-leer">Cómo leer Contraste</a></li>
           <li><a href="/metodologia">Cómo evaluamos a los medios</a></li>
           <li><a href="/privacidad">Privacidad</a></li>
           <li><a href="/acerca">Acerca y aviso legal</a></li>
@@ -63,6 +65,7 @@
         </ul>
       </div>
     </div>
+    <p class="wrap footer__note">Contraste no sustituye leer la noticia completa: enlazamos siempre a la fuente original.</p>
   </footer>
 </body>
 </html>

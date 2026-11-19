@@ -105,10 +105,37 @@ def test_coverage_summary_sentences():
     assert text.startswith("De los 106 titulares de medios con etiqueta, el 58 % procede de medios situados "
                            "a la derecha del centro")
     assert "el 31 % de medios situados a la izquierda" in text
-    assert text.endswith("103 titulares son de medios sin etiqueta publicada.")
+    assert "Calculado sobre 106 de 209 titulares (el resto son de medios sin etiqueta publicada)." in text
+    assert "Dato orientativo" not in text
     assert coverage_summary(_cov({}, 5)).startswith("Ningún titular procede")
-    one = coverage_summary(_cov({1: 1}, 2))
-    assert "el único titular" in one and "1 titular es de medios sin etiqueta" in one
+    one = coverage_summary(_cov({1: 1}, 3))
+    assert "Del único titular" in one and "Calculado sobre 1 de 3 titulares" in one
+    assert "Dato orientativo: menos de la mitad de los titulares tienen etiqueta." in one
     assert "sin etiqueta" not in coverage_summary(_cov({0: 3}, 3))
 
 
+
+
+def test_language_mark_and_spread_labels():
+    from app.facts import language_note
+    assert language_note(["catalán"]) == "en catalán"
+    assert language_note(["español", "catalán"]) is None
+    assert language_note(["gallego", "euskera"]) == "en gallego y euskera"
+    assert language_note([]) is None and language_note(["inglés"]) is None
+    cat = get_catalog()
+    ca = [m for m in cat.news_media if m.derived.languages and "español" not in m.derived.languages
+          and "catalán" in m.derived.languages]
+    assert ca, "catalog has an outlet whose only language is Catalan"
+    a = make_article(cat, title="Titular", url="https://x.test/ca", summary="", published=1, media_id=ca[0].id)
+    assert a.lang_note == "en catalán"
+    es = make_article(cat, title="Titular", url="https://x.test/es", summary="", published=1, media_id="el-pais")
+    assert es.lang_note is None
+    assert "signals" not in a.to_public()
+
+
+def test_coverage_stack_has_explicit_unlabelled_segment():
+    from app import main
+    tpl = main.templates.get_template("_macros.html").module
+    html = tpl.coverage_panel(coverage_stub({1: 2}, 6))
+    assert "stack__seg--na" in html and "w-67" in html and "style=" not in html
+    assert "Calculado sobre 2 de 6 titulares" in html

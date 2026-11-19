@@ -6,6 +6,21 @@ Todos los cambios relevantes se documentan aquí. El formato sigue
 
 ## [Unreleased]
 
+### Añadido
+- Página `/como-leer` («Cómo leer Contraste»): qué hace y qué no hace el sitio y glosario con anclas (izquierda … derecha, sin etiqueta, grupo de comunicación, fiabilidad, verificador, fuente independiente, titulares sindicados, noticias de un lado, agrupación automática). Enlazada desde la cabecera, la portada, el pie y los paneles; las etiquetas y la fiabilidad llevan una definición en `title`.
+- Página de historia: caja «En resumen» (qué coinciden en contar, qué cambia según el medio, verificaciones) con la advertencia «Coincidir no prueba que algo sea cierto», aviso de agrupación automática con enlace a una incidencia de GitHub prefijada (solo dirección y título) y «Cronología» por hora del RSS.
+- Búsqueda: `amplio=1` para incluir coincidencias solo en la entradilla; marca «en catalán/gallego/euskera/asturiano» en la firma de medios que no publican en español; pie de página «Contraste no sustituye leer la noticia completa».
+
+### Cambiado
+- Lenguaje llano: «Radiografía de la cobertura» pasa a «Quién la cuenta»; «Puntos ciegos» a «Noticias que cuenta sobre todo un lado»; «Contada desde ambos lados» a «La publican medios de izquierda y de derecha»; fracciones sustituidas por frases.
+- La barra de reparto muestra el tramo «sin etiqueta» (rayado) y la frase resumen indica la base («Calculado sobre 107 de 210 titulares…») y avisa si menos de la mitad tienen etiqueta.
+- Relevancia: las coincidencias en el titular pesan diez veces más que en la entradilla; con 15 o más titulares coincidentes se ocultan por defecto los que solo coinciden en la entradilla.
+- Búsqueda: posición, grupo, vista y orden quedan dentro de «Filtrar y ordenar» (plegado). En listas se muestra como máximo una etiqueta citada y «+N» enlaza a la ficha del medio.
+- Las verificaciones de la historia pasan a la caja «En resumen».
+
+### Eliminado
+- Las «señales del titular» (cebo, lenguaje cargado, exclamaciones, mayúsculas): eran una opinión algorítmica sin fuente citada. Se elimina `headline_signals` y el campo `signals` de la API.
+
 ## [1.2.0] - 2026-11-19
 
 ### Añadido
