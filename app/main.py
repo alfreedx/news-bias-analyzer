@@ -25,7 +25,7 @@ from .catalog import get_catalog
 from .config import BASE_DIR, settings
 from .db import Database
 from .feeds import ingest_all, search_google_news
-from .scoring import FACTUAL_MAP, IDEOLOGY_MAP, POSITION_LABELS, TERRITORIAL_LABELS, bucket
+from .scoring import DESCRIPTIVE_LABELS, FACTUAL_MAP, IDEOLOGY_MAP, POSITION_LABELS, TERRITORIAL_LABELS, bucket
 from .security import RateLimitMiddleware, SecurityHeadersMiddleware
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
@@ -247,8 +247,11 @@ async def media_index(request: Request):
     media = sorted(catalog.news_media, key=lambda m: (m.assessment.score is None, m.assessment.score or 0, m.name))
     stats = await asyncio.to_thread(db.stats)
     feed_ok = {f["media_id"] for f in stats["feeds"] if f["last_success"]}
+    all_labels = sorted({t.label for m in media for t in m.assessment.tags}, key=str.lower)
+    regions = sorted({m.region or "Nacional" for m in media})
     return render(request, "media_index.html", media=media, factcheckers=catalog.factcheckers,
-                  groups=sorted(catalog.groups.values(), key=lambda g: -len(g.media)), feed_ok=feed_ok)
+                  groups=sorted(catalog.groups.values(), key=lambda g: -len(g.media)), feed_ok=feed_ok,
+                  all_labels=all_labels, regions=regions)
 
 
 @app.get("/medios/{media_id}", response_class=HTMLResponse)
@@ -273,8 +276,16 @@ async def methodology(request: Request):
     by_pos: dict[int, list[str]] = {p: [] for p in POSITION_LABELS}
     for label, pos in IDEOLOGY_MAP.items():
         by_pos[pos].append(label)
+    audit = {"left": [0, 0], "center": [0, 0], "right": [0, 0]}  # outlets, quoted labels
+    for m in catalog.news_media:
+        a = m.assessment
+        if a.position is None:
+            continue
+        side = "left" if a.position < 0 else "right" if a.position > 0 else "center"
+        audit[side][0] += 1
+        audit[side][1] += len(a.tags)
     return render(request, "methodology.html", by_pos=by_pos, territorial=sorted(TERRITORIAL_LABELS.values()),
-                  factual=FACTUAL_MAP)
+                  factual=FACTUAL_MAP, audit=audit, descriptive=sorted(DESCRIPTIVE_LABELS))
 
 
 @app.get("/privacidad", response_class=HTMLResponse)

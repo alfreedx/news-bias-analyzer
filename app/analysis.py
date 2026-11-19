@@ -78,7 +78,7 @@ class Story:
     def spread_label(self) -> str:
         pos = self.positions
         if not pos:
-            return "Medios sin evaluar"
+            return "Medios sin etiqueta publicada"
         if pos[0] < 0 < pos[-1]:
             return "Contada desde ambos lados"
         if pos[-1] < 0:
@@ -219,7 +219,7 @@ def coverage(articles: list[Article]) -> Coverage:
                              "text": f"El {round(top_share * 100)} % de los resultados pertenece a {names}. "
                                      "Varios titulares pueden compartir línea editorial y propietarios."})
     if total and rated / total < 0.5:
-        warnings.append({"kind": "unrated", "title": "Muchos medios sin evaluar",
+        warnings.append({"kind": "unrated", "title": "Muchos medios sin etiqueta publicada",
                          "text": "Más de la mitad de los resultados vienen de medios sin una evaluación externa "
                                  "publicada. El reparto ideológico es solo orientativo."})
 

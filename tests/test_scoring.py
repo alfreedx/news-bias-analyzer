@@ -42,7 +42,7 @@ def test_only_territorial_labels_leaves_outlet_unrated():
 def test_no_evidence_means_unrated_not_centre():
     a = assess([])
     assert a.position is None
-    assert a.label == "Sin datos contrastados"
+    assert a.label == "Sin etiqueta publicada"
     assert a.factual_label == "Sin evaluación externa"
 
 

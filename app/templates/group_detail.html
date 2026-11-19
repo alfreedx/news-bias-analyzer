@@ -4,7 +4,7 @@
 
 {% block content %}
 <header class="page-head">
-  <p class="kicker"><a href="/medios">Medios</a> / Grupo</p>
+  <nav class="crumbs" aria-label="Ruta"><a href="/medios">Medios</a><span aria-hidden="true">/</span>Grupos<span aria-hidden="true">/</span>{{ g.name }}</nav>
   <h1>{{ g.name }}</h1>
   <p class="page-head__lead">{{ g.kind }}</p>
 </header>

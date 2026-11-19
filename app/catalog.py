@@ -36,6 +36,7 @@ class Media:
     region: str | None = None
     publisher: str | None = None
     factchecker: bool = False
+    owner_source: str | None = None
     group: Group | None = None
     assessment: Assessment = field(default_factory=Assessment)
 
@@ -51,6 +52,8 @@ class Media:
             "group_id": self.group.id if self.group else None,
             "publisher": self.publisher,
             "factchecker": self.factchecker,
+            "tags": [{"label": t.label, "source": t.source, "url": t.permalink, "axis": t.axis,
+                      "retrieved": t.retrieved} for t in a.tags],
             "ideology": {"score": a.score, "position": a.position, "label": a.label, "agreement": a.agreement},
             "territorial": a.territorial,
             "factual": {"level": a.factual_level, "label": a.factual_label},
@@ -83,6 +86,7 @@ class Catalog:
                 region=raw.get("region"),
                 publisher=raw.get("publisher"),
                 factchecker=raw.get("factchecker", False),
+                owner_source=raw.get("owner_source"),
             )
             if item.id in self.media:
                 raise ValueError(f"Duplicate media id: {item.id}")

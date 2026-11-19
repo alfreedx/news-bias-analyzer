@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import chip, factual, byline, signals, spectrum_dots %}
+{% from "_macros.html" import chip, factual, byline, signals, spectrum_dots, tags %}
 {% block title %}{% if query %}{{ query }} · {% endif %}Contraste{% endblock %}
 {% block body_class %}page-search{% endblock %}
 
@@ -38,7 +38,7 @@
       {% for p, n in cov.by_position.items() %}
       <li><span class="dot dot--{{ pos_class(p) }} is-on"></span>{{ POSITION_LABELS[p] }} <span class="legend__n">{{ n }}</span></li>
       {% endfor %}
-      <li><span class="dot dot--na is-on"></span>Sin evaluar <span class="legend__n">{{ cov.total - cov.rated }}</span></li>
+      <li><span class="dot dot--na is-on"></span>Sin etiqueta publicada <span class="legend__n">{{ cov.total - cov.rated }}</span></li>
     </ul>
 
     {% for w in cov.warnings %}
@@ -82,7 +82,7 @@
         {% for p in [-2, -1, 0, 1, 2] %}
         <button type="button" class="pill pill--{{ pos_class(p) }}" data-pos="{{ p }}" aria-pressed="false">{{ POSITION_LABELS[p] }}</button>
         {% endfor %}
-        <button type="button" class="pill pill--na" data-pos="na" aria-pressed="false">Sin evaluar</button>
+        <button type="button" class="pill pill--na" data-pos="na" aria-pressed="false">Sin etiqueta</button>
       </div>
       <div class="filters__row">
         <label class="select">
@@ -115,8 +115,8 @@
       {% if s.articles|length > 1 %}
       <article class="story">
         <header class="story__head">
-          <p class="story__kicker">{{ spectrum_dots(s.positions) }} {{ s.outlets }} medios · {{ s.spread_label }}</p>
           <h3 class="story__title">{{ s.lead.title }}</h3>
+          <p class="story__meta">{{ spectrum_dots(s.positions) }} {{ s.outlets }} medios · {{ s.spread_label }}</p>
         </header>
         <ul class="story__list">
           {% for a in s.articles %}
@@ -125,6 +125,7 @@
             <div class="item__body">
               <a class="item__title" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
               <div class="item__meta">{{ byline(a) }} {{ factual(a.media) }} {{ signals(a) }}</div>
+              {{ tags(a.media, limit=3) }}
             </div>
           </li>
           {% endfor %}
@@ -138,6 +139,7 @@
           <a class="item__title" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
           {% if a.summary %}<p class="item__summary">{{ a.summary|truncate(220) }}</p>{% endif %}
           <div class="item__meta">{{ byline(a) }} {{ factual(a.media) }} {{ signals(a) }}</div>
+              {{ tags(a.media, limit=3) }}
         </div>
       </article>
       {% endif %}

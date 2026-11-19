@@ -42,7 +42,7 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         h["Referrer-Policy"] = "no-referrer"
         h["Permissions-Policy"] = (
             "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), "
-            "payment=(), usb=(), interest-cohort=(), browsing-topics=()"
+            "payment=(), usb=()"
         )
         h["Cross-Origin-Opener-Policy"] = "same-origin"
         h["Cross-Origin-Resource-Policy"] = "same-origin"

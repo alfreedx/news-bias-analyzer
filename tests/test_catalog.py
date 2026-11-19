@@ -5,7 +5,7 @@ from urllib.parse import urlsplit
 import pytest
 
 from app.catalog import get_catalog
-from app.scoring import FACTUAL_MAP, IDEOLOGY_MAP, TERRITORIAL_LABELS, _norm
+from app.scoring import DESCRIPTIVE_LABELS, FACTUAL_MAP, IDEOLOGY_MAP, TERRITORIAL_LABELS, _norm
 
 catalog = get_catalog()
 ALLOWED_SOURCES = {"mbfc", "wikipedia", "wikidata"}
@@ -33,7 +33,7 @@ def test_evidence_is_well_formed(media):
         for label in item["labels"]:
             key = _norm(label)
             if item["kind"] == "ideology":
-                assert key in IDEOLOGY_MAP or key in TERRITORIAL_LABELS, f"unmapped label {label!r}"
+                assert key in IDEOLOGY_MAP or key in TERRITORIAL_LABELS or key in DESCRIPTIVE_LABELS,                     f"unmapped label {label!r}"
             elif item["kind"] == "factual":
                 assert key in FACTUAL_MAP, f"unmapped factual label {label!r}"
     for feed in media.feeds:
@@ -53,3 +53,18 @@ def test_url_matching_uses_longest_suffix():
     assert catalog.by_url("https://www.elmundo.es/a").id == "el-mundo"
     assert catalog.by_url("https://elpais.com.evil.example/a") is None
     assert catalog.by_url("not a url") is None
+
+
+def test_wikipedia_evidence_is_pinned_to_a_revision():
+    for m in catalog.media.values():
+        for item in m.evidence:
+            if item["source"] == "wikipedia":
+                assert isinstance(item.get("revid"), int), f"{m.id}: wikipedia evidence without revid"
+                assert item.get("retrieved"), f"{m.id}: evidence without retrieval date"
+
+
+def test_tags_are_attributed_quotes():
+    abc = catalog.media["abc"].assessment
+    labels = {(t.source, t.label) for t in abc.tags}
+    assert ("Wikipedia (es)", "Monarquismo") in labels
+    assert all(t.url.startswith("https://") for t in abc.tags)

@@ -102,6 +102,30 @@
     apply();
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initFilters);
-  else initFilters();
+  function initTableFilters() {
+    var box = document.querySelector("[data-table-filters]");
+    if (!box) return;
+    box.hidden = false;
+    var labelSel = box.querySelector("[data-label-filter]");
+    var scopeSel = box.querySelector("[data-scope-filter]");
+    var countEl = box.querySelector("[data-table-count]");
+    var rows = Array.prototype.slice.call(document.querySelectorAll("tr[data-row]"));
+    function apply() {
+      var label = labelSel.value, scope = scopeSel.value, shown = 0;
+      rows.forEach(function (row) {
+        var labels = (row.getAttribute("data-labels") || "").split("|");
+        var ok = (!label || labels.indexOf(label) !== -1) && (!scope || row.getAttribute("data-scope") === scope);
+        row.hidden = !ok;
+        if (ok) shown++;
+      });
+      countEl.textContent = shown === 1 ? "1 medio" : shown + " medios";
+    }
+    labelSel.addEventListener("change", apply);
+    scopeSel.addEventListener("change", apply);
+    apply();
+  }
+
+  function init() { initFilters(); initTableFilters(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
 })();

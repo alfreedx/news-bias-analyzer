@@ -6,7 +6,7 @@
 
 {% block content %}
 <header class="page-head">
-  <p class="kicker"><a href="/medios">Medios</a> / {{ m.type }}</p>
+  <nav class="crumbs" aria-label="Ruta"><a href="/medios">Medios</a><span aria-hidden="true">/</span>{{ m.name }}</nav>
   <h1>{{ m.name }}</h1>
   <p class="page-head__lead">
     {{ m.type }} · {{ m.scope }}{% if m.region %} ({{ m.region }}){% endif %}{% if m.founded %} · desde {{ m.founded }}{% endif %}
@@ -22,7 +22,7 @@
       {{ meter(a.score, a.label) }}
     {% else %}
       <p class="verdict">{{ chip(m) }}</p>
-      <p>No hemos encontrado ninguna fuente externa contrastable que publique la orientación de este medio. Preferimos no inventarla. Si conoces alguna, <a href="{{ settings.repo_url }}/issues/new" rel="noopener noreferrer">propónla</a>.</p>
+      <p><strong>Ninguna fuente externa ha publicado una orientación para este medio.</strong> Eso no significa que sea neutral: solo que no hay una etiqueta contrastable, y preferimos no inventarla. Si conoces alguna, <a href="{{ settings.repo_url }}/issues/new" rel="noopener noreferrer">propónla</a>.</p>
     {% endif %}
 
     {% if a.territorial %}
@@ -34,8 +34,9 @@
     <ol class="evidence">
       {% for e in a.evidence %}
       <li class="evidence__item">
-        <p class="evidence__src"><a href="{{ e.url }}" rel="noopener noreferrer">{{ e.source }}</a></p>
-        <p class="evidence__labels">{% for l in e.labels %}<span class="tag">{{ l }}</span>{% endfor %}</p>
+        <p class="evidence__src"><a href="{{ e.permalink }}" rel="noopener noreferrer">{{ e.source }}</a> <span class="small muted">lo describe como:</span></p>
+        <p class="evidence__labels">«{{ e.labels|join(', ') }}»</p>
+        <p class="evidence__meta small muted">{% if e.revid %}Versión {{ e.revid }} · {% endif %}{% if e.retrieved %}consultada el {{ e.retrieved }}{% endif %}</p>
         {% if e.quote %}<blockquote class="evidence__quote">{{ e.quote }}</blockquote>{% endif %}
         <p class="evidence__pos small muted">Equivale a {% if e.position is not none %}{{ "%+.2f"|format(e.position) }} ({{ POSITION_LABELS[bucket(e.position)] }}){% else %}— (etiqueta solo territorial){% endif %}</p>
       </li>
@@ -58,12 +59,14 @@
     {% if m.group %}
       <p><a class="strong" href="/grupos/{{ m.group.id }}">{{ m.group.name }}</a></p>
       <p class="small">{{ m.group.owners }}</p>
+      {% if m.owner_source %}<p class="small"><a href="{{ m.owner_source }}" rel="noopener noreferrer">Fuente de la propiedad</a></p>{% endif %}
       {% set siblings = m.group.media|rejectattr('id', 'equalto', m.id)|list %}
       {% if siblings %}
       <p class="small muted">Mismo grupo: {% for s in siblings %}<a href="/medios/{{ s.id }}">{{ s.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
       {% endif %}
     {% elif m.publisher %}
       <p class="strong">{{ m.publisher }}</p>
+      {% if m.owner_source %}<p class="small"><a href="{{ m.owner_source }}" rel="noopener noreferrer">Fuente de la propiedad</a></p>{% endif %}
       <p class="small muted">Editora sin grupo de comunicación conocido en nuestro catálogo.</p>
     {% else %}
       <p class="muted">Sin datos de propiedad en el catálogo.</p>

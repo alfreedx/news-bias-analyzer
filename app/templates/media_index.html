@@ -1,11 +1,10 @@
 {% extends "base.html" %}
-{% from "_macros.html" import chip, factual %}
+{% from "_macros.html" import chip, factual, tags %}
 {% block title %}Medios · Contraste{% endblock %}
 {% block description %}Catálogo de medios españoles: orientación según fuentes externas, fiabilidad y grupo propietario.{% endblock %}
 
 {% block content %}
 <header class="page-head">
-  <p class="kicker">Catálogo</p>
   <h1>Los medios y sus dueños</h1>
   <p class="page-head__lead">{{ media|length }} cabeceras y {{ factcheckers|length }} verificadores. La orientación de cada medio se calcula a partir de lo que publican fuentes externas; si no hay fuentes, lo decimos. <a href="/metodologia">Cómo se calcula</a>.</p>
 </header>
@@ -31,18 +30,34 @@
 
 <section aria-labelledby="table-title">
   <h2 id="table-title" class="section-title">Todas las cabeceras</h2>
+  <div class="filters filters--table" data-table-filters hidden>
+    <label class="select"><span>Etiqueta citada</span>
+      <select data-label-filter>
+        <option value="">Todas</option>
+        {% for l in all_labels %}<option value="{{ l|lower }}">{{ l }}</option>{% endfor %}
+      </select>
+    </label>
+    <label class="select"><span>Ámbito</span>
+      <select data-scope-filter>
+        <option value="">Todos</option>
+        {% for r in regions %}<option value="{{ r }}">{{ r }}</option>{% endfor %}
+      </select>
+    </label>
+    <p class="filters__count" data-table-count aria-live="polite"></p>
+  </div>
+  <p class="muted small">Las etiquetas aparecen tal como las publica cada fuente, con enlace a la versión exacta consultada. No son valoraciones de Contraste.</p>
   <div class="table-wrap">
     <table class="table">
       <thead>
-        <tr><th scope="col">Medio</th><th scope="col">Tipo</th><th scope="col">Grupo / editora</th><th scope="col">Orientación</th><th scope="col">Fiabilidad</th><th scope="col">Índice</th></tr>
+        <tr><th scope="col">Medio</th><th scope="col">Tipo</th><th scope="col">Grupo / editora</th><th scope="col">Orientación y etiquetas citadas</th><th scope="col">Fiabilidad</th><th scope="col">Índice</th></tr>
       </thead>
       <tbody>
         {% for m in media %}
-        <tr>
+        <tr data-row data-labels="{{ m.assessment.tags|map(attribute='label')|map('lower')|join('|') }}" data-scope="{{ m.region or 'Nacional' }}">
           <th scope="row"><a href="/medios/{{ m.id }}">{{ m.name }}</a>{% if m.region %}<span class="table__sub">{{ m.region }}</span>{% endif %}</th>
           <td>{{ m.type }}</td>
           <td>{% if m.group %}<a href="/grupos/{{ m.group.id }}">{{ m.group.name }}</a>{% elif m.publisher %}{{ m.publisher }}{% else %}<span class="muted">—</span>{% endif %}</td>
-          <td>{{ chip(m) }}{% for t in m.assessment.territorial %}<span class="tag">{{ t }}</span>{% endfor %}</td>
+          <td>{{ chip(m) }}{{ tags(m, limit=4) }}</td>
           <td>{% if m.assessment.factual_level is not none %}{{ factual(m) }}{% else %}<span class="muted small">Sin evaluación</span>{% endif %}</td>
           <td>{% if m.id in feed_ok %}<span class="ok" title="Leemos su RSS oficial">RSS</span>{% elif m.feeds %}<span class="muted small" title="Su RSS no responde ahora mismo">RSS caído</span>{% else %}<span class="muted small" title="No publica un RSS accesible">—</span>{% endif %}</td>
         </tr>

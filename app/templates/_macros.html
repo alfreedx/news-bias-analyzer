@@ -2,7 +2,7 @@
   {%- if media and media.assessment.rated -%}
     <span class="chip chip--{{ pos_class(media.assessment.position) }}" title="Orientación según fuentes externas: {{ media.assessment.label }}">{{ media.assessment.label }}</span>
   {%- elif media -%}
-    <span class="chip chip--na" title="No hay evaluaciones externas publicadas sobre este medio">Sin evaluar</span>
+    <span class="chip chip--na" title="Ninguna fuente externa ha publicado una orientación para este medio. No significa que sea neutral.">Sin etiqueta</span>
   {%- else -%}
     <span class="chip chip--na" title="Este medio no está en nuestro catálogo">Desconocido</span>
   {%- endif -%}
@@ -46,4 +46,22 @@
     </div>
     <div class="meter__labels"><span>Izquierda</span><span>Centro</span><span>Derecha</span></div>
   </div>
+{%- endmacro %}
+
+
+{% macro tags(media, limit=None, axes=('ideology', 'territorial', 'descriptive')) -%}
+  {%- if media -%}
+  {%- set items = media.assessment.tags|selectattr('axis', 'in', axes)|list -%}
+  {%- if items -%}
+  <span class="qtags">
+    {%- for t in (items[:limit] if limit else items) %}<a class="qtag" href="{{ t.permalink }}" rel="noopener noreferrer" title="Etiqueta tal como la publica {{ t.source }}{% if t.retrieved %} (consultada el {{ t.retrieved }}){% endif %}. No es una valoración de Contraste."><span class="qtag__src">{{ t.source.split(' ')[0] }}</span>{{ t.label }}</a>{% endfor -%}
+    {%- if limit and items|length > limit %}<span class="qtag qtag--more">+{{ items|length - limit }}</span>{% endif -%}
+  </span>
+  {%- endif -%}
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro owner_fact(media) -%}
+  {%- if media and media.group -%}<span class="fact-owner">Propietario: <a href="/grupos/{{ media.group.id }}">{{ media.group.name }}</a></span>
+  {%- elif media and media.publisher -%}<span class="fact-owner">Editora: {{ media.publisher }}</span>{%- endif -%}
 {%- endmacro %}

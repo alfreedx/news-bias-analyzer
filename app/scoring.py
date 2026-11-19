@@ -32,6 +32,9 @@ IDEOLOGY_MAP: dict[str, int] = {
     "right": 2,
     # Wikipedia / Wikidata (es)
     "comunismo": -2,
+    "anarquismo": -2,
+    "anarcosindicalista": -2,
+    "izquierdas": -2,
     "izquierda": -2,
     "izquierda abertzale": -2,
     "socialismo": -2,
@@ -54,10 +57,18 @@ IDEOLOGY_MAP: dict[str, int] = {
     "neoliberalismo": 1,
     "monarquismo": 1,
     "catolicismo": 1,
+    "cristianismo": 1,
+    "conservador": 1,
     "derecha": 2,
     "anticomunismo": 2,
     "nacionalismo": 2,
+    "tradicionalismo politico espanol": 2,
 }
+
+# Labels shown as quoted tags that place an outlet on neither axis.
+DESCRIPTIVE_LABELS: frozenset[str] = frozenset(
+    {"localismo", "movimientos sociales", "libertario", "antiautoritarismo"}
+)
 
 TERRITORIAL_LABELS: dict[str, str] = {
     "catalanismo": "Catalanismo",
@@ -109,19 +120,44 @@ def bucket(score: float) -> int:
 
 
 @dataclass
+class Tag:
+    """A label exactly as an external source published it (never our own wording)."""
+
+    label: str
+    source: str
+    url: str
+    axis: str  # "ideology" | "territorial" | "descriptive"
+    revid: int | None = None
+    retrieved: str | None = None
+
+    @property
+    def permalink(self) -> str:
+        if self.revid and "wikipedia.org/wiki/" in self.url:
+            base = self.url.split("/wiki/", 1)[0]
+            return f"{base}/w/index.php?oldid={self.revid}"
+        return self.url
+
+
+@dataclass
 class EvidenceScore:
     source: str
     labels: list[str]
     position: float | None
     url: str
     quote: str | None = None
+    revid: int | None = None
+    retrieved: str | None = None
+
+    @property
+    def permalink(self) -> str:
+        return Tag("", self.source, self.url, "", self.revid).permalink
 
 
 @dataclass
 class Assessment:
     score: float | None = None
     position: int | None = None
-    label: str = "Sin datos contrastados"
+    label: str = "Sin etiqueta publicada"
     agreement: str | None = None
     territorial: list[str] = field(default_factory=list)
     factual_level: int | None = None
@@ -130,6 +166,7 @@ class Assessment:
     ifcn: bool = False
     ifcn_evidence: dict | None = None
     evidence: list[EvidenceScore] = field(default_factory=list)
+    tags: list[Tag] = field(default_factory=list)
 
     @property
     def rated(self) -> bool:
@@ -148,9 +185,13 @@ def assess(evidence: list[dict]) -> Assessment:
         if kind == "ideology":
             values = [IDEOLOGY_MAP[_norm(lbl)] for lbl in labels if _norm(lbl) in IDEOLOGY_MAP]
             for lbl in labels:
-                terr = TERRITORIAL_LABELS.get(_norm(lbl))
+                key = _norm(lbl)
+                terr = TERRITORIAL_LABELS.get(key)
                 if terr and terr not in territorial:
                     territorial.append(terr)
+                axis = "territorial" if terr else ("ideology" if key in IDEOLOGY_MAP else "descriptive")
+                result.tags.append(Tag(lbl, SOURCE_NAMES.get(item["source"], item["source"]), item["url"], axis,
+                                       item.get("revid"), item.get("retrieved")))
             pos = sum(values) / len(values) if values else None
             if pos is not None:
                 positions.append(pos)
@@ -161,6 +202,8 @@ def assess(evidence: list[dict]) -> Assessment:
                     position=pos,
                     url=item["url"],
                     quote=item.get("quote"),
+                    revid=item.get("revid"),
+                    retrieved=item.get("retrieved"),
                 )
             )
         elif kind == "factual" and labels:

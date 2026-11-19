@@ -4,7 +4,6 @@
 
 {% block content %}
 <article class="prose">
-  <p class="kicker">Metodología</p>
   <h1>Cómo evaluamos a los medios</h1>
   <p class="lead">Contraste no opina sobre los medios. Recoge lo que han publicado fuentes externas reconocidas, lo traduce a una escala común con reglas fijas y públicas, y enlaza siempre a la fuente original para que puedas comprobarlo.</p>
 
@@ -35,7 +34,24 @@
   </div>
   <p>Si una fuente da varias etiquetas (por ejemplo «Conservadurismo, Monarquismo»), hacemos su media. Después hacemos la media entre fuentes y la redondeamos a la posición más cercana. Indicamos si las fuentes <em>coinciden</em>, <em>coinciden parcialmente</em> o <em>discrepan</em>.</p>
   <p>Las etiquetas del <strong>eje territorial</strong> ({{ territorial|join(', ') }}) no mueven la posición izquierda–derecha: se muestran aparte, porque en España son una dimensión distinta.</p>
-  <p>Si no hay ninguna fuente, el medio aparece como <span class="chip chip--na">Sin evaluar</span>. No rellenamos huecos con nuestra opinión.</p>
+  <p>Si no hay ninguna fuente, el medio aparece como <span class="chip chip--na">Sin etiqueta publicada</span>. No rellenamos huecos con nuestra opinión.</p>
+
+  <h2>Etiquetas citadas</h2>
+  <p>Además de la posición, cada ficha muestra las <strong>etiquetas tal como las publica cada fuente</strong> (por ejemplo «Wikipedia: Monarquismo»). Son citas, no adjetivos de Contraste: nunca escribimos «este medio es…». Cada etiqueta enlaza a la <strong>versión exacta</strong> de la página consultada y lleva su fecha, porque Wikipedia cambia y las líneas editoriales también.</p>
+  <p>Algunas etiquetas no sitúan al medio en ningún eje y solo se muestran: {{ descriptive|join(', ') }}.</p>
+  <p>La propiedad se muestra como un hecho («Propietario: …»), nunca convertida en adjetivo.</p>
+  <h3>Auditoría de equilibrio</h3>
+  <p>Los editores de las fuentes no etiquetan a todos los medios con la misma intensidad. Para que lo puedas valorar, publicamos cuántas etiquetas citadas reciben los medios de cada lado:</p>
+  <div class="table-wrap"><table class="table">
+    <thead><tr><th scope="col">Lado</th><th scope="col">Medios evaluados</th><th scope="col">Etiquetas citadas</th><th scope="col">Media por medio</th></tr></thead>
+    <tbody>
+      {% for key, label in [("left", "Izquierda y centroizquierda"), ("center", "Centro"), ("right", "Centroderecha y derecha")] %}
+      {% set n, t = audit[key] %}
+      <tr><th scope="row">{{ label }}</th><td>{{ n }}</td><td>{{ t }}</td><td>{{ "%.1f"|format(t / n) if n else "—" }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table></div>
+  <p>¿Ves un error o quieres responder como medio? Consulta la <a href="{{ settings.repo_url }}/blob/main/RECTIFICATION.md" rel="noopener noreferrer">política de rectificación</a>.</p>
 
   <h2>3. Fiabilidad factual</h2>
   <p>Viene exclusivamente de MBFC, que valora el historial de verificaciones fallidas, el uso de fuentes y la política de rectificaciones:</p>
