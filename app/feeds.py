@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import re
 import time
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -21,7 +22,7 @@ from defusedxml import ElementTree as SafeET
 from .catalog import Catalog
 from .config import settings
 from .db import Database
-from .text import clean_text
+from .text import clean_text, fold
 
 log = logging.getLogger("newsbias.feeds")
 # httpx logs full request URLs at INFO level; a Google News URL would contain the
@@ -33,6 +34,7 @@ TIMEOUT = httpx.Timeout(15.0, connect=8.0)
 ATOM = "{http://www.w3.org/2005/Atom}"
 CONTENT = "{http://purl.org/rss/1.0/modules/content/}encoded"
 DC_DATE = "{http://purl.org/dc/elements/1.1/}date"
+DC_CREATOR = "{http://purl.org/dc/elements/1.1/}creator"
 RSS1 = "{http://purl.org/rss/1.0/}"
 
 
@@ -44,6 +46,54 @@ class FeedItem:
     published: int
     source_url: str | None = None  # only for aggregators (Google News <source url="">)
     source_name: str | None = None
+    author: str | None = None  # byline exactly as published (cleaned), never enriched
+
+
+# Bylines that say nothing about a person. Agencies named as such (EFE, Europa Press) are kept on purpose.
+GENERIC_AUTHORS = frozenset({
+    "redaccion", "la redaccion", "redaccion web", "equipo de redaccion", "agencias", "agencia", "staff", "admin",
+    "administrador", "editor", "equipo", "webmaster", "autor", "anonimo", "desconocido", "unknown", "author",
+})
+MAX_AUTHOR = 120
+_EMAIL_WRAP = re.compile(r"^\S+@\S+\s*\((.+)\)\s*$")
+_BY_PREFIX = re.compile(r"^(por|by|texto de|texto:)\s+", re.I)
+
+
+def clean_author(raw: str | None, outlet_name: str | None = None) -> str | None:
+    """Normalise a feed byline: no e-mails, no «Por », no URLs, collapsed spaces, <= 120 chars.
+
+    Returns None for empty, generic ("Redacción", "Agencias") or outlet-name bylines.
+    """
+    if not raw:
+        return None
+    text = clean_text(raw, 400)
+    wrapped = _EMAIL_WRAP.match(text)  # RSS 2.0 style: "jane@x.com (Jane Doe)"
+    if wrapped:
+        text = wrapped.group(1)
+    text = " ".join(part for part in text.split() if "@" not in part and "://" not in part)
+    text = _BY_PREFIX.sub("", text).strip(" ,;:-–—·|/()[]")
+    text = " ".join(re.sub(r"\s*,\s*", ", ", text).split())
+    if len(text) > MAX_AUTHOR:
+        text = text[:MAX_AUTHOR].rsplit(" ", 1)[0].strip(" ,;")
+    if not text or len(text) < 2:
+        return None
+    key = fold(text)
+    if key in GENERIC_AUTHORS or (outlet_name and key == fold(outlet_name)):
+        return None
+    # «Redacción El Debate», «Redacción Hoy»: the newsroom, not a person
+    if key.startswith(("redaccion ", "la redaccion ", "agencias ")):
+        return None
+    return text
+
+
+def _authors(el, *tags: str) -> str | None:
+    names = []
+    for tag in tags:
+        for node in el.findall(tag):
+            inner = node.find(f"{ATOM}name")
+            names.append(inner.text if inner is not None and inner.text else node.text)
+    names = [n for n in names if n and n.strip()]
+    return ", ".join(dict.fromkeys(n.strip() for n in names)) or None
 
 
 def _safe_url(value: str | None) -> str | None:
@@ -105,7 +155,8 @@ def parse_feed(content: bytes, now: int | None = None) -> list[FeedItem]:
             pub = _parse_date(_text(e, f"{ATOM}published") or _text(e, f"{ATOM}updated"))
             url = _safe_url(link)
             if title and url:
-                items.append(FeedItem(title, url, summary, min(pub or now, now)))
+                items.append(FeedItem(title, url, summary, min(pub or now, now),
+                                      author=clean_author(_authors(e, f"{ATOM}author"))))
         return items
 
     nodes = root.findall("./channel/item") or root.findall(f"{RSS1}item")
@@ -115,7 +166,8 @@ def parse_feed(content: bytes, now: int | None = None) -> list[FeedItem]:
         summary = clean_text(_text(it, "description") or _text(it, CONTENT) or _text(it, f"{RSS1}description"))
         pub = _parse_date(_text(it, "pubDate") or _text(it, DC_DATE))
         source = it.find("source")
-        item = FeedItem(title, url or "", summary, min(pub or now, now))
+        item = FeedItem(title, url or "", summary, min(pub or now, now),
+                        author=clean_author(_authors(it, DC_CREATOR, "author")))
         if source is not None:
             item.source_url = _safe_url(source.get("url"))
             item.source_name = clean_text(source.text, 120) or None
@@ -149,7 +201,7 @@ def make_client() -> httpx.AsyncClient:
     )
 
 
-async def _ingest_feed(client: httpx.AsyncClient, db: Database, media_id: str, url: str) -> int:
+async def _ingest_feed(client: httpx.AsyncClient, db: Database, catalog: Catalog, media_id: str, url: str) -> int:
     state = db.get_feed_state(url)
     headers = {}
     if state is not None:
@@ -172,7 +224,9 @@ async def _ingest_feed(client: httpx.AsyncClient, db: Database, media_id: str, u
         log.warning("feed %s returned HTTP %s", media_id, status)
         return 0
     items = parse_feed(body)
-    added = db.insert_articles((i.url, media_id, i.title, i.summary, i.published) for i in items)
+    outlet = catalog.media[media_id].name if media_id in catalog.media else None
+    added = db.insert_articles((i.url, media_id, i.title, i.summary, i.published,
+                                clean_author(i.author, outlet)) for i in items)
     db.save_feed_state(url, media_id, etag=resp_headers.get("etag"), last_modified=resp_headers.get("last-modified"),
                        status="200" if items else "200-empty", items=len(items), success=bool(items))
     return added
@@ -184,7 +238,7 @@ async def ingest_all(catalog: Catalog, db: Database, concurrency: int = 6) -> in
     async with make_client() as client:
         async def run(media_id: str, url: str) -> int:
             async with sem:
-                return await _ingest_feed(client, db, media_id, url)
+                return await _ingest_feed(client, db, catalog, media_id, url)
 
         tasks = [run(m.id, f) for m in catalog.media.values() for f in m.feeds]
         results = await asyncio.gather(*tasks, return_exceptions=True)

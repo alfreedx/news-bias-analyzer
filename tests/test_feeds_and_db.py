@@ -99,3 +99,67 @@ def test_headline_signals():
 
 def test_clean_text_truncates():
     assert clean_text("<b>a</b> " * 500, max_len=20).endswith("…")
+
+
+# --- bylines ---------------------------------------------------------------------
+BYLINES = """<?xml version="1.0"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>t</title>
+<item><title>Uno</title><link>https://a.es/1</link><dc:creator>Por   Ana  Pérez </dc:creator></item>
+<item><title>Dos</title><link>https://a.es/2</link><author>jose@a.es (José Ruiz)</author></item>
+<item><title>Tres</title><link>https://a.es/3</link><author>redaccion@a.es</author></item>
+<item><title>Cuatro</title><link>https://a.es/4</link><dc:creator>Redacción</dc:creator></item>
+<item><title>Cinco</title><link>https://a.es/5</link><dc:creator>EFE</dc:creator></item>
+<item><title>Seis</title><link>https://a.es/6</link><dc:creator>Luis Gil</dc:creator><dc:creator>Eva Sanz</dc:creator></item>
+</channel></rss>""".encode()  # noqa: UP012
+
+ATOM_AUTHOR = b"""<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>t</title>
+<entry><title>T</title><link rel="alternate" href="https://b.es/a"/><updated>2026-11-18T09:00:00Z</updated>
+<author><name>Marta Vidal</name><email>m@b.es</email></author></entry></feed>"""
+
+
+def test_author_parsing_rss_dc_creator_and_email_stripping():
+    by = {i.title: i.author for i in parse_feed(BYLINES)}
+    assert by["Uno"] == "Ana Pérez"
+    assert by["Dos"] == "José Ruiz"
+    assert by["Tres"] is None and by["Cuatro"] is None
+    assert by["Cinco"] == "EFE"  # named agencies are kept
+    assert by["Seis"] == "Luis Gil, Eva Sanz"
+
+
+def test_author_parsing_atom():
+    assert parse_feed(ATOM_AUTHOR)[0].author == "Marta Vidal"
+
+
+def test_clean_author_rules():
+    from app.feeds import clean_author
+    assert clean_author("El País", "El País") is None
+    assert clean_author("x" * 300) is not None and len(clean_author("word " * 60)) <= 120
+    assert clean_author("Agencias") is None
+    assert clean_author("https://a.es/autor") is None
+
+
+def test_migration_adds_author_to_old_schema(tmp_path):
+    import sqlite3
+    path = tmp_path / "old.sqlite3"
+    conn = sqlite3.connect(path)
+    conn.executescript("""CREATE TABLE articles (id INTEGER PRIMARY KEY, url TEXT NOT NULL UNIQUE,
+        media_id TEXT NOT NULL, title TEXT NOT NULL, summary TEXT NOT NULL DEFAULT '',
+        published INTEGER NOT NULL, fetched INTEGER NOT NULL);
+        INSERT INTO articles(url, media_id, title, published, fetched) VALUES ('https://a.es/1','abc','Viejo',1,1);""")
+    conn.commit()
+    conn.close()
+    db = Database(path)
+    Database(path)  # idempotent
+    now = int(time.time())
+    assert db.insert_articles([("https://a.es/2", "abc", "Nuevo", "", now, "Ana Pérez")]) == 1
+    assert db.insert_articles([("https://a.es/1", "abc", "Viejo", "", now, "Luis Gil")]) == 0  # backfills author
+    assert [r["author"] for r in db.by_author("Luis Gil")] == ["Luis Gil"]
+    assert db.author_outlets("Ana Pérez")[0]["n"] == 1
+    assert db.by_author("ana pérez") == []  # exact match only
+
+
+def test_clean_author_newsroom_and_comma_spacing():
+    from app.feeds import clean_author
+    assert clean_author("Redacción El Debate", "El Debate") is None
+    assert clean_author("Jesús García Bueno,Rebeca Carranco") == "Jesús García Bueno, Rebeca Carranco"

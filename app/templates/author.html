@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% from "_macros.html" import chip, byline %}
+{% block title %}Titulares firmados por {{ author }} · Contraste{% endblock %}
+{% block description %}Titulares indexados que llevan la firma «{{ author }}» y los medios donde aparecen.{% endblock %}
+{% block robots %}<meta name="robots" content="noindex, nofollow">{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <nav class="crumbs" aria-label="Ruta"><a href="/">Contraste</a><span aria-hidden="true">/</span>Firma</nav>
+  <h1>Titulares firmados por «{{ author }}»</h1>
+  <p class="page-head__lead">Solo mostramos el nombre tal como lo publica el medio en su RSS y los titulares que lo llevan. No elaboramos perfiles ni inferimos nada sobre la persona. <a href="/privacidad">Privacidad y rectificación</a>.</p>
+</header>
+
+{% if articles %}
+<div class="profile">
+  <section class="profile__main" aria-labelledby="author-heads">
+    <h2 id="author-heads" class="section-title">{{ articles|length }} titular{{ "es" if articles|length != 1 }} en el índice</h2>
+    <ul class="story__list">
+      {% for a in articles %}
+      <li class="item">
+        <div class="item__aside">{{ chip(a.media) }}</div>
+        <div class="item__body">
+          <a class="item__title" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
+          <div class="item__meta">{{ byline(a, show_group=False) }}</div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  <aside class="profile__side" aria-labelledby="author-outlets">
+    <h2 id="author-outlets" class="section-title">Medios donde aparece</h2>
+    <ul class="latest">
+      {% for m, n in outlets %}
+      <li><a href="/medios/{{ m.id }}">{{ m.name }}</a> <span class="small muted">{{ n }} titular{{ "es" if n != 1 }}</span></li>
+      {% endfor %}
+    </ul>
+  </aside>
+</div>
+{% else %}
+<div class="empty">
+  <p>No hay titulares indexados con la firma «{{ author }}».</p>
+  <p>Los datos se conservan solo durante {{ settings.retention_days }} días.</p>
+</div>
+{% endif %}
+{% endblock %}

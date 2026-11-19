@@ -7,6 +7,7 @@
   <meta name="description" content="{% block description %}Busca una noticia y descubre quién la cuenta, desde qué orientación ideológica y quién es el dueño de cada medio.{% endblock %}">
   <meta name="color-scheme" content="light dark">
   <meta name="referrer" content="no-referrer">
+  {% block robots %}{% endblock %}
   <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="/static/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/static/css/style.css?v={{ version }}">
