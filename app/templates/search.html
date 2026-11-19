@@ -1,7 +1,24 @@
 {% extends "base.html" %}
-{% from "_macros.html" import subtitle, chip, factual, byline, row_byline, comparison, spectrum_dots, tags, coverage_panel %}
+{% from "_macros.html" import subtitle, chip, factual, byline, sponsored_mark, row_byline, comparison, spectrum_dots, tags, coverage_panel %}
 {% block title %}{% if query %}{{ query }} · {% endif %}Contraste{% endblock %}
 {% block body_class %}page-search{% endblock %}
+
+{% macro sponsored_box(result) -%}
+  {%- if result.sponsored -%}
+  <details class="sponsored-box">
+    <summary>{{ result.sponsored|length }} pieza{{ "s" if result.sponsored|length != 1 }} marcada{{ "s" if result.sponsored|length != 1 }} como patrocinada{{ "s" if result.sponsored|length != 1 }} por su medio</summary>
+    <p class="sponsored-box__note">No cuentan en las historias, el reparto ni «Quién la cuenta». Solo reflejamos la marca que pone el propio medio; <a href="/metodologia#patrocinado">cómo funciona</a>.</p>
+    <ul class="sponsored-box__list">
+      {%- for a in result.sponsored %}
+      <li>
+        <a class="item__title" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
+        <div class="item__meta">{{ byline(a) }}</div>
+      </li>
+      {%- endfor %}
+    </ul>
+  </details>
+  {%- endif -%}
+{%- endmacro %}
 
 {% block content %}
 <div class="search-head">
@@ -25,6 +42,7 @@
     <p>No hemos encontrado titulares sobre «{{ query }}» en este periodo.</p>
     <p>Prueba con menos palabras, otro sinónimo o amplía el periodo a <a href="/buscar?q={{ query|urlq }}&amp;dias=todo">todo el índice</a>.</p>
   </div>
+  {{ sponsored_box(result) }}
 {% else %}
 <div class="layout">
   <div class="sidebar">
@@ -136,6 +154,7 @@
     {% endfor %}
     </div>
     <p class="empty" data-no-match hidden>Ningún titular coincide con los filtros.</p>
+    {{ sponsored_box(result) }}
   </section>
 </div>
 {% endif %}

@@ -1,0 +1,170 @@
+{
+ "version": 1,
+ "updated": "2026-11-19",
+ "description": "Reglas públicas para reflejar el contenido patrocinado SOLO cuando lo marca el propio medio (categoría RSS, sección de la URL o prefijo del titular). Sin marca no se muestra nada. Coincidencia por palabras completas, sin acentos ni mayúsculas. Medición previa: scripts/sponsored_survey.py.",
+ "rules": [
+  {
+   "id": "category-patrocinado",
+   "field": "category",
+   "pattern": "patrocinado",
+   "label": "Categoría RSS «Patrocinado» / «Contenido patrocinado»"
+  },
+  {
+   "id": "category-patrocinada",
+   "field": "category",
+   "pattern": "patrocinada",
+   "label": "Categoría RSS «Patrocinada»"
+  },
+  {
+   "id": "category-publirreportaje",
+   "field": "category",
+   "pattern": "publirreportaje",
+   "label": "Categoría RSS «Publirreportaje»"
+  },
+  {
+   "id": "category-branded",
+   "field": "category",
+   "pattern": "branded",
+   "label": "Categoría RSS «Branded» / «Branded content»"
+  },
+  {
+   "id": "category-brand-content",
+   "field": "category",
+   "pattern": "brand content",
+   "label": "Categoría RSS «Brand content»"
+  },
+  {
+   "id": "category-brandcontent",
+   "field": "category",
+   "pattern": "brandcontent",
+   "label": "Categoría RSS «Brandcontent»"
+  },
+  {
+   "id": "category-contenido-de-marca",
+   "field": "category",
+   "pattern": "contenido de marca",
+   "label": "Categoría RSS «Contenido de marca»"
+  },
+  {
+   "id": "category-sponsored",
+   "field": "category",
+   "pattern": "sponsored",
+   "label": "Categoría RSS «Sponsored»"
+  },
+  {
+   "id": "category-partner-content",
+   "field": "category",
+   "pattern": "partner content",
+   "label": "Categoría RSS «Partner content»"
+  },
+  {
+   "id": "path-patrocinado",
+   "field": "path",
+   "pattern": "patrocinado",
+   "label": "Sección de la URL «Patrocinado» / «Contenido patrocinado»"
+  },
+  {
+   "id": "path-patrocinada",
+   "field": "path",
+   "pattern": "patrocinada",
+   "label": "Sección de la URL «Patrocinada»"
+  },
+  {
+   "id": "path-publirreportaje",
+   "field": "path",
+   "pattern": "publirreportaje",
+   "label": "Sección de la URL «Publirreportaje»"
+  },
+  {
+   "id": "path-branded",
+   "field": "path",
+   "pattern": "branded",
+   "label": "Sección de la URL «Branded» / «Branded content»"
+  },
+  {
+   "id": "path-brand-content",
+   "field": "path",
+   "pattern": "brand content",
+   "label": "Sección de la URL «Brand content»"
+  },
+  {
+   "id": "path-brandcontent",
+   "field": "path",
+   "pattern": "brandcontent",
+   "label": "Sección de la URL «Brandcontent»"
+  },
+  {
+   "id": "path-contenido-de-marca",
+   "field": "path",
+   "pattern": "contenido de marca",
+   "label": "Sección de la URL «Contenido de marca»"
+  },
+  {
+   "id": "path-sponsored",
+   "field": "path",
+   "pattern": "sponsored",
+   "label": "Sección de la URL «Sponsored»"
+  },
+  {
+   "id": "path-partner-content",
+   "field": "path",
+   "pattern": "partner content",
+   "label": "Sección de la URL «Partner content»"
+  },
+  {
+   "id": "title-patrocinado",
+   "field": "title_prefix",
+   "pattern": "Patrocinado:",
+   "label": "Titular que empieza por «Patrocinado:»"
+  },
+  {
+   "id": "title-contenido-patrocinado",
+   "field": "title_prefix",
+   "pattern": "Contenido patrocinado:",
+   "label": "Titular que empieza por «Contenido patrocinado:»"
+  },
+  {
+   "id": "title-publirreportaje",
+   "field": "title_prefix",
+   "pattern": "Publirreportaje:",
+   "label": "Titular que empieza por «Publirreportaje:»"
+  },
+  {
+   "id": "title-contenido-de-marca",
+   "field": "title_prefix",
+   "pattern": "Contenido de marca:",
+   "label": "Titular que empieza por «Contenido de marca:»"
+  },
+  {
+   "id": "title-branded-content",
+   "field": "title_prefix",
+   "pattern": "Branded content:",
+   "label": "Titular que empieza por «Branded content:»"
+  },
+  {
+   "id": "title-bracket-publicidad",
+   "field": "title_prefix",
+   "pattern": "[Publicidad]",
+   "label": "Titular que empieza por «[Publicidad]»"
+  },
+  {
+   "id": "title-bracket-patrocinado",
+   "field": "title_prefix",
+   "pattern": "[Patrocinado]",
+   "label": "Titular que empieza por «[Patrocinado]»"
+  },
+  {
+   "id": "title-bracket-publirreportaje",
+   "field": "title_prefix",
+   "pattern": "[Publirreportaje]",
+   "label": "Titular que empieza por «[Publirreportaje]»"
+  },
+  {
+   "id": "outlet-20minutos-bc",
+   "field": "path",
+   "pattern": "bc",
+   "label": "Sección /bc/ de 20minutos, que rotula esas piezas «Contenido de marca»",
+   "media_id": "20minutos"
+  }
+ ]
+}

@@ -10,7 +10,7 @@ import logging
 import time
 from collections import Counter, defaultdict
 
-from .analysis import Article, best_match, cluster, make_article
+from .analysis import Article, article_from_row, best_match, cluster
 from .catalog import Catalog
 from .db import Database
 
@@ -33,8 +33,7 @@ def central_article(articles: list[Article]) -> Article:
 
 
 def _articles(catalog: Catalog, rows) -> list[Article]:
-    return [make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"], published=r["published"],
-                         media_id=r["media_id"], author=r["author"], article_id=r["id"]) for r in rows]
+    return [article_from_row(catalog, r) for r in rows]
 
 
 def assign_stories(db: Database, catalog: Catalog, now: int | None = None) -> dict[str, int]:
@@ -50,7 +49,7 @@ def assign_stories(db: Database, catalog: Catalog, now: int | None = None) -> di
     with db.connect() as conn:
         conn.execute("BEGIN IMMEDIATE")
         rows = conn.execute(
-            "SELECT a.* FROM articles a WHERE a.published >= ? AND NOT EXISTS "
+            "SELECT a.* FROM articles a WHERE a.published >= ? AND a.sponsored IS NULL AND NOT EXISTS "
             "(SELECT 1 FROM story_articles sa WHERE sa.article_id = a.id) ORDER BY a.published", (since,)
         ).fetchall()
         fresh = _articles(catalog, [r for r in rows if r["media_id"] in news_ids])

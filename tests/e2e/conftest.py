@@ -43,6 +43,11 @@ def _seed(data_dir: Path) -> None:
                     "Ana Pérez" if mid == "el-pais" and j == 0 else None,
                 )
             )
+    # a piece the outlet itself marks as branded (URL section): it must show the badge and sit apart
+    rows.append((
+        "https://elpais.com/economia/branded/seguros-hogar/2026-11-18/vivienda-y-alquiler-el-seguro.html",
+        "el-pais", "Vivienda y alquiler: el seguro que protege tu hogar y tu bolsillo", "Contenido de una marca.",
+        now - 600, None, None))
     db = Database(data_dir / "news.sqlite3")
     db.insert_articles(rows)
     assign_stories(db, get_catalog())

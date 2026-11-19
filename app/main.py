@@ -21,7 +21,19 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from . import __version__
-from .analysis import Article, Story, blind_spots, cluster, coverage, coverage_summary, make_article, rank, story_score
+from .analysis import (
+    Article,
+    Story,
+    article_from_row,
+    blind_spots,
+    cluster,
+    coverage,
+    coverage_summary,
+    make_article,
+    rank,
+    split_sponsored,
+    story_score,
+)
 from .catalog import get_catalog
 from .config import BASE_DIR, settings
 from .consensus import SIDE_LABEL, Consensus, consensus
@@ -39,6 +51,8 @@ from .facts import (
 from .feeds import ingest_all, search_google_news
 from .scoring import DESCRIPTIVE_LABELS, FACTUAL_MAP, IDEOLOGY_MAP, POSITION_LABELS, TERRITORIAL_LABELS, bucket
 from .security import RateLimitMiddleware, SecurityHeadersMiddleware
+from .sponsored import evidence as sponsored_evidence
+from .sponsored import rules_meta as sponsored_rules_meta
 from .stories import assign_stories, central_article, majority_story
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
@@ -78,8 +92,7 @@ def link_stories(stories: list[Story]) -> None:
 def build_front_page() -> None:
     since = int(time.time()) - 36 * 3600
     rows = db.recent(since=since, media_ids=[m.id for m in catalog.news_media])
-    arts = [make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"], published=r["published"],
-                         media_id=r["media_id"], author=r["author"], article_id=r["id"]) for r in rows]
+    arts = split_sponsored([article_from_row(catalog, r) for r in rows])[0]
     stories = [s for s in cluster(arts) if s.outlets >= 3]
     stories.sort(key=lambda s: (s.score, max(a.published for a in s.articles)), reverse=True)
     link_stories(stories)
@@ -192,11 +205,19 @@ def issue_url(title: str, story_id: int) -> str:
     return f"{settings.repo_url}/issues/new?title={urlq('Historia mal agrupada: ' + title[:100])}&body={urlq(body)}"
 
 
+def sponsored_issue_url() -> str:
+    """Prefilled GitHub issue for a missing or wrong «patrocinado» mark: nothing but the questions to answer."""
+    body = "\n".join(["Medio:", "Dirección de la pieza:", "",
+                       "¿Falta una marca o sobra? Indica cómo la marca el propio medio "
+                       "(categoría del RSS, sección de la dirección o prefijo del titular)."])
+    return f"{settings.repo_url}/issues/new?title={urlq('Marca de patrocinado: falta o sobra')}&body={urlq(body)}"
+
+
 templates.env.filters["urlq"] = urlq
 templates.env.globals.update(
-    issue_url=issue_url, clock=clock,
+    issue_url=issue_url, sponsored_issue_url=sponsored_issue_url, clock=clock,
     long_date=long_date, time_ago=time_ago, iso=iso, pos_class=pos_class, score_step=score_step, pct=pct,
-    coverage_summary=coverage_summary,
+    coverage_summary=coverage_summary, sponsored_evidence=sponsored_evidence,
     POSITION_LABELS=POSITION_LABELS, bucket=bucket, settings=settings, version=__version__,
 )
 
@@ -225,11 +246,7 @@ async def run_search(query: str, days: int, broad: bool = False) -> dict:
     since = int(time.time()) - days * 86400 if days else None
     rows, hidden = await asyncio.to_thread(lambda: db.search_ex(query, since=since, broad=broad))
     bm25 = {r["url"]: r["rank"] for r in rows}
-    articles: list[Article] = [
-        make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"], published=r["published"],
-                     media_id=r["media_id"], author=r["author"], article_id=r["id"])
-        for r in rows
-    ]
+    articles: list[Article] = [article_from_row(catalog, r) for r in rows]
 
     if settings.google_news_enabled:
         seen = {a.title.lower() for a in articles}
@@ -245,6 +262,7 @@ async def run_search(query: str, days: int, broad: bool = False) -> dict:
             articles.append(art)
 
     rank(articles, bm25)
+    articles, marked = split_sponsored(articles)  # the outlet's own «patrocinado» marks: listed apart, never counted
     factchecks = [a for a in articles if a.media and a.media.factchecker][:6]
     news = [a for a in articles if not (a.media and a.media.factchecker)]
     stories = cluster(news)
@@ -258,6 +276,7 @@ async def run_search(query: str, days: int, broad: bool = False) -> dict:
         "stories": stories,
         "coverage": coverage(news),
         "factchecks": factchecks,
+        "sponsored": marked,
     }
     _cache[key] = (time.time(), result)
     if len(_cache) > CACHE_SIZE:
@@ -299,8 +318,7 @@ async def author_page(request: Request, name: str):
     """Headlines signed with exactly this name and the outlets where it appears. No profile, no inference."""
     rows = await asyncio.to_thread(db.by_author, name)
     counts = await asyncio.to_thread(db.author_outlets, name)
-    articles = [make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"],
-                             published=r["published"], media_id=r["media_id"], author=r["author"]) for r in rows]
+    articles = [article_from_row(catalog, r) for r in rows]
     outlets = [(catalog.media.get(c["media_id"]), c["n"]) for c in counts]
     return render(request, "author.html", author=name, articles=articles,
                   outlets=[(m, n) for m, n in outlets if m], total=sum(n for _, n in outlets))
@@ -335,10 +353,8 @@ def load_story(story_id: int) -> dict | None:
     row = db.get_story(story_id)
     if row is None:
         return None
-    articles = [make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"], published=r["published"],
-                             media_id=r["media_id"], author=r["author"], article_id=r["id"])
-                for r in db.story_article_rows(story_id)]
-    articles = [a for a in articles if not (a.media and a.media.factchecker)]
+    articles = [article_from_row(catalog, r) for r in db.story_article_rows(story_id)]
+    articles = [a for a in split_sponsored(articles)[0] if not (a.media and a.media.factchecker)]
     if not articles:
         return None
     rank(articles)
@@ -375,7 +391,9 @@ async def media_index(request: Request):
     regions = sorted({m.region or "Nacional" for m in media})
     languages = sorted({lang for m in media for lang in m.derived.languages})
     territorial = sorted({t for m in media for t in m.assessment.territorial})
-    return render(request, "media_index.html", media=media, factcheckers=catalog.factcheckers,
+    specialities = sorted({m.speciality for m in media if m.speciality})
+    return render(request, "media_index.html", media=media, specialities=specialities,
+                  factcheckers=catalog.factcheckers,
                   groups=sorted(catalog.groups.values(), key=lambda g: -len(g.media)), feed_ok=feed_ok,
                   all_labels=all_labels, regions=regions, languages=languages, territorial=territorial,
                   ownership=OWNERSHIP_LABELS)
@@ -425,7 +443,8 @@ async def methodology(request: Request):
         "religious_owners": sorted(RELIGIOUS_OWNER_QIDS.items()), "group_kinds": PUBLIC_GROUP_KIND_PREFIXES,
         "types": PUBLIC_TYPE_PREFIXES, "religious_group_kinds": RELIGIOUS_GROUP_KINDS, "no_group": NO_GROUP_TEXT,
     }
-    return render(request, "methodology.html", by_pos=by_pos, territorial=sorted(TERRITORIAL_LABELS.values()),
+    return render(request, "methodology.html", sponsored=sponsored_rules_meta(), by_pos=by_pos,
+                  territorial=sorted(TERRITORIAL_LABELS.values()),
                   factual=FACTUAL_MAP, audit=audit, descriptive=sorted(DESCRIPTIVE_LABELS), counts=counts,
                   rules=rules)
 
@@ -459,6 +478,7 @@ async def api_search(q: str = Query(..., max_length=500), dias: str = "30"):
         "coverage": r["coverage"].to_public(),
         "stories": [[a.to_public() for a in s.articles] for s in r["stories"]],
         "factchecks": [a.to_public() for a in r["factchecks"]],
+        "sponsored": [a.to_public() for a in r["sponsored"]],
     }
 
 

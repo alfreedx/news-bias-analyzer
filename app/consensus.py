@@ -276,6 +276,8 @@ def build_voices(articles: list[Article]) -> list[Voice]:
     """Independent voices: copies of one headline merged, one voice per owner, one per agency text."""
     unique: dict[str, Article] = {}
     for a in articles:
+        if a.sponsored:  # a mark by the outlet itself: advertising is not a voice about the story
+            continue
         unique.setdefault(norm_title(a.title) or a.url, a)
     voices: dict[str, Voice] = {}
     for a in unique.values():
@@ -581,6 +583,7 @@ def _outlet_names() -> frozenset[str]:
 
 def consensus(articles: list[Article], *, min_voices: int = MIN_VOICES, min_sides: int = MIN_SIDES,
               min_groups: int = MIN_GROUPS) -> Consensus:
+    articles = [a for a in articles if not a.sponsored]
     voices = build_voices(articles)
     agencies = common_agencies(articles)
     headline = representative_headline(voices)

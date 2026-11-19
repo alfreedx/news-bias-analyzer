@@ -9,6 +9,7 @@ from collections.abc import Iterable, Iterator
 from contextlib import contextmanager
 from pathlib import Path
 
+from . import sponsored
 from .text import STOPWORDS, fold
 
 SCHEMA = """
@@ -21,7 +22,9 @@ CREATE TABLE IF NOT EXISTS articles (
     summary TEXT NOT NULL DEFAULT '',
     published INTEGER NOT NULL,
     fetched INTEGER NOT NULL,
-    author TEXT
+    author TEXT,
+    categories TEXT,
+    sponsored TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_articles_published ON articles(published);
 CREATE INDEX IF NOT EXISTS idx_articles_media ON articles(media_id, published);
@@ -125,6 +128,7 @@ class Database:
         with self.connect() as conn:
             conn.executescript(SCHEMA)
             self._migrate(conn)
+            self.reevaluate_sponsored(conn)
 
     @staticmethod
     def _migrate(conn: sqlite3.Connection) -> None:
@@ -132,9 +136,31 @@ class Database:
         columns = {row["name"] for row in conn.execute("PRAGMA table_info(articles)")}
         if "author" not in columns:
             conn.execute("ALTER TABLE articles ADD COLUMN author TEXT")
+        for column in ("categories", "sponsored"):
+            if column not in columns:
+                conn.execute(f"ALTER TABLE articles ADD COLUMN {column} TEXT")  # noqa: S608 (fixed names)
         conn.execute("CREATE INDEX IF NOT EXISTS idx_articles_author ON articles(author) WHERE author IS NOT NULL")
         conn.executescript(STORY_SCHEMA)
 
+    @staticmethod
+    def reevaluate_sponsored(conn: sqlite3.Connection) -> int:
+        """Apply the public rules to every stored article (idempotent; also run when the rules file changes).
+
+        Articles stored before categories were read have none, so only their URL and headline rules can fire:
+        that is documented and expected. A newly marked article leaves its persistent story at once.
+        Returns how many rows changed.
+        """
+        changes = []
+        for r in conn.execute("SELECT id, media_id, url, title, categories, sponsored FROM articles"):
+            now = sponsored.match(r["media_id"], r["url"], r["title"], r["categories"])
+            if now != r["sponsored"]:
+                changes.append((now, r["id"]))
+        if changes:
+            conn.executemany("UPDATE articles SET sponsored = ? WHERE id = ?", changes)
+            conn.execute("DELETE FROM story_articles WHERE article_id IN "
+                         "(SELECT id FROM articles WHERE sponsored IS NOT NULL)")
+            Database.prune_stories(conn)
+        return len(changes)
     @contextmanager
     def connect(self) -> Iterator[sqlite3.Connection]:
         conn = sqlite3.connect(self.path, timeout=15)
@@ -147,21 +173,34 @@ class Database:
 
     # --- writes -----------------------------------------------------------
     def insert_articles(self, rows: Iterable[tuple]) -> int:
-        """Insert (url, media_id, title, summary, published[, author]) rows; returns how many were new.
+        """Insert (url, media_id, title, summary, published[, author[, categories]]) rows; returns how many were new.
 
-        Articles stored before bylines were parsed get their author filled in when the feed repeats them.
+        Articles stored before bylines were parsed get their author filled in when the feed repeats them, and
+        the sponsored mark (the outlet's own, see app/sponsored.py) is re-evaluated each time a feed repeats an
+        item. A piece that is marked leaves its persistent story.
         """
         now = int(time.time())
-        data = [(*r, None)[:6] if len(r) == 5 else tuple(r) for r in rows]
+        data = [(*r, *([None] * (7 - len(r)))) for r in map(tuple, rows)]
+        marks = [sponsored.match(mid, url, title, cats) for url, mid, title, _s, _p, _a, cats in data]
         with self.connect() as conn:
             cur = conn.executemany(
-                "INSERT OR IGNORE INTO articles(url, media_id, title, summary, published, fetched, author) "
-                "VALUES (?, ?, ?, ?, ?, ?, ?)",
-                [(url, mid, title, summary, pub, now, author) for url, mid, title, summary, pub, author in data],
+                "INSERT OR IGNORE INTO articles(url, media_id, title, summary, published, fetched, author, "
+                "categories, sponsored) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                [(url, mid, title, summary, pub, now, author, cats, mark)
+                 for (url, mid, title, summary, pub, author, cats), mark in zip(data, marks, strict=True)],
             )
             added = max(cur.rowcount, 0)
             conn.executemany("UPDATE articles SET author = ? WHERE url = ? AND author IS NULL",
-                             [(author, url) for url, *_, author in data if author])
+                             [(author, url) for url, *_, author, _c in data if author])
+            # re-evaluation on re-ingest: the feed's categories are the freshest evidence
+            conn.executemany("UPDATE articles SET categories = ?, sponsored = ? WHERE url = ?",
+                             [(cats, mark, url) for (url, *_, cats), mark in zip(data, marks, strict=True) if cats])
+            conn.executemany("UPDATE articles SET sponsored = ? WHERE url = ? AND sponsored IS NOT ?",
+                             [(mark, url, mark) for (url, *_, cats), mark in zip(data, marks, strict=True)
+                              if not cats and mark])
+            conn.execute("DELETE FROM story_articles WHERE article_id IN "
+                         "(SELECT id FROM articles WHERE sponsored IS NOT NULL)")
+            self.prune_stories(conn)
             return added
 
     def purge_older_than(self, days: int) -> int:
@@ -280,7 +319,7 @@ class Database:
         with self.connect() as conn:
             return conn.execute(
                 "SELECT a.* FROM story_articles sa JOIN articles a ON a.id = sa.article_id "
-                "WHERE sa.story_id = ? ORDER BY a.published DESC LIMIT ?", (story_id, limit)
+                "WHERE sa.story_id = ? AND a.sponsored IS NULL ORDER BY a.published DESC LIMIT ?", (story_id, limit)
             ).fetchall()
 
     def story_ids_for(self, article_ids: list[int]) -> dict[int, int]:

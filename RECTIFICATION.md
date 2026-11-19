@@ -9,7 +9,8 @@ Pueden impugnarse:
 - una etiqueta o clasificación citada de una fuente externa;
 - un dato de propiedad o titularidad;
 - un feed (fuente RSS u otro canal) asociado a un medio;
-- la inclusión o exclusión de un medio en el sitio.
+- la inclusión o exclusión de un medio en el sitio;
+- una marca de «patrocinado» que falta o sobra: solo reflejamos la que el propio medio pone (categoría de su RSS, sección de su dirección o prefijo del titular) según las reglas públicas de `data/sponsored_rules.json`; indica cómo marca el medio la pieza y, si procede, qué regla debe cambiar.
 
 Las opiniones sobre la línea editorial de Contraste no son objeto de corrección, porque el sitio no tiene opinión propia que corregir. En ese caso, la discrepancia debe dirigirse a la fuente citada.
 

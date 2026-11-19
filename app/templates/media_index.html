@@ -55,6 +55,12 @@
         {% for k, l in ownership.items() %}<option value="{{ k }}">{{ l }}</option>{% endfor %}
       </select>
     </label>
+    <label class="select"><span>Especialidad</span>
+      <select data-filter="spec">
+        <option value="">Todas</option>
+        {% for l in specialities %}<option value="{{ l }}">Especializado en {{ l }}</option>{% endfor %}
+      </select>
+    </label>
     <label class="select"><span>Eje territorial</span>
       <select data-filter="terr">
         <option value="">Todos</option>
@@ -71,8 +77,8 @@
       </thead>
       <tbody>
         {% for m in media %}
-        <tr data-row data-labels="{{ m.assessment.tags|map(attribute='label')|map('lower')|join('|') }}" data-scope="{{ m.region or 'Nacional' }}" data-langs="{{ m.derived.languages|join('|') }}" data-owner="{{ m.derived.ownership }}" data-terr="{{ m.assessment.territorial|join('|') }}">
-          <th scope="row"><a href="/medios/{{ m.id }}">{{ m.name }}</a>{% if m.region %}<span class="table__sub">{{ m.region }}</span>{% endif %}<span class="table__sub">{{ m.derived.ownership_label }}{% if m.derived.languages and m.derived.languages != ['español'] %} · {{ m.derived.languages|join(', ') }}{% endif %}</span></th>
+        <tr data-row data-labels="{{ m.assessment.tags|map(attribute='label')|map('lower')|join('|') }}" data-scope="{{ m.region or 'Nacional' }}" data-langs="{{ m.derived.languages|join('|') }}" data-owner="{{ m.derived.ownership }}" data-terr="{{ m.assessment.territorial|join('|') }}" data-spec="{{ m.speciality or '' }}">
+          <th scope="row"><a href="/medios/{{ m.id }}">{{ m.name }}</a>{% if m.region %}<span class="table__sub">{{ m.region }}</span>{% endif %}<span class="table__sub">{{ m.derived.ownership_label }}{% if m.speciality %} · Especializado en {{ m.speciality }}{% endif %}{% if m.derived.languages and m.derived.languages != ['español'] %} · {{ m.derived.languages|join(', ') }}{% endif %}</span></th>
           <td>{{ m.type }}</td>
           <td>{% if m.group %}<a href="/grupos/{{ m.group.id }}">{{ m.group.name }}</a>{% elif m.publisher %}{{ m.publisher }}{% else %}<span class="muted">—</span>{% endif %}</td>
           <td>{{ chip(m) }}{{ tags(m, limit=4) }}</td>

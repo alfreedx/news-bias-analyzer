@@ -7,6 +7,7 @@ import time
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 
+from . import sponsored
 from .catalog import Catalog, Media
 from .facts import language_note
 from .scoring import POSITION_LABELS
@@ -41,6 +42,13 @@ class Article:
     keys: set[str] = field(default_factory=set)
     author: str | None = None  # byline as published; nothing else is known or inferred about the person
     id: int | None = None  # row id in the local index (None for live Google News results)
+    sponsored: str | None = None  # id of the rule (data/sponsored_rules.json) matching a mark the outlet itself put
+    categories: str | None = None  # the outlet's own RSS category labels, joined
+
+    @property
+    def sponsored_evidence(self) -> str | None:
+        """Exact mark the outlet published («Categoría RSS «Contenido patrocinado»», «Ruta /branded/»…)."""
+        return sponsored.evidence(self.sponsored, self.url, self.title, self.categories) if self.sponsored else None
 
     @property
     def position(self) -> int | None:
@@ -68,6 +76,7 @@ class Article:
             "source": self.source_name,
             "author": self.author,
             "media": self.media.to_public() if self.media else None,
+            **({"sponsored_mark": self.sponsored_evidence} if self.sponsored else {}),
         }
 
 
@@ -318,7 +327,8 @@ class Coverage:
 def make_article(catalog: Catalog, *, title: str, url: str, summary: str, published: int,
                  media_id: str | None = None, source_url: str | None = None,
                  source_name: str | None = None, author: str | None = None,
-                 article_id: int | None = None) -> Article:
+                 article_id: int | None = None, sponsored: str | None = None,
+                 categories: str | None = None) -> Article:
     media = catalog.media.get(media_id) if media_id else None
     if media is None and source_url:
         media = catalog.by_url(source_url)
@@ -334,7 +344,21 @@ def make_article(catalog: Catalog, *, title: str, url: str, summary: str, publis
         keys=keywords(title),
         author=author,
         id=article_id,
+        sponsored=sponsored,
+        categories=categories,
     )
+
+
+def article_from_row(catalog: Catalog, r) -> Article:
+    """Build an Article from a row of the local index."""
+    return make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"], published=r["published"],
+                        media_id=r["media_id"], author=r["author"], article_id=r["id"],
+                        sponsored=r["sponsored"], categories=r["categories"])
+
+
+def split_sponsored(articles: list[Article]) -> tuple[list[Article], list[Article]]:
+    """(regular, marked as sponsored by their outlet). Marked pieces never enter clustering or counts."""
+    return [a for a in articles if not a.sponsored], [a for a in articles if a.sponsored]
 
 
 def rank(articles: list[Article], bm25: dict[str, float] | None = None, now: int | None = None) -> None:
@@ -376,6 +400,7 @@ def best_match(keys: set[str], seeds: list[set[str]], index: dict[str, list[int]
 
 def cluster(articles: list[Article], min_shared: int = MIN_SHARED, min_overlap: float = MIN_OVERLAP) -> list[Story]:
     """Group headlines about the same event (greedy, inverted index, overlap coefficient)."""
+    articles = [a for a in articles if not a.sponsored]
     stories: list[Story] = []
     seeds: list[set[str]] = []
     index: dict[str, list[int]] = defaultdict(list)
@@ -399,6 +424,7 @@ def cluster(articles: list[Article], min_shared: int = MIN_SHARED, min_overlap: 
 
 
 def coverage(articles: list[Article]) -> Coverage:
+    articles = [a for a in articles if not a.sponsored]
     by_position = {p: 0 for p in POSITIONS}
     groups: Counter[str] = Counter()
     media_counts: Counter[str] = Counter()

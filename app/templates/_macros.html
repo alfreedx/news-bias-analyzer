@@ -20,12 +20,17 @@
   {%- if name -%}<span class="byline__sep" aria-hidden="true">·</span><span class="byline__by">Por <a class="byline__author" href="/buscar?autor={{ name|urlencode }}" title="Titulares firmados con este nombre en el índice">{{ name }}</a></span>{%- endif -%}
 {%- endmacro %}
 
+{#- Only when the outlet itself marked the piece (RSS category, URL section or headline prefix); nothing otherwise. -#}
+{% macro sponsored_mark(a) -%}
+  {%- if a.sponsored -%}<span class="byline__sep" aria-hidden="true">·</span><span class="mark-sponsored" title="{{ a.sponsored_evidence }}">Marcado como patrocinado por el medio</span>{%- endif -%}
+{%- endmacro %}
+
 {% macro byline(a, show_group=True) -%}
   <span class="byline">
     {%- if a.media -%}<a class="byline__media" href="/medios/{{ a.media.id }}">{{ a.source_name }}</a>{%- else -%}<span class="byline__media">{{ a.source_name }}</span>{%- endif -%}
     {%- if a.lang_note %}<span class="byline__sep" aria-hidden="true">·</span><span class="byline__lang">{{ a.lang_note }}</span>{%- endif -%}
     {%- if show_group and a.media and a.media.group %}<span class="byline__sep" aria-hidden="true">·</span><a class="byline__group" href="/grupos/{{ a.media.group.id }}">{{ a.media.group.name }}</a>{%- endif -%}
-    {{ author_by(a.author) }}
+    {{ author_by(a.author) }}{{ sponsored_mark(a) }}
     <span class="byline__sep" aria-hidden="true">·</span><time datetime="{{ iso(a.published) }}">{{ time_ago(a.published) }}</time>
   </span>
 {%- endmacro %}

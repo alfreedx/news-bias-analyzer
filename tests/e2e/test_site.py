@@ -305,3 +305,28 @@ def test_story_page_summary_box_visible_first(page: Page, base_url, story_path):
     y_panel = page.locator(".panel--summary").bounding_box()["y"]
     assert y_box < y_panel
     assert page.locator(".signal").count() == 0
+
+
+@pytest.mark.parametrize("width,height", [(390, 844), (1280, 800)])
+def test_sponsored_mark_is_visible_apart_and_without_overflow(page: Page, base_url, width, height):
+    page.set_viewport_size({"width": width, "height": height})
+    page.goto(base_url + SEARCH)
+    box = page.locator("details.sponsored-box")
+    expect(box).to_have_count(1)
+    expect(box.locator("summary")).to_contain_text("1 pieza marcada como patrocinada por su medio")
+    assert box.get_attribute("open") is None  # collapsed, but announced: nothing is hidden silently
+    box.locator("summary").click()
+    badge = box.locator(".mark-sponsored")
+    expect(badge).to_be_visible()
+    expect(badge).to_have_text("Marcado como patrocinado por el medio")
+    assert badge.get_attribute("title") == "Ruta /branded/"
+    expect(page.locator("[data-stories] .mark-sponsored")).to_have_count(0)
+    sw, cw = page.evaluate("[document.documentElement.scrollWidth, document.documentElement.clientWidth]")
+    assert sw <= cw, f"scrollWidth {sw} > clientWidth {cw}"
+
+
+def test_media_filter_by_speciality(page: Page, base_url):
+    page.goto(base_url + "/medios")
+    page.select_option("select[data-filter=spec]", "economía")
+    assert page.locator("tr[data-row]:visible").count() >= 4
+    expect(page.locator("tr[data-row][data-spec='economía']").first).to_contain_text("Especializado en economía")

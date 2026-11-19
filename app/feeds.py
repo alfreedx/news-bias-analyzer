@@ -35,6 +35,7 @@ ATOM = "{http://www.w3.org/2005/Atom}"
 CONTENT = "{http://purl.org/rss/1.0/modules/content/}encoded"
 DC_DATE = "{http://purl.org/dc/elements/1.1/}date"
 DC_CREATOR = "{http://purl.org/dc/elements/1.1/}creator"
+DC_SUBJECT = "{http://purl.org/dc/elements/1.1/}subject"
 RSS1 = "{http://purl.org/rss/1.0/}"
 
 
@@ -47,6 +48,7 @@ class FeedItem:
     source_url: str | None = None  # only for aggregators (Google News <source url="">)
     source_name: str | None = None
     author: str | None = None  # byline exactly as published (cleaned), never enriched
+    categories: tuple[str, ...] = ()  # <category>/<dc:subject> labels exactly as the outlet publishes them
 
 
 # Bylines that say nothing about a person. Agencies named as such (EFE, Europa Press) are kept on purpose.
@@ -84,6 +86,32 @@ def clean_author(raw: str | None, outlet_name: str | None = None) -> str | None:
     if key.startswith(("redaccion ", "la redaccion ", "agencias ")):
         return None
     return text
+
+
+MAX_CATEGORIES, MAX_CATEGORY_LEN = 12, 60
+CATEGORY_SEP = " | "
+
+
+def _categories(el, *, atom: bool) -> tuple[str, ...]:
+    """The outlet's own labels of an item: RSS <category>, <dc:subject>, Atom <category term/label>."""
+    raw: list[str | None] = []
+    if atom:
+        for node in el.findall(f"{ATOM}category"):
+            raw.append(node.get("label") or node.get("term") or node.text)
+    else:
+        raw += [n.text for n in el.findall("category")]
+        raw += [n.text for n in el.findall(DC_SUBJECT)]
+    out: dict[str, None] = {}
+    for value in raw:
+        text = clean_text(value, 200) if value else ""
+        if text:
+            out.setdefault(text[:MAX_CATEGORY_LEN].strip(), None)
+    return tuple(list(out)[:MAX_CATEGORIES])
+
+
+def join_categories(categories) -> str | None:
+    """Storage form of the categories (short, joined, capped); None when there are none."""
+    return CATEGORY_SEP.join(categories)[:400] or None
 
 
 def _authors(el, *tags: str) -> str | None:
@@ -156,7 +184,8 @@ def parse_feed(content: bytes, now: int | None = None) -> list[FeedItem]:
             url = _safe_url(link)
             if title and url:
                 items.append(FeedItem(title, url, summary, min(pub or now, now),
-                                      author=clean_author(_authors(e, f"{ATOM}author"))))
+                                      author=clean_author(_authors(e, f"{ATOM}author")),
+                                      categories=_categories(e, atom=True)))
         return items
 
     nodes = root.findall("./channel/item") or root.findall(f"{RSS1}item")
@@ -167,7 +196,8 @@ def parse_feed(content: bytes, now: int | None = None) -> list[FeedItem]:
         pub = _parse_date(_text(it, "pubDate") or _text(it, DC_DATE))
         source = it.find("source")
         item = FeedItem(title, url or "", summary, min(pub or now, now),
-                        author=clean_author(_authors(it, DC_CREATOR, "author")))
+                        author=clean_author(_authors(it, DC_CREATOR, "author")),
+                        categories=_categories(it, atom=False))
         if source is not None:
             item.source_url = _safe_url(source.get("url"))
             item.source_name = clean_text(source.text, 120) or None
@@ -226,7 +256,7 @@ async def _ingest_feed(client: httpx.AsyncClient, db: Database, catalog: Catalog
     items = parse_feed(body)
     outlet = catalog.media[media_id].name if media_id in catalog.media else None
     added = db.insert_articles((i.url, media_id, i.title, i.summary, i.published,
-                                clean_author(i.author, outlet)) for i in items)
+                                clean_author(i.author, outlet), join_categories(i.categories)) for i in items)
     db.save_feed_state(url, media_id, etag=resp_headers.get("etag"), last_modified=resp_headers.get("last-modified"),
                        status="200" if items else "200-empty", items=len(items), success=bool(items))
     return added

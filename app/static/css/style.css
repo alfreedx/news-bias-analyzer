@@ -636,6 +636,14 @@ h1, h2, .story__title, .search-head__title { font-variation-settings: "opsz" 48;
 
 /* ---------- Byline author + outlet "ficha" ---------- */
 .byline__by { color: var(--ink-2); }
+.mark-sponsored { color: var(--warn-ink); background: var(--warn-bg); border: 1px solid var(--rule); border-radius: 2px; padding: 0 .4em; font-weight: 600; cursor: help; }
+.sponsored-box { margin: 18px 0 0; border-top: 1px solid var(--rule); padding-top: 10px; }
+.sponsored-box summary { cursor: pointer; font: 600 .88rem var(--sans); color: var(--ink-2); }
+.sponsored-box__note { font: .84rem/1.4 var(--sans); color: var(--muted); margin: 8px 0; }
+.sponsored-box__list { list-style: none; padding: 0; margin: 0; }
+.sponsored-box__list li { padding: 8px 0; border-bottom: 1px solid var(--rule); overflow-wrap: anywhere; }
+.sponsored-box__list a.item__title { display: block; }
+.speciality { color: var(--ink-2); font-style: italic; }
 .byline__author { color: inherit; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 2px; }
 .byline__author:hover { text-decoration-style: solid; }
 .compare__outlet .byline__author { color: inherit; }

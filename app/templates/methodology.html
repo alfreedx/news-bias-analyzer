@@ -66,6 +66,7 @@
   <p>A partir de esos hechos y del catálogo calculamos en código las siguientes clasificaciones. Son descripciones de la propiedad, no juicios: <strong>nunca se convierten en adjetivos ideológicos</strong>.</p>
   <ul>
     <li><strong>Ámbito</strong>: Nacional o Regional, según el catálogo.</li>
+    <li><strong>Especializado en economía</strong>: dato del catálogo (<code>speciality</code>) para las cabeceras cuya temática declarada es la economía (Expansión, Cinco Días, elEconomista, Actualidad Económica, Forbes España). Es un hecho sobre el tema, no una orientación: esas cabeceras participan en las historias como cualquier otro medio y <strong>no tienen posición ideológica salvo que una fuente citada la publique</strong>. Pueden filtrarse en el catálogo.</li>
     <li><strong>Sin grupo registrado</strong>: se muestra «{{ rules.no_group }}» cuando el medio no figura en ningún grupo de <code>groups.json</code> y Wikidata no da ningún propietario que a su vez pertenezca a otra entidad. No decimos que sea «independiente»: solo que no consta ninguna agrupación.</li>
     <li><strong>Titularidad pública</strong> («Medio de titularidad pública (…)», con el titular entre paréntesis): cuando se cumple alguna de estas condiciones, por este orden.
       <ol>
@@ -110,7 +111,17 @@
   <p>Leemos cada {{ settings.ingest_interval_minutes }} minutos los <strong>canales RSS oficiales</strong> que publican los propios medios y guardamos solo el titular, la entradilla, el enlace y la fecha durante {{ settings.retention_days }} días. Siempre enlazamos al medio original; no reproducimos los artículos.</p>
   <p>Algunos medios no ofrecen RSS o lo bloquean a lectores automáticos; respetamos ese bloqueo. Por eso no aparecen en los resultados aunque estén en el catálogo.</p>
 
-  <h2>8. Limitaciones</h2>
+  <h2 id="patrocinado">8. Contenido patrocinado</h2>
+  <p>Contraste <strong>no decide</strong> qué es publicidad. Solo refleja la marca que el <strong>propio medio</strong> ha puesto a una pieza: una categoría de su RSS («Contenido patrocinado», «Branded content»…), una sección de su dirección web (<code>/branded/</code>) o un prefijo en el titular («Patrocinado:», «[Publicidad]»). Es la señal que el medio ofrece para cumplir con la obligación de distinguir la publicidad del contenido informativo (Ley 34/1988, General de Publicidad; artículo 20 de la Ley 34/2002, LSSI).</p>
+  <ul>
+    <li>Las reglas son públicas y versionadas: <a href="{{ settings.repo_url }}/blob/main/data/sponsored_rules.json" rel="noopener noreferrer"><code>data/sponsored_rules.json</code></a> (versión {{ sponsored.version }}, actualizadas el {{ sponsored.updated }}, {{ sponsored.count }} reglas). La coincidencia es por palabras completas, sin tener en cuenta tildes ni mayúsculas, y cada marca muestra al pasar el ratón la prueba exacta que la origina («Categoría RSS «…»», «Ruta /…/»).</li>
+    <li>Una pieza marcada lleva la nota «Marcado como patrocinado por el medio» junto a su firma y <strong>no cuenta</strong> en la agrupación en historias, en las coincidencias, en el reparto de «Quién la cuenta» ni en las noticias que cuenta sobre todo un lado. En las búsquedas aparecen aparte, en un apartado plegable al final, para que nada quede oculto.</li>
+    <li><strong>No detectar una marca no garantiza que una pieza no sea publicidad.</strong> Muchos medios no marcan nada en su RSS, y por eso no mostramos nunca «no patrocinado». Tampoco señalamos enlaces de afiliación ni secciones de compras («ofertas», «chollos»).</li>
+    <li>Los titulares ya guardados antes de que leyéramos las categorías del RSS solo pueden marcarse por su dirección o por el prefijo del titular; las categorías se guardan a partir de ahora.</li>
+    <li><a href="{{ sponsored_issue_url() }}" rel="noopener noreferrer" target="_blank">¿Falta o sobra una marca? Avísanos</a>.</li>
+  </ul>
+
+  <h2>9. Limitaciones</h2>
   <ul>
     <li>Las fuentes externas también tienen sesgos y pueden quedarse anticuadas. Por eso las enlazamos y mostramos su fecha de consulta.</li>
     <li>Un medio es un conjunto de periodistas, secciones y opiniones: su orientación media no dice nada de una noticia concreta.</li>

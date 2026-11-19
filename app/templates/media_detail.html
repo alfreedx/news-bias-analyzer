@@ -9,7 +9,7 @@
   <nav class="crumbs" aria-label="Ruta"><a href="/medios">Medios</a><span aria-hidden="true">/</span>{{ m.name }}</nav>
   <h1>{{ m.name }}</h1>
   <p class="page-head__lead">
-    {{ m.type }} · {{ m.scope }}{% if m.region %} ({{ m.region }}){% endif %}{% if m.founded %} · desde {{ m.founded }}{% endif %}
+    {{ m.type }} · {{ m.scope }}{% if m.region %} ({{ m.region }}){% endif %}{% if m.founded %} · desde {{ m.founded }}{% endif %}{% if m.speciality %} · <span class="speciality">Especializado en {{ m.speciality }}</span>{% endif %}
     · {% for d in m.domains %}<a href="https://{{ d }}" rel="noopener noreferrer">{{ d }}</a>{% if not loop.last %}, {% endif %}{% endfor %}
   </p>
 </header>
@@ -84,7 +84,7 @@
     {% if latest %}
     <ul class="latest">
       {% for r in latest %}
-      <li><a href="{{ r.url }}" rel="noopener noreferrer" target="_blank">{{ r.title }}</a> <span class="small muted">{% if r.author %}Por <a class="byline__author" href="/buscar?autor={{ r.author|urlencode }}">{{ r.author }}</a> · {% endif %}{{ time_ago(r.published) }}</span></li>
+      <li><a href="{{ r.url }}" rel="noopener noreferrer" target="_blank">{{ r.title }}</a> <span class="small muted">{% if r.author %}Por <a class="byline__author" href="/buscar?autor={{ r.author|urlencode }}">{{ r.author }}</a> · {% endif %}{{ time_ago(r.published) }}{% if r.sponsored %} · <span class="mark-sponsored" title="{{ sponsored_evidence(r.sponsored, r.url, r.title, r.categories) }}">Marcado como patrocinado por el medio</span>{% endif %}</span></li>
       {% endfor %}
     </ul>
     {% else %}
