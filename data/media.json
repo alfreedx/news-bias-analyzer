@@ -48,7 +48,68 @@
      "revid": 176269218,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q50009",
+    "languages": [
+     "español",
+     "inglés"
+    ],
+    "languages_qids": [
+     "Q1321",
+     "Q1860"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "owners": [
+     "Grupo Prisa",
+     "Liberty Acquisition Holdings"
+    ],
+    "owners_qids": [
+     "Q1466106",
+     "Q95735556"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 1976,
+    "source": "https://www.wikidata.org/wiki/Q50009",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q1466106",
+      "label": "Grupo Prisa",
+      "kinds_qids": [
+       "Q4830453",
+       "Q6881511"
+      ],
+      "owned_by": [
+       "Amber Capital"
+      ],
+      "owned_by_qids": [
+       "Q89345695"
+      ]
+     },
+     {
+      "qid": "Q95735556",
+      "label": "Liberty Acquisition Holdings",
+      "kinds_qids": [
+       "Q4201895"
+      ],
+      "owned_by": [
+       "Nicolas Berggruen",
+       "Martin E. Franklin"
+      ],
+      "owned_by_qids": [
+       "Q88917",
+       "Q20752551"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "el-mundo",
@@ -101,7 +162,49 @@
      "url": "https://www.wikidata.org/wiki/Q921217",
      "retrieved": "2026-11-18"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q921217",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "owners": [
+     "Unidad Editorial"
+    ],
+    "owners_qids": [
+     "Q2056424"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 1989,
+    "source": "https://www.wikidata.org/wiki/Q921217",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q2056424",
+      "label": "Unidad Editorial",
+      "kinds_qids": [
+       "Q1331793",
+       "Q2085381"
+      ],
+      "owned_by": [
+       "Cairo Communication"
+      ],
+      "owned_by_qids": [
+       "Q3649899"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "abc",
@@ -147,7 +250,44 @@
      "revid": 175480445,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q287076",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "owners": [
+     "Vocento"
+    ],
+    "owners_qids": [
+     "Q1337706"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 1903,
+    "source": "https://www.wikidata.org/wiki/Q287076",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q1337706",
+      "label": "Vocento",
+      "kinds_qids": [
+       "Q1589009"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "la-vanguardia",
@@ -193,7 +333,46 @@
      "revid": 176015340,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q511533",
+    "languages": [
+     "catalán",
+     "español"
+    ],
+    "languages_qids": [
+     "Q7026",
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "owners": [
+     "La Vanguardia Ediciones, SL"
+    ],
+    "owners_qids": [
+     "Q51993928"
+    ],
+    "hq": "Torre Godó",
+    "hq_qid": "Q51999423",
+    "founded": 1881,
+    "source": "https://www.wikidata.org/wiki/Q511533",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q51993928",
+      "label": "La Vanguardia Ediciones, SL",
+      "kinds_qids": [
+       "Q6881511"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "el-confidencial",
@@ -220,7 +399,27 @@
      "revid": 175209008,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q5821545",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2001,
+    "source": "https://www.wikidata.org/wiki/Q5821545",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "eldiario-es",
@@ -265,7 +464,27 @@
      "revid": 175577352,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q8774265",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q1153191"
+    ],
+    "hq": "Gran Vía",
+    "hq_qid": "Q1324163",
+    "founded": 2012,
+    "source": "https://www.wikidata.org/wiki/Q8774265",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "publico",
@@ -318,7 +537,29 @@
      "url": "https://www.wikidata.org/wiki/Q1835391",
      "retrieved": "2026-11-18"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q1835391",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico digital",
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q5276122",
+     "Q11032"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2007,
+    "source": "https://www.wikidata.org/wiki/Q1835391",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "la-razon",
@@ -354,7 +595,45 @@
      "url": "https://www.wikidata.org/wiki/Q191433",
      "retrieved": "2026-11-18"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q191433",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "owners": [
+     "Grupo Planeta"
+    ],
+    "owners_qids": [
+     "Q3109084"
+    ],
+    "hq": "Edificio América",
+    "hq_qid": "Q57721691",
+    "founded": 1998,
+    "source": "https://www.wikidata.org/wiki/Q191433",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q3109084",
+      "label": "Grupo Planeta",
+      "kinds_qids": [
+       "Q197952",
+       "Q1395324"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "20minutos",
@@ -369,7 +648,47 @@
    "feeds": [
     "https://www.20minutos.es/rss/"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q2077548",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "publicación periódica",
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q1002697",
+     "Q1153191"
+    ],
+    "owners": [
+     "Heraldo de Aragón"
+    ],
+    "owners_qids": [
+     "Q3572134"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2000,
+    "source": "https://www.wikidata.org/wiki/Q2077548",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q3572134",
+      "label": "Heraldo de Aragón",
+      "kinds_qids": [
+       "Q11032",
+       "Q43229"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "el-espanol",
@@ -403,7 +722,44 @@
      "url": "https://mediabiasfactcheck.com/el-espanol/",
      "retrieved": "2026-11-18"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q20652713",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q1153191"
+    ],
+    "owners": [
+     "Pedro J. Ramírez"
+    ],
+    "owners_qids": [
+     "Q3121614"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2015,
+    "source": "https://www.wikidata.org/wiki/Q20652713",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q3121614",
+      "label": "Pedro J. Ramírez",
+      "kinds_qids": [
+       "Q5"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "okdiario",
@@ -450,7 +806,27 @@
      "revid": 176288014,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q30901816",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico digital"
+    ],
+    "kinds_qids": [
+     "Q5276122"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2015,
+    "source": "https://www.wikidata.org/wiki/Q30901816",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "libertad-digital",
@@ -497,7 +873,48 @@
      "revid": 176360850,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q3101925",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "publicación periódica",
+     "periódico en línea",
+     "periódico digital"
+    ],
+    "kinds_qids": [
+     "Q1002697",
+     "Q1153191",
+     "Q5276122"
+    ],
+    "owners": [
+     "Libertad Digital, S.A."
+    ],
+    "owners_qids": [
+     "Q108525544"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2000,
+    "source": "https://www.wikidata.org/wiki/Q3101925",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q108525544",
+      "label": "Libertad Digital, S.A.",
+      "kinds_qids": [
+       "Q1331793"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "the-objective",
@@ -524,7 +941,48 @@
      "revid": 175822395,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q30034736",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico en línea",
+     "revista en línea"
+    ],
+    "kinds_qids": [
+     "Q1153191",
+     "Q847906"
+    ],
+    "owners": [
+     "The Objective Media"
+    ],
+    "owners_qids": [
+     "Q124880725"
+    ],
+    "founded": 2013,
+    "source": "https://www.wikidata.org/wiki/Q30034736",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q124880725",
+      "label": "The Objective Media",
+      "kinds_qids": [
+       "Q1916382"
+      ],
+      "owned_by": [
+       "Paula Quinteros"
+      ],
+      "owned_by_qids": [
+       "Q20653729"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "infolibre",
@@ -550,7 +1008,27 @@
      "revid": 167537806,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q16578645",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico digital"
+    ],
+    "kinds_qids": [
+     "Q5276122"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2013,
+    "source": "https://www.wikidata.org/wiki/Q16578645",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "rtve",
@@ -600,7 +1078,27 @@
      "url": "https://mediabiasfactcheck.com/europa-press/",
      "retrieved": "2026-11-18"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q3060712",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "agencia de noticias"
+    ],
+    "kinds_qids": [
+     "Q192283"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 1953,
+    "source": "https://www.wikidata.org/wiki/Q3060712",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "efe",
@@ -632,7 +1130,42 @@
      "url": "https://mediabiasfactcheck.com/agencia-efe/",
      "retrieved": "2026-11-18"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q1274521",
+    "kinds": [
+     "agencia de noticias",
+     "empresa estatal",
+     "Sociedad Mercantil Estatal"
+    ],
+    "kinds_qids": [
+     "Q192283",
+     "Q270791",
+     "Q133699310"
+    ],
+    "owners": [
+     "Gobierno de España"
+    ],
+    "owners_qids": [
+     "Q1194749"
+    ],
+    "hq": "Edificio Génesis",
+    "hq_qid": "Q54534958",
+    "founded": 1939,
+    "source": "https://www.wikidata.org/wiki/Q1274521",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q1194749",
+      "label": "Gobierno de España",
+      "kinds_qids": [
+       "Q35798"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "cadena-ser",
@@ -645,7 +1178,49 @@
    "founded": 1924,
    "group": "prisa",
    "feeds": [],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q1025113",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "emisora de radio",
+     "agencia de noticias"
+    ],
+    "kinds_qids": [
+     "Q14350",
+     "Q192283"
+    ],
+    "owners": [
+     "Grupo Prisa"
+    ],
+    "owners_qids": [
+     "Q1466106"
+    ],
+    "founded": 1924,
+    "source": "https://www.wikidata.org/wiki/Q1025113",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q1466106",
+      "label": "Grupo Prisa",
+      "kinds_qids": [
+       "Q4830453",
+       "Q6881511"
+      ],
+      "owned_by": [
+       "Amber Capital"
+      ],
+      "owned_by_qids": [
+       "Q89345695"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "cope",
@@ -660,7 +1235,47 @@
    "feeds": [
     "https://www.cope.es/api/es/news/rss.xml"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q2748488",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "cadena de radio"
+    ],
+    "kinds_qids": [
+     "Q1061197"
+    ],
+    "owners": [
+     "Ábside Media"
+    ],
+    "owners_qids": [
+     "Q113005111"
+    ],
+    "founded": 1960,
+    "source": "https://www.wikidata.org/wiki/Q2748488",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q113005111",
+      "label": "Ábside Media",
+      "kinds_qids": [
+       "Q4830453",
+       "Q6881511"
+      ],
+      "owned_by": [
+       "Conferencia Episcopal Española"
+      ],
+      "owned_by_qids": [
+       "Q1518168"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "lasexta",
@@ -690,7 +1305,24 @@
    "feeds": [
     "https://www.antena3.com/noticias/rss/4013050.xml"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q4771229",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "programa de televisión"
+    ],
+    "kinds_qids": [
+     "Q15416"
+    ],
+    "source": "https://www.wikidata.org/wiki/Q4771229",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "onda-cero",
@@ -703,7 +1335,51 @@
    "founded": 1990,
    "group": "planeta",
    "feeds": [],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q2748448",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "cadena de radio"
+    ],
+    "kinds_qids": [
+     "Q1061197"
+    ],
+    "owners": [
+     "Atresmedia"
+    ],
+    "owners_qids": [
+     "Q3118227"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 1990,
+    "source": "https://www.wikidata.org/wiki/Q2748448",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q3118227",
+      "label": "Atresmedia",
+      "kinds_qids": [
+       "Q4830453",
+       "Q6881511"
+      ],
+      "owned_by": [
+       "Grupo Planeta",
+       "De Agostini"
+      ],
+      "owned_by_qids": [
+       "Q3109084",
+       "Q2521786"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "telecinco",
@@ -717,7 +1393,18 @@
    "founded": 1990,
    "group": "mediaset",
    "feeds": [],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q556507",
+    "kinds": [
+     "serie de televisión"
+    ],
+    "kinds_qids": [
+     "Q5398426"
+    ],
+    "source": "https://www.wikidata.org/wiki/Q556507",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "cuatro",
@@ -730,7 +1417,44 @@
    "founded": 2005,
    "group": "mediaset",
    "feeds": [],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q962340",
+    "kinds": [
+     "emisora de televisión"
+    ],
+    "kinds_qids": [
+     "Q1616075"
+    ],
+    "owners": [
+     "MFE - MediaForEurope"
+    ],
+    "owners_qids": [
+     "Q3777384"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2005,
+    "source": "https://www.wikidata.org/wiki/Q962340",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q3777384",
+      "label": "MFE - MediaForEurope",
+      "kinds_qids": [
+       "Q4830453",
+       "Q6881511",
+       "Q43229"
+      ],
+      "owned_by": [
+       "Fininvest"
+      ],
+      "owned_by_qids": [
+       "Q1417245"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "el-periodico",
@@ -755,7 +1479,46 @@
      "revid": 176010470,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q35638",
+    "languages": [
+     "español",
+     "catalán"
+    ],
+    "languages_qids": [
+     "Q1321",
+     "Q7026"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "owners": [
+     "Prensa Ibérica"
+    ],
+    "owners_qids": [
+     "Q6426448"
+    ],
+    "hq": "Avenida de la Granvia de Hospitalet",
+    "hq_qid": "Q17335004",
+    "founded": 1978,
+    "source": "https://www.wikidata.org/wiki/Q35638",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q6426448",
+      "label": "Prensa Ibérica",
+      "kinds_qids": [
+       "Q1589009"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "expansion",
@@ -770,7 +1533,49 @@
    "feeds": [
     "https://e00-expansion.uecdn.es/rss/portada.xml"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q556902",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "owners": [
+     "Unidad Editorial"
+    ],
+    "owners_qids": [
+     "Q2056424"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 1986,
+    "source": "https://www.wikidata.org/wiki/Q556902",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q2056424",
+      "label": "Unidad Editorial",
+      "kinds_qids": [
+       "Q1331793",
+       "Q2085381"
+      ],
+      "owned_by": [
+       "Cairo Communication"
+      ],
+      "owned_by_qids": [
+       "Q3649899"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "cinco-dias",
@@ -786,7 +1591,49 @@
    "feeds": [
     "https://feeds.elpais.com/mrss-s/pages/ep/site/cincodias.elpais.com/portada"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q8346209",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "business newspaper"
+    ],
+    "kinds_qids": [
+     "Q106651372"
+    ],
+    "owners": [
+     "Grupo Prisa"
+    ],
+    "owners_qids": [
+     "Q1466106"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 1978,
+    "source": "https://www.wikidata.org/wiki/Q8346209",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q1466106",
+      "label": "Grupo Prisa",
+      "kinds_qids": [
+       "Q4830453",
+       "Q6881511"
+      ],
+      "owned_by": [
+       "Amber Capital"
+      ],
+      "owned_by_qids": [
+       "Q89345695"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "el-economista",
@@ -810,7 +1657,27 @@
      "revid": 176344590,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q2839040",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2006,
+    "source": "https://www.wikidata.org/wiki/Q2839040",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "huffpost",
@@ -836,7 +1703,65 @@
      "revid": 175745050,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q3049977",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q1153191"
+    ],
+    "owners": [
+     "HuffPost",
+     "Grupo Prisa"
+    ],
+    "owners_qids": [
+     "Q18049522",
+     "Q1466106"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2012,
+    "source": "https://www.wikidata.org/wiki/Q3049977",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q18049522",
+      "label": "HuffPost",
+      "kinds_qids": [
+       "Q1153191",
+       "Q28933155"
+      ],
+      "owned_by": [
+       "BuzzFeed"
+      ],
+      "owned_by_qids": [
+       "Q5003490"
+      ]
+     },
+     {
+      "qid": "Q1466106",
+      "label": "Grupo Prisa",
+      "kinds_qids": [
+       "Q4830453",
+       "Q6881511"
+      ],
+      "owned_by": [
+       "Amber Capital"
+      ],
+      "owned_by_qids": [
+       "Q89345695"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "el-debate",
@@ -870,7 +1795,49 @@
      "url": "https://mediabiasfactcheck.com/el-debate/",
      "retrieved": "2026-11-18"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q114050859",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q1153191"
+    ],
+    "owners": [
+     "Ediciones Catolicos y Vida Pública"
+    ],
+    "owners_qids": [
+     "Q114050946"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2021,
+    "source": "https://www.wikidata.org/wiki/Q114050859",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q114050946",
+      "label": "Ediciones Catolicos y Vida Pública",
+      "kinds_qids": [
+       "Q2085381",
+       "Q1589009"
+      ],
+      "owned_by": [
+       "Asociación Católica de Propagandistas"
+      ],
+      "owned_by_qids": [
+       "Q32536"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "esdiario",
@@ -896,7 +1863,18 @@
      "revid": 174363567,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q97461267",
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "source": "https://www.wikidata.org/wiki/Q97461267",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "vozpopuli",
@@ -921,7 +1899,29 @@
      "revid": 174679894,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q27862962",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico digital",
+     "sitio web"
+    ],
+    "kinds_qids": [
+     "Q5276122",
+     "Q35127"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2011,
+    "source": "https://www.wikidata.org/wiki/Q27862962",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "el-independiente",
@@ -947,7 +1947,29 @@
      "url": "https://www.wikidata.org/wiki/Q135012540",
      "retrieved": "2026-11-18"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q135012540",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico digital",
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q5276122",
+     "Q11032"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2016,
+    "source": "https://www.wikidata.org/wiki/Q135012540",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "el-confidencial-digital",
@@ -974,7 +1996,25 @@
      "revid": 170451178,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q5821547",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "publicación periódica"
+    ],
+    "kinds_qids": [
+     "Q1002697"
+    ],
+    "founded": 2000,
+    "source": "https://www.wikidata.org/wiki/Q5821547",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "el-plural",
@@ -998,7 +2038,25 @@
      "revid": 174637948,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q5822870",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "publicación periódica"
+    ],
+    "kinds_qids": [
+     "Q1002697"
+    ],
+    "founded": 2005,
+    "source": "https://www.wikidata.org/wiki/Q5822870",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "el-salto",
@@ -1024,7 +2082,33 @@
      "revid": 175822878,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q40013900",
+    "languages": [
+     "español",
+     "euskera",
+     "catalán",
+     "gallego"
+    ],
+    "languages_qids": [
+     "Q1321",
+     "Q8752",
+     "Q7026",
+     "Q9307"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2017,
+    "source": "https://www.wikidata.org/wiki/Q40013900",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "ctxt",
@@ -1047,7 +2131,46 @@
      "url": "https://www.wikidata.org/wiki/Q22969989",
      "retrieved": "2026-11-18"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q22969989",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico digital",
+     "periódico semanal"
+    ],
+    "kinds_qids": [
+     "Q5276122",
+     "Q2305295"
+    ],
+    "owners": [
+     "Revista Contexto S.L"
+    ],
+    "owners_qids": [
+     "Q54383987"
+    ],
+    "hq": "avenida del Doctor Arce",
+    "hq_qid": "Q29199638",
+    "founded": 2015,
+    "source": "https://www.wikidata.org/wiki/Q22969989",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q54383987",
+      "label": "Revista Contexto S.L",
+      "kinds_qids": [
+       "Q6881511"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "la-marea",
@@ -1077,7 +2200,27 @@
      "revid": 170825499,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q5964240",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "revista"
+    ],
+    "kinds_qids": [
+     "Q41298"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2012,
+    "source": "https://www.wikidata.org/wiki/Q5964240",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "mundo-obrero",
@@ -1103,7 +2246,46 @@
      "revid": 174510822,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q3310959",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "publicación periódica"
+    ],
+    "kinds_qids": [
+     "Q1002697"
+    ],
+    "owners": [
+     "Partido Comunista de España"
+    ],
+    "owners_qids": [
+     "Q478811"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 1931,
+    "source": "https://www.wikidata.org/wiki/Q3310959",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q478811",
+      "label": "Partido Comunista de España",
+      "kinds_qids": [
+       "Q6065085",
+       "Q233591",
+       "Q7278"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "la-voz-de-galicia",
@@ -1119,7 +2301,33 @@
    "feeds": [
     "https://www.lavozdegalicia.es/index.xml"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q3312427",
+    "languages": [
+     "español",
+     "gallego"
+    ],
+    "languages_qids": [
+     "Q1321",
+     "Q9307"
+    ],
+    "kinds": [
+     "diario",
+     "editorial"
+    ],
+    "kinds_qids": [
+     "Q1110794",
+     "Q2085381"
+    ],
+    "owners": [],
+    "owners_qids": [],
+    "hq": "La Coruña",
+    "hq_qid": "Q8757",
+    "founded": 1882,
+    "source": "https://www.wikidata.org/wiki/Q3312427",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "el-correo",
@@ -1148,7 +2356,44 @@
      "revid": 175929758,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q1324043",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "owners": [
+     "Vocento"
+    ],
+    "owners_qids": [
+     "Q1337706"
+    ],
+    "hq": "Bilbao",
+    "hq_qid": "Q8692",
+    "founded": 1910,
+    "source": "https://www.wikidata.org/wiki/Q1324043",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q1337706",
+      "label": "Vocento",
+      "kinds_qids": [
+       "Q1589009"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "diario-vasco",
@@ -1177,7 +2422,44 @@
      "revid": 173651669,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q913303",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "owners": [
+     "Vocento"
+    ],
+    "owners_qids": [
+     "Q1337706"
+    ],
+    "hq": "San Sebastián",
+    "hq_qid": "Q10313",
+    "founded": 1934,
+    "source": "https://www.wikidata.org/wiki/Q913303",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q1337706",
+      "label": "Vocento",
+      "kinds_qids": [
+       "Q1589009"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "gara",
@@ -1206,7 +2488,29 @@
      "revid": 172401840,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q1493861",
+    "languages": [
+     "español",
+     "euskera"
+    ],
+    "languages_qids": [
+     "Q1321",
+     "Q8752"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "hq": "San Sebastián",
+    "hq_qid": "Q10313",
+    "founded": 1999,
+    "source": "https://www.wikidata.org/wiki/Q1493861",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "deia",
@@ -1260,7 +2564,44 @@
      "revid": 176102825,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q558617",
+    "languages": [
+     "catalán"
+    ],
+    "languages_qids": [
+     "Q7026"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "owners": [
+     "Edició de Premsa Periòdica Ara"
+    ],
+    "owners_qids": [
+     "Q18786914"
+    ],
+    "hq": "Barcelona",
+    "hq_qid": "Q1492",
+    "founded": 2010,
+    "source": "https://www.wikidata.org/wiki/Q558617",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q18786914",
+      "label": "Edició de Premsa Periòdica Ara",
+      "kinds_qids": [
+       "Q4830453"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "el-nacional",
@@ -1305,7 +2646,46 @@
      "revid": 175551596,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q778258",
+    "languages": [
+     "catalán"
+    ],
+    "languages_qids": [
+     "Q7026"
+    ],
+    "kinds": [
+     "publicación periódica",
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q1002697",
+     "Q11032"
+    ],
+    "owners": [
+     "Hermes Comunicacions"
+    ],
+    "owners_qids": [
+     "Q20106759"
+    ],
+    "hq": "Gerona",
+    "hq_qid": "Q7038",
+    "founded": 2011,
+    "source": "https://www.wikidata.org/wiki/Q778258",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q20106759",
+      "label": "Hermes Comunicacions",
+      "kinds_qids": [
+       "Q6881511"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "cronica-global",
@@ -1334,7 +2714,29 @@
      "revid": 173105767,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q20105526",
+    "languages": [
+     "español",
+     "catalán"
+    ],
+    "languages_qids": [
+     "Q1321",
+     "Q7026"
+    ],
+    "kinds": [
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q1153191"
+    ],
+    "hq": "calle de Pau Claris",
+    "hq_qid": "Q2084832",
+    "founded": 2013,
+    "source": "https://www.wikidata.org/wiki/Q20105526",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "nacio-digital",
@@ -1366,7 +2768,44 @@
    "feeds": [
     "https://www.vilaweb.cat/feed/"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q3312518",
+    "languages": [
+     "catalán"
+    ],
+    "languages_qids": [
+     "Q7026"
+    ],
+    "kinds": [
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q1153191"
+    ],
+    "owners": [
+     "Partal Maresma i Associats, S.L."
+    ],
+    "owners_qids": [
+     "Q60661822"
+    ],
+    "hq": "Barcelona",
+    "hq_qid": "Q1492",
+    "founded": 1995,
+    "source": "https://www.wikidata.org/wiki/Q3312518",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q60661822",
+      "label": "Partal Maresma i Associats, S.L.",
+      "kinds_qids": [
+       "Q1331793"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "diario-de-sevilla",
@@ -1382,7 +2821,27 @@
    "feeds": [
     "https://www.diariodesevilla.es/rss/"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q3026338",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "hq": "Sevilla",
+    "hq_qid": "Q8717",
+    "founded": 1999,
+    "source": "https://www.wikidata.org/wiki/Q3026338",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "las-provincias",
@@ -1398,7 +2857,44 @@
    "feeds": [
     "https://www.lasprovincias.es/rss/2.0/portada"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q2748855",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "owners": [
+     "Vocento"
+    ],
+    "owners_qids": [
+     "Q1337706"
+    ],
+    "hq": "Valencia",
+    "hq_qid": "Q8818",
+    "founded": 1866,
+    "source": "https://www.wikidata.org/wiki/Q2748855",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q1337706",
+      "label": "Vocento",
+      "kinds_qids": [
+       "Q1589009"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "heraldo",
@@ -1412,7 +2908,29 @@
    "founded": 1895,
    "group": "henneo",
    "feeds": [],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q3572134",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico",
+     "organización"
+    ],
+    "kinds_qids": [
+     "Q11032",
+     "Q43229"
+    ],
+    "hq": "Zaragoza",
+    "hq_qid": "Q10305",
+    "founded": 1895,
+    "source": "https://www.wikidata.org/wiki/Q3572134",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "diario-de-navarra",
@@ -1440,7 +2958,27 @@
      "revid": 175845750,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q8355313",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Pamplona",
+    "hq_qid": "Q10282",
+    "founded": 1903,
+    "source": "https://www.wikidata.org/wiki/Q8355313",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "la-nueva-espana",
@@ -1465,7 +3003,46 @@
      "revid": 176075352,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q2227240",
+    "languages": [
+     "español",
+     "asturiano"
+    ],
+    "languages_qids": [
+     "Q1321",
+     "Q29507"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "owners": [
+     "Prensa Ibérica"
+    ],
+    "owners_qids": [
+     "Q6426448"
+    ],
+    "hq": "Oviedo",
+    "hq_qid": "Q14317",
+    "founded": 1936,
+    "source": "https://www.wikidata.org/wiki/Q2227240",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q6426448",
+      "label": "Prensa Ibérica",
+      "kinds_qids": [
+       "Q1589009"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "faro-de-vigo",
@@ -1491,7 +3068,46 @@
      "revid": 173644033,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q3312323",
+    "languages": [
+     "español",
+     "gallego"
+    ],
+    "languages_qids": [
+     "Q1321",
+     "Q9307"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "owners": [
+     "Prensa Ibérica"
+    ],
+    "owners_qids": [
+     "Q6426448"
+    ],
+    "hq": "Redondela",
+    "hq_qid": "Q833032",
+    "founded": 1853,
+    "source": "https://www.wikidata.org/wiki/Q3312323",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q6426448",
+      "label": "Prensa Ibérica",
+      "kinds_qids": [
+       "Q1589009"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "diario-sur",
@@ -1517,7 +3133,27 @@
      "revid": 176137116,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q1209144",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Málaga",
+    "hq_qid": "Q8851",
+    "founded": 1937,
+    "source": "https://www.wikidata.org/wiki/Q1209144",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "el-diario-montanes",
@@ -1542,7 +3178,44 @@
      "revid": 170194603,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q478520",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "owners": [
+     "Vocento"
+    ],
+    "owners_qids": [
+     "Q1337706"
+    ],
+    "hq": "Santander",
+    "hq_qid": "Q12233",
+    "founded": 1902,
+    "source": "https://www.wikidata.org/wiki/Q478520",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q1337706",
+      "label": "Vocento",
+      "kinds_qids": [
+       "Q1589009"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "hoy",
@@ -1559,7 +3232,25 @@
    "feeds": [
     "https://www.hoy.es/rss/2.0/?section="
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q3141644",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "founded": 1933,
+    "source": "https://www.wikidata.org/wiki/Q3141644",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "diario-de-cadiz",
@@ -1588,7 +3279,45 @@
      "revid": 173907560,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q3254948",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "owners": [
+     "Grupo Joly"
+    ],
+    "owners_qids": [
+     "Q5612230"
+    ],
+    "hq": "Cádiz",
+    "hq_qid": "Q15682",
+    "founded": 1867,
+    "source": "https://www.wikidata.org/wiki/Q3254948",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q5612230",
+      "label": "Grupo Joly",
+      "kinds_qids": [
+       "Q1331793",
+       "Q2085381"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "que",
@@ -1605,7 +3334,44 @@
     "https://www.que.es/rss/"
    ],
    "evidence": [],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q3312268",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "owners": [
+     "Vocento"
+    ],
+    "owners_qids": [
+     "Q1337706"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2005,
+    "source": "https://www.wikidata.org/wiki/Q3312268",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q1337706",
+      "label": "Vocento",
+      "kinds_qids": [
+       "Q1589009"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "atlantico-diario",
@@ -1623,7 +3389,27 @@
     "https://www.atlantico.net/rss/"
    ],
    "evidence": [],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q3394943",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Vigo",
+    "hq_qid": "Q8745",
+    "founded": 1987,
+    "source": "https://www.wikidata.org/wiki/Q3394943",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "canarias7",
@@ -1641,7 +3427,27 @@
     "https://www.canarias7.es/rss/2.0/?section="
    ],
    "evidence": [],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q5031142",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Las Palmas de Gran Canaria",
+    "hq_qid": "Q11974",
+    "founded": 1982,
+    "source": "https://www.wikidata.org/wiki/Q5031142",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "actualidad-economica",
@@ -1657,7 +3463,49 @@
    "feeds": [
     "https://www.elmundo.es/rss/googlenews/economia.xml"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q5656999",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "revista",
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q41298",
+     "Q11032"
+    ],
+    "owners": [
+     "Unidad Editorial"
+    ],
+    "owners_qids": [
+     "Q2056424"
+    ],
+    "founded": 1958,
+    "source": "https://www.wikidata.org/wiki/Q5656999",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q2056424",
+      "label": "Unidad Editorial",
+      "kinds_qids": [
+       "Q1331793",
+       "Q2085381"
+      ],
+      "owned_by": [
+       "Cairo Communication"
+      ],
+      "owned_by_qids": [
+       "Q3649899"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "la-verdad",
@@ -1674,7 +3522,44 @@
    "feeds": [
     "https://www.laverdad.es/rss/2.0/?section="
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q11687789",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "owners": [
+     "Vocento"
+    ],
+    "owners_qids": [
+     "Q1337706"
+    ],
+    "hq": "Cartagena",
+    "hq_qid": "Q162615",
+    "founded": 1903,
+    "source": "https://www.wikidata.org/wiki/Q11687789",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q1337706",
+      "label": "Vocento",
+      "kinds_qids": [
+       "Q1589009"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "directa",
@@ -1705,7 +3590,44 @@
      "retrieved": "2026-11-19"
     }
    ],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q11949582",
+    "languages": [
+     "catalán"
+    ],
+    "languages_qids": [
+     "Q7026"
+    ],
+    "kinds": [
+     "publicación periódica"
+    ],
+    "kinds_qids": [
+     "Q1002697"
+    ],
+    "owners": [
+     "La Directa, SCCL"
+    ],
+    "owners_qids": [
+     "Q47007277"
+    ],
+    "hq": "Barcelona",
+    "hq_qid": "Q1492",
+    "founded": 2006,
+    "source": "https://www.wikidata.org/wiki/Q11949582",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q47007277",
+      "label": "La Directa, SCCL",
+      "kinds_qids": [
+       "Q4539"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "la-cerca",
@@ -1723,7 +3645,27 @@
     "https://www.lacerca.com/categorias/rss/23"
    ],
    "evidence": [],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q18644283",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Calle Ancha",
+    "hq_qid": "Q16707843",
+    "founded": 1998,
+    "source": "https://www.wikidata.org/wiki/Q18644283",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "el-norte-de-castilla",
@@ -1740,7 +3682,44 @@
    "feeds": [
     "https://www.elnortedecastilla.es/rss/2.0/?section="
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q326519",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "owners": [
+     "Vocento"
+    ],
+    "owners_qids": [
+     "Q1337706"
+    ],
+    "hq": "Valladolid",
+    "hq_qid": "Q8356",
+    "founded": 1854,
+    "source": "https://www.wikidata.org/wiki/Q326519",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q1337706",
+      "label": "Vocento",
+      "kinds_qids": [
+       "Q1589009"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "berria",
@@ -1771,7 +3750,29 @@
      "retrieved": "2026-11-19"
     }
    ],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q827097",
+    "languages": [
+     "euskera"
+    ],
+    "languages_qids": [
+     "Q8752"
+    ],
+    "kinds": [
+     "periódico",
+     "editorial"
+    ],
+    "kinds_qids": [
+     "Q11032",
+     "Q2085381"
+    ],
+    "hq": "Andoáin",
+    "hq_qid": "Q1598976",
+    "founded": 2003,
+    "source": "https://www.wikidata.org/wiki/Q827097",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "marca",
@@ -1787,7 +3788,51 @@
    "feeds": [
     "https://www.marca.com/rss/googlenews/portada.xml"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q917580",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico",
+     "sitio web"
+    ],
+    "kinds_qids": [
+     "Q11032",
+     "Q35127"
+    ],
+    "owners": [
+     "Unidad Editorial"
+    ],
+    "owners_qids": [
+     "Q2056424"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 1938,
+    "source": "https://www.wikidata.org/wiki/Q917580",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q2056424",
+      "label": "Unidad Editorial",
+      "kinds_qids": [
+       "Q1331793",
+       "Q2085381"
+      ],
+      "owned_by": [
+       "Cairo Communication"
+      ],
+      "owned_by_qids": [
+       "Q3649899"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "canal-sur-television",
@@ -1805,7 +3850,23 @@
     "https://www.canalsur.es/rss/"
    ],
    "evidence": [],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q2743194",
+    "kinds": [
+     "emisora de televisión",
+     "sitio web de noticias"
+    ],
+    "kinds_qids": [
+     "Q1616075",
+     "Q17232649"
+    ],
+    "hq": "Sevilla",
+    "hq_qid": "Q8717",
+    "founded": 1989,
+    "source": "https://www.wikidata.org/wiki/Q2743194",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "la-region",
@@ -1823,7 +3884,31 @@
     "https://www.laregion.es/rss/"
    ],
    "evidence": [],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q2841026",
+    "languages": [
+     "español",
+     "plurilingüe"
+    ],
+    "languages_qids": [
+     "Q1321",
+     "Q20923490"
+    ],
+    "kinds": [
+     "periódico",
+     "publicación periódica"
+    ],
+    "kinds_qids": [
+     "Q11032",
+     "Q1002697"
+    ],
+    "hq": "Orense",
+    "hq_qid": "Q99151",
+    "founded": 1910,
+    "source": "https://www.wikidata.org/wiki/Q2841026",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "tinta-roja",
@@ -1850,7 +3935,25 @@
      "retrieved": "2026-11-19"
     }
    ],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q21003704",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "revista"
+    ],
+    "kinds_qids": [
+     "Q41298"
+    ],
+    "founded": 1997,
+    "source": "https://www.wikidata.org/wiki/Q21003704",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "ara-balears",
@@ -1867,7 +3970,45 @@
     "https://www.arabalears.cat/rss/"
    ],
    "evidence": [],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q21927220",
+    "languages": [
+     "catalán"
+    ],
+    "languages_qids": [
+     "Q7026"
+    ],
+    "kinds": [
+     "periódico en línea",
+     "periódico semanal"
+    ],
+    "kinds_qids": [
+     "Q1153191",
+     "Q2305295"
+    ],
+    "owners": [
+     "Ara"
+    ],
+    "owners_qids": [
+     "Q558617"
+    ],
+    "hq": "Palma de Mallorca",
+    "hq_qid": "Q8826",
+    "source": "https://www.wikidata.org/wiki/Q21927220",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q558617",
+      "label": "Ara",
+      "kinds_qids": [
+       "Q1110794"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "dbalears",
@@ -1884,7 +4025,43 @@
     "https://www.dbalears.cat/feed.rss"
    ],
    "evidence": [],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q30250465",
+    "languages": [
+     "catalán"
+    ],
+    "languages_qids": [
+     "Q7026"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "owners": [
+     "Grupo Serra"
+    ],
+    "owners_qids": [
+     "Q5644522"
+    ],
+    "hq": "Palma de Mallorca",
+    "hq_qid": "Q8826",
+    "source": "https://www.wikidata.org/wiki/Q30250465",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q5644522",
+      "label": "Grupo Serra",
+      "kinds_qids": [
+       "Q197952"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "pontevedra-viva",
@@ -1902,7 +4079,31 @@
     "https://www.pontevedraviva.com/uploads/feeds/feed_pontevedraviva_gl.xml"
    ],
    "evidence": [],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q61388573",
+    "languages": [
+     "español",
+     "gallego"
+    ],
+    "languages_qids": [
+     "Q1321",
+     "Q9307"
+    ],
+    "kinds": [
+     "periódico en línea",
+     "publicación periódica"
+    ],
+    "kinds_qids": [
+     "Q1153191",
+     "Q1002697"
+    ],
+    "hq": "Pontevedra",
+    "hq_qid": "Q12411",
+    "founded": 2012,
+    "source": "https://www.wikidata.org/wiki/Q61388573",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "el-mira",
@@ -1929,7 +4130,27 @@
      "retrieved": "2026-11-19"
     }
    ],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q62009565",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q1153191"
+    ],
+    "hq": "Jerez de la Frontera",
+    "hq_qid": "Q12303",
+    "founded": 2015,
+    "source": "https://www.wikidata.org/wiki/Q62009565",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "navarra-confidencial",
@@ -1960,7 +4181,27 @@
      "retrieved": "2026-11-19"
     }
    ],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q83149556",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q1153191"
+    ],
+    "hq": "Pamplona",
+    "hq_qid": "Q10282",
+    "founded": 2005,
+    "source": "https://www.wikidata.org/wiki/Q83149556",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "briega",
@@ -1987,7 +4228,25 @@
      "retrieved": "2026-11-19"
     }
    ],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q112605033",
+    "kinds": [
+     "periódico en línea",
+     "sitio web de noticias",
+     "boletín informativo"
+    ],
+    "kinds_qids": [
+     "Q1153191",
+     "Q17232649",
+     "Q264238"
+    ],
+    "hq": "Ruente",
+    "hq_qid": "Q23993154",
+    "founded": 2004,
+    "source": "https://www.wikidata.org/wiki/Q112605033",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "diario-de-almeria",
@@ -2004,7 +4263,45 @@
    "feeds": [
     "https://www.diariodealmeria.es/rss/"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q5805361",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "owners": [
+     "Grupo Joly"
+    ],
+    "owners_qids": [
+     "Q5612230"
+    ],
+    "hq": "Almería",
+    "hq_qid": "Q10400",
+    "founded": 2007,
+    "source": "https://www.wikidata.org/wiki/Q5805361",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q5612230",
+      "label": "Grupo Joly",
+      "kinds_qids": [
+       "Q1331793",
+       "Q2085381"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "diario-de-arousa",
@@ -2021,7 +4318,27 @@
    "feeds": [
     "https://diariodearousa.elidealgallego.com/rss/"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q5805362",
+    "languages": [
+     "español",
+     "gallego"
+    ],
+    "languages_qids": [
+     "Q1321",
+     "Q9307"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "founded": 2001,
+    "source": "https://www.wikidata.org/wiki/Q5805362",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "diario-de-leon",
@@ -2038,7 +4355,44 @@
    "feeds": [
     "https://www.diariodeleon.es/rss/home.xml"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q5805383",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "owners": [
+     "Edigrup Media"
+    ],
+    "owners_qids": [
+     "Q139753220"
+    ],
+    "hq": "León",
+    "hq_qid": "Q15699",
+    "founded": 1906,
+    "source": "https://www.wikidata.org/wiki/Q5805383",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q139753220",
+      "label": "Edigrup Media",
+      "kinds_qids": [
+       "Q1916382"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "la-rioja",
@@ -2055,7 +4409,27 @@
    "feeds": [
     "https://www.larioja.com/rss/2.0/?section="
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q5965110",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Logroño",
+    "hq_qid": "Q14325",
+    "founded": 1889,
+    "source": "https://www.wikidata.org/wiki/Q5965110",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "atlas-news",
@@ -2071,7 +4445,44 @@
    "feeds": [
     "https://www.atlas-news.com/rss/"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q8191322",
+    "kinds": [
+     "agencia de noticias"
+    ],
+    "kinds_qids": [
+     "Q192283"
+    ],
+    "owners": [
+     "MFE - MediaForEurope"
+    ],
+    "owners_qids": [
+     "Q3777384"
+    ],
+    "hq": "Fuencarral",
+    "hq_qid": "Q1059853",
+    "founded": 1998,
+    "source": "https://www.wikidata.org/wiki/Q8191322",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q3777384",
+      "label": "MFE - MediaForEurope",
+      "kinds_qids": [
+       "Q4830453",
+       "Q6881511",
+       "Q43229"
+      ],
+      "owned_by": [
+       "Fininvest"
+      ],
+      "owned_by_qids": [
+       "Q1417245"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "cnt",
@@ -2099,7 +4510,47 @@
      "retrieved": "2026-11-19"
     }
    ],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q8254087",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "owners": [
+     "Confederación Nacional del Trabajo"
+    ],
+    "owners_qids": [
+     "Q550420"
+    ],
+    "hq": "Valladolid",
+    "hq_qid": "Q8356",
+    "founded": 1932,
+    "source": "https://www.wikidata.org/wiki/Q8254087",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q550420",
+      "label": "Confederación Nacional del Trabajo",
+      "kinds_qids": [
+       "Q178790",
+       "Q170156",
+       "Q2738074",
+       "Q4663903"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "diario-de-pontevedra",
@@ -2117,7 +4568,29 @@
     "https://www.diariodepontevedra.es/rss/"
    ],
    "evidence": [],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q8355302",
+    "languages": [
+     "español",
+     "gallego"
+    ],
+    "languages_qids": [
+     "Q1321",
+     "Q9307"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Pontevedra",
+    "hq_qid": "Q12411",
+    "founded": 1968,
+    "source": "https://www.wikidata.org/wiki/Q8355302",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "el-ideal-gallego",
@@ -2134,7 +4607,27 @@
    "feeds": [
     "https://www.elidealgallego.com/rss/"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q3310972",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "La Coruña",
+    "hq_qid": "Q8757",
+    "founded": 1917,
+    "source": "https://www.wikidata.org/wiki/Q3310972",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "diario-de-valladolid",
@@ -2151,7 +4644,44 @@
    "feeds": [
     "https://www.diariodevalladolid.es/rss/home.xml"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q139799042",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico",
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q11032",
+     "Q1110794"
+    ],
+    "owners": [
+     "Edigrup Media"
+    ],
+    "owners_qids": [
+     "Q139753220"
+    ],
+    "founded": 1991,
+    "source": "https://www.wikidata.org/wiki/Q139799042",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q139753220",
+      "label": "Edigrup Media",
+      "kinds_qids": [
+       "Q1916382"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "diario-de-castilla-y-leon",
@@ -2168,7 +4698,44 @@
    "feeds": [
     "https://www.diariodecastillayleon.es/rss/home.xml"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q139799526",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico",
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q11032",
+     "Q1110794"
+    ],
+    "owners": [
+     "Edigrup Media"
+    ],
+    "owners_qids": [
+     "Q139753220"
+    ],
+    "founded": 1993,
+    "source": "https://www.wikidata.org/wiki/Q139799526",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q139753220",
+      "label": "Edigrup Media",
+      "kinds_qids": [
+       "Q1916382"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "diario-de-jerez",
@@ -2185,7 +4752,47 @@
    "feeds": [
     "https://www.diariodejerez.es/rss/"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q5805380",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico",
+     "periódico local"
+    ],
+    "kinds_qids": [
+     "Q11032",
+     "Q1868552"
+    ],
+    "owners": [
+     "Grupo Joly"
+    ],
+    "owners_qids": [
+     "Q5612230"
+    ],
+    "hq": "Jerez de la Frontera",
+    "hq_qid": "Q12303",
+    "founded": 1984,
+    "source": "https://www.wikidata.org/wiki/Q5805380",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q5612230",
+      "label": "Grupo Joly",
+      "kinds_qids": [
+       "Q1331793",
+       "Q2085381"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "el-correo-de-burgos",
@@ -2202,7 +4809,44 @@
    "feeds": [
     "https://www.elcorreodeburgos.com/rss/home.xml"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q139766902",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico",
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q11032",
+     "Q1110794"
+    ],
+    "owners": [
+     "Edigrup Media"
+    ],
+    "owners_qids": [
+     "Q139753220"
+    ],
+    "founded": 1999,
+    "source": "https://www.wikidata.org/wiki/Q139766902",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q139753220",
+      "label": "Edigrup Media",
+      "kinds_qids": [
+       "Q1916382"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "heraldo-diario-de-soria",
@@ -2219,7 +4863,54 @@
    "feeds": [
     "https://www.heraldodiariodesoria.es/rss/home.xml"
    ],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q140044935",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "owners": [
+     "Edigrup Media",
+     "Heraldo de Aragón"
+    ],
+    "owners_qids": [
+     "Q139753220",
+     "Q3572134"
+    ],
+    "founded": 1913,
+    "source": "https://www.wikidata.org/wiki/Q140044935",
+    "retrieved": "2026-11-19",
+    "owner_parents": [
+     {
+      "qid": "Q139753220",
+      "label": "Edigrup Media",
+      "kinds_qids": [
+       "Q1916382"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     },
+     {
+      "qid": "Q3572134",
+      "label": "Heraldo de Aragón",
+      "kinds_qids": [
+       "Q11032",
+       "Q43229"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
   },
   {
    "id": "gedar",
@@ -2248,7 +4939,21 @@
      "retrieved": "2026-11-19"
     }
    ],
-   "group": null
+   "group": null,
+   "facts": {
+    "qid": "Q113231422",
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "hq": "Azpeitia",
+    "hq_qid": "Q180611",
+    "founded": 2019,
+    "source": "https://www.wikidata.org/wiki/Q113231422",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "maldita",
@@ -2276,7 +4981,23 @@
      "revid": 176313938,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q89206681",
+    "kinds": [
+     "medio de comunicación de masas",
+     "organización de verificación de datos",
+     "sitio web"
+    ],
+    "kinds_qids": [
+     "Q11033",
+     "Q95155801",
+     "Q35127"
+    ],
+    "founded": 2018,
+    "source": "https://www.wikidata.org/wiki/Q89206681",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "newtral",
@@ -2322,7 +5043,23 @@
      "revid": 176156715,
      "retrieved": "2026-11-19"
     }
-   ]
+   ],
+   "facts": {
+    "qid": "Q107551735",
+    "kinds": [
+     "medio de comunicación de masas",
+     "organización de verificación de datos",
+     "sitio web"
+    ],
+    "kinds_qids": [
+     "Q11033",
+     "Q95155801",
+     "Q35127"
+    ],
+    "founded": 2018,
+    "source": "https://www.wikidata.org/wiki/Q107551735",
+    "retrieved": "2026-11-19"
+   }
   },
   {
    "id": "efe-verifica",
@@ -2365,7 +5102,25 @@
    "group": null,
    "factchecker": true,
    "feeds": [],
-   "evidence": []
+   "evidence": [],
+   "facts": {
+    "qid": "Q63434811",
+    "kinds": [
+     "Organización sin fines de lucro",
+     "organización de verificación de datos",
+     "sitio web"
+    ],
+    "kinds_qids": [
+     "Q163740",
+     "Q95155801",
+     "Q35127"
+    ],
+    "hq": "Barcelona",
+    "hq_qid": "Q1492",
+    "founded": 2019,
+    "source": "https://www.wikidata.org/wiki/Q63434811",
+    "retrieved": "2026-11-19"
+   }
   }
  ]
 }

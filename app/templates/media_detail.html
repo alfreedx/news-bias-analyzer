@@ -16,6 +16,14 @@
 
 <div class="profile">
   <section class="profile__main">
+    <h2 class="section-title">Ficha</h2>
+    <dl class="ficha">
+      {% for r in m.ficha %}
+      <dt>{{ r.label }}</dt>
+      <dd>{{ r.value }}{% if r.source %}<span class="ficha__src"><a href="{{ r.source }}"{% if r.source.startswith('http') %} rel="noopener noreferrer"{% endif %}>{{ r.source_name }}{% if r.retrieved %} · {{ r.retrieved }}{% endif %}</a></span>{% endif %}</dd>
+      {% endfor %}
+    </dl>
+
     <h2 class="section-title">Orientación ideológica</h2>
     {% if a.rated %}
       <p class="verdict">{{ chip(m) }} <span class="verdict__score">puntuación media {{ "%+.2f"|format(a.score) }}</span> <span class="muted">· {{ a.agreement }}</span></p>
@@ -76,7 +84,7 @@
     {% if latest %}
     <ul class="latest">
       {% for r in latest %}
-      <li><a href="{{ r.url }}" rel="noopener noreferrer" target="_blank">{{ r.title }}</a> <span class="small muted">{{ time_ago(r.published) }}</span></li>
+      <li><a href="{{ r.url }}" rel="noopener noreferrer" target="_blank">{{ r.title }}</a> <span class="small muted">{% if r.author %}Por <a class="byline__author" href="/buscar?autor={{ r.author|urlencode }}">{{ r.author }}</a> · {% endif %}{{ time_ago(r.published) }}</span></li>
       {% endfor %}
     </ul>
     {% else %}

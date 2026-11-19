@@ -9,6 +9,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from .config import settings
+from .facts import Derived, FichaRow, derive, ficha
 from .scoring import Assessment, assess
 
 
@@ -37,8 +38,14 @@ class Media:
     publisher: str | None = None
     factchecker: bool = False
     owner_source: str | None = None
+    facts: dict = field(default_factory=dict)  # Wikidata facts (scripts/enrich_media.py); empty when unknown
     group: Group | None = None
     assessment: Assessment = field(default_factory=Assessment)
+    derived: Derived = field(default_factory=Derived)
+
+    @property
+    def ficha(self) -> list[FichaRow]:
+        return ficha(self)
 
     def to_public(self) -> dict:
         a = self.assessment
@@ -58,6 +65,10 @@ class Media:
             "territorial": a.territorial,
             "factual": {"level": a.factual_level, "label": a.factual_label},
             "ifcn": a.ifcn,
+            "founded": self.founded,
+            "languages": self.derived.languages,
+            "ownership": self.derived.ownership,
+            "wikidata": self.facts.get("source"),
         }
 
 
@@ -87,6 +98,7 @@ class Catalog:
                 publisher=raw.get("publisher"),
                 factchecker=raw.get("factchecker", False),
                 owner_source=raw.get("owner_source"),
+                facts=raw.get("facts", {}),
             )
             if item.id in self.media:
                 raise ValueError(f"Duplicate media id: {item.id}")
@@ -94,6 +106,7 @@ class Catalog:
                 item.group = self.groups[item.group_id]  # KeyError = broken catalog, fail fast
                 item.group.media.append(item)
             item.assessment = assess(item.evidence)
+            item.derived = derive(item)
             self.media[item.id] = item
             for domain in item.domains:
                 self._domain_index[domain] = item

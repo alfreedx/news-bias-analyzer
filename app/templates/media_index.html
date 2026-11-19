@@ -32,15 +32,33 @@
   <h2 id="table-title" class="section-title">Todas las cabeceras</h2>
   <div class="filters filters--table" data-table-filters hidden>
     <label class="select"><span>Etiqueta citada</span>
-      <select data-label-filter>
+      <select data-filter="labels">
         <option value="">Todas</option>
         {% for l in all_labels %}<option value="{{ l|lower }}">{{ l }}</option>{% endfor %}
       </select>
     </label>
     <label class="select"><span>Ámbito</span>
-      <select data-scope-filter>
+      <select data-filter="scope">
         <option value="">Todos</option>
         {% for r in regions %}<option value="{{ r }}">{{ r }}</option>{% endfor %}
+      </select>
+    </label>
+    <label class="select"><span>Lengua</span>
+      <select data-filter="langs">
+        <option value="">Todas</option>
+        {% for l in languages %}<option value="{{ l }}">{{ l }}</option>{% endfor %}
+      </select>
+    </label>
+    <label class="select"><span>Titularidad</span>
+      <select data-filter="owner">
+        <option value="">Todas</option>
+        {% for k, l in ownership.items() %}<option value="{{ k }}">{{ l }}</option>{% endfor %}
+      </select>
+    </label>
+    <label class="select"><span>Eje territorial</span>
+      <select data-filter="terr">
+        <option value="">Todos</option>
+        {% for l in territorial %}<option value="{{ l }}">{{ l }}</option>{% endfor %}
       </select>
     </label>
     <p class="filters__count" data-table-count aria-live="polite"></p>
@@ -53,8 +71,8 @@
       </thead>
       <tbody>
         {% for m in media %}
-        <tr data-row data-labels="{{ m.assessment.tags|map(attribute='label')|map('lower')|join('|') }}" data-scope="{{ m.region or 'Nacional' }}">
-          <th scope="row"><a href="/medios/{{ m.id }}">{{ m.name }}</a>{% if m.region %}<span class="table__sub">{{ m.region }}</span>{% endif %}</th>
+        <tr data-row data-labels="{{ m.assessment.tags|map(attribute='label')|map('lower')|join('|') }}" data-scope="{{ m.region or 'Nacional' }}" data-langs="{{ m.derived.languages|join('|') }}" data-owner="{{ m.derived.ownership }}" data-terr="{{ m.assessment.territorial|join('|') }}">
+          <th scope="row"><a href="/medios/{{ m.id }}">{{ m.name }}</a>{% if m.region %}<span class="table__sub">{{ m.region }}</span>{% endif %}<span class="table__sub">{{ m.derived.ownership_label }}{% if m.derived.languages and m.derived.languages != ['español'] %} · {{ m.derived.languages|join(', ') }}{% endif %}</span></th>
           <td>{{ m.type }}</td>
           <td>{% if m.group %}<a href="/grupos/{{ m.group.id }}">{{ m.group.name }}</a>{% elif m.publisher %}{{ m.publisher }}{% else %}<span class="muted">—</span>{% endif %}</td>
           <td>{{ chip(m) }}{{ tags(m, limit=4) }}</td>

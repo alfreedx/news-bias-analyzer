@@ -3,6 +3,8 @@
 * Wikipedia and Wikidata pages are checked in batches through their official APIs.
 * Media Bias/Fact Check pages must still publish the same "Bias Rating" and
   "Factual Reporting" (read from the page's JSON-LD) that we store.
+* The Wikidata facts stored under "facts" (language, kind, owners, headquarters) are re-read and
+  compared with what Wikidata says today (drift report; run scripts/enrich_media.py to refresh).
 * Every RSS feed must return a parsable feed with items (use --no-feeds to skip).
 
 Usage:  python scripts/verify_sources.py [--no-feeds]
@@ -27,6 +29,9 @@ sys.path.insert(0, str(ROOT))
 
 from app.config import settings  # noqa: E402
 from app.feeds import parse_feed  # noqa: E402
+
+sys.path.insert(0, str(ROOT / "scripts"))
+import enrich_media  # noqa: E402
 
 # Wikimedia asks automated clients for a descriptive User-Agent. Set VERIFY_CONTACT
 # (a URL or e-mail) to include contact details, as their policy recommends.
@@ -142,6 +147,37 @@ def check_wikidata(client: httpx.Client, urls: set[str]) -> set[str]:
     return missing
 
 
+FACT_KEYS = ("languages", "kinds", "owners", "hq")
+
+
+def _norm_fact(value):
+    return sorted(value) if isinstance(value, list) else (value or None)
+
+
+def check_facts(media: list[dict]) -> list[str]:
+    """Compare the stored Wikidata facts of each outlet with the current Wikidata claims."""
+    stored = {m["id"]: m["facts"] for m in media if m.get("facts")}
+    qids = sorted({f["qid"] for f in stored.values()})
+    if not qids:
+        return []
+    entities, current = enrich_media.fetch_current(qids)
+    problems = []
+    for mid, facts in stored.items():
+        now = current.get(facts["qid"])
+        if now is None:
+            if facts["qid"] in entities:  # answered as "missing"
+                problems.append(f"{mid}: Wikidata item {facts['qid']} no longer exists")
+            else:  # no answer (throttled / network)
+                UNVERIFIED.add(f"facts of {mid}")
+            continue
+        for key in FACT_KEYS:
+            before, after = _norm_fact(facts.get(key)), _norm_fact(now.get(key))
+            if before != after:
+                problems.append(f"{mid}: Wikidata {key} changed: we show {facts.get(key)!r}, "
+                                f"Wikidata now says {now.get(key)!r} (run scripts/enrich_media.py)")
+    return problems
+
+
 def main() -> int:
     check_feeds = "--no-feeds" not in sys.argv
     media = json.loads((ROOT / "data" / "media.json").read_text(encoding="utf-8"))["media"]
@@ -169,6 +205,8 @@ def main() -> int:
                   if ev["source"] == "wikipedia" and ev["kind"] == "ideology" and not ev.get("quote")}
         problems += check_drift(client, pinned)
         print(f"Infobox drift: {len(pinned)} pinned labels compared", flush=True)
+        problems += check_facts(media)
+        print(f"Wikidata facts: {sum(1 for m in media if m.get('facts'))} outlets compared", flush=True)
 
         pages: dict[str, str | None] = {}
         for url in sorted(others):
