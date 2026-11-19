@@ -83,6 +83,47 @@ def check_wikipedia(client: httpx.Client, urls: set[str]) -> set[str]:
     return missing
 
 
+def _infobox_ideology(wikitext: str) -> list[str]:
+    m = re.search(r"\|\s*ideolog[ií]a\s*=\s*([^\n]*)", wikitext, re.I)
+    if not m:
+        return []
+    v = re.sub(r"<ref[^>]*/>|<ref.*?</ref>", "", m.group(1), flags=re.S)
+    v = re.sub(r"\[\[(?:[^|\]]*\|)?([^\]]*)\]\]", r"\1", v)
+    v = re.sub(r"\{\{[^}]*\}\}|<[^>]+>|['{}\[\]]", ", ", v)
+    return [x.strip(" ,.").lower() for x in re.split(r",|;| y |/", v) if x.strip(" ,.")]
+
+
+def check_drift(client: httpx.Client, pinned: dict[str, tuple[str, list[str]]]) -> list[str]:
+    """Compare pinned infobox labels with the current article. Returns problems."""
+    problems: list[str] = []
+    titles = {unquote(urlsplit(u).path[len("/wiki/"):]).replace("_", " "): u for u in pinned}
+    names = list(titles)
+    for i in range(0, len(names), 50):
+        chunk = names[i:i + 50]
+        r = request(client, "https://es.wikipedia.org/w/api.php", params={
+            "action": "query", "format": "json", "redirects": 1, "prop": "revisions",
+            "rvprop": "content|ids", "rvslots": "main", "titles": "|".join(chunk)})
+        if r is None or r.status_code != 200:
+            UNVERIFIED.update(titles[t] for t in chunk)
+            continue
+        data = r.json()["query"]
+        alias = {n["from"]: n["to"] for n in data.get("normalized", []) + data.get("redirects", [])}
+        pages = {p["title"]: p for p in data.get("pages", {}).values() if "revisions" in p}
+        for t in chunk:
+            page = pages.get(alias.get(alias.get(t, t), alias.get(t, t)))
+            if not page:
+                continue
+            rev = page["revisions"][0]
+            who, labels = pinned[titles[t]]
+            current = set(_infobox_ideology(rev["slots"]["main"]["*"]))
+            missing = [lbl for lbl in labels if lbl.lower() not in current]
+            if missing:
+                problems.append(f"{who}: Wikipedia infobox changed (now rev {rev['revid']}); "
+                                f"no longer lists {missing}. Review and update or remove the tag.")
+        time.sleep(1)
+    return problems
+
+
 def check_wikidata(client: httpx.Client, urls: set[str]) -> set[str]:
     ids = {urlsplit(u).path.rsplit("/", 1)[-1]: u for u in urls}
     missing: set[str] = set()
@@ -124,6 +165,10 @@ def main() -> int:
         for url in sorted(check_wikipedia(client, wiki) | check_wikidata(client, wikidata)):
             problems.append(f"{', '.join(citations[url])}: page not found {url}")
         print(f"Wikipedia: {len(wiki)} pages · Wikidata: {len(wikidata)} items checked", flush=True)
+        pinned = {ev["url"]: (m["id"], ev["labels"]) for m in media for ev in m["evidence"]
+                  if ev["source"] == "wikipedia" and ev["kind"] == "ideology" and not ev.get("quote")}
+        problems += check_drift(client, pinned)
+        print(f"Infobox drift: {len(pinned)} pinned labels compared", flush=True)
 
         pages: dict[str, str | None] = {}
         for url in sorted(others):

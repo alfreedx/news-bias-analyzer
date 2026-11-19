@@ -11,8 +11,14 @@
       "kind": "Grupo de comunicación cotizado en bolsa",
       "owners": "Sociedad anónima cotizada; el accionariado es público y cambia con el tiempo (consúltalo en la CNMV).",
       "sources": [
-        {"title": "Wikipedia: Grupo Prisa", "url": "https://es.wikipedia.org/wiki/Prisa"},
-        {"title": "Wikidata: El País (propiedad: Grupo Prisa)", "url": "https://www.wikidata.org/wiki/Q50009"}
+        {
+          "title": "Wikipedia: Grupo Prisa",
+          "url": "https://es.wikipedia.org/wiki/Prisa"
+        },
+        {
+          "title": "Wikidata: El País (propiedad: Grupo Prisa)",
+          "url": "https://www.wikidata.org/wiki/Q50009"
+        }
       ]
     },
     {
@@ -21,8 +27,22 @@
       "kind": "Grupo editorial",
       "owners": "Filial española de RCS MediaGroup (Italia).",
       "sources": [
-        {"title": "Wikipedia: Unidad Editorial", "url": "https://es.wikipedia.org/wiki/Unidad_Editorial"},
-        {"title": "Wikipedia: El Mundo (ficha: propietario RCS Mediagroup)", "url": "https://es.wikipedia.org/wiki/El_Mundo_(España)"}
+        {
+          "title": "Wikipedia: Unidad Editorial",
+          "url": "https://es.wikipedia.org/wiki/Unidad_Editorial"
+        },
+        {
+          "title": "Wikipedia: El Mundo (ficha: propietario RCS Mediagroup)",
+          "url": "https://es.wikipedia.org/wiki/El_Mundo_(España)"
+        },
+        {
+          "title": "Wikidata: Actualidad Económica (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q5656999"
+        },
+        {
+          "title": "Wikidata: Marca (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q917580"
+        }
       ]
     },
     {
@@ -31,7 +51,26 @@
       "kind": "Grupo de comunicación cotizado en bolsa",
       "owners": "Sociedad anónima cotizada con presencia de familias históricas de la prensa vasca y madrileña en su accionariado.",
       "sources": [
-        {"title": "Wikipedia: Vocento", "url": "https://es.wikipedia.org/wiki/Vocento"}
+        {
+          "title": "Wikipedia: Vocento",
+          "url": "https://es.wikipedia.org/wiki/Vocento"
+        },
+        {
+          "title": "Wikidata: Hoy (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q3141644"
+        },
+        {
+          "title": "Wikidata: La Verdad (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q11687789"
+        },
+        {
+          "title": "Wikidata: El Norte de Castilla (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q326519"
+        },
+        {
+          "title": "Wikidata: La Rioja (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q5965110"
+        }
       ]
     },
     {
@@ -40,9 +79,18 @@
       "kind": "Grupo multimedia",
       "owners": "Grupo Planeta es el accionista de referencia de Atresmedia (junto a De Agostini) y editor de La Razón.",
       "sources": [
-        {"title": "Wikidata: Atresmedia (propiedad: Grupo Planeta; De Agostini)", "url": "https://www.wikidata.org/wiki/Q3118227"},
-        {"title": "Wikidata: La Razón (propiedad: Grupo Planeta)", "url": "https://www.wikidata.org/wiki/Q191433"},
-        {"title": "Wikipedia: Grupo Planeta", "url": "https://es.wikipedia.org/wiki/Grupo_Planeta"}
+        {
+          "title": "Wikidata: Atresmedia (propiedad: Grupo Planeta; De Agostini)",
+          "url": "https://www.wikidata.org/wiki/Q3118227"
+        },
+        {
+          "title": "Wikidata: La Razón (propiedad: Grupo Planeta)",
+          "url": "https://www.wikidata.org/wiki/Q191433"
+        },
+        {
+          "title": "Wikipedia: Grupo Planeta",
+          "url": "https://es.wikipedia.org/wiki/Grupo_Planeta"
+        }
       ]
     },
     {
@@ -51,8 +99,18 @@
       "kind": "Grupo audiovisual",
       "owners": "Controlado por MFE-MediaForEurope, cuyo accionista principal es Fininvest.",
       "sources": [
-        {"title": "Wikipedia: Telecinco (propietario MFE-MediaForEurope)", "url": "https://es.wikipedia.org/wiki/Telecinco"},
-        {"title": "Wikidata: Mediaset España (propiedad: Fininvest)", "url": "https://www.wikidata.org/wiki/Q2638120"}
+        {
+          "title": "Wikipedia: Telecinco (propietario MFE-MediaForEurope)",
+          "url": "https://es.wikipedia.org/wiki/Telecinco"
+        },
+        {
+          "title": "Wikidata: Mediaset España (propiedad: Fininvest)",
+          "url": "https://www.wikidata.org/wiki/Q2638120"
+        },
+        {
+          "title": "Wikidata: Atlas News (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q8191322"
+        }
       ]
     },
     {
@@ -61,8 +119,14 @@
       "kind": "Grupo de comunicación familiar",
       "owners": "Familia Godó.",
       "sources": [
-        {"title": "Wikipedia: Grupo Godó", "url": "https://es.wikipedia.org/wiki/Grupo_Godó"},
-        {"title": "Wikipedia: La Vanguardia", "url": "https://es.wikipedia.org/wiki/La_Vanguardia"}
+        {
+          "title": "Wikipedia: Grupo Godó",
+          "url": "https://es.wikipedia.org/wiki/Grupo_Godó"
+        },
+        {
+          "title": "Wikipedia: La Vanguardia",
+          "url": "https://es.wikipedia.org/wiki/La_Vanguardia"
+        }
       ]
     },
     {
@@ -71,8 +135,14 @@
       "kind": "Grupo de prensa regional",
       "owners": "Grupo de propiedad familiar (familia Moll).",
       "sources": [
-        {"title": "Wikipedia: Prensa Ibérica", "url": "https://es.wikipedia.org/wiki/Prensa_Ibérica"},
-        {"title": "Wikipedia: El Periódico (propietario Prensa Ibérica)", "url": "https://es.wikipedia.org/wiki/El_Periódico_de_Catalunya"}
+        {
+          "title": "Wikipedia: Prensa Ibérica",
+          "url": "https://es.wikipedia.org/wiki/Prensa_Ibérica"
+        },
+        {
+          "title": "Wikipedia: El Periódico (propietario Prensa Ibérica)",
+          "url": "https://es.wikipedia.org/wiki/El_Periódico_de_Catalunya"
+        }
       ]
     },
     {
@@ -81,8 +151,14 @@
       "kind": "Grupo de comunicación familiar",
       "owners": "Heraldo de Aragón, S.A. (familia Yarza).",
       "sources": [
-        {"title": "Wikipedia: 20 Minutos («desde julio de 2015 es propiedad de Grupo Henneo»)", "url": "https://es.wikipedia.org/wiki/20_Minutos"},
-        {"title": "Wikipedia: Heraldo de Aragón (familia Yarza)", "url": "https://es.wikipedia.org/wiki/Heraldo_de_Aragón"}
+        {
+          "title": "Wikipedia: 20 Minutos («desde julio de 2015 es propiedad de Grupo Henneo»)",
+          "url": "https://es.wikipedia.org/wiki/20_Minutos"
+        },
+        {
+          "title": "Wikipedia: Heraldo de Aragón (familia Yarza)",
+          "url": "https://es.wikipedia.org/wiki/Heraldo_de_Aragón"
+        }
       ]
     },
     {
@@ -91,7 +167,22 @@
       "kind": "Grupo de prensa regional (Andalucía)",
       "owners": "Grupo de propiedad familiar (familia Joly).",
       "sources": [
-        {"title": "Wikipedia: Grupo Joly", "url": "https://es.wikipedia.org/wiki/Grupo_Joly"}
+        {
+          "title": "Wikipedia: Grupo Joly",
+          "url": "https://es.wikipedia.org/wiki/Grupo_Joly"
+        },
+        {
+          "title": "Wikidata: Diario de Cádiz (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q3254948"
+        },
+        {
+          "title": "Wikidata: Diario de Almería (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q5805361"
+        },
+        {
+          "title": "Wikidata: Diario de Jerez (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q5805380"
+        }
       ]
     },
     {
@@ -100,7 +191,10 @@
       "kind": "Grupo de comunicación regional",
       "owners": "Fundación Santiago Rey Fernández-Latorre (según la ficha de Wikipedia).",
       "sources": [
-        {"title": "Wikipedia: La Voz de Galicia", "url": "https://es.wikipedia.org/wiki/La_Voz_de_Galicia"}
+        {
+          "title": "Wikipedia: La Voz de Galicia",
+          "url": "https://es.wikipedia.org/wiki/La_Voz_de_Galicia"
+        }
       ]
     },
     {
@@ -109,7 +203,10 @@
       "kind": "Institución religiosa",
       "owners": "Propiedad de la Conferencia Episcopal Española (Iglesia católica).",
       "sources": [
-        {"title": "Wikipedia: COPE (propietario Conferencia Episcopal Española)", "url": "https://es.wikipedia.org/wiki/COPE"}
+        {
+          "title": "Wikipedia: COPE (propietario Conferencia Episcopal Española)",
+          "url": "https://es.wikipedia.org/wiki/COPE"
+        }
       ]
     },
     {
@@ -118,7 +215,10 @@
       "kind": "Medio público estatal",
       "owners": "Corporación pública estatal (participada por la SEPI). Su consejo de administración lo eligen las Cortes Generales.",
       "sources": [
-        {"title": "Wikipedia: Radiotelevisión Española", "url": "https://es.wikipedia.org/wiki/Radiotelevisión_Española"}
+        {
+          "title": "Wikipedia: Radiotelevisión Española",
+          "url": "https://es.wikipedia.org/wiki/Radiotelevisión_Española"
+        }
       ]
     },
     {
@@ -127,8 +227,14 @@
       "kind": "Agencia pública estatal",
       "owners": "Sociedad mercantil estatal (Gobierno de España, a través de la SEPI).",
       "sources": [
-        {"title": "Wikipedia: Agencia EFE", "url": "https://es.wikipedia.org/wiki/Agencia_EFE"},
-        {"title": "Wikidata: Agencia EFE (propiedad: Gobierno de España)", "url": "https://www.wikidata.org/wiki/Q1274521"}
+        {
+          "title": "Wikipedia: Agencia EFE",
+          "url": "https://es.wikipedia.org/wiki/Agencia_EFE"
+        },
+        {
+          "title": "Wikidata: Agencia EFE (propiedad: Gobierno de España)",
+          "url": "https://www.wikidata.org/wiki/Q1274521"
+        }
       ]
     },
     {
@@ -137,7 +243,10 @@
       "kind": "Editora independiente",
       "owners": "Libertad Digital, S.A.; la ficha de Wikipedia señala a Federico Jiménez Losantos como propietario.",
       "sources": [
-        {"title": "Wikipedia: Libertad Digital", "url": "https://es.wikipedia.org/wiki/Libertad_Digital"}
+        {
+          "title": "Wikipedia: Libertad Digital",
+          "url": "https://es.wikipedia.org/wiki/Libertad_Digital"
+        }
       ]
     },
     {
@@ -146,7 +255,10 @@
       "kind": "Editora vinculada a la Asociación Católica de Propagandistas",
       "owners": "Ediciones Católicos y Vida Pública.",
       "sources": [
-        {"title": "Wikipedia: El Debate (periódico digital)", "url": "https://es.wikipedia.org/wiki/El_Debate_(periódico_digital)"}
+        {
+          "title": "Wikipedia: El Debate (periódico digital)",
+          "url": "https://es.wikipedia.org/wiki/El_Debate_(periódico_digital)"
+        }
       ]
     },
     {
@@ -155,7 +267,10 @@
       "kind": "Editora independiente",
       "owners": "Fundada por Pedro J. Ramírez, que figura como propietario en Wikidata.",
       "sources": [
-        {"title": "Wikidata: El Español (propiedad: Pedro J. Ramírez)", "url": "https://www.wikidata.org/wiki/Q20652713"}
+        {
+          "title": "Wikidata: El Español (propiedad: Pedro J. Ramírez)",
+          "url": "https://www.wikidata.org/wiki/Q20652713"
+        }
       ]
     },
     {
@@ -164,7 +279,10 @@
       "kind": "Editora independiente",
       "owners": "Más del 70 % del capital en manos de personas que trabajan en la redacción (según Wikipedia).",
       "sources": [
-        {"title": "Wikipedia: elDiario.es", "url": "https://es.wikipedia.org/wiki/ElDiario.es"}
+        {
+          "title": "Wikipedia: elDiario.es",
+          "url": "https://es.wikipedia.org/wiki/ElDiario.es"
+        }
       ]
     },
     {
@@ -173,7 +291,54 @@
       "kind": "Partido político",
       "owners": "Órgano de expresión del Partido Comunista de España.",
       "sources": [
-        {"title": "Wikipedia: Mundo Obrero", "url": "https://es.wikipedia.org/wiki/Mundo_Obrero"}
+        {
+          "title": "Wikipedia: Mundo Obrero",
+          "url": "https://es.wikipedia.org/wiki/Mundo_Obrero"
+        }
+      ]
+    },
+    {
+      "id": "edigrup",
+      "name": "Edigrup Media",
+      "kind": "Grupo de prensa regional (Castilla y León)",
+      "owners": "Edigrup Media, editora de varias cabeceras de Castilla y León (según Wikidata).",
+      "sources": [
+        {
+          "title": "Wikidata: Diario de León (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q5805383"
+        },
+        {
+          "title": "Wikidata: Diario de Valladolid (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q139799042"
+        },
+        {
+          "title": "Wikidata: Diario de Castilla y León (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q139799526"
+        },
+        {
+          "title": "Wikidata: El Correo de Burgos (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q139766902"
+        },
+        {
+          "title": "Wikidata: Heraldo-Diario de Soria (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q140044935"
+        }
+      ]
+    },
+    {
+      "id": "la-capital",
+      "name": "Editorial La Capital",
+      "kind": "Grupo de prensa regional (Galicia)",
+      "owners": "Editorial La Capital (según Wikidata).",
+      "sources": [
+        {
+          "title": "Wikidata: Diario de Arousa (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q5805362"
+        },
+        {
+          "title": "Wikidata: El Ideal Gallego (propiedad)",
+          "url": "https://www.wikidata.org/wiki/Q3310972"
+        }
       ]
     }
   ]

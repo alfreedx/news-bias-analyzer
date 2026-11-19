@@ -1,441 +1,2371 @@
 {
-  "_meta": {
-    "description": "Catálogo de medios. Las posiciones NO se escriben a mano: se calculan a partir de las etiquetas publicadas por fuentes externas (campo evidence) con la tabla de app/scoring.py.",
-    "license": "CC BY-SA 4.0",
-    "retrieved": "2026-11-18"
-  },
-  "media": [
+ "_meta": {
+  "description": "Catálogo de medios. Las posiciones NO se escriben a mano: se calculan a partir de las etiquetas publicadas por fuentes externas (campo evidence) con la tabla de app/scoring.py.",
+  "license": "CC BY-SA 4.0",
+  "retrieved": "2026-11-19"
+ },
+ "media": [
+  {
+   "id": "el-pais",
+   "name": "El País",
+   "domains": [
+    "elpais.com"
+   ],
+   "type": "Diario",
+   "scope": "Nacional",
+   "founded": 1976,
+   "group": "prisa",
+   "feeds": [
+    "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/portada"
+   ],
+   "evidence": [
     {
-      "id": "el-pais", "name": "El País", "domains": ["elpais.com"], "type": "Diario", "scope": "Nacional", "founded": 1976, "group": "prisa",
-      "feeds": ["https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/portada"],
-      "evidence": [
-        {"source": "mbfc", "kind": "ideology", "labels": ["Left-Center"], "url": "https://mediabiasfactcheck.com/el-pais/"},
-        {"source": "mbfc", "kind": "factual", "labels": ["High"], "url": "https://mediabiasfactcheck.com/el-pais/"},
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Socialdemocracia"], "quote": "El País ha mostrado una línea editorial cercana al PSOE, con tendencias socialdemócratas.", "url": "https://es.wikipedia.org/wiki/El_País"}
-      ]
+     "source": "mbfc",
+     "kind": "ideology",
+     "labels": [
+      "Left-Center"
+     ],
+     "url": "https://mediabiasfactcheck.com/el-pais/",
+     "retrieved": "2026-11-18"
     },
     {
-      "id": "el-mundo", "name": "El Mundo", "domains": ["elmundo.es"], "type": "Diario", "scope": "Nacional", "founded": 1989, "group": "unidad-editorial",
-      "feeds": ["https://e00-elmundo.uecdn.es/elmundo/rss/portada.xml"],
-      "evidence": [
-        {"source": "mbfc", "kind": "ideology", "labels": ["Right-Center"], "url": "https://mediabiasfactcheck.com/el-mundo/"},
-        {"source": "mbfc", "kind": "factual", "labels": ["Mostly Factual"], "url": "https://mediabiasfactcheck.com/el-mundo/"},
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Centroderecha"], "url": "https://es.wikipedia.org/wiki/El_Mundo_(España)"},
-        {"source": "wikidata", "kind": "ideology", "labels": ["Conservadurismo"], "url": "https://www.wikidata.org/wiki/Q921217"}
-      ]
+     "source": "mbfc",
+     "kind": "factual",
+     "labels": [
+      "High"
+     ],
+     "url": "https://mediabiasfactcheck.com/el-pais/",
+     "retrieved": "2026-11-18"
     },
     {
-      "id": "abc", "name": "ABC", "domains": ["abc.es"], "type": "Diario", "scope": "Nacional", "founded": 1903, "group": "vocento",
-      "feeds": ["https://www.abc.es/rss/2.0/portada/"],
-      "evidence": [
-        {"source": "mbfc", "kind": "ideology", "labels": ["Right-Center"], "url": "https://mediabiasfactcheck.com/abc-spain/"},
-        {"source": "mbfc", "kind": "factual", "labels": ["High"], "url": "https://mediabiasfactcheck.com/abc-spain/"},
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Conservadurismo", "Monarquismo", "Catolicismo"], "url": "https://es.wikipedia.org/wiki/ABC_(periódico)"}
-      ]
-    },
-    {
-      "id": "la-vanguardia", "name": "La Vanguardia", "domains": ["lavanguardia.com"], "type": "Diario", "scope": "Nacional", "region": "Cataluña", "founded": 1881, "group": "godo",
-      "feeds": ["https://www.lavanguardia.com/rss/home.xml"],
-      "evidence": [
-        {"source": "mbfc", "kind": "ideology", "labels": ["Left-Center"], "url": "https://mediabiasfactcheck.com/la-vanguardia/"},
-        {"source": "mbfc", "kind": "factual", "labels": ["High"], "url": "https://mediabiasfactcheck.com/la-vanguardia/"},
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Catalanismo", "Liberalismo"], "url": "https://es.wikipedia.org/wiki/La_Vanguardia"}
-      ]
-    },
-    {
-      "id": "el-confidencial", "name": "El Confidencial", "domains": ["elconfidencial.com"], "type": "Digital", "scope": "Nacional", "founded": 2001, "group": null,
-      "publisher": "Titania Compañía Editorial, S. L.",
-      "feeds": ["https://rss.elconfidencial.com/espana/"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Liberalismo económico"], "url": "https://es.wikipedia.org/wiki/El_Confidencial"}
-      ]
-    },
-    {
-      "id": "eldiario-es", "name": "elDiario.es", "domains": ["eldiario.es"], "type": "Digital", "scope": "Nacional", "founded": 2012, "group": "diario-prensa-digital",
-      "feeds": ["https://www.eldiario.es/rss/"],
-      "evidence": [
-        {"source": "mbfc", "kind": "ideology", "labels": ["Left-Center"], "url": "https://mediabiasfactcheck.com/eldiario-es/"},
-        {"source": "mbfc", "kind": "factual", "labels": ["High"], "url": "https://mediabiasfactcheck.com/eldiario-es/"},
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Progresismo", "Republicanismo"], "url": "https://es.wikipedia.org/wiki/ElDiario.es"}
-      ]
-    },
-    {
-      "id": "publico", "name": "Público", "domains": ["publico.es"], "type": "Digital", "scope": "Nacional", "founded": 2007, "group": null,
-      "publisher": "Display Connectors, SL",
-      "feeds": [],
-      "evidence": [
-        {"source": "mbfc", "kind": "ideology", "labels": ["Left-Center"], "url": "https://mediabiasfactcheck.com/publico/"},
-        {"source": "mbfc", "kind": "factual", "labels": ["High"], "url": "https://mediabiasfactcheck.com/publico/"},
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Socialismo democrático", "Republicanismo"], "url": "https://es.wikipedia.org/wiki/Público_(España)"},
-        {"source": "wikidata", "kind": "ideology", "labels": ["Izquierda"], "url": "https://www.wikidata.org/wiki/Q1835391"}
-      ]
-    },
-    {
-      "id": "la-razon", "name": "La Razón", "domains": ["larazon.es"], "type": "Diario", "scope": "Nacional", "founded": 1998, "group": "planeta",
-      "feeds": ["https://www.larazon.es/?outputType=xml"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Conservadurismo", "Monarquismo"], "url": "https://es.wikipedia.org/wiki/La_Razón_(España)"},
-        {"source": "wikidata", "kind": "ideology", "labels": ["Conservadurismo"], "url": "https://www.wikidata.org/wiki/Q191433"}
-      ]
-    },
-    {
-      "id": "20minutos", "name": "20minutos", "domains": ["20minutos.es"], "type": "Diario", "scope": "Nacional", "founded": 2000, "group": "henneo",
-      "feeds": ["https://www.20minutos.es/rss/"],
-      "evidence": []
-    },
-    {
-      "id": "el-espanol", "name": "El Español", "domains": ["elespanol.com"], "type": "Digital", "scope": "Nacional", "founded": 2015, "group": "el-leon",
-      "feeds": ["https://www.elespanol.com/rss/"],
-      "evidence": [
-        {"source": "mbfc", "kind": "ideology", "labels": ["Right-Center"], "url": "https://mediabiasfactcheck.com/el-espanol/"},
-        {"source": "mbfc", "kind": "factual", "labels": ["Mostly Factual"], "url": "https://mediabiasfactcheck.com/el-espanol/"}
-      ]
-    },
-    {
-      "id": "okdiario", "name": "OKDIARIO", "domains": ["okdiario.com"], "type": "Digital", "scope": "Nacional", "founded": 2015, "group": null,
-      "publisher": "Dos Mil Palabras SL",
-      "feeds": ["https://okdiario.com/feed"],
-      "evidence": [
-        {"source": "mbfc", "kind": "ideology", "labels": ["Right"], "url": "https://mediabiasfactcheck.com/okdiario/"},
-        {"source": "mbfc", "kind": "factual", "labels": ["Mixed"], "url": "https://mediabiasfactcheck.com/okdiario/"},
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Conservadurismo", "Neoliberalismo", "Nacionalismo"], "url": "https://es.wikipedia.org/wiki/Okdiario"}
-      ]
-    },
-    {
-      "id": "libertad-digital", "name": "Libertad Digital", "domains": ["libertaddigital.com"], "type": "Digital", "scope": "Nacional", "founded": 2000, "group": "libertad-digital-sa",
-      "feeds": ["https://feeds2.feedburner.com/libertaddigital/portada"],
-      "evidence": [
-        {"source": "mbfc", "kind": "ideology", "labels": ["Right"], "url": "https://mediabiasfactcheck.com/libertad-digital/"},
-        {"source": "mbfc", "kind": "factual", "labels": ["Mostly Factual"], "url": "https://mediabiasfactcheck.com/libertad-digital/"},
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Liberalismo", "Conservadurismo social", "Anticomunismo", "Derecha"], "url": "https://es.wikipedia.org/wiki/Libertad_Digital"}
-      ]
-    },
-    {
-      "id": "the-objective", "name": "The Objective", "domains": ["theobjective.com"], "type": "Digital", "scope": "Nacional", "founded": 2013, "group": null,
-      "publisher": "The Objective Media, S.L.",
-      "feeds": ["https://theobjective.com/feed/"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Derecha"], "url": "https://es.wikipedia.org/wiki/The_Objective"}
-      ]
-    },
-    {
-      "id": "infolibre", "name": "infoLibre", "domains": ["infolibre.es"], "type": "Digital", "scope": "Nacional", "founded": 2013, "group": null,
-      "feeds": ["https://www.infolibre.es/rss"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Izquierda"], "url": "https://es.wikipedia.org/wiki/Infolibre"}
-      ]
-    },
-    {
-      "id": "rtve", "name": "RTVE", "domains": ["rtve.es"], "type": "Televisión y radio públicas", "scope": "Nacional", "founded": 2007, "group": "rtve",
-      "feeds": ["https://api2.rtve.es/rss/temas_noticias.xml"],
-      "evidence": []
-    },
-    {
-      "id": "europa-press", "name": "Europa Press", "domains": ["europapress.es"], "type": "Agencia", "scope": "Nacional", "founded": 1953, "group": null,
-      "feeds": ["https://www.europapress.es/rss/rss.aspx", "https://www.europapress.es/rss/rss.aspx?ch=00066"],
-      "evidence": [
-        {"source": "mbfc", "kind": "ideology", "labels": ["Least Biased"], "url": "https://mediabiasfactcheck.com/europa-press/"},
-        {"source": "mbfc", "kind": "factual", "labels": ["High"], "url": "https://mediabiasfactcheck.com/europa-press/"}
-      ]
-    },
-    {
-      "id": "efe", "name": "Agencia EFE", "domains": ["efe.com"], "type": "Agencia pública", "scope": "Nacional", "founded": 1939, "group": "efe",
-      "feeds": [],
-      "evidence": [
-        {"source": "mbfc", "kind": "ideology", "labels": ["Least Biased"], "url": "https://mediabiasfactcheck.com/agencia-efe/"},
-        {"source": "mbfc", "kind": "factual", "labels": ["High"], "url": "https://mediabiasfactcheck.com/agencia-efe/"}
-      ]
-    },
-    {
-      "id": "cadena-ser", "name": "Cadena SER", "domains": ["cadenaser.com"], "type": "Radio", "scope": "Nacional", "founded": 1924, "group": "prisa",
-      "feeds": [],
-      "evidence": []
-    },
-    {
-      "id": "cope", "name": "COPE", "domains": ["cope.es"], "type": "Radio", "scope": "Nacional", "founded": 1960, "group": "cee",
-      "feeds": ["https://www.cope.es/api/es/news/rss.xml"],
-      "evidence": []
-    },
-    {
-      "id": "lasexta", "name": "laSexta", "domains": ["lasexta.com"], "type": "Televisión", "scope": "Nacional", "founded": 2006, "group": "planeta",
-      "feeds": ["https://www.lasexta.com/rss/351410.xml"],
-      "evidence": []
-    },
-    {
-      "id": "antena3", "name": "Antena 3 Noticias", "domains": ["antena3.com"], "type": "Televisión", "scope": "Nacional", "founded": 1989, "group": "planeta",
-      "feeds": ["https://www.antena3.com/noticias/rss/4013050.xml"],
-      "evidence": []
-    },
-    {
-      "id": "onda-cero", "name": "Onda Cero", "domains": ["ondacero.es"], "type": "Radio", "scope": "Nacional", "founded": 1990, "group": "planeta",
-      "feeds": [],
-      "evidence": []
-    },
-    {
-      "id": "telecinco", "name": "Informativos Telecinco", "domains": ["telecinco.es", "informativostelecinco.com"], "type": "Televisión", "scope": "Nacional", "founded": 1990, "group": "mediaset",
-      "feeds": [],
-      "evidence": []
-    },
-    {
-      "id": "cuatro", "name": "Cuatro", "domains": ["cuatro.com"], "type": "Televisión", "scope": "Nacional", "founded": 2005, "group": "mediaset",
-      "feeds": [],
-      "evidence": []
-    },
-    {
-      "id": "el-periodico", "name": "El Periódico", "domains": ["elperiodico.com"], "type": "Diario", "scope": "Nacional", "region": "Cataluña", "founded": 1978, "group": "prensa-iberica",
-      "feeds": [],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Progresismo"], "url": "https://es.wikipedia.org/wiki/El_Periódico_de_Catalunya"}
-      ]
-    },
-    {
-      "id": "expansion", "name": "Expansión", "domains": ["expansion.com"], "type": "Diario económico", "scope": "Nacional", "founded": 1986, "group": "unidad-editorial",
-      "feeds": ["https://e00-expansion.uecdn.es/rss/portada.xml"],
-      "evidence": []
-    },
-    {
-      "id": "cinco-dias", "name": "Cinco Días", "domains": ["cincodias.elpais.com", "cincodias.com"], "type": "Diario económico", "scope": "Nacional", "founded": 1978, "group": "prisa",
-      "feeds": ["https://feeds.elpais.com/mrss-s/pages/ep/site/cincodias.elpais.com/portada"],
-      "evidence": []
-    },
-    {
-      "id": "el-economista", "name": "elEconomista", "domains": ["eleconomista.es"], "type": "Diario económico", "scope": "Nacional", "founded": 2006, "group": null,
-      "feeds": [],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Liberalismo económico"], "url": "https://es.wikipedia.org/wiki/El_Economista_(España)"}
-      ]
-    },
-    {
-      "id": "huffpost", "name": "El HuffPost", "domains": ["huffingtonpost.es"], "type": "Digital", "scope": "Nacional", "founded": 2012, "group": "prisa",
-      "feeds": ["https://www.huffingtonpost.es/feeds/index.xml"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Progresismo"], "url": "https://es.wikipedia.org/wiki/El_HuffPost"}
-      ]
-    },
-    {
-      "id": "el-debate", "name": "El Debate", "domains": ["eldebate.com"], "type": "Digital", "scope": "Nacional", "founded": 2021, "group": "acdp",
-      "feeds": ["https://www.eldebate.com/rss/home.xml"],
-      "evidence": [
-        {"source": "mbfc", "kind": "ideology", "labels": ["Right"], "url": "https://mediabiasfactcheck.com/el-debate/"},
-        {"source": "mbfc", "kind": "factual", "labels": ["Mostly Factual"], "url": "https://mediabiasfactcheck.com/el-debate/"}
-      ]
-    },
-    {
-      "id": "esdiario", "name": "ESdiario", "domains": ["esdiario.com"], "type": "Digital", "scope": "Nacional", "founded": 2015, "group": null,
-      "feeds": ["https://www.esdiario.com/rss/home.xml"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Derecha"], "url": "https://es.wikipedia.org/wiki/ESdiario"}
-      ]
-    },
-    {
-      "id": "vozpopuli", "name": "Vozpópuli", "domains": ["vozpopuli.com"], "type": "Digital", "scope": "Nacional", "founded": 2011, "group": null,
-      "feeds": [],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Derecha", "Conservadurismo liberal"], "url": "https://es.wikipedia.org/wiki/Vozpópuli"}
-      ]
-    },
-    {
-      "id": "el-independiente", "name": "El Independiente", "domains": ["elindependiente.com"], "type": "Digital", "scope": "Nacional", "founded": 2016, "group": null,
-      "publisher": "Park Row Digital, S.L.",
-      "feeds": ["https://www.elindependiente.com/feed/"],
-      "evidence": [
-        {"source": "wikidata", "kind": "ideology", "labels": ["Derecha"], "url": "https://www.wikidata.org/wiki/Q135012540"}
-      ]
-    },
-    {
-      "id": "el-confidencial-digital", "name": "El Confidencial Digital", "domains": ["elconfidencialdigital.com"], "type": "Digital", "scope": "Nacional", "founded": 1999, "group": null,
-      "publisher": "Publicaciones Confidenciales, S.L.",
-      "feeds": ["https://www.elconfidencialdigital.com/rss/"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Catolicismo"], "url": "https://es.wikipedia.org/wiki/El_Confidencial_Digital"}
-      ]
-    },
-    {
-      "id": "el-plural", "name": "El Plural", "domains": ["elplural.com"], "type": "Digital", "scope": "Nacional", "founded": 2005, "group": null,
-      "feeds": [],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Izquierda"], "url": "https://es.wikipedia.org/wiki/El_Plural"}
-      ]
-    },
-    {
-      "id": "el-salto", "name": "El Salto", "domains": ["elsaltodiario.com"], "type": "Digital", "scope": "Nacional", "founded": 2017, "group": null,
-      "feeds": ["https://www.elsaltodiario.com/general/feed"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Izquierda"], "url": "https://es.wikipedia.org/wiki/El_Salto_(diario)"}
-      ]
-    },
-    {
-      "id": "ctxt", "name": "CTXT", "domains": ["ctxt.es"], "type": "Revista digital", "scope": "Nacional", "founded": 2015, "group": null,
-      "feeds": [],
-      "evidence": [
-        {"source": "wikidata", "kind": "ideology", "labels": ["Izquierda"], "url": "https://www.wikidata.org/wiki/Q22969989"}
-      ]
-    },
-    {
-      "id": "la-marea", "name": "La Marea", "domains": ["lamarea.com"], "type": "Revista", "scope": "Nacional", "founded": 2012, "group": null,
-      "publisher": "MasPúblico Sociedad Cooperativa",
-      "feeds": ["https://www.lamarea.com/feed/"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Republicanismo", "Laicismo", "Feminismo", "Política verde"], "url": "https://es.wikipedia.org/wiki/La_Marea"}
-      ]
-    },
-    {
-      "id": "mundo-obrero", "name": "Mundo Obrero", "domains": ["mundoobrero.es"], "type": "Revista de partido", "scope": "Nacional", "founded": 1930, "group": "pce",
-      "feeds": ["https://www.mundoobrero.es/rss"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Comunismo"], "url": "https://es.wikipedia.org/wiki/Mundo_Obrero"}
-      ]
-    },
-    {
-      "id": "la-voz-de-galicia", "name": "La Voz de Galicia", "domains": ["lavozdegalicia.es"], "type": "Diario", "scope": "Regional", "region": "Galicia", "founded": 1882, "group": "voz-galicia",
-      "feeds": ["https://www.lavozdegalicia.es/index.xml"],
-      "evidence": []
-    },
-    {
-      "id": "el-correo", "name": "El Correo", "domains": ["elcorreo.com"], "type": "Diario", "scope": "Regional", "region": "País Vasco", "founded": 1910, "group": "vocento",
-      "feeds": ["https://www.elcorreo.com/rss/2.0/portada"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Conservadurismo", "Foralismo", "Constitucionalismo"], "url": "https://es.wikipedia.org/wiki/El_Correo"}
-      ]
-    },
-    {
-      "id": "diario-vasco", "name": "El Diario Vasco", "domains": ["diariovasco.com"], "type": "Diario", "scope": "Regional", "region": "País Vasco", "founded": 1934, "group": "vocento",
-      "feeds": ["https://www.diariovasco.com/rss/2.0/portada"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Centroderecha", "Foralismo", "Constitucionalismo"], "url": "https://es.wikipedia.org/wiki/El_Diario_Vasco"}
-      ]
-    },
-    {
-      "id": "gara", "name": "Gara / Naiz", "domains": ["naiz.eus"], "type": "Diario", "scope": "Regional", "region": "País Vasco", "founded": 1999, "group": null,
-      "publisher": "Baigorri Argitaletxe S.A. (Grupo EKHE)",
-      "feeds": [],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Socialismo", "Izquierda abertzale", "Independentismo vasco", "Nacionalismo vasco"], "url": "https://es.wikipedia.org/wiki/Gara"}
-      ]
-    },
-    {
-      "id": "deia", "name": "Deia", "domains": ["deia.eus"], "type": "Diario", "scope": "Regional", "region": "País Vasco", "founded": 1977, "group": null,
-      "publisher": "Editorial Iparraguirre S.A.",
-      "feeds": [],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Nacionalismo vasco"], "url": "https://es.wikipedia.org/wiki/Deia"}
-      ]
-    },
-    {
-      "id": "ara", "name": "Ara", "domains": ["ara.cat"], "type": "Diario", "scope": "Regional", "region": "Cataluña", "founded": 2010, "group": null,
-      "feeds": ["https://www.ara.cat/rss/"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Independentismo catalán", "Centrismo"], "url": "https://es.wikipedia.org/wiki/Ara_(diario)"}
-      ]
-    },
-    {
-      "id": "el-nacional", "name": "El Nacional.cat", "domains": ["elnacional.cat"], "type": "Digital", "scope": "Regional", "region": "Cataluña", "founded": 2016, "group": null,
-      "feeds": ["https://www.elnacional.cat/es/feed"],
-      "evidence": []
-    },
-    {
-      "id": "el-punt-avui", "name": "El Punt Avui", "domains": ["elpuntavui.cat"], "type": "Diario", "scope": "Regional", "region": "Cataluña", "founded": 2011, "group": null,
-      "feeds": ["https://www.elpuntavui.cat/barcelona.feed?type=rss"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Catalanismo", "Nacionalismo catalán", "Liberalismo económico"], "url": "https://es.wikipedia.org/wiki/El_Punt_Avui"}
-      ]
-    },
-    {
-      "id": "cronica-global", "name": "Crónica Global", "domains": ["cronicaglobal.com"], "type": "Digital", "scope": "Regional", "region": "Cataluña", "founded": 2013, "group": null,
-      "publisher": "Crónica Global Media, S.L.",
-      "feeds": ["https://www.cronicaglobal.com/rss"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Constitucionalismo", "Centro"], "url": "https://es.wikipedia.org/wiki/Crónica_Global"}
-      ]
-    },
-    {
-      "id": "nacio-digital", "name": "Nació Digital", "domains": ["naciodigital.cat"], "type": "Digital", "scope": "Regional", "region": "Cataluña", "founded": 2006, "group": null,
-      "feeds": ["https://www.naciodigital.cat/rss"],
-      "evidence": []
-    },
-    {
-      "id": "vilaweb", "name": "VilaWeb", "domains": ["vilaweb.cat"], "type": "Digital", "scope": "Regional", "region": "Cataluña", "founded": 1995, "group": null,
-      "feeds": ["https://www.vilaweb.cat/feed/"],
-      "evidence": []
-    },
-    {
-      "id": "diario-de-sevilla", "name": "Diario de Sevilla", "domains": ["diariodesevilla.es"], "type": "Diario", "scope": "Regional", "region": "Andalucía", "founded": 1999, "group": "joly",
-      "feeds": ["https://www.diariodesevilla.es/rss/"],
-      "evidence": []
-    },
-    {
-      "id": "las-provincias", "name": "Las Provincias", "domains": ["lasprovincias.es"], "type": "Diario", "scope": "Regional", "region": "Comunidad Valenciana", "founded": 1866, "group": "vocento",
-      "feeds": ["https://www.lasprovincias.es/rss/2.0/portada"],
-      "evidence": []
-    },
-    {
-      "id": "heraldo", "name": "Heraldo de Aragón", "domains": ["heraldo.es"], "type": "Diario", "scope": "Regional", "region": "Aragón", "founded": 1895, "group": "henneo",
-      "feeds": [],
-      "evidence": []
-    },
-    {
-      "id": "diario-de-navarra", "name": "Diario de Navarra", "domains": ["diariodenavarra.es"], "type": "Diario", "scope": "Regional", "region": "Navarra", "founded": 1903, "group": null,
-      "publisher": "Grupo La Información",
-      "feeds": [],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Conservadurismo", "Navarrismo", "Centroderecha"], "url": "https://es.wikipedia.org/wiki/Diario_de_Navarra"}
-      ]
-    },
-    {
-      "id": "la-nueva-espana", "name": "La Nueva España", "domains": ["lne.es"], "type": "Diario", "scope": "Regional", "region": "Asturias", "founded": 1936, "group": "prensa-iberica",
-      "feeds": [],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Liberalismo"], "url": "https://es.wikipedia.org/wiki/La_Nueva_España"}
-      ]
-    },
-    {
-      "id": "faro-de-vigo", "name": "Faro de Vigo", "domains": ["farodevigo.es"], "type": "Diario", "scope": "Regional", "region": "Galicia", "founded": 1853, "group": "prensa-iberica",
-      "feeds": [],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Regionalismo", "Derecha"], "url": "https://es.wikipedia.org/wiki/Faro_de_Vigo"}
-      ]
-    },
-    {
-      "id": "diario-sur", "name": "Diario Sur", "domains": ["diariosur.es"], "type": "Diario", "scope": "Regional", "region": "Andalucía", "founded": 1937, "group": "vocento",
-      "feeds": [],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Conservadurismo", "Liberalismo"], "url": "https://es.wikipedia.org/wiki/Sur_(periódico)"}
-      ]
-    },
-    {
-      "id": "el-diario-montanes", "name": "El Diario Montañés", "domains": ["eldiariomontanes.es"], "type": "Diario", "scope": "Regional", "region": "Cantabria", "founded": 1902, "group": "vocento",
-      "feeds": [],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ideology", "labels": ["Centroderecha"], "url": "https://es.wikipedia.org/wiki/El_Diario_Montañés"}
-      ]
-    },
-    {
-      "id": "maldita", "name": "Maldita.es", "domains": ["maldita.es"], "type": "Verificador", "scope": "Nacional", "founded": 2018, "group": null, "factchecker": true,
-      "feeds": ["https://maldita.es/feed/"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ifcn", "labels": ["Signatario IFCN"], "quote": "Mantiene una presencia activa en redes internacionales siendo signataria verificada del International Fact-Checking Network (IFCN) desde 2018.", "url": "https://es.wikipedia.org/wiki/Maldita.es"}
-      ]
-    },
-    {
-      "id": "newtral", "name": "Newtral", "domains": ["newtral.es"], "type": "Verificador", "scope": "Nacional", "founded": 2018, "group": null, "factchecker": true,
-      "feeds": ["https://www.newtral.es/feed/"],
-      "evidence": [
-        {"source": "mbfc", "kind": "ideology", "labels": ["Least Biased"], "url": "https://mediabiasfactcheck.com/newtral/"},
-        {"source": "mbfc", "kind": "factual", "labels": ["High"], "url": "https://mediabiasfactcheck.com/newtral/"},
-        {"source": "wikipedia", "kind": "ifcn", "labels": ["Signatario IFCN"], "quote": "Es miembro de la International Fact-Checking Network.", "url": "https://es.wikipedia.org/wiki/Newtral"}
-      ]
-    },
-    {
-      "id": "efe-verifica", "name": "EFE Verifica", "domains": ["verifica.efe.com"], "type": "Verificador", "scope": "Nacional", "founded": 2019, "group": "efe", "factchecker": true,
-      "feeds": ["https://verifica.efe.com/feed/"],
-      "evidence": [
-        {"source": "wikipedia", "kind": "ifcn", "labels": ["Signatario IFCN"], "quote": "EFEVerifica entra a formar parte de International Fact-Checking Network (IFCN).", "url": "https://es.wikipedia.org/wiki/Agencia_EFE"}
-      ]
-    },
-    {
-      "id": "verificat", "name": "Verificat", "domains": ["verificat.cat"], "type": "Verificador", "scope": "Regional", "region": "Cataluña", "founded": 2019, "group": null, "factchecker": true,
-      "feeds": [],
-      "evidence": []
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Socialdemocracia"
+     ],
+     "quote": "El País ha mostrado una línea editorial cercana al PSOE, con tendencias socialdemócratas.",
+     "url": "https://es.wikipedia.org/wiki/El_País",
+     "revid": 176269218,
+     "retrieved": "2026-11-19"
     }
-  ]
+   ]
+  },
+  {
+   "id": "el-mundo",
+   "name": "El Mundo",
+   "domains": [
+    "elmundo.es"
+   ],
+   "type": "Diario",
+   "scope": "Nacional",
+   "founded": 1989,
+   "group": "unidad-editorial",
+   "feeds": [
+    "https://e00-elmundo.uecdn.es/elmundo/rss/portada.xml"
+   ],
+   "evidence": [
+    {
+     "source": "mbfc",
+     "kind": "ideology",
+     "labels": [
+      "Right-Center"
+     ],
+     "url": "https://mediabiasfactcheck.com/el-mundo/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "mbfc",
+     "kind": "factual",
+     "labels": [
+      "Mostly Factual"
+     ],
+     "url": "https://mediabiasfactcheck.com/el-mundo/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Centroderecha"
+     ],
+     "url": "https://es.wikipedia.org/wiki/El_Mundo_(España)",
+     "revid": 175979970,
+     "retrieved": "2026-11-19"
+    },
+    {
+     "source": "wikidata",
+     "kind": "ideology",
+     "labels": [
+      "Conservadurismo"
+     ],
+     "url": "https://www.wikidata.org/wiki/Q921217",
+     "retrieved": "2026-11-18"
+    }
+   ]
+  },
+  {
+   "id": "abc",
+   "name": "ABC",
+   "domains": [
+    "abc.es"
+   ],
+   "type": "Diario",
+   "scope": "Nacional",
+   "founded": 1903,
+   "group": "vocento",
+   "feeds": [
+    "https://www.abc.es/rss/2.0/portada/"
+   ],
+   "evidence": [
+    {
+     "source": "mbfc",
+     "kind": "ideology",
+     "labels": [
+      "Right-Center"
+     ],
+     "url": "https://mediabiasfactcheck.com/abc-spain/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "mbfc",
+     "kind": "factual",
+     "labels": [
+      "High"
+     ],
+     "url": "https://mediabiasfactcheck.com/abc-spain/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Conservadurismo",
+      "Monarquismo",
+      "Catolicismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/ABC_(periódico)",
+     "revid": 175480445,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "la-vanguardia",
+   "name": "La Vanguardia",
+   "domains": [
+    "lavanguardia.com"
+   ],
+   "type": "Diario",
+   "scope": "Nacional",
+   "region": "Cataluña",
+   "founded": 1881,
+   "group": "godo",
+   "feeds": [
+    "https://www.lavanguardia.com/rss/home.xml"
+   ],
+   "evidence": [
+    {
+     "source": "mbfc",
+     "kind": "ideology",
+     "labels": [
+      "Left-Center"
+     ],
+     "url": "https://mediabiasfactcheck.com/la-vanguardia/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "mbfc",
+     "kind": "factual",
+     "labels": [
+      "High"
+     ],
+     "url": "https://mediabiasfactcheck.com/la-vanguardia/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Catalanismo",
+      "Liberalismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/La_Vanguardia",
+     "revid": 176015340,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "el-confidencial",
+   "name": "El Confidencial",
+   "domains": [
+    "elconfidencial.com"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2001,
+   "group": null,
+   "publisher": "Titania Compañía Editorial, S. L.",
+   "feeds": [
+    "https://rss.elconfidencial.com/espana/"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Liberalismo económico"
+     ],
+     "url": "https://es.wikipedia.org/wiki/El_Confidencial",
+     "revid": 175209008,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "eldiario-es",
+   "name": "elDiario.es",
+   "domains": [
+    "eldiario.es"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2012,
+   "group": "diario-prensa-digital",
+   "feeds": [
+    "https://www.eldiario.es/rss/"
+   ],
+   "evidence": [
+    {
+     "source": "mbfc",
+     "kind": "ideology",
+     "labels": [
+      "Left-Center"
+     ],
+     "url": "https://mediabiasfactcheck.com/eldiario-es/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "mbfc",
+     "kind": "factual",
+     "labels": [
+      "High"
+     ],
+     "url": "https://mediabiasfactcheck.com/eldiario-es/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Progresismo",
+      "Republicanismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/ElDiario.es",
+     "revid": 175577352,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "publico",
+   "name": "Público",
+   "domains": [
+    "publico.es"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2007,
+   "group": null,
+   "publisher": "Display Connectors, SL",
+   "feeds": [],
+   "evidence": [
+    {
+     "source": "mbfc",
+     "kind": "ideology",
+     "labels": [
+      "Left-Center"
+     ],
+     "url": "https://mediabiasfactcheck.com/publico/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "mbfc",
+     "kind": "factual",
+     "labels": [
+      "High"
+     ],
+     "url": "https://mediabiasfactcheck.com/publico/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Socialismo democrático",
+      "Republicanismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Público_(España)",
+     "revid": 174341371,
+     "retrieved": "2026-11-19"
+    },
+    {
+     "source": "wikidata",
+     "kind": "ideology",
+     "labels": [
+      "Izquierda"
+     ],
+     "url": "https://www.wikidata.org/wiki/Q1835391",
+     "retrieved": "2026-11-18"
+    }
+   ]
+  },
+  {
+   "id": "la-razon",
+   "name": "La Razón",
+   "domains": [
+    "larazon.es"
+   ],
+   "type": "Diario",
+   "scope": "Nacional",
+   "founded": 1998,
+   "group": "planeta",
+   "feeds": [
+    "https://www.larazon.es/?outputType=xml"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Conservadurismo",
+      "Monarquismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/La_Razón_(España)",
+     "revid": 175480554,
+     "retrieved": "2026-11-19"
+    },
+    {
+     "source": "wikidata",
+     "kind": "ideology",
+     "labels": [
+      "Conservadurismo"
+     ],
+     "url": "https://www.wikidata.org/wiki/Q191433",
+     "retrieved": "2026-11-18"
+    }
+   ]
+  },
+  {
+   "id": "20minutos",
+   "name": "20minutos",
+   "domains": [
+    "20minutos.es"
+   ],
+   "type": "Diario",
+   "scope": "Nacional",
+   "founded": 2000,
+   "group": "henneo",
+   "feeds": [
+    "https://www.20minutos.es/rss/"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "el-espanol",
+   "name": "El Español",
+   "domains": [
+    "elespanol.com"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2015,
+   "group": "el-leon",
+   "feeds": [
+    "https://www.elespanol.com/rss/"
+   ],
+   "evidence": [
+    {
+     "source": "mbfc",
+     "kind": "ideology",
+     "labels": [
+      "Right-Center"
+     ],
+     "url": "https://mediabiasfactcheck.com/el-espanol/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "mbfc",
+     "kind": "factual",
+     "labels": [
+      "Mostly Factual"
+     ],
+     "url": "https://mediabiasfactcheck.com/el-espanol/",
+     "retrieved": "2026-11-18"
+    }
+   ]
+  },
+  {
+   "id": "okdiario",
+   "name": "OKDIARIO",
+   "domains": [
+    "okdiario.com"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2015,
+   "group": null,
+   "publisher": "Dos Mil Palabras SL",
+   "feeds": [
+    "https://okdiario.com/feed"
+   ],
+   "evidence": [
+    {
+     "source": "mbfc",
+     "kind": "ideology",
+     "labels": [
+      "Right"
+     ],
+     "url": "https://mediabiasfactcheck.com/okdiario/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "mbfc",
+     "kind": "factual",
+     "labels": [
+      "Mixed"
+     ],
+     "url": "https://mediabiasfactcheck.com/okdiario/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Conservadurismo",
+      "Neoliberalismo",
+      "Nacionalismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Okdiario",
+     "revid": 176288014,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "libertad-digital",
+   "name": "Libertad Digital",
+   "domains": [
+    "libertaddigital.com"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2000,
+   "group": "libertad-digital-sa",
+   "feeds": [
+    "https://feeds2.feedburner.com/libertaddigital/portada"
+   ],
+   "evidence": [
+    {
+     "source": "mbfc",
+     "kind": "ideology",
+     "labels": [
+      "Right"
+     ],
+     "url": "https://mediabiasfactcheck.com/libertad-digital/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "mbfc",
+     "kind": "factual",
+     "labels": [
+      "Mostly Factual"
+     ],
+     "url": "https://mediabiasfactcheck.com/libertad-digital/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Liberalismo",
+      "Conservadurismo social",
+      "Anticomunismo",
+      "Derecha"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Libertad_Digital",
+     "revid": 176360850,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "the-objective",
+   "name": "The Objective",
+   "domains": [
+    "theobjective.com"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2013,
+   "group": null,
+   "publisher": "The Objective Media, S.L.",
+   "feeds": [
+    "https://theobjective.com/feed/"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Derecha"
+     ],
+     "url": "https://es.wikipedia.org/wiki/The_Objective",
+     "revid": 175822395,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "infolibre",
+   "name": "infoLibre",
+   "domains": [
+    "infolibre.es"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2013,
+   "group": null,
+   "feeds": [
+    "https://www.infolibre.es/rss"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Izquierda"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Infolibre",
+     "revid": 167537806,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "rtve",
+   "name": "RTVE",
+   "domains": [
+    "rtve.es"
+   ],
+   "type": "Televisión y radio públicas",
+   "scope": "Nacional",
+   "founded": 2007,
+   "group": "rtve",
+   "feeds": [
+    "https://api2.rtve.es/rss/temas_noticias.xml"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "europa-press",
+   "name": "Europa Press",
+   "domains": [
+    "europapress.es"
+   ],
+   "type": "Agencia",
+   "scope": "Nacional",
+   "founded": 1953,
+   "group": null,
+   "feeds": [
+    "https://www.europapress.es/rss/rss.aspx",
+    "https://www.europapress.es/rss/rss.aspx?ch=00066"
+   ],
+   "evidence": [
+    {
+     "source": "mbfc",
+     "kind": "ideology",
+     "labels": [
+      "Least Biased"
+     ],
+     "url": "https://mediabiasfactcheck.com/europa-press/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "mbfc",
+     "kind": "factual",
+     "labels": [
+      "High"
+     ],
+     "url": "https://mediabiasfactcheck.com/europa-press/",
+     "retrieved": "2026-11-18"
+    }
+   ]
+  },
+  {
+   "id": "efe",
+   "name": "Agencia EFE",
+   "domains": [
+    "efe.com"
+   ],
+   "type": "Agencia pública",
+   "scope": "Nacional",
+   "founded": 1939,
+   "group": "efe",
+   "feeds": [],
+   "evidence": [
+    {
+     "source": "mbfc",
+     "kind": "ideology",
+     "labels": [
+      "Least Biased"
+     ],
+     "url": "https://mediabiasfactcheck.com/agencia-efe/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "mbfc",
+     "kind": "factual",
+     "labels": [
+      "High"
+     ],
+     "url": "https://mediabiasfactcheck.com/agencia-efe/",
+     "retrieved": "2026-11-18"
+    }
+   ]
+  },
+  {
+   "id": "cadena-ser",
+   "name": "Cadena SER",
+   "domains": [
+    "cadenaser.com"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": 1924,
+   "group": "prisa",
+   "feeds": [],
+   "evidence": []
+  },
+  {
+   "id": "cope",
+   "name": "COPE",
+   "domains": [
+    "cope.es"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": 1960,
+   "group": "cee",
+   "feeds": [
+    "https://www.cope.es/api/es/news/rss.xml"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "lasexta",
+   "name": "laSexta",
+   "domains": [
+    "lasexta.com"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": 2006,
+   "group": "planeta",
+   "feeds": [
+    "https://www.lasexta.com/rss/351410.xml"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "antena3",
+   "name": "Antena 3 Noticias",
+   "domains": [
+    "antena3.com"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": 1989,
+   "group": "planeta",
+   "feeds": [
+    "https://www.antena3.com/noticias/rss/4013050.xml"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "onda-cero",
+   "name": "Onda Cero",
+   "domains": [
+    "ondacero.es"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": 1990,
+   "group": "planeta",
+   "feeds": [],
+   "evidence": []
+  },
+  {
+   "id": "telecinco",
+   "name": "Informativos Telecinco",
+   "domains": [
+    "telecinco.es",
+    "informativostelecinco.com"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": 1990,
+   "group": "mediaset",
+   "feeds": [],
+   "evidence": []
+  },
+  {
+   "id": "cuatro",
+   "name": "Cuatro",
+   "domains": [
+    "cuatro.com"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": 2005,
+   "group": "mediaset",
+   "feeds": [],
+   "evidence": []
+  },
+  {
+   "id": "el-periodico",
+   "name": "El Periódico",
+   "domains": [
+    "elperiodico.com"
+   ],
+   "type": "Diario",
+   "scope": "Nacional",
+   "region": "Cataluña",
+   "founded": 1978,
+   "group": "prensa-iberica",
+   "feeds": [],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Progresismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/El_Periódico_de_Catalunya",
+     "revid": 176010470,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "expansion",
+   "name": "Expansión",
+   "domains": [
+    "expansion.com"
+   ],
+   "type": "Diario económico",
+   "scope": "Nacional",
+   "founded": 1986,
+   "group": "unidad-editorial",
+   "feeds": [
+    "https://e00-expansion.uecdn.es/rss/portada.xml"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "cinco-dias",
+   "name": "Cinco Días",
+   "domains": [
+    "cincodias.elpais.com",
+    "cincodias.com"
+   ],
+   "type": "Diario económico",
+   "scope": "Nacional",
+   "founded": 1978,
+   "group": "prisa",
+   "feeds": [
+    "https://feeds.elpais.com/mrss-s/pages/ep/site/cincodias.elpais.com/portada"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "el-economista",
+   "name": "elEconomista",
+   "domains": [
+    "eleconomista.es"
+   ],
+   "type": "Diario económico",
+   "scope": "Nacional",
+   "founded": 2006,
+   "group": null,
+   "feeds": [],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Liberalismo económico"
+     ],
+     "url": "https://es.wikipedia.org/wiki/El_Economista_(España)",
+     "revid": 176344590,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "huffpost",
+   "name": "El HuffPost",
+   "domains": [
+    "huffingtonpost.es"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2012,
+   "group": "prisa",
+   "feeds": [
+    "https://www.huffingtonpost.es/feeds/index.xml"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Progresismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/El_HuffPost",
+     "revid": 175745050,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "el-debate",
+   "name": "El Debate",
+   "domains": [
+    "eldebate.com"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2021,
+   "group": "acdp",
+   "feeds": [
+    "https://www.eldebate.com/rss/home.xml"
+   ],
+   "evidence": [
+    {
+     "source": "mbfc",
+     "kind": "ideology",
+     "labels": [
+      "Right"
+     ],
+     "url": "https://mediabiasfactcheck.com/el-debate/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "mbfc",
+     "kind": "factual",
+     "labels": [
+      "Mostly Factual"
+     ],
+     "url": "https://mediabiasfactcheck.com/el-debate/",
+     "retrieved": "2026-11-18"
+    }
+   ]
+  },
+  {
+   "id": "esdiario",
+   "name": "ESdiario",
+   "domains": [
+    "esdiario.com"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2015,
+   "group": null,
+   "feeds": [
+    "https://www.esdiario.com/rss/home.xml"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Derecha"
+     ],
+     "url": "https://es.wikipedia.org/wiki/ESdiario",
+     "revid": 174363567,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "vozpopuli",
+   "name": "Vozpópuli",
+   "domains": [
+    "vozpopuli.com"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2011,
+   "group": null,
+   "feeds": [],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Derecha",
+      "Conservadurismo liberal"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Vozpópuli",
+     "revid": 174679894,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "el-independiente",
+   "name": "El Independiente",
+   "domains": [
+    "elindependiente.com"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2016,
+   "group": null,
+   "publisher": "Park Row Digital, S.L.",
+   "feeds": [
+    "https://www.elindependiente.com/feed/"
+   ],
+   "evidence": [
+    {
+     "source": "wikidata",
+     "kind": "ideology",
+     "labels": [
+      "Derecha"
+     ],
+     "url": "https://www.wikidata.org/wiki/Q135012540",
+     "retrieved": "2026-11-18"
+    }
+   ]
+  },
+  {
+   "id": "el-confidencial-digital",
+   "name": "El Confidencial Digital",
+   "domains": [
+    "elconfidencialdigital.com"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 1999,
+   "group": null,
+   "publisher": "Publicaciones Confidenciales, S.L.",
+   "feeds": [
+    "https://www.elconfidencialdigital.com/rss/"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Catolicismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/El_Confidencial_Digital",
+     "revid": 170451178,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "el-plural",
+   "name": "El Plural",
+   "domains": [
+    "elplural.com"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2005,
+   "group": null,
+   "feeds": [],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Izquierda"
+     ],
+     "url": "https://es.wikipedia.org/wiki/El_Plural",
+     "revid": 174637948,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "el-salto",
+   "name": "El Salto",
+   "domains": [
+    "elsaltodiario.com"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2017,
+   "group": null,
+   "feeds": [
+    "https://www.elsaltodiario.com/general/feed"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Izquierda"
+     ],
+     "url": "https://es.wikipedia.org/wiki/El_Salto_(diario)",
+     "revid": 175822878,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "ctxt",
+   "name": "CTXT",
+   "domains": [
+    "ctxt.es"
+   ],
+   "type": "Revista digital",
+   "scope": "Nacional",
+   "founded": 2015,
+   "group": null,
+   "feeds": [],
+   "evidence": [
+    {
+     "source": "wikidata",
+     "kind": "ideology",
+     "labels": [
+      "Izquierda"
+     ],
+     "url": "https://www.wikidata.org/wiki/Q22969989",
+     "retrieved": "2026-11-18"
+    }
+   ]
+  },
+  {
+   "id": "la-marea",
+   "name": "La Marea",
+   "domains": [
+    "lamarea.com"
+   ],
+   "type": "Revista",
+   "scope": "Nacional",
+   "founded": 2012,
+   "group": null,
+   "publisher": "MasPúblico Sociedad Cooperativa",
+   "feeds": [
+    "https://www.lamarea.com/feed/"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Republicanismo",
+      "Laicismo",
+      "Feminismo",
+      "Política verde"
+     ],
+     "url": "https://es.wikipedia.org/wiki/La_Marea",
+     "revid": 170825499,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "mundo-obrero",
+   "name": "Mundo Obrero",
+   "domains": [
+    "mundoobrero.es"
+   ],
+   "type": "Revista de partido",
+   "scope": "Nacional",
+   "founded": 1930,
+   "group": "pce",
+   "feeds": [
+    "https://www.mundoobrero.es/rss"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Comunismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Mundo_Obrero",
+     "revid": 174510822,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "la-voz-de-galicia",
+   "name": "La Voz de Galicia",
+   "domains": [
+    "lavozdegalicia.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Galicia",
+   "founded": 1882,
+   "group": "voz-galicia",
+   "feeds": [
+    "https://www.lavozdegalicia.es/index.xml"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "el-correo",
+   "name": "El Correo",
+   "domains": [
+    "elcorreo.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "País Vasco",
+   "founded": 1910,
+   "group": "vocento",
+   "feeds": [
+    "https://www.elcorreo.com/rss/2.0/portada"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Conservadurismo",
+      "Foralismo",
+      "Constitucionalismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/El_Correo",
+     "revid": 175929758,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "diario-vasco",
+   "name": "El Diario Vasco",
+   "domains": [
+    "diariovasco.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "País Vasco",
+   "founded": 1934,
+   "group": "vocento",
+   "feeds": [
+    "https://www.diariovasco.com/rss/2.0/portada"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Centroderecha",
+      "Foralismo",
+      "Constitucionalismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/El_Diario_Vasco",
+     "revid": 173651669,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "gara",
+   "name": "Gara / Naiz",
+   "domains": [
+    "naiz.eus"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "País Vasco",
+   "founded": 1999,
+   "group": null,
+   "publisher": "Baigorri Argitaletxe S.A. (Grupo EKHE)",
+   "feeds": [],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Socialismo",
+      "Izquierda abertzale",
+      "Independentismo vasco",
+      "Nacionalismo vasco"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Gara",
+     "revid": 172401840,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "deia",
+   "name": "Deia",
+   "domains": [
+    "deia.eus"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "País Vasco",
+   "founded": 1977,
+   "group": null,
+   "publisher": "Editorial Iparraguirre S.A.",
+   "feeds": [],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Nacionalismo vasco"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Deia",
+     "revid": 175675159,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "ara",
+   "name": "Ara",
+   "domains": [
+    "ara.cat"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 2010,
+   "group": null,
+   "feeds": [
+    "https://www.ara.cat/rss/"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Independentismo catalán",
+      "Centrismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Ara_(diario)",
+     "revid": 176102825,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "el-nacional",
+   "name": "El Nacional.cat",
+   "domains": [
+    "elnacional.cat"
+   ],
+   "type": "Digital",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 2016,
+   "group": null,
+   "feeds": [
+    "https://www.elnacional.cat/es/feed"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "el-punt-avui",
+   "name": "El Punt Avui",
+   "domains": [
+    "elpuntavui.cat"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 2011,
+   "group": null,
+   "feeds": [
+    "https://www.elpuntavui.cat/barcelona.feed?type=rss"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Catalanismo",
+      "Nacionalismo catalán",
+      "Liberalismo económico"
+     ],
+     "url": "https://es.wikipedia.org/wiki/El_Punt_Avui",
+     "revid": 175551596,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "cronica-global",
+   "name": "Crónica Global",
+   "domains": [
+    "cronicaglobal.com"
+   ],
+   "type": "Digital",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 2013,
+   "group": null,
+   "publisher": "Crónica Global Media, S.L.",
+   "feeds": [
+    "https://www.cronicaglobal.com/rss"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Constitucionalismo",
+      "Centro"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Crónica_Global",
+     "revid": 173105767,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "nacio-digital",
+   "name": "Nació Digital",
+   "domains": [
+    "naciodigital.cat"
+   ],
+   "type": "Digital",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 2006,
+   "group": null,
+   "feeds": [
+    "https://www.naciodigital.cat/rss"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "vilaweb",
+   "name": "VilaWeb",
+   "domains": [
+    "vilaweb.cat"
+   ],
+   "type": "Digital",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 1995,
+   "group": null,
+   "feeds": [
+    "https://www.vilaweb.cat/feed/"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "diario-de-sevilla",
+   "name": "Diario de Sevilla",
+   "domains": [
+    "diariodesevilla.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Andalucía",
+   "founded": 1999,
+   "group": "joly",
+   "feeds": [
+    "https://www.diariodesevilla.es/rss/"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "las-provincias",
+   "name": "Las Provincias",
+   "domains": [
+    "lasprovincias.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Comunidad Valenciana",
+   "founded": 1866,
+   "group": "vocento",
+   "feeds": [
+    "https://www.lasprovincias.es/rss/2.0/portada"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "heraldo",
+   "name": "Heraldo de Aragón",
+   "domains": [
+    "heraldo.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Aragón",
+   "founded": 1895,
+   "group": "henneo",
+   "feeds": [],
+   "evidence": []
+  },
+  {
+   "id": "diario-de-navarra",
+   "name": "Diario de Navarra",
+   "domains": [
+    "diariodenavarra.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Navarra",
+   "founded": 1903,
+   "group": null,
+   "publisher": "Grupo La Información",
+   "feeds": [],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Conservadurismo",
+      "Navarrismo",
+      "Centroderecha"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Diario_de_Navarra",
+     "revid": 175845750,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "la-nueva-espana",
+   "name": "La Nueva España",
+   "domains": [
+    "lne.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Asturias",
+   "founded": 1936,
+   "group": "prensa-iberica",
+   "feeds": [],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Liberalismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/La_Nueva_España",
+     "revid": 176075352,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "faro-de-vigo",
+   "name": "Faro de Vigo",
+   "domains": [
+    "farodevigo.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Galicia",
+   "founded": 1853,
+   "group": "prensa-iberica",
+   "feeds": [],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Regionalismo",
+      "Derecha"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Faro_de_Vigo",
+     "revid": 173644033,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "diario-sur",
+   "name": "Diario Sur",
+   "domains": [
+    "diariosur.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Andalucía",
+   "founded": 1937,
+   "group": "vocento",
+   "feeds": [],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Conservadurismo",
+      "Liberalismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Sur_(periódico)",
+     "revid": 176137116,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "el-diario-montanes",
+   "name": "El Diario Montañés",
+   "domains": [
+    "eldiariomontanes.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Cantabria",
+   "founded": 1902,
+   "group": "vocento",
+   "feeds": [],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Centroderecha"
+     ],
+     "url": "https://es.wikipedia.org/wiki/El_Diario_Montañés",
+     "revid": 170194603,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "hoy",
+   "name": "Hoy",
+   "domains": [
+    "hoy.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Extremadura",
+   "founded": 1933,
+   "group": "vocento",
+   "owner_source": "https://www.wikidata.org/wiki/Q3141644",
+   "feeds": [
+    "https://www.hoy.es/rss/2.0/?section="
+   ],
+   "evidence": []
+  },
+  {
+   "id": "diario-de-cadiz",
+   "name": "Diario de Cádiz",
+   "domains": [
+    "diariodecadiz.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Andalucía",
+   "founded": 1867,
+   "group": "joly",
+   "owner_source": "https://www.wikidata.org/wiki/Q3254948",
+   "feeds": [
+    "https://www.diariodecadiz.es/rss/"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Conservadurismo liberal",
+      "Localismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Diario_de_Cádiz",
+     "revid": 173907560,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "que",
+   "name": "Qué!",
+   "domains": [
+    "que.es"
+   ],
+   "type": "Diario",
+   "scope": "Nacional",
+   "founded": 2005,
+   "publisher": "Grupo Merca2",
+   "owner_source": "https://www.wikidata.org/wiki/Q3312268",
+   "feeds": [
+    "https://www.que.es/rss/"
+   ],
+   "evidence": [],
+   "group": null
+  },
+  {
+   "id": "atlantico-diario",
+   "name": "Atlántico Diario",
+   "domains": [
+    "atlantico.net"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Galicia",
+   "founded": 1987,
+   "publisher": "Atlántico S.A",
+   "owner_source": "https://www.wikidata.org/wiki/Q3394943",
+   "feeds": [
+    "https://www.atlantico.net/rss/"
+   ],
+   "evidence": [],
+   "group": null
+  },
+  {
+   "id": "canarias7",
+   "name": "Canarias7",
+   "domains": [
+    "canarias7.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Canarias",
+   "founded": 1982,
+   "publisher": "Informaciones Canarias S.A. (INFORCASA)",
+   "owner_source": "https://www.wikidata.org/wiki/Q5031142",
+   "feeds": [
+    "https://www.canarias7.es/rss/2.0/?section="
+   ],
+   "evidence": [],
+   "group": null
+  },
+  {
+   "id": "actualidad-economica",
+   "name": "Actualidad Económica",
+   "domains": [
+    "actualidadeconomica.com"
+   ],
+   "type": "Revista",
+   "scope": "Nacional",
+   "founded": 1958,
+   "group": "unidad-editorial",
+   "owner_source": "https://www.wikidata.org/wiki/Q5656999",
+   "feeds": [
+    "https://www.elmundo.es/rss/googlenews/economia.xml"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "la-verdad",
+   "name": "La Verdad",
+   "domains": [
+    "laverdad.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Región de Murcia",
+   "founded": 1903,
+   "group": "vocento",
+   "owner_source": "https://www.wikidata.org/wiki/Q11687789",
+   "feeds": [
+    "https://www.laverdad.es/rss/2.0/?section="
+   ],
+   "evidence": []
+  },
+  {
+   "id": "directa",
+   "name": "Directa",
+   "domains": [
+    "directa.cat"
+   ],
+   "type": "Revista",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 2006,
+   "owner_source": "https://www.wikidata.org/wiki/Q11949582",
+   "feeds": [
+    "https://directa.cat/rss/"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Izquierda",
+      "Republicanismo",
+      "Laicismo",
+      "Movimientos sociales"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Directa",
+     "revid": 164793531,
+     "retrieved": "2026-11-19"
+    }
+   ],
+   "group": null
+  },
+  {
+   "id": "la-cerca",
+   "name": "La Cerca",
+   "domains": [
+    "lacerca.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Castilla-La Mancha",
+   "founded": 1998,
+   "publisher": "Grupo Multimedia de Comunicación La Cerca",
+   "owner_source": "https://www.wikidata.org/wiki/Q18644283",
+   "feeds": [
+    "https://www.lacerca.com/categorias/rss/23"
+   ],
+   "evidence": [],
+   "group": null
+  },
+  {
+   "id": "el-norte-de-castilla",
+   "name": "El Norte de Castilla",
+   "domains": [
+    "elnortedecastilla.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Castilla y León",
+   "founded": 1854,
+   "group": "vocento",
+   "owner_source": "https://www.wikidata.org/wiki/Q326519",
+   "feeds": [
+    "https://www.elnortedecastilla.es/rss/2.0/?section="
+   ],
+   "evidence": []
+  },
+  {
+   "id": "berria",
+   "name": "Berria",
+   "domains": [
+    "berria.eus"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "País Vasco",
+   "founded": 2003,
+   "publisher": "EKTSA - Euskarazko Komunikazio Taldea",
+   "owner_source": "https://www.wikidata.org/wiki/Q827097",
+   "feeds": [
+    "https://www.berria.eus/uploads/feeds/feed_berria_eu.xml"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Izquierda abertzale",
+      "Progresismo",
+      "Izquierdas"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Berria",
+     "revid": 175881936,
+     "retrieved": "2026-11-19"
+    }
+   ],
+   "group": null
+  },
+  {
+   "id": "marca",
+   "name": "Marca",
+   "domains": [
+    "marca.com"
+   ],
+   "type": "Diario deportivo",
+   "scope": "Nacional",
+   "founded": 1938,
+   "group": "unidad-editorial",
+   "owner_source": "https://www.wikidata.org/wiki/Q917580",
+   "feeds": [
+    "https://www.marca.com/rss/googlenews/portada.xml"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "canal-sur-television",
+   "name": "Canal Sur",
+   "domains": [
+    "canalsur.es"
+   ],
+   "type": "Televisión y radio públicas",
+   "scope": "Regional",
+   "region": "Andalucía",
+   "founded": 1989,
+   "publisher": "RTVA (agencia pública de la Junta de Andalucía)",
+   "owner_source": "https://www.wikidata.org/wiki/Q2743194",
+   "feeds": [
+    "https://www.canalsur.es/rss/"
+   ],
+   "evidence": [],
+   "group": null
+  },
+  {
+   "id": "la-region",
+   "name": "La Región",
+   "domains": [
+    "laregion.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Galicia",
+   "founded": 1910,
+   "publisher": "La Región S.A",
+   "owner_source": "https://www.wikidata.org/wiki/Q2841026",
+   "feeds": [
+    "https://www.laregion.es/rss/"
+   ],
+   "evidence": [],
+   "group": null
+  },
+  {
+   "id": "tinta-roja",
+   "name": "Tinta Roja",
+   "domains": [
+    "tintaroja.es"
+   ],
+   "type": "Revista",
+   "scope": "Nacional",
+   "founded": 1997,
+   "owner_source": "https://www.wikidata.org/wiki/Q21003704",
+   "feeds": [
+    "https://www.tintaroja.es/index.php?format=feed&type=rss"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Comunismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Tinta_Roja",
+     "revid": 157344267,
+     "retrieved": "2026-11-19"
+    }
+   ],
+   "group": null
+  },
+  {
+   "id": "ara-balears",
+   "name": "ARA Balears",
+   "domains": [
+    "arabalears.cat"
+   ],
+   "type": "Digital",
+   "scope": "Regional",
+   "region": "Islas Baleares",
+   "publisher": "Ara (Edicions Ara)",
+   "owner_source": "https://www.wikidata.org/wiki/Q21927220",
+   "feeds": [
+    "https://www.arabalears.cat/rss/"
+   ],
+   "evidence": [],
+   "group": null
+  },
+  {
+   "id": "dbalears",
+   "name": "DBalears",
+   "domains": [
+    "dbalears.cat"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Islas Baleares",
+   "publisher": "Grupo Serra",
+   "owner_source": "https://www.wikidata.org/wiki/Q30250465",
+   "feeds": [
+    "https://www.dbalears.cat/feed.rss"
+   ],
+   "evidence": [],
+   "group": null
+  },
+  {
+   "id": "pontevedra-viva",
+   "name": "Pontevedra Viva",
+   "domains": [
+    "pontevedraviva.com"
+   ],
+   "type": "Digital",
+   "scope": "Regional",
+   "region": "Galicia",
+   "founded": 2012,
+   "publisher": "Virtual Vedra Comunicación",
+   "owner_source": "https://www.wikidata.org/wiki/Q61388573",
+   "feeds": [
+    "https://www.pontevedraviva.com/uploads/feeds/feed_pontevedraviva_gl.xml"
+   ],
+   "evidence": [],
+   "group": null
+  },
+  {
+   "id": "el-mira",
+   "name": "El MIRA",
+   "domains": [
+    "elmira.es"
+   ],
+   "type": "Digital",
+   "scope": "Regional",
+   "region": "Castilla-La Mancha",
+   "founded": 2015,
+   "owner_source": "https://www.wikidata.org/wiki/Q62009565",
+   "feeds": [
+    "https://www.elmira.es/rss/"
+   ],
+   "evidence": [
+    {
+     "source": "wikidata",
+     "kind": "ideology",
+     "labels": [
+      "Derecha"
+     ],
+     "url": "https://www.wikidata.org/wiki/Q62009565",
+     "retrieved": "2026-11-19"
+    }
+   ],
+   "group": null
+  },
+  {
+   "id": "navarra-confidencial",
+   "name": "Navarra Confidencial",
+   "domains": [
+    "navarraconfidencial.com"
+   ],
+   "type": "Digital",
+   "scope": "Regional",
+   "region": "Navarra",
+   "founded": 2005,
+   "owner_source": "https://www.wikidata.org/wiki/Q83149556",
+   "feeds": [
+    "https://www.navarraconfidencial.com/feed/"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Tradicionalismo político español",
+      "Cristianismo",
+      "Libertario",
+      "Conservador"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Navarra_Confidencial",
+     "revid": 171058563,
+     "retrieved": "2026-11-19"
+    }
+   ],
+   "group": null
+  },
+  {
+   "id": "briega",
+   "name": "Briega",
+   "domains": [
+    "briega.org"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2004,
+   "owner_source": "https://www.wikidata.org/wiki/Q112605033",
+   "feeds": [
+    "https://www.briega.org/feed/"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Antiautoritarismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Briega",
+     "revid": 174971967,
+     "retrieved": "2026-11-19"
+    }
+   ],
+   "group": null
+  },
+  {
+   "id": "diario-de-almeria",
+   "name": "Diario de Almería",
+   "domains": [
+    "elalmeria.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Andalucía",
+   "founded": 2007,
+   "group": "joly",
+   "owner_source": "https://www.wikidata.org/wiki/Q5805361",
+   "feeds": [
+    "https://www.diariodealmeria.es/rss/"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "diario-de-arousa",
+   "name": "Diario de Arousa",
+   "domains": [
+    "diariodearousa.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Galicia",
+   "founded": 2001,
+   "group": "la-capital",
+   "owner_source": "https://www.wikidata.org/wiki/Q5805362",
+   "feeds": [
+    "https://diariodearousa.elidealgallego.com/rss/"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "diario-de-leon",
+   "name": "Diario de León",
+   "domains": [
+    "diariodeleon.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Castilla y León",
+   "founded": 1906,
+   "group": "edigrup",
+   "owner_source": "https://www.wikidata.org/wiki/Q5805383",
+   "feeds": [
+    "https://www.diariodeleon.es/rss/home.xml"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "la-rioja",
+   "name": "La Rioja",
+   "domains": [
+    "larioja.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "La Rioja",
+   "founded": 1889,
+   "group": "vocento",
+   "owner_source": "https://www.wikidata.org/wiki/Q5965110",
+   "feeds": [
+    "https://www.larioja.com/rss/2.0/?section="
+   ],
+   "evidence": []
+  },
+  {
+   "id": "atlas-news",
+   "name": "Atlas News",
+   "domains": [
+    "atlas-news.com"
+   ],
+   "type": "Agencia",
+   "scope": "Nacional",
+   "founded": 1998,
+   "group": "mediaset",
+   "owner_source": "https://www.wikidata.org/wiki/Q8191322",
+   "feeds": [
+    "https://www.atlas-news.com/rss/"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "cnt",
+   "name": "CNT",
+   "domains": [
+    "cnt.es"
+   ],
+   "type": "Periódico sindical",
+   "scope": "Nacional",
+   "founded": 1932,
+   "publisher": "Confederación Nacional del Trabajo",
+   "owner_source": "https://www.wikidata.org/wiki/Q8254087",
+   "feeds": [
+    "https://www.cnt.es/feed/"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Anarcosindicalista"
+     ],
+     "url": "https://es.wikipedia.org/wiki/CNT_(periódico)",
+     "revid": 173203075,
+     "retrieved": "2026-11-19"
+    }
+   ],
+   "group": null
+  },
+  {
+   "id": "diario-de-pontevedra",
+   "name": "Diario de Pontevedra",
+   "domains": [
+    "diariodepontevedra.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Galicia",
+   "founded": 1968,
+   "publisher": "Grupo El Progreso",
+   "owner_source": "https://www.wikidata.org/wiki/Q8355302",
+   "feeds": [
+    "https://www.diariodepontevedra.es/rss/"
+   ],
+   "evidence": [],
+   "group": null
+  },
+  {
+   "id": "el-ideal-gallego",
+   "name": "El Ideal Gallego",
+   "domains": [
+    "elidealgallego.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Galicia",
+   "founded": 1917,
+   "group": "la-capital",
+   "owner_source": "https://www.wikidata.org/wiki/Q3310972",
+   "feeds": [
+    "https://www.elidealgallego.com/rss/"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "diario-de-valladolid",
+   "name": "Diario de Valladolid",
+   "domains": [
+    "diariodevalladolid.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Castilla y León",
+   "founded": 1991,
+   "group": "edigrup",
+   "owner_source": "https://www.wikidata.org/wiki/Q139799042",
+   "feeds": [
+    "https://www.diariodevalladolid.es/rss/home.xml"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "diario-de-castilla-y-leon",
+   "name": "Diario de Castilla y León",
+   "domains": [
+    "diariodecastillayleon.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Castilla y León",
+   "founded": 1993,
+   "group": "edigrup",
+   "owner_source": "https://www.wikidata.org/wiki/Q139799526",
+   "feeds": [
+    "https://www.diariodecastillayleon.es/rss/home.xml"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "diario-de-jerez",
+   "name": "Diario de Jerez",
+   "domains": [
+    "diariodejerez.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Andalucía",
+   "founded": 1984,
+   "group": "joly",
+   "owner_source": "https://www.wikidata.org/wiki/Q5805380",
+   "feeds": [
+    "https://www.diariodejerez.es/rss/"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "el-correo-de-burgos",
+   "name": "El Correo de Burgos",
+   "domains": [
+    "elcorreodeburgos.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Castilla y León",
+   "founded": 1999,
+   "group": "edigrup",
+   "owner_source": "https://www.wikidata.org/wiki/Q139766902",
+   "feeds": [
+    "https://www.elcorreodeburgos.com/rss/home.xml"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "heraldo-diario-de-soria",
+   "name": "Heraldo-Diario de Soria",
+   "domains": [
+    "heraldodiariodesoria.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Castilla y León",
+   "founded": 1913,
+   "group": "edigrup",
+   "owner_source": "https://www.wikidata.org/wiki/Q140044935",
+   "feeds": [
+    "https://www.heraldodiariodesoria.es/rss/home.xml"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "gedar",
+   "name": "Gedar",
+   "domains": [
+    "gedar.eus"
+   ],
+   "type": "Digital",
+   "scope": "Regional",
+   "region": "País Vasco",
+   "founded": 2019,
+   "publisher": "EHKS - Movimiento Socialista de Euskal Herria",
+   "owner_source": "https://www.wikidata.org/wiki/Q113231422",
+   "feeds": [
+    "https://gedar.eus/rss/eu"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "Comunismo"
+     ],
+     "url": "https://es.wikipedia.org/wiki/Gedar",
+     "revid": 175803859,
+     "retrieved": "2026-11-19"
+    }
+   ],
+   "group": null
+  },
+  {
+   "id": "maldita",
+   "name": "Maldita.es",
+   "domains": [
+    "maldita.es"
+   ],
+   "type": "Verificador",
+   "scope": "Nacional",
+   "founded": 2018,
+   "group": null,
+   "factchecker": true,
+   "feeds": [
+    "https://maldita.es/feed/"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ifcn",
+     "labels": [
+      "Signatario IFCN"
+     ],
+     "quote": "Mantiene una presencia activa en redes internacionales siendo signataria verificada del International Fact-Checking Network (IFCN) desde 2018.",
+     "url": "https://es.wikipedia.org/wiki/Maldita.es",
+     "revid": 176313938,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "newtral",
+   "name": "Newtral",
+   "domains": [
+    "newtral.es"
+   ],
+   "type": "Verificador",
+   "scope": "Nacional",
+   "founded": 2018,
+   "group": null,
+   "factchecker": true,
+   "feeds": [
+    "https://www.newtral.es/feed/"
+   ],
+   "evidence": [
+    {
+     "source": "mbfc",
+     "kind": "ideology",
+     "labels": [
+      "Least Biased"
+     ],
+     "url": "https://mediabiasfactcheck.com/newtral/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "mbfc",
+     "kind": "factual",
+     "labels": [
+      "High"
+     ],
+     "url": "https://mediabiasfactcheck.com/newtral/",
+     "retrieved": "2026-11-18"
+    },
+    {
+     "source": "wikipedia",
+     "kind": "ifcn",
+     "labels": [
+      "Signatario IFCN"
+     ],
+     "quote": "Es miembro de la International Fact-Checking Network.",
+     "url": "https://es.wikipedia.org/wiki/Newtral",
+     "revid": 176156715,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "efe-verifica",
+   "name": "EFE Verifica",
+   "domains": [
+    "verifica.efe.com"
+   ],
+   "type": "Verificador",
+   "scope": "Nacional",
+   "founded": 2019,
+   "group": "efe",
+   "factchecker": true,
+   "feeds": [
+    "https://verifica.efe.com/feed/"
+   ],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ifcn",
+     "labels": [
+      "Signatario IFCN"
+     ],
+     "quote": "EFEVerifica entra a formar parte de International Fact-Checking Network (IFCN).",
+     "url": "https://es.wikipedia.org/wiki/Agencia_EFE",
+     "revid": 175479206,
+     "retrieved": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "verificat",
+   "name": "Verificat",
+   "domains": [
+    "verificat.cat"
+   ],
+   "type": "Verificador",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 2019,
+   "group": null,
+   "factchecker": true,
+   "feeds": [],
+   "evidence": []
+  }
+ ]
 }
