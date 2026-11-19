@@ -4,6 +4,25 @@ Todos los cambios relevantes se documentan aquí. El formato sigue
 [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y el proyecto usa
 [versionado semántico](https://semver.org/lang/es/).
 
+## [1.1.0] - 2026-11-19
+
+### Añadido
+- 35 medios nuevos (93 cabeceras en total), sobre todo prensa regional, seleccionados con un criterio fijo: RSS operativo y etiqueta citable o propietario documentado. Nuevos grupos: Edigrup Media y Editorial La Capital.
+- Etiquetas citadas: cada etiqueta se muestra con la palabra exacta de su fuente, enlace a la revisión consultada y fecha. Filtro por etiqueta y por ámbito en el catálogo.
+- Auditoría de equilibrio en la metodología: etiquetas citadas por lado del espectro.
+- Detección semanal de cambios en las fichas de Wikipedia respecto a la revisión fijada.
+- Política de rectificación (`RECTIFICATION.md`).
+- Pruebas de extremo a extremo con Playwright (32 pruebas) y job en CI.
+- Tipografía Newsreader servida desde el propio dominio.
+
+### Cambiado
+- «Sin evaluar» pasa a «Sin etiqueta publicada», para no sugerir neutralidad.
+- Propiedad mostrada como hecho con su fuente.
+- Pulido visual: sin antetítulos, avisos con borde completo, selección, cursor y barras de desplazamiento con la paleta propia.
+
+### Corregido
+- `Permissions-Policy` ya no declara funciones que Chromium no reconoce.
+
 ## [1.0.0] - 2026-11-18
 
 Reescritura completa del prototipo.

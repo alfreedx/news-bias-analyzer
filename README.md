@@ -17,7 +17,8 @@ Media Bias/Fact Check, Wikipedia and Wikidata), its factual reliability, who own
 
 | | |
 |---|---|
-| **Orientación del medio** | Posición izquierda–derecha calculada **solo** a partir de fuentes externas citadas (Media Bias/Fact Check, Wikipedia, Wikidata). Sin fuentes, el medio aparece como «sin evaluar». |
+| **Etiquetas citadas** | Lo que cada fuente dice del medio, con sus propias palabras («Wikipedia: Monarquismo, Catolicismo»), enlazado a la versión exacta consultada y con fecha. Nunca son adjetivos de Contraste. |
+| **Orientación del medio** | Posición izquierda–derecha calculada **solo** a partir de fuentes externas citadas (Media Bias/Fact Check, Wikipedia, Wikidata). Sin fuentes, el medio aparece como «sin etiqueta publicada». |
 | **Fiabilidad factual** | Calificación de Media Bias/Fact Check y acreditación IFCN de los verificadores. |
 | **Propiedad** | Grupo de comunicación de cada cabecera y quién está detrás de él. |
 | **Historias agrupadas** | Los titulares de distintos medios sobre el mismo hecho, juntos, para comparar el enfoque. |
@@ -39,7 +40,7 @@ Sin cookies, sin rastreadores, sin cuentas y sin coste.
 ## Cómo funciona
 
 ```
- RSS oficiales de ~45 medios ─┐
+ RSS oficiales de ~75 medios ─┐
  + verificadores              ├─► ingesta cada 20 min ─► SQLite + FTS5 ─► FastAPI + Jinja2 ─► HTML sin JS obligatorio
  (defusedxml, 5 MB, 15 s)     ┘   (peticiones condicionales ETag)            │
                                                                              └─ data/media.json + data/groups.json
@@ -139,7 +140,8 @@ pip install -r requirements-dev.txt
 ruff check app tests scripts
 python -m pytest
 pip-audit -r requirements.txt
-python scripts/verify_sources.py    # ¿siguen vivas las fuentes? ¿ha cambiado alguna calificación?
+python -m pytest -m e2e             # pruebas en navegador con Playwright (python -m playwright install chromium)
+python scripts/verify_sources.py    # ¿siguen vivas las fuentes? ¿ha cambiado alguna calificación o ficha?
 ```
 
 Las medidas de seguridad y privacidad están detalladas en [SECURITY.md](SECURITY.md) y en la página
@@ -151,16 +153,18 @@ Las medidas de seguridad y privacidad están detalladas en [SECURITY.md](SECURIT
   lo bloquean o no lo publican. Están en el catálogo pero no en el índice.
 - El índice empieza vacío y guarda 120 días: las búsquedas sobre temas antiguos no darán resultados.
 - La agrupación de historias y las señales del titular son heurísticas sencillas.
-- Hay medios sin evaluación externa publicada; se muestran como «sin evaluar» en lugar de inventar una posición.
+- Hay medios sin evaluación externa publicada; se muestran como «sin etiqueta publicada» en lugar de inventar una posición.
+- Las etiquetas de Wikipedia rara vez citan su propia fuente. Por eso se fijan a una revisión concreta y el CI semanal avisa si cambian.
 
 ## Licencias
 
 - **Código**: [MIT](LICENSE).
 - **Datos** (`data/`): [CC BY-SA 4.0](DATA_LICENSE.md), por incluir información adaptada de Wikipedia.
+- **Tipografía**: Newsreader, SIL Open Font License 1.1. Ver [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 - Los titulares y marcas pertenecen a sus medios; la aplicación solo muestra titular, extracto y enlace.
 - Las calificaciones de Media Bias/Fact Check pertenecen a MBFC y se citan con enlace a la reseña original.
 
 ## Contribuir
 
-Las correcciones de datos son especialmente bienvenidas. Lee [CONTRIBUTING.md](CONTRIBUTING.md) y el
+Las correcciones de datos son especialmente bienvenidas. Si representas a un medio, consulta la [política de rectificación](RECTIFICATION.md). Lee [CONTRIBUTING.md](CONTRIBUTING.md) y el
 [código de conducta](CODE_OF_CONDUCT.md). Para vulnerabilidades, consulta [SECURITY.md](SECURITY.md).
