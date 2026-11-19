@@ -24,6 +24,7 @@ Media Bias/Fact Check, Wikipedia and Wikidata), its factual reliability, who own
 | **Historias agrupadas** | Los titulares de distintos medios sobre el mismo hecho, juntos, para comparar el enfoque. |
 | **Quién la cuenta** | Reparto por posición (con el porcentaje «sin etiqueta» explícito), concentración por grupos y avisos cuando un lado apenas cubre el tema. |
 | **En resumen** | En cada historia: qué coinciden en contar, qué cambia según el medio y qué han verificado Maldita, Newtral o EFE Verifica; con cronología y aviso de agrupación automática. |
+| **Contenido patrocinado** | Solo cuando lo marca el propio medio (categoría RSS, sección de la URL o prefijo del titular) según reglas públicas en `data/sponsored_rules.json`: nota «Marcado como patrocinado por el medio», fuera de historias y recuentos, y aparte en las búsquedas. No detectar una marca no garantiza que una pieza no sea publicidad. |
 | **Cómo leer** | Glosario `/como-leer` con los términos del sitio. |
 | **Verificaciones** | Desmentidos relacionados de Maldita.es, Newtral y EFE Verifica. |
 
@@ -128,11 +129,12 @@ app/
   scoring.py     tablas públicas etiqueta → posición (la «metodología» en código)
   analysis.py    agrupación de historias, cobertura, noticias que cuenta sobre todo un lado
   feeds.py       descarga y análisis seguro de RSS/Atom
+  sponsored.py   reglas públicas de contenido patrocinado marcado por el medio
   db.py          SQLite + FTS5, consultas parametrizadas
   security.py    cabeceras de seguridad y limitador de peticiones
   templates/     HTML (Jinja2)   ·   static/  CSS, JS e icono
 data/            catálogo de medios y grupos (CC BY-SA 4.0)
-scripts/         verify_sources.py: comprueba fuentes y calificaciones
+scripts/         verify_sources.py: comprueba fuentes y calificaciones; sponsored_survey.py: mide las marcas de patrocinio de los RSS
 tests/           pytest
 ```
 
@@ -160,7 +162,7 @@ Las medidas de seguridad y privacidad están detalladas en [SECURITY.md](SECURIT
 
 ## Limitaciones conocidas
 
-- Solo aparecen en los resultados los medios con RSS accesible; algunos (SER, Público, elEconomista…)
+- Solo aparecen en los resultados los medios con RSS accesible; algunos (SER, Público…)
   lo bloquean o no lo publican. Están en el catálogo pero no en el índice.
 - El índice empieza vacío y guarda 120 días: las búsquedas sobre temas antiguos no darán resultados.
 - La agrupación de historias es una heurística sencilla.
