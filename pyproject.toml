@@ -1,6 +1,6 @@
 [project]
 name = "contraste"
-version = "1.1.0"
+version = "1.2.0"
 description = "Buscador de noticias con contexto sobre la orientación, fiabilidad y propiedad de los medios."
 readme = "README.md"
 license = "MIT"
