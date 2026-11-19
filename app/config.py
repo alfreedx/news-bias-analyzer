@@ -27,6 +27,24 @@ def _list(name: str, default: str) -> list[str]:
     return [item.strip() for item in os.environ.get(name, default).split(",") if item.strip()]
 
 
+def _render_host() -> str:
+    """Public hostname Render assigns to the service (empty elsewhere)."""
+    return os.environ.get("RENDER_EXTERNAL_HOSTNAME", "").strip()
+
+
+def _allowed_hosts() -> list[str]:
+    hosts = _list("ALLOWED_HOSTS", "localhost,127.0.0.1")
+    if _render_host() and _render_host() not in hosts:
+        hosts.append(_render_host())
+    return hosts
+
+
+def _site_url() -> str:
+    if os.environ.get("SITE_URL"):
+        return os.environ["SITE_URL"]
+    return f"https://{_render_host()}" if _render_host() else "http://localhost:8000"
+
+
 def _load_dotenv(path: Path) -> None:
     """Minimal .env loader (no extra dependency). Real env vars take priority."""
     if not path.is_file():
@@ -59,11 +77,11 @@ class Settings:
     # non-commercial use, so it is off by default.
     google_news_enabled: bool = field(default_factory=lambda: _bool("GOOGLE_NEWS_ENABLED", False))
     # HTTP / security
-    allowed_hosts: list[str] = field(default_factory=lambda: _list("ALLOWED_HOSTS", "localhost,127.0.0.1"))
+    allowed_hosts: list[str] = field(default_factory=_allowed_hosts)
     https_only: bool = field(default_factory=lambda: _bool("HTTPS_ONLY", False))
     rate_limit_per_minute: int = field(default_factory=lambda: _int("RATE_LIMIT_PER_MINUTE", 30, 1))
     trust_proxy_headers: bool = field(default_factory=lambda: _bool("TRUST_PROXY_HEADERS", False))
-    site_url: str = field(default_factory=lambda: os.environ.get("SITE_URL", "http://localhost:8000"))
+    site_url: str = field(default_factory=_site_url)
     repo_url: str = field(
         default_factory=lambda: os.environ.get("REPO_URL", "https://github.com/alfreedx/news-bias-analyzer")
     )

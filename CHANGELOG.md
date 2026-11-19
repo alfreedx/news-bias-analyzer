@@ -4,6 +4,30 @@ Todos los cambios relevantes se documentan aquí. El formato sigue
 [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y el proyecto usa
 [versionado semántico](https://semver.org/lang/es/).
 
+## [Unreleased]
+
+### Añadido
+- Historias persistentes: tablas `stories` y `story_articles` (migración idempotente), asignación incremental tras cada ingesta (titulares de las últimas 72 h; misma regla de similitud que el agrupado de búsquedas; título = titular más central; sin historias de un solo titular) y limpieza con la retención. Nueva página `/historia/{id}` con radiografía de cobertura, «Cómo lo cuenta cada lado», titulares y verificaciones; la portada y la búsqueda enlazan a ella cuando la historia está guardada.
+- «En lo que coinciden» (`app/consensus.py`): cifras, nombres, citas y fechas que repiten al menos 3 fuentes independientes de 2 o más grupos y 2 o más lados, «Solo lo cuenta un lado» y titular representativo, con reglas transparentes (sin IA ni dependencias nuevas). Copias, grupos y agencias cuentan como una sola voz. Explicado en `/metodologia#coincidencias`.
+- `robots.txt` permite `/historia/`.
+- Ficha de cada medio con hechos de Wikidata (CC0), cada uno con enlace y fecha de consulta: fundación, tipo, lengua, sede, propiedad/editor, ámbito y titularidad. Los datos se guardan en `data/media.json` bajo `facts`; solo se escribe lo que Wikidata publica.
+- `scripts/enrich_media.py`: obtiene y actualiza esos datos (lotes, pausa de 1 s, reintentos con espera ante 403/429).
+- Clasificaciones derivadas y documentadas en `/metodologia`: titularidad pública, sin grupo registrado en el catálogo, propiedad de una institución religiosa y lengua. Nunca se usan como adjetivos editoriales.
+- Filtros por lengua y por titularidad en `/medios`, y faceta «Eje territorial» (a partir de etiquetas ya citadas).
+- La verificación semanal de fuentes compara también los hechos de Wikidata y avisa si han cambiado.
+- Firmas: junto a cada titular se muestra «Por <nombre>» tal como lo publica el RSS del medio (`dc:creator`, `author`, Atom), con enlace a `/buscar?autor=…`, que lista los titulares con esa firma y cuántos hay por medio. Solo nombre y medio: sin perfiles, biografías, fotos ni orientación. Columna `author` con migración automática de bases de datos antiguas; se borra junto con el titular.
+- Titulares sindicados (mismo titular en varios medios) colapsados en una sola fila.
+- Ranking por diversidad de cobertura (medios, grupos y lados).
+- Bloque «Cómo lo cuenta cada lado» con un titular representativo por lado.
+- Resumen en lenguaje llano de la cobertura de cada búsqueda.
+- «Puntos ciegos» en la portada: historias cubiertas casi solo por medios de un lado.
+- Despliegue gratuito en Render: `render.yaml` (Docker, HTTPS, despliegue automático) y botón en el README. El nombre que asigna Render se admite automáticamente en `ALLOWED_HOSTS` y como `SITE_URL`.
+
+### Cambiado
+- `/privacidad` explica el tratamiento de las firmas y cómo pedir su retirada.
+- Las páginas de firma llevan `noindex` para que Contraste no funcione como buscador de personas.
+- Los medios sin grupo aparecen como «(sin grupo)» en lugar de «(independiente)», que sería un juicio.
+
 ## [1.1.0] - 2026-11-19
 
 ### Añadido

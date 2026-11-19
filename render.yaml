@@ -1,0 +1,29 @@
+# Render Blueprint: free web service built from the project's Dockerfile.
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: contraste
+    runtime: docker
+    plan: free
+    region: frankfurt
+    branch: main
+    autoDeploy: true
+    healthCheckPath: /api/salud
+    envVars:
+      - key: PORT
+        value: "8000"
+      # Render's own public hostname (RENDER_EXTERNAL_HOSTNAME) is allowed automatically;
+      # list custom domains here if you add one.
+      - key: ALLOWED_HOSTS
+        value: localhost,127.0.0.1
+      - key: HTTPS_ONLY
+        value: "true"
+      # Render terminates TLS in front of the container and sets X-Forwarded-For.
+      - key: TRUST_PROXY_HEADERS
+        value: "true"
+      - key: INGEST_ENABLED
+        value: "true"
+      - key: INGEST_INTERVAL_MINUTES
+        value: "20"
+      - key: GOOGLE_NEWS_ENABLED
+        value: "false"

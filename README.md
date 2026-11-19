@@ -90,7 +90,17 @@ docker run -d --name contraste -p 8000:8000 \
   contraste
 ```
 
-### Despliegue gratuito
+### Despliegue gratuito en Render
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/alfreedx/news-bias-analyzer)
+
+El repositorio incluye un [`render.yaml`](render.yaml) que crea un servicio web gratuito a partir del
+`Dockerfile`, con HTTPS, cabeceras de seguridad y despliegue automático en cada cambio de `main`.
+El nombre público que asigna Render (`RENDER_EXTERNAL_HOSTNAME`) se admite automáticamente.
+El plan gratuito se suspende tras 15 minutos sin visitas: la primera visita tarda unos segundos y el
+índice se reconstruye solo desde los RSS.
+
+### Otros servicios
 
 Cualquier servicio que ejecute un contenedor Docker sirve (por ejemplo, Hugging Face Spaces o Render
 en su plan gratuito en el momento de escribir esto). Si el disco del servicio es efímero no pasa nada:
