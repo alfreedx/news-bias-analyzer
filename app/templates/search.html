@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import chip, factual, byline, signals, spectrum_dots, tags %}
+{% from "_macros.html" import chip, factual, byline, row_byline, comparison, signals, spectrum_dots, tags, coverage_panel %}
 {% block title %}{% if query %}{{ query }} · {% endif %}Contraste{% endblock %}
 {% block body_class %}page-search{% endblock %}
 
@@ -27,27 +27,7 @@
 {% else %}
 <div class="layout">
   <div class="sidebar">
-  <aside class="panel panel--summary" aria-labelledby="panel-title">
-    <h2 id="panel-title" class="panel__title">Radiografía de la cobertura</h2>
-    <p class="panel__lead"><strong>{{ cov.total }}</strong> titulares · <strong>{{ cov.outlets }}</strong> medios</p>
-
-    <div class="stack" role="img" aria-label="Reparto por orientación: {% for p, n in cov.by_position.items() %}{{ POSITION_LABELS[p] }} {{ n }}{% if not loop.last %}, {% endif %}{% endfor %}">
-      {% for p, n in cov.by_position.items() %}{% if n %}<span class="stack__seg stack__seg--{{ pos_class(p) }} w-{{ pct(n, cov.rated) }}" title="{{ POSITION_LABELS[p] }}: {{ n }}"></span>{% endif %}{% endfor %}
-    </div>
-    <ul class="legend">
-      {% for p, n in cov.by_position.items() %}
-      <li><span class="dot dot--{{ pos_class(p) }} is-on"></span>{{ POSITION_LABELS[p] }} <span class="legend__n">{{ n }}</span></li>
-      {% endfor %}
-      <li><span class="dot dot--na is-on"></span>Sin etiqueta publicada <span class="legend__n">{{ cov.total - cov.rated }}</span></li>
-    </ul>
-
-    {% for w in cov.warnings %}
-    <div class="alert alert--{{ w.kind }}">
-      <p class="alert__title">{{ w.title }}</p>
-      <p>{{ w.text }}</p>
-    </div>
-    {% endfor %}
-  </aside>
+  {{ coverage_panel(cov) }}
 
   <aside class="panel panel--more" aria-label="Propiedad y verificaciones">
     <h3 class="panel__sub panel__sub--first">Quién está detrás</h3>
@@ -115,16 +95,18 @@
       {% if s.articles|length > 1 %}
       <article class="story">
         <header class="story__head">
-          <h3 class="story__title">{{ s.lead.title }}</h3>
+          <h3 class="story__title">{% if s.story_id %}<a href="/historia/{{ s.story_id }}">{{ s.lead.title }}</a>{% else %}{{ s.lead.title }}{% endif %}</h3>
           <p class="story__meta">{{ spectrum_dots(s.positions) }} {{ s.outlets }} medios · {{ s.spread_label }}</p>
         </header>
+        {{ comparison(s) }}
         <ul class="story__list">
-          {% for a in s.articles %}
-          <li class="item" data-item data-pos="{{ a.position if a.position is not none else 'na' }}" data-group="{{ a.media.group.name if a.media and a.media.group else '' }}" data-time="{{ a.published }}" data-rel="{{ loop.index0 }}">
+          {% for r in s.rows %}
+          {% set a = r.lead %}
+          <li class="item" data-item data-pos="{{ a.position if a.position is not none else 'na' }}" data-group="{{ r.group.name if r.group else (a.media.group.name if a.media and a.media.group else '') }}" data-time="{{ r.published }}" data-rel="{{ loop.index0 }}">
             <div class="item__aside">{{ chip(a.media) }}</div>
             <div class="item__body">
               <a class="item__title" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
-              <div class="item__meta">{{ byline(a) }} {{ factual(a.media) }} {{ signals(a) }}</div>
+              <div class="item__meta">{{ row_byline(r) }} {{ factual(a.media) }} {{ signals(a) }}</div>
               {{ tags(a.media, limit=3) }}
             </div>
           </li>

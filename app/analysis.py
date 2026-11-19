@@ -13,6 +13,20 @@ from .text import _WORD, fold, headline_signals, keywords
 
 POSITIONS = [-2, -1, 0, 1, 2]
 
+SIDES = [("left", "Izquierda"), ("center", "Centro"), ("right", "Derecha")]
+
+
+def side_of(position: int | None) -> str | None:
+    """Three-way bucket of an assessed position (None when the outlet has no published label)."""
+    if position is None:
+        return None
+    return "left" if position < 0 else "right" if position > 0 else "center"
+
+
+def norm_title(title: str) -> str:
+    """Accent-, case- and whitespace-insensitive form of a headline, used to spot syndicated copies."""
+    return " ".join(fold(title).split())
+
 
 @dataclass
 class Article:
@@ -25,6 +39,8 @@ class Article:
     relevance: float = 0.0
     signals: list[str] = field(default_factory=list)
     keys: set[str] = field(default_factory=set)
+    author: str | None = None  # byline as published; nothing else is known or inferred about the person
+    id: int | None = None  # row id in the local index (None for live Google News results)
 
     @property
     def position(self) -> int | None:
@@ -37,9 +53,55 @@ class Article:
             "summary": self.summary,
             "published": self.published,
             "source": self.source_name,
+            "author": self.author,
             "media": self.media.to_public() if self.media else None,
             "signals": self.signals,
         }
+
+
+@dataclass
+class Row:
+    """One visible line of a story: a headline, possibly carried verbatim by several outlets."""
+
+    articles: list[Article]
+
+    @property
+    def lead(self) -> Article:
+        return self.articles[0]
+
+    @property
+    def position(self) -> int | None:
+        return self.lead.position
+
+    @property
+    def published(self) -> int:
+        return max(a.published for a in self.articles)
+
+    @property
+    def author(self) -> str | None:
+        """The byline when every copy of the headline carries the same one."""
+        names = {a.author for a in self.articles}
+        return self.lead.author if len(names) == 1 else None
+
+    @property
+    def group(self):
+        """The owner group when every outlet of the row shares it (a fact about ownership, nothing more)."""
+        groups = {a.media.group.id if a.media and a.media.group else None for a in self.articles}
+        if len(groups) == 1 and None not in groups:
+            return self.lead.media.group
+        return None
+
+
+def dedupe(articles: list[Article]) -> list[Row]:
+    """Merge items with an identical normalised title into one row, keeping first-seen order."""
+    rows: dict[str, Row] = {}
+    for a in articles:
+        key = norm_title(a.title) or a.url
+        if key in rows:
+            rows[key].articles.append(a)
+        else:
+            rows[key] = Row([a])
+    return list(rows.values())
 
 
 @dataclass
@@ -49,6 +111,7 @@ class Story:
     articles: list[Article]
     score: float = 0.0
     seed: Article | None = None  # the most relevant headline, kept as the story's title
+    story_id: int | None = None  # id of the persisted story this cluster maps to, when there is one
 
     @property
     def lead(self) -> Article:
@@ -57,6 +120,36 @@ class Story:
     @property
     def outlets(self) -> int:
         return len({a.source_name for a in self.articles})
+
+    @property
+    def rows(self) -> list[Row]:
+        return dedupe(self.articles)
+
+    @property
+    def groups(self) -> int:
+        """Distinct owners (group, else publisher, else the outlet itself)."""
+        return len({_owner(a) for a in self.articles})
+
+    @property
+    def side_counts(self) -> dict[str, int]:
+        counts = {"left": 0, "center": 0, "right": 0}
+        for a in self.articles:
+            side = side_of(a.position)
+            if side:
+                counts[side] += 1
+        return counts
+
+    @property
+    def comparison(self) -> list[tuple[str, str, Article | None]] | None:
+        """One representative headline per side, or None unless at least two sides cover the story."""
+        best: dict[str, Article] = {}
+        for a in self.articles:
+            side = side_of(a.position)
+            if side and (side not in best or (a.relevance, a.published) > (best[side].relevance, best[side].published)):
+                best[side] = a
+        if len(best) < 2:
+            return None
+        return [(key, label, best.get(key)) for key, label in SIDES]
 
     @property
     def topic_query(self) -> str:
@@ -88,6 +181,82 @@ class Story:
         return "Cobertura parcial"
 
 
+def owner(a: Article) -> str:
+    """Owner key of an article: group, else publisher, else the outlet itself."""
+    return _owner(a)
+
+
+def _owner(a: Article) -> str:
+    if a.media and a.media.group:
+        return a.media.group.name
+    return (a.media.publisher if a.media and a.media.publisher else a.source_name)
+
+
+def story_score(articles: list[Article]) -> float:
+    """Rank stories by diversity of coverage, not just size.
+
+    base      = best relevance of the story (1.0 when headlines were not ranked, e.g. front page)
+    score     = base * (1 + 0.25 * (outlets - 1) + 0.4 * (owner groups - 1) + 0.4 * (labelled sides - 1))
+    penalties = x0.5 when every item is a syndicated copy of one headline,
+                x0.5 when no outlet has a published label ("sin etiqueta").
+    "Sides" are the left / centre / right buckets of the external assessments only.
+    """
+    base = max((a.relevance for a in articles), default=0.0)
+    if base <= 0:
+        base = 1.0
+    outlets = len({a.source_name for a in articles})
+    groups = len({_owner(a) for a in articles})
+    sides = len({side_of(a.position) for a in articles} - {None})
+    score = base * (1 + 0.25 * (outlets - 1) + 0.4 * (groups - 1) + 0.4 * max(0, sides - 1))
+    if len(articles) > 1 and len({norm_title(a.title) for a in articles}) == 1:
+        score *= 0.5
+    if sides == 0:
+        score *= 0.5
+    return score
+
+
+def blind_spots(stories: list[Story], limit: int = 4, min_labelled: int = 3, threshold: float = 0.8) -> list[dict]:
+    """Stories where at least `min_labelled` labelled outlets report and >= `threshold` of them sit on one side."""
+    found = []
+    for s in stories:
+        counts = s.side_counts
+        labelled = sum(counts.values())
+        if labelled < min_labelled:
+            continue
+        for side in ("left", "right"):
+            if counts[side] / labelled >= threshold:
+                found.append({"story": s, "side": side, "side_outlets": counts[side], "labelled": labelled})
+    found.sort(key=lambda b: (b["labelled"], b["story"].score), reverse=True)
+    return found[:limit]
+
+
+def coverage_summary(cov: Coverage) -> str:
+    """Plain-language, purely descriptive reading of the coverage counts."""
+    parts = []
+    unrated = cov.total - cov.rated
+    if cov.rated:
+        pct_ = lambda n: round(100 * n / cov.rated)  # noqa: E731
+        left = cov.by_position[-2] + cov.by_position[-1]
+        right = cov.by_position[1] + cov.by_position[2]
+        bits = []
+        for n, text in ((right, "a la derecha del centro"), (left, "a la izquierda"),
+                        (cov.by_position[0], "en el centro")):
+            if n:
+                bits.append((n, f"el {pct_(n)} % procede de medios situados {text}"))
+        bits.sort(key=lambda b: -b[0])
+        texts = [b[1] for b in bits]
+        for i in range(1, len(texts)):
+            texts[i] = texts[i].replace("procede de medios situados", "de medios situados", 1)
+        body = texts[0] if len(texts) == 1 else ", ".join(texts[:-1]) + " y " + texts[-1]
+        parts.append(f"De {'los ' + str(cov.rated) + ' titulares' if cov.rated != 1 else 'el único titular'} "
+                     f"de medios con etiqueta, {body}.")
+    else:
+        parts.append("Ningún titular procede de medios con etiqueta publicada.")
+    if unrated and cov.rated:
+        parts.append(f"{unrated} titular{'es son' if unrated != 1 else ' es'} de medios sin etiqueta publicada.")
+    return " ".join(parts)
+
+
 @dataclass
 class Coverage:
     total: int
@@ -115,7 +284,8 @@ class Coverage:
 
 def make_article(catalog: Catalog, *, title: str, url: str, summary: str, published: int,
                  media_id: str | None = None, source_url: str | None = None,
-                 source_name: str | None = None) -> Article:
+                 source_name: str | None = None, author: str | None = None,
+                 article_id: int | None = None) -> Article:
     media = catalog.media.get(media_id) if media_id else None
     if media is None and source_url:
         media = catalog.by_url(source_url)
@@ -130,6 +300,8 @@ def make_article(catalog: Catalog, *, title: str, url: str, summary: str, publis
         source_name=media.name if media else (source_name or "Medio desconocido"),
         signals=headline_signals(title),
         keys=keywords(title),
+        author=author,
+        id=article_id,
     )
 
 
@@ -143,21 +315,40 @@ def rank(articles: list[Article], bm25: dict[str, float] | None = None, now: int
     articles.sort(key=lambda a: a.relevance, reverse=True)
 
 
-def cluster(articles: list[Article], min_shared: int = 3, min_overlap: float = 0.5) -> list[Story]:
+MIN_SHARED, MIN_OVERLAP = 3, 0.5
+
+
+def keyword_overlap(shared: int, n_a: int, n_b: int, min_shared: int = MIN_SHARED,
+                    min_overlap: float = MIN_OVERLAP) -> float:
+    """The one similarity rule of the project: overlap coefficient of two keyword sets, given how many words
+    they share. Returns 0.0 when the headlines are not about the same event."""
+    if min(n_a, n_b) < 1 or shared < min(min_shared, n_a):
+        return 0.0
+    overlap = shared / min(n_a, n_b)
+    return overlap if overlap >= min_overlap else 0.0
+
+
+def best_match(keys: set[str], seeds: list[set[str]], index: dict[str, list[int]],
+               min_shared: int = MIN_SHARED, min_overlap: float = MIN_OVERLAP) -> int | None:
+    """Index of the seed (via the inverted `index` word -> seed positions) that best matches `keys`."""
+    if len(keys) < 2:
+        return None
+    best, best_score = None, 0.0
+    candidates = Counter(i for k in keys for i in index.get(k, ()))
+    for idx, shared in candidates.items():
+        overlap = keyword_overlap(shared, len(keys), len(seeds[idx]), min_shared, min_overlap)
+        if overlap > best_score:
+            best, best_score = idx, overlap
+    return best
+
+
+def cluster(articles: list[Article], min_shared: int = MIN_SHARED, min_overlap: float = MIN_OVERLAP) -> list[Story]:
     """Group headlines about the same event (greedy, inverted index, overlap coefficient)."""
     stories: list[Story] = []
     seeds: list[set[str]] = []
     index: dict[str, list[int]] = defaultdict(list)
     for art in articles:
-        best, best_score = None, 0.0
-        if len(art.keys) >= 2:
-            candidates = Counter(i for k in art.keys for i in index.get(k, ()))
-            for idx, shared in candidates.items():
-                if shared < min(min_shared, len(art.keys)):
-                    continue
-                overlap = shared / min(len(art.keys), len(seeds[idx]))
-                if overlap >= min_overlap and overlap > best_score:
-                    best, best_score = idx, overlap
+        best = best_match(art.keys, seeds, index, min_shared, min_overlap)
         if best is None:
             stories.append(Story([art], seed=art))
             seeds.append(art.keys)
@@ -169,7 +360,7 @@ def cluster(articles: list[Article], min_shared: int = 3, min_overlap: float = 0
             if all(a.source_name != art.source_name for a in story.articles):
                 story.articles.append(art)
     for s in stories:
-        s.score = max(a.relevance for a in s.articles) * (1 + 0.4 * (s.outlets - 1))
+        s.score = story_score(s.articles)
         s.articles.sort(key=lambda a: (a.position is None, a.position if a.position is not None else 0))
     stories.sort(key=lambda s: s.score, reverse=True)
     return stories
@@ -186,7 +377,7 @@ def coverage(articles: list[Article]) -> Coverage:
         if a.media and a.media.group:
             groups[a.media.group.name] += 1
         elif a.media:
-            groups[a.media.publisher or f"{a.media.name} (independiente)"] += 1
+            groups[a.media.publisher or f"{a.media.name} (sin grupo)"] += 1
         else:
             groups["Sin identificar"] += 1
         media_counts[a.source_name] += 1

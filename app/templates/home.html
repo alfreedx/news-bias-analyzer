@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import chip, byline, spectrum_dots %}
+{% from "_macros.html" import chip, byline, spectrum_dots, comparison %}
 {% block body_class %}page-home{% endblock %}
 
 {% block masthead %}
@@ -51,7 +51,7 @@
   <ol class="front__list">
     {% for s in stories %}
     <li class="front__item">
-      <a class="front__title" href="/buscar?q={{ s.topic_query|urlencode }}&amp;dias=7">{{ s.lead.title }}</a>
+      <a class="front__title" href="{% if s.story_id %}/historia/{{ s.story_id }}{% else %}/buscar?q={{ s.topic_query|urlencode }}&amp;dias=7{% endif %}">{{ s.lead.title }}</a>
       <div class="front__meta">
         {{ spectrum_dots(s.positions) }}
         <span>{{ s.outlets }} medios</span>
@@ -61,6 +61,7 @@
         {% for a in s.articles[:6] %}<li>{{ chip(a.media) }} {{ a.source_name }}</li>{% endfor %}
         {% if s.articles|length > 6 %}<li class="muted">y {{ s.articles|length - 6 }} más</li>{% endif %}
       </ul>
+      {{ comparison(s) }}
     </li>
     {% endfor %}
   </ol>
@@ -71,6 +72,24 @@
   </p>
   {% endif %}
 </section>
+
+{% if blind_spots %}
+<section class="blind" aria-labelledby="blind-title">
+  <div class="section-head">
+    <h2 id="blind-title">Puntos ciegos</h2>
+    <p class="section-head__meta">Historias de las últimas 36 horas que casi solo cuentan medios de un lado</p>
+  </div>
+  <ul class="blind__list">
+    {% for b in blind_spots %}
+    <li class="blind__item">
+      <p class="blind__kind">Cubierta sobre todo por medios de {{ "izquierda" if b.side == "left" else "derecha" }}</p>
+      <a class="blind__title" href="{% if b.story.story_id %}/historia/{{ b.story.story_id }}{% else %}/buscar?q={{ b.story.topic_query|urlencode }}&amp;dias=7{% endif %}">{{ b.story.lead.title }}</a>
+      <p class="blind__meta">{{ b.side_outlets }} de {{ b.labelled }} medios con etiqueta publicada · {{ b.story.outlets }} medios en total</p>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
 
 <p class="indexstats">
   {{ "{:,}".format(stats.articles).replace(",", ".") }} titulares de {{ stats.media }} medios en el índice

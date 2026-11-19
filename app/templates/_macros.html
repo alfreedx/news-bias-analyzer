@@ -16,10 +16,15 @@
   {%- endif -%}
 {%- endmacro %}
 
+{% macro author_by(name) -%}
+  {%- if name -%}<span class="byline__sep" aria-hidden="true">·</span><span class="byline__by">Por <a class="byline__author" href="/buscar?autor={{ name|urlencode }}" title="Titulares firmados con este nombre en el índice">{{ name }}</a></span>{%- endif -%}
+{%- endmacro %}
+
 {% macro byline(a, show_group=True) -%}
   <span class="byline">
     {%- if a.media -%}<a class="byline__media" href="/medios/{{ a.media.id }}">{{ a.source_name }}</a>{%- else -%}<span class="byline__media">{{ a.source_name }}</span>{%- endif -%}
     {%- if show_group and a.media and a.media.group %}<span class="byline__sep" aria-hidden="true">·</span><a class="byline__group" href="/grupos/{{ a.media.group.id }}">{{ a.media.group.name }}</a>{%- endif -%}
+    {{ author_by(a.author) }}
     <span class="byline__sep" aria-hidden="true">·</span><time datetime="{{ iso(a.published) }}">{{ time_ago(a.published) }}</time>
   </span>
 {%- endmacro %}
@@ -64,4 +69,68 @@
 {% macro owner_fact(media) -%}
   {%- if media and media.group -%}<span class="fact-owner">Propietario: <a href="/grupos/{{ media.group.id }}">{{ media.group.name }}</a></span>
   {%- elif media and media.publisher -%}<span class="fact-owner">Editora: {{ media.publisher }}</span>{%- endif -%}
+{%- endmacro %}
+
+
+{% macro row_byline(r) -%}
+  {%- set shown = r.articles[:3] -%}
+  {%- set rest = r.articles|length - shown|length -%}
+  <span class="byline">
+    {%- for a in shown -%}
+      {%- if not loop.first %}{{ " y " if (loop.last and rest == 0) else ", " }}{% endif -%}
+      {%- if a.media -%}<a class="byline__media" href="/medios/{{ a.media.id }}">{{ a.source_name }}</a>{%- else -%}<span class="byline__media">{{ a.source_name }}</span>{%- endif -%}
+    {%- endfor -%}
+    {%- if rest > 0 %} y {{ rest }} más{% endif -%}
+    {%- if r.group %}<span class="byline__sep" aria-hidden="true">·</span><a class="byline__group" href="/grupos/{{ r.group.id }}">{{ r.group.name }}</a>{%- endif -%}
+    {{ author_by(r.author) }}
+    <span class="byline__sep" aria-hidden="true">·</span><time datetime="{{ iso(r.lead.published) }}">{{ time_ago(r.lead.published) }}</time>
+  </span>
+{%- endmacro %}
+
+{% macro comparison(story) -%}
+  {%- set cmp = story.comparison -%}
+  {%- if cmp -%}
+  <div class="compare" role="group" aria-label="Cómo lo cuenta cada lado">
+    <p class="compare__title">Cómo lo cuenta cada lado</p>
+    <div class="compare__grid">
+      {%- for key, label, a in cmp %}
+      <div class="compare__col compare__col--{{ key }}">
+        <p class="compare__side">{{ label }}</p>
+        {%- if a %}
+        <a class="compare__headline" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
+        <p class="compare__outlet">{{ a.source_name }}{% if a.author %} · Por <a class="byline__author" href="/buscar?autor={{ a.author|urlencode }}">{{ a.author }}</a>{% endif %}</p>
+        {%- else %}
+        <p class="compare__none">Ningún medio de este lado lo ha publicado</p>
+        {%- endif %}
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+  {%- endif -%}
+{%- endmacro %}
+
+
+{% macro coverage_panel(cov) -%}
+<aside class="panel panel--summary" aria-labelledby="panel-title">
+    <h2 id="panel-title" class="panel__title">Radiografía de la cobertura</h2>
+    <p class="panel__lead"><strong>{{ cov.total }}</strong> titulares · <strong>{{ cov.outlets }}</strong> medios</p>
+    <p class="panel__summary">{{ coverage_summary(cov) }}</p>
+
+    <div class="stack" role="img" aria-label="Reparto por orientación: {% for p, n in cov.by_position.items() %}{{ POSITION_LABELS[p] }} {{ n }}{% if not loop.last %}, {% endif %}{% endfor %}">
+      {% for p, n in cov.by_position.items() %}{% if n %}<span class="stack__seg stack__seg--{{ pos_class(p) }} w-{{ pct(n, cov.rated) }}" title="{{ POSITION_LABELS[p] }}: {{ n }}"></span>{% endif %}{% endfor %}
+    </div>
+    <ul class="legend">
+      {% for p, n in cov.by_position.items() %}
+      <li><span class="dot dot--{{ pos_class(p) }} is-on"></span>{{ POSITION_LABELS[p] }} <span class="legend__n">{{ n }}</span></li>
+      {% endfor %}
+      <li><span class="dot dot--na is-on"></span>Sin etiqueta publicada <span class="legend__n">{{ cov.total - cov.rated }}</span></li>
+    </ul>
+
+    {% for w in cov.warnings %}
+    <div class="alert alert--{{ w.kind }}">
+      <p class="alert__title">{{ w.title }}</p>
+      <p>{{ w.text }}</p>
+    </div>
+    {% endfor %}
+  </aside>
 {%- endmacro %}

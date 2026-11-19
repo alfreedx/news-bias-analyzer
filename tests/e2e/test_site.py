@@ -10,12 +10,24 @@ PAGES = [
     "/buscar?q=vivienda",
     "/medios",
     "/medios/el-pais",
+    "/medios/cope",
+    "/buscar?autor=Ana+P%C3%A9rez",
     "/grupos/prisa",
     "/metodologia",
     "/privacidad",
     "/acerca",
 ]
 SEARCH = "/buscar?q=vivienda"
+
+
+@pytest.fixture(scope="module")
+def story_path(base_url):
+    import urllib.request
+
+    html = urllib.request.urlopen(base_url + "/").read().decode()
+    m = re.search(r'href="(/historia/\d+)"', html)
+    assert m, "front page does not link to a persisted story"
+    return m.group(1)
 
 
 def count(page: Page) -> int:
@@ -108,3 +120,121 @@ def test_basic_a11y(page: Page, base_url, path):
             .map(el => el.outerHTML.slice(0, 120))"""
     )
     assert not bad, bad
+
+
+def test_syndicated_copies_collapse_into_one_row(page: Page, base_url):
+    page.goto(base_url + SEARCH)
+    merged = page.locator(".story__list .item", has_text="ABC").filter(has_text="OKDiario")
+    assert merged.count() == 1
+
+
+@pytest.mark.parametrize("width", [390, 1280])
+def test_comparison_block(browser, base_url, width):
+    ctx = browser.new_context(java_script_enabled=False, viewport={"width": width, "height": 800})
+    page = ctx.new_page()
+    page.goto(base_url + SEARCH)
+    block = page.locator(".compare").first
+    expect(block).to_be_visible()
+    cols = block.locator(".compare__col")
+    assert cols.count() == 3
+    xs = {round(c.bounding_box()["x"]) for c in cols.all()}
+    ys = {round(c.bounding_box()["y"]) for c in cols.all()}
+    assert (len(xs) == 1) if width == 390 else (len(ys) == 1)
+    assert "Ningún medio de este lado" in block.inner_text()
+    sw, cw = page.evaluate("[document.documentElement.scrollWidth, document.documentElement.clientWidth]")
+    assert sw <= cw
+    ctx.close()
+
+
+def test_coverage_summary_sentence(page: Page, base_url):
+    page.goto(base_url + SEARCH)
+    expect(page.locator(".panel__summary")).to_contain_text("titulares de medios con etiqueta")
+
+
+@pytest.mark.parametrize("width", [390, 1280])
+def test_outlet_ficha(browser, base_url, width):
+    ctx = browser.new_context(java_script_enabled=False, viewport={"width": width, "height": 800})
+    page = ctx.new_page()
+    page.goto(base_url + "/medios/cope")
+    ficha = page.locator("dl.ficha")
+    expect(ficha).to_be_visible()
+    text = ficha.inner_text().lower()
+    for word in ("fundado", "lengua", "ámbito", "institución religiosa", "conferencia episcopal"):
+        assert word in text, word
+    link = ficha.locator("a[href^='https://www.wikidata.org/wiki/Q']").first
+    expect(link).to_be_visible()
+    assert "Wikidata" in link.inner_text()
+    sw, cw = page.evaluate("[document.documentElement.scrollWidth, document.documentElement.clientWidth]")
+    assert sw <= cw
+    ctx.close()
+
+
+def test_catalog_filters_by_language_and_ownership(page: Page, base_url):
+    page.goto(base_url + "/medios")
+    def shown():
+        return int(re.search(r"\d+", page.locator("[data-table-count]").inner_text()).group())
+    total = shown()
+    page.locator("select[data-filter='langs']").select_option("catalán")
+    assert 0 < shown() < total
+    page.locator("select[data-filter='langs']").select_option("")
+    page.locator("select[data-filter='owner']").select_option("publica")
+    assert 0 < shown() < total
+    assert page.locator("tr[data-row]:visible", has_text="RTVE").count() == 1
+
+
+def test_filters_hidden_without_javascript_but_table_complete(browser, base_url):
+    ctx = browser.new_context(java_script_enabled=False)
+    page = ctx.new_page()
+    page.goto(base_url + "/medios")
+    expect(page.locator("[data-table-filters]")).to_be_hidden()
+    assert page.locator("tr[data-row]:visible").count() > 50
+    ctx.close()
+
+
+def test_author_link_leads_to_author_page(page: Page, base_url):
+    page.goto(base_url + SEARCH)
+    link = page.locator("a.byline__author", has_text="Ana Pérez").first
+    expect(link).to_be_visible()
+    assert "/buscar?autor=" in link.get_attribute("href")
+    link.click()
+    expect(page.get_by_role("heading", level=1)).to_contain_text("Ana Pérez")
+    assert "El País" in page.locator(".profile__side").inner_text()
+    assert page.locator(".profile__main .item").count() == 1
+
+
+@pytest.mark.parametrize("width,height", [(390, 844), (1280, 800)])
+def test_story_page_loads_clean_without_overflow(page: Page, base_url, story_path, width, height):
+    problems = []
+    page.on("console", lambda m: problems.append(m.text) if m.type in ("error", "warning") else None)
+    page.on("pageerror", lambda e: problems.append(str(e)))
+    page.on("requestfailed", lambda r: problems.append(f"failed {r.url}"))
+    page.set_viewport_size({"width": width, "height": height})
+    resp = page.goto(base_url + story_path, wait_until="networkidle")
+    assert resp.status == 200 and not problems, problems
+    sw, cw = page.evaluate("[document.documentElement.scrollWidth, document.documentElement.clientWidth]")
+    assert sw <= cw
+    expect(page.get_by_role("heading", name="En lo que coinciden")).to_be_visible()
+    expect(page.get_by_text("no prueba que algo sea cierto")).to_be_visible()
+
+
+def test_story_page_details_expand(page: Page, base_url, story_path):
+    page.goto(base_url + story_path)
+    details = page.locator(".piece__outlets").first
+    expect(details).to_be_visible()
+    assert details.get_attribute("open") is None
+    details.locator("summary").click()
+    assert details.get_attribute("open") is not None
+    expect(details.locator("p")).to_be_visible()
+
+
+def test_story_page_works_without_javascript(browser, base_url, story_path):
+    ctx = browser.new_context(java_script_enabled=False)
+    try:
+        page = ctx.new_page()
+        page.goto(base_url + story_path)
+        expect(page.get_by_role("heading", name="En lo que coinciden")).to_be_visible()
+        assert page.locator(".piece").count() >= 1
+        page.locator(".piece__outlets summary").first.click()
+        assert page.locator(".piece__outlets[open]").count() == 1
+    finally:
+        ctx.close()

@@ -12,7 +12,9 @@ import pytest
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
+from app.catalog import get_catalog  # noqa: E402
 from app.db import Database  # noqa: E402
+from app.stories import assign_stories  # noqa: E402
 
 MEDIA = ["el-pais", "abc", "okdiario", "eldiario-es", "maldita"]
 
@@ -32,12 +34,18 @@ def _seed(data_dir: Path) -> None:
                 (
                     f"https://example.com/{mid}/{j}",
                     mid,
-                    f"El Gobierno aprueba una nueva ley de vivienda y alquiler {j}",
-                    "Medidas sobre la vivienda, el alquiler y los precios en las grandes ciudades.",
+                    # abc and okdiario carry the same headline: they must collapse into one row
+                    "El Gobierno aprueba una nueva ley de vivienda y alquiler"
+                    if mid in ("abc", "okdiario") and j == 0
+                    else f"El Gobierno aprueba una nueva ley de vivienda y alquiler, según {mid} {j}",
+                    "Medidas sobre la vivienda, el alquiler y los precios en las grandes ciudades. Afecta a 12,5 millones de personas.",
                     now - 3600 * (i * 2 + j + 1),
+                    "Ana Pérez" if mid == "el-pais" and j == 0 else None,
                 )
             )
-    Database(data_dir / "news.sqlite3").insert_articles(rows)
+    db = Database(data_dir / "news.sqlite3")
+    db.insert_articles(rows)
+    assign_stories(db, get_catalog())
 
 
 @pytest.fixture(scope="session")
