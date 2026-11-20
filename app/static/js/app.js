@@ -1,5 +1,6 @@
 // Contraste — mejoras progresivas. La página funciona entera sin JavaScript;
-// esto solo añade filtros en cliente. No hay peticiones de red ni almacenamiento.
+// esto solo añade filtros en cliente y sugerencias al escribir (peticiones solo a este mismo servidor;
+// no se usa el almacenamiento del navegador).
 (function () {
   "use strict";
 
@@ -126,7 +127,131 @@
     apply();
   }
 
-  function init() { initFilters(); initTableFilters(); }
+  // Sugerencias al escribir: combobox ARIA 1.2 con lista (listbox) bajo el buscador.
+  function initSuggestions() {
+    if (!window.fetch || !window.AbortController) return;
+    var seq = 0;
+    Array.prototype.forEach.call(document.querySelectorAll("form[role=search] input[name=q]"), function (input) {
+      var form = input.form;
+      var id = "sug-" + (++seq);
+      var list = document.createElement("ul");
+      list.id = id;
+      list.className = "sug";
+      list.setAttribute("role", "listbox");
+      list.setAttribute("aria-label", "Historias parecidas");
+      list.hidden = true;
+      var status = document.createElement("div");
+      status.className = "visually-hidden";
+      status.setAttribute("role", "status");
+      form.classList.add("has-sug");
+      form.appendChild(list);
+      form.appendChild(status);
+      input.setAttribute("role", "combobox");
+      input.setAttribute("aria-autocomplete", "list");
+      input.setAttribute("aria-expanded", "false");
+      input.setAttribute("aria-controls", id);
+
+      var items = [];
+      var active = -1;
+      var timer = null;
+      var controller = null;
+
+      function close() {
+        list.hidden = true;
+        input.setAttribute("aria-expanded", "false");
+        input.removeAttribute("aria-activedescendant");
+        active = -1;
+      }
+      function setActive(i) {
+        var nodes = list.children;
+        if (active >= 0 && nodes[active]) nodes[active].setAttribute("aria-selected", "false");
+        active = i;
+        if (i >= 0 && nodes[i]) {
+          nodes[i].setAttribute("aria-selected", "true");
+          input.setAttribute("aria-activedescendant", nodes[i].id);
+          if (nodes[i].scrollIntoView) nodes[i].scrollIntoView({ block: "nearest" });
+        } else {
+          input.removeAttribute("aria-activedescendant");
+        }
+      }
+      function go(i) {
+        var url = items[i] && items[i].url;
+        if (typeof url === "string" && url.charAt(0) === "/" && url.charAt(1) !== "/") window.location.href = url;
+      }
+      function render(data) {
+        items = data.slice(0, 6);
+        while (list.firstChild) list.removeChild(list.firstChild);
+        active = -1;
+        input.removeAttribute("aria-activedescendant");
+        if (!items.length) { close(); status.textContent = ""; return; }
+        items.forEach(function (it, i) {
+          var li = document.createElement("li");
+          li.id = id + "-" + i;
+          li.className = "sug__item";
+          li.setAttribute("role", "option");
+          li.setAttribute("aria-selected", "false");
+          var t = document.createElement("span");
+          t.className = "sug__title";
+          t.textContent = it.title;
+          var m = document.createElement("span");
+          m.className = "sug__meta";
+          m.textContent = typeof it.outlets === "number"
+            ? it.outlets + (it.outlets === 1 ? " medio" : " medios") + " · " + it.when
+            : it.outlet + " · titular";
+          li.appendChild(t);
+          li.appendChild(m);
+          li.addEventListener("click", function () { go(i); });
+          list.appendChild(li);
+        });
+        list.hidden = false;
+        input.setAttribute("aria-expanded", "true");
+        status.textContent = items.length === 1 ? "1 sugerencia" : items.length + " sugerencias";
+      }
+      function fetchNow() {
+        var q = input.value.trim();
+        if (controller) controller.abort();
+        if (q.length < 3) { controller = null; close(); status.textContent = ""; return; }
+        controller = new AbortController();
+        var mine = controller;
+        fetch("/api/sugerencias?q=" + encodeURIComponent(q.slice(0, 100)), {
+          signal: mine.signal, credentials: "omit", cache: "no-store", headers: { Accept: "application/json" }
+        }).then(function (r) { return r.ok ? r.json() : { suggestions: [] }; })
+          .then(function (d) { if (controller === mine) render(d.suggestions || []); })
+          .catch(function () { if (controller === mine) close(); });
+      }
+
+      input.addEventListener("input", function () {
+        clearTimeout(timer);
+        if (input.value.trim().length < 3) { fetchNow(); return; }
+        timer = setTimeout(fetchNow, 250);
+      });
+      input.addEventListener("keydown", function (e) {
+        var open = !list.hidden;
+        if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+          if (!items.length) return;
+          e.preventDefault();
+          if (!open) { list.hidden = false; input.setAttribute("aria-expanded", "true"); }
+          var n = items.length;
+          setActive(e.key === "ArrowDown" ? (active + 1) % n : (active <= 0 ? n - 1 : active - 1));
+        } else if (e.key === "Enter") {
+          if (open && active >= 0) { e.preventDefault(); go(active); }
+        } else if (e.key === "Escape") {
+          if (open) { e.preventDefault(); close(); }
+        }
+      });
+      input.addEventListener("blur", function () { clearTimeout(timer); close(); });
+      list.addEventListener("mousedown", function (e) { e.preventDefault(); });
+      form.addEventListener("submit", function () {
+        clearTimeout(timer);
+        if (controller) controller.abort();
+        controller = null;
+        close();
+      });
+      document.addEventListener("click", function (e) { if (!form.contains(e.target)) close(); });
+    });
+  }
+
+  function init() { initFilters(); initTableFilters(); initSuggestions(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();

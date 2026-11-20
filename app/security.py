@@ -64,10 +64,14 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
     """
 
     LIMITED_PREFIXES = ("/buscar", "/api/")
+    # Typing triggers many small requests, so the suggestions endpoint has its own, larger budget and does not
+    # eat into the search one.
+    SUGGEST_PREFIX = "/api/sugerencias"
 
-    def __init__(self, app, per_minute: int = 30, trust_proxy: bool = False):
+    def __init__(self, app, per_minute: int = 30, trust_proxy: bool = False, suggest_per_minute: int = 120):
         super().__init__(app)
         self.per_minute = per_minute
+        self.suggest_per_minute = suggest_per_minute
         self.trust_proxy = trust_proxy
         self.hits: dict[str, deque[float]] = {}
         self._salt = secrets.token_bytes(16)
@@ -97,11 +101,13 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
             return await call_next(request)
         now = time.monotonic()
         self._sweep(now)
-        key = self._client_key(request)
+        suggest = request.url.path.startswith(self.SUGGEST_PREFIX)
+        key = ("sug:" if suggest else "") + self._client_key(request)
+        limit = self.suggest_per_minute if suggest else self.per_minute
         window = self.hits.setdefault(key, deque())
         while window and now - window[0] > 60:
             window.popleft()
-        if len(window) >= self.per_minute:
+        if len(window) >= limit:
             return PlainTextResponse(
                 "Demasiadas búsquedas seguidas. Espera un minuto, por favor.",
                 status_code=429,

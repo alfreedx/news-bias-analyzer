@@ -54,6 +54,8 @@ from .security import RateLimitMiddleware, SecurityHeadersMiddleware
 from .sponsored import evidence as sponsored_evidence
 from .sponsored import rules_meta as sponsored_rules_meta
 from .stories import assign_stories, central_article, majority_story
+from .suggest import MIN_CHARS as SUGGEST_MIN
+from .suggest import SuggestCache, normalise, similar_stories, suggest
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("newsbias")
@@ -109,6 +111,7 @@ async def ingest_loop() -> None:
             await asyncio.to_thread(assign_stories, db, catalog)
             await asyncio.to_thread(build_front_page)
             _cache.clear()
+            _suggest_cache.clear()
         except Exception:  # keep the loop alive whatever happens
             log.exception("ingestion cycle failed")
         finally:
@@ -138,6 +141,7 @@ app = FastAPI(
     openapi_url=None,
 )
 app.add_middleware(RateLimitMiddleware, per_minute=settings.rate_limit_per_minute,
+                   suggest_per_minute=settings.suggest_rate_limit_per_minute,
                    trust_proxy=settings.trust_proxy_headers)
 app.add_middleware(SecurityHeadersMiddleware, https_only=settings.https_only)
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=settings.allowed_hosts + ["testserver"])
@@ -229,6 +233,8 @@ def render(request: Request, name: str, status_code: int = 200, **ctx) -> HTMLRe
 # --- Search --------------------------------------------------------------------
 _cache: OrderedDict[tuple, tuple[float, dict]] = OrderedDict()
 CACHE_TTL, CACHE_SIZE = 300, 128
+SIMILAR_BELOW = 5  # «Quizá buscabas…» appears when a search finds fewer headlines than this
+_suggest_cache = SuggestCache(size=512, ttl=120)
 
 
 def clean_query(raw: str) -> str:
@@ -280,7 +286,11 @@ async def run_search(query: str, days: int, broad: bool = False, exact: bool = F
     suggestions = []
     if len(found.units) >= 2 and (found.approx or not news):
         suggestions = await asyncio.to_thread(lambda: db.suggest_removals(query, since=since, exact=exact))
+    similar: list[dict] = []
+    if not exact and len(news) < SIMILAR_BELOW:
+        similar = await asyncio.to_thread(find_similar, query, since or 0, news, stories)
     result = {
+        "similar": similar,
         "exact": exact,
         "equivalents": found.synonyms_used[:6],
         "story_notes": story_note_lines(found.story_notes),
@@ -301,6 +311,13 @@ async def run_search(query: str, days: int, broad: bool = False, exact: bool = F
     if len(_cache) > CACHE_SIZE:
         _cache.popitem(last=False)
     return result
+
+
+def find_similar(query: str, since: int | None, news: list[Article], stories: list[Story]) -> list[dict]:
+    """Up to 5 persisted stories close to the query that the results do not already include."""
+    have = {s.story_id for s in stories if s.story_id}
+    have.update(db.story_ids_for([a.id for a in news if a.id is not None]).values())
+    return similar_stories(db, query, prefix_last=False, limit=5, since=since, exclude=have)
 
 
 def parse_days(value: str) -> tuple[str, int]:
@@ -501,6 +518,26 @@ async def api_search(q: str = Query(..., max_length=500), dias: str = "30", exac
         "factchecks": [a.to_public() for a in r["factchecks"]],
         "sponsored": [a.to_public() for a in r["sponsored"]],
     }
+
+
+@app.get("/api/sugerencias")
+async def api_suggestions(q: str = ""):
+    """Persisted stories (and, if few, headlines) close to what is being typed. Nothing about `q` is logged."""
+    text = normalise(q[:400])
+    if len(text) < SUGGEST_MIN:
+        return {"suggestions": []}
+    key = text.lower()
+    items = _suggest_cache.get(key)
+    if items is None:
+        stories, headlines = await asyncio.to_thread(suggest, db, text)
+        items = [{"id": s["id"], "title": s["title"], "outlets": s["outlets"], "url": f"/historia/{s['id']}",
+                  "when": time_ago(s["updated"])} for s in stories]
+        for h in headlines:
+            media = catalog.media.get(h["media_id"])
+            items.append({"title": h["title"], "outlet": media.name if media else h["media_id"],
+                          "url": f"/buscar?q={urlq(h['keywords'] or h['title'][:60])}"})
+        _suggest_cache.put(key, items)
+    return {"suggestions": items}
 
 
 @app.get("/api/medios")

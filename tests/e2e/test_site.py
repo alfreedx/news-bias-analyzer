@@ -330,3 +330,105 @@ def test_media_filter_by_speciality(page: Page, base_url):
     page.select_option("select[data-filter=spec]", "economía")
     assert page.locator("tr[data-row]:visible").count() >= 4
     expect(page.locator("tr[data-row][data-spec='economía']").first).to_contain_text("Especializado en economía")
+
+
+# --- suggestions while typing ----------------------------------------------------------------------------------
+def type_slowly(page: Page, selector: str, text: str) -> None:
+    page.locator(selector).click()
+    page.locator(selector).press_sequentially(text, delay=20)
+
+
+def test_typing_in_header_search_shows_listbox(page: Page, base_url):
+    problems = []
+    page.on("console", lambda m: problems.append(m.text) if m.type in ("error", "warning") else None)
+    page.on("pageerror", lambda e: problems.append(str(e)))
+    page.goto(base_url + SEARCH, wait_until="networkidle")
+    box = page.locator("#q-top")
+    type_slowly(page, "#q-top", "ley de vivi")
+    listbox = page.get_by_role("listbox")
+    expect(listbox).to_be_visible()
+    options = page.get_by_role("option")
+    assert options.count() >= 1
+    expect(box).to_have_attribute("role", "combobox")
+    expect(box).to_have_attribute("aria-expanded", "true")
+    assert box.get_attribute("aria-controls") == listbox.get_attribute("id")
+    assert re.search(r"\d+ medios? · ", options.first.inner_text())
+    assert not problems, problems
+
+
+def test_no_suggestions_below_three_characters(page: Page, base_url):
+    page.goto(base_url + SEARCH, wait_until="networkidle")
+    type_slowly(page, "#q-top", "vi")
+    page.wait_for_timeout(600)
+    expect(page.get_by_role("listbox")).to_be_hidden()
+
+
+def test_keyboard_down_enter_opens_story(page: Page, base_url):
+    page.goto(base_url + "/", wait_until="networkidle")
+    type_slowly(page, "#q", "vivienda")
+    expect(page.get_by_role("listbox")).to_be_visible()
+    page.keyboard.press("ArrowDown")
+    first = page.get_by_role("option").first
+    expect(first).to_have_attribute("aria-selected", "true")
+    assert page.locator("#q").get_attribute("aria-activedescendant") == first.get_attribute("id")
+    page.keyboard.press("Enter")
+    page.wait_for_url(re.compile(r"/historia/\d+"))
+
+
+def test_escape_closes_and_enter_without_selection_searches(page: Page, base_url):
+    page.goto(base_url + "/", wait_until="networkidle")
+    type_slowly(page, "#q", "vivienda")
+    expect(page.get_by_role("listbox")).to_be_visible()
+    page.keyboard.press("Escape")
+    expect(page.get_by_role("listbox")).to_be_hidden()
+    expect(page.locator("#q")).to_have_attribute("aria-expanded", "false")
+    page.keyboard.press("Enter")
+    page.wait_for_url(re.compile(r"/buscar\?q=vivienda"))
+
+
+def test_click_outside_closes_and_click_option_navigates(page: Page, base_url):
+    page.goto(base_url + "/", wait_until="networkidle")
+    type_slowly(page, "#q", "vivienda")
+    expect(page.get_by_role("listbox")).to_be_visible()
+    page.locator(".tagline").click()
+    expect(page.get_by_role("listbox")).to_be_hidden()
+    type_slowly(page, "#q", " ")  # reopen by typing again
+    expect(page.get_by_role("listbox")).to_be_visible()
+    page.get_by_role("option").first.click()
+    page.wait_for_url(re.compile(r"/historia/\d+"))
+
+
+@pytest.mark.parametrize("width,height", [(390, 844), (1280, 800)])
+def test_open_listbox_does_not_overflow_and_taps_are_large(page: Page, base_url, width, height):
+    page.set_viewport_size({"width": width, "height": height})
+    page.goto(base_url + "/", wait_until="networkidle")
+    type_slowly(page, "#q", "vivienda")
+    expect(page.get_by_role("listbox")).to_be_visible()
+    sw, cw = page.evaluate("[document.documentElement.scrollWidth, document.documentElement.clientWidth]")
+    assert sw <= cw, f"scrollWidth {sw} > clientWidth {cw}"
+    box = page.get_by_role("option").first.bounding_box()
+    assert box["height"] >= 44 and box["x"] >= 0 and box["x"] + box["width"] <= width
+
+
+def test_suggestions_work_in_dark_mode(browser, base_url):
+    ctx = browser.new_context(color_scheme="dark")
+    page = ctx.new_page()
+    page.goto(base_url + "/", wait_until="networkidle")
+    type_slowly(page, "#q", "vivienda")
+    expect(page.get_by_role("listbox")).to_be_visible()
+    bg = page.get_by_role("listbox").evaluate("e => getComputedStyle(e).backgroundColor")
+    assert bg != "rgb(251, 249, 244)"  # not the light card colour
+    ctx.close()
+
+
+def test_without_javascript_search_still_works(browser, base_url):
+    ctx = browser.new_context(java_script_enabled=False)
+    page = ctx.new_page()
+    page.goto(base_url + "/")
+    assert page.locator("#q").get_attribute("role") is None
+    assert page.get_by_role("listbox").count() == 0
+    page.fill("#q", "vivienda")
+    page.press("#q", "Enter")
+    page.wait_for_url(re.compile(r"/buscar\?q=vivienda"))
+    assert page.locator("[data-item]").count() > 0
+    ctx.close()

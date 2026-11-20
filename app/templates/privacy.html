@@ -15,6 +15,7 @@
 
   <h2>Qué se procesa y por qué</h2>
   <ul>
+    <li><strong>Sugerencias al escribir</strong>: mientras escribes en el buscador, tu navegador pide a este mismo servidor historias parecidas a lo escrito (a partir de 3 letras). Esas peticiones no se guardan en disco ni se registran, no usan terceros y, sin JavaScript, la búsqueda funciona igual, solo que sin sugerencias.</li>
     <li><strong>Dirección IP</strong>: para limitar abusos (como máximo {{ settings.rate_limit_per_minute }} búsquedas por minuto) usamos un resumen criptográfico de tu IP con una clave aleatoria que solo vive en memoria y cambia cada día. Se borra al cabo de un minuto y nunca se guarda en claro. Base jurídica: interés legítimo en mantener el servicio disponible (art. 6.1.f RGPD).</li>
     <li><strong>Al pulsar un titular</strong> vas directamente a la web del medio, con la política de privacidad de ese medio. Enviamos la cabecera <code>Referrer-Policy: no-referrer</code>, así que el medio no sabe que llegaste desde aquí ni qué buscaste.</li>
     <li><strong>Firmas de los artículos</strong>: junto a cada titular mostramos el nombre de quien lo firma, exactamente como lo publica el medio en su RSS público, y nada más (ni perfil, ni foto, ni biografía, ni orientación). Se conserva solo durante la ventana de {{ settings.retention_days }} días en que guardamos el titular y se borra con él. Si quieres que quitemos tu nombre, escríbenos por el canal descrito en la <a href="{{ settings.repo_url }}/blob/main/RECTIFICATION.md" rel="noopener noreferrer">política de rectificación</a>.</li>

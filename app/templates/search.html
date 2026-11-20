@@ -20,6 +20,19 @@
   {%- endif -%}
 {%- endmacro %}
 
+{% macro similar_box(result) -%}
+  {%- if result.similar -%}
+  <section class="maybe" data-similar aria-labelledby="maybe-title">
+    <h2 id="maybe-title" class="maybe__title">Quizá buscabas…</h2>
+    <ul class="maybe__list">
+      {%- for s in result.similar %}
+      <li><a class="maybe__link" href="/historia/{{ s.id }}">{{ s.title }}</a> <span class="maybe__meta">{{ s.outlets }} medio{{ "s" if s.outlets != 1 }}</span></li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endif -%}
+{%- endmacro %}
+
 {% block content %}
 <div class="search-head">
   <form class="period" action="/buscar" method="get">
@@ -49,6 +62,7 @@
     {% endif %}
     {% if exact %}<p><a href="/buscar?q={{ query|urlq }}&amp;dias={{ days_key }}">Incluir palabras equivalentes</a></p>{% endif %}
   </div>
+  {{ similar_box(result) }}
   {{ sponsored_box(result) }}
 {% else %}
 <div class="layout">
@@ -180,6 +194,7 @@
     {% endfor %}
     </div>
     <p class="empty" data-no-match hidden>Ningún titular coincide con los filtros.</p>
+    {{ similar_box(result) }}
     {{ sponsored_box(result) }}
   </section>
 </div>

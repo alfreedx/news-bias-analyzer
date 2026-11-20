@@ -64,6 +64,7 @@ def base_url():
         "GOOGLE_NEWS_ENABLED": "false",
         "DATA_DIR": str(data_dir),
         "RATE_LIMIT_PER_MINUTE": "100000",
+        "SUGGEST_RATE_LIMIT_PER_MINUTE": "100000",
     }
     proc = subprocess.Popen(
         [sys.executable, "-m", "uvicorn", "app.main:app", "--port", str(port), "--no-access-log"],

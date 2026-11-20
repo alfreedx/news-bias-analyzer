@@ -80,6 +80,7 @@ class Settings:
     allowed_hosts: list[str] = field(default_factory=_allowed_hosts)
     https_only: bool = field(default_factory=lambda: _bool("HTTPS_ONLY", False))
     rate_limit_per_minute: int = field(default_factory=lambda: _int("RATE_LIMIT_PER_MINUTE", 30, 1))
+    suggest_rate_limit_per_minute: int = field(default_factory=lambda: _int("SUGGEST_RATE_LIMIT_PER_MINUTE", 120, 1))
     trust_proxy_headers: bool = field(default_factory=lambda: _bool("TRUST_PROXY_HEADERS", False))
     site_url: str = field(default_factory=_site_url)
     repo_url: str = field(
