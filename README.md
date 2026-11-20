@@ -195,6 +195,10 @@ Las medidas de seguridad y privacidad están detalladas en [SECURITY.md](SECURIT
 - Los titulares y marcas pertenecen a sus medios; la aplicación solo muestra titular, extracto y enlace.
 - Las calificaciones de Media Bias/Fact Check pertenecen a MBFC y se citan con enlace a la reseña original.
 
+## Hoja de ruta
+
+El plan para cubrir todos los medios españoles que publican de forma abierta, manteniendo el proyecto gratuito, seguro, privado y sostenible, está en [`docs/PLAN-COBERTURA.md`](docs/PLAN-COBERTURA.md).
+
 ## Contribuir
 
 Las correcciones de datos son especialmente bienvenidas. Si representas a un medio, consulta la [política de rectificación](RECTIFICATION.md). Lee [CONTRIBUTING.md](CONTRIBUTING.md) y el
