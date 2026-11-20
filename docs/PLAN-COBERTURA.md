@@ -33,20 +33,31 @@ muro de pago y los medios que pidan no ser indexados.
 
 ### Fase 1 — Descubrimiento automático de medios (objetivo: 300 medios)
 
-- **Lista de candidatos** generada cada semana por GitHub Actions (gratis en repositorios públicos):
-  - Wikidata (SPARQL): periódicos, emisoras y diarios digitales con país = España y sitio web oficial.
-  - Autodescubrimiento de feeds en la portada de cada candidato (`<link rel="alternate">`, `/feed`, `/rss`).
-  - Verificadores firmantes de la IFCN en España.
-- **Validación automática** de cada candidato: el feed responde, está en un idioma de España, tiene
-  propietario o identidad en Wikidata/Wikipedia, no es un agregador ni un duplicado de otra cabecera.
-- **Alta por *pull request***: el workflow abre un PR con los candidatos que pasan la validación; la
-  revisión humana sigue siendo obligatoria (un clic). Así el catálogo crece sin perder rigor.
-- **Feeds de sección** (economía, local, deportes…) de los medios ya incluidos, deduplicando por URL.
+Estado: **hecho** (código, pruebas y workflow) / **pendiente** (decisión humana o dato externo).
+
+- [x] **Lista de candidatos** generada cada semana por GitHub Actions (`discover-media.yml`, lunes 05:23 UTC):
+  - [x] Wikidata (SPARQL): periódicos, webs de noticias, agencias, emisoras, canales y revistas de actualidad con
+    país o lugar de publicación en España, web oficial y sin fecha de disolución (`scripts/discover_media.py`).
+  - [x] Autodescubrimiento de feeds en la portada (`<link rel="alternate">`, `/feed`, `/rss`…), con `robots.txt`
+    y como máximo 3 peticiones por sitio.
+  - [ ] Verificadores firmantes de la IFCN en España (hoy los 4 del catálogo se mantienen a mano; falta una fuente
+    abierta y estable de la lista de firmantes).
+- [x] **Validación automática** de cada candidato: feed con 5 o más titulares y alguno de los últimos 7 días,
+  enlaces en su propio dominio, idioma de España, propietario o identidad en Wikidata/Wikipedia, ni agregador ni
+  duplicado. Informe completo con los motivos en `data/candidates.json`.
+- [x] **Alta por *pull request***: el workflow abre un PR con los candidatos que pasan (`bot/media-candidates`);
+  la revisión humana es obligatoria y el alta se hace con `discover_media.py --apply` (ver `CONTRIBUTING.md`).
+- [ ] **Revisión humana del primer lote** y alta de los candidatos elegidos (llevar el catálogo hacia 300 medios).
+- [ ] **Feeds de sección** (economía, local, deportes…) de los medios ya incluidos, deduplicando por URL.
 - Ajustes técnicos necesarios:
-  - Agrupado de historias con **bloqueo por términos poco frecuentes / MinHash** para que el coste no
-    crezca al cuadrado con el número de titulares.
-  - Desactivación automática de feeds muertos (tras N fallos) y aviso en un issue.
-  - Cifrado **por bloques** de la instantánea (hoy se descifra entera en memoria).
+  - [x] Agrupado de historias: candidatos por palabras poco frecuentes (principio del palomar, exacto: mismos
+    grupos que antes; 1,5–2 veces más rápido con 12.000–60.000 titulares). MinHash no hace falta todavía.
+  - [x] Desactivación automática de feeds muertos: tras 20 fallos seguidos, pausa de 24 h con retroceso
+    exponencial (hasta 7 días); visible en `/estado`. [ ] Aviso en un issue (aún no hace falta).
+  - [x] Cifrado **por bloques** de 4 MB de la instantánea (ya no se descifra entera en memoria; lee el formato anterior).
+  - [x] Ingesta con concurrencia configurable (`INGEST_CONCURRENCY`, 8) y máximo 2 peticiones por servidor.
+  - [x] Página pública `/estado`.
+
 
 Con ~300 medios el índice ronda 300.000 titulares en 120 días (~300 MB). Sigue cabiendo en Render
 gratuito y en la instantánea de GitHub (límite de 2 GB por archivo).
@@ -97,7 +108,7 @@ Render gratuito deja de bastar (memoria y disco). Opción elegida: **Oracle Clou
 
 ## Orden de trabajo propuesto
 
-1. Fase 1 completa (descubrimiento, validación, PR automáticos, MinHash, cifrado por bloques).
-2. Página `/estado` y alertas.
+1. Fase 1: código hecho (descubrimiento, validación, PR automáticos, agrupado por palabras raras, cifrado por bloques, feeds muertos); falta la revisión humana de los candidatos.
+2. Alertas (issues automáticos) cuando un feed lleve días caído; la página `/estado` ya existe.
 3. Migración a Oracle Always Free cuando el índice supere ~400 MB o la RAM de Render se quede corta.
 4. Fase 3 según los huecos detectados.

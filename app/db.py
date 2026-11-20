@@ -52,7 +52,9 @@ CREATE TABLE IF NOT EXISTS feed_state (
     last_attempt INTEGER,
     last_success INTEGER,
     last_status TEXT,
-    last_items INTEGER DEFAULT 0
+    last_items INTEGER DEFAULT 0,
+    failures INTEGER NOT NULL DEFAULT 0,
+    next_attempt INTEGER
 );
 """
 
@@ -74,6 +76,19 @@ CREATE TABLE IF NOT EXISTS story_articles (
 );
 CREATE INDEX IF NOT EXISTS idx_story_articles_article ON story_articles(article_id);
 """
+
+FEED_FAILURE_LIMIT = 20  # consecutive failures before a feed is left alone for a while
+FEED_PAUSE = 24 * 3600
+FEED_PAUSE_MAX = 7 * 24 * 3600
+
+
+def feed_pause(failures: int) -> int:
+    """Seconds a feed is not polled after `failures` consecutive failures: none below the limit, then 24 h,
+    doubling with every further failed attempt, up to 7 days."""
+    if failures < FEED_FAILURE_LIMIT:
+        return 0
+    return min(FEED_PAUSE * 2 ** (failures - FEED_FAILURE_LIMIT), FEED_PAUSE_MAX)
+
 
 _TOKEN = re.compile(r"\w+", re.UNICODE)
 MAX_QUERY_TOKENS = 8
@@ -156,6 +171,11 @@ class Database:
         for column in ("categories", "sponsored"):
             if column not in columns:
                 conn.execute(f"ALTER TABLE articles ADD COLUMN {column} TEXT")  # noqa: S608 (fixed names)
+        feed_columns = {row["name"] for row in conn.execute("PRAGMA table_info(feed_state)")}
+        if "failures" not in feed_columns:
+            conn.execute("ALTER TABLE feed_state ADD COLUMN failures INTEGER NOT NULL DEFAULT 0")
+        if "next_attempt" not in feed_columns:
+            conn.execute("ALTER TABLE feed_state ADD COLUMN next_attempt INTEGER")
         conn.execute("CREATE INDEX IF NOT EXISTS idx_articles_author ON articles(author) WHERE author IS NOT NULL")
         conn.executescript(STORY_SCHEMA)
 
@@ -241,12 +261,17 @@ class Database:
 
     def save_feed_state(self, url: str, media_id: str, *, etag: str | None, last_modified: str | None,
                         status: str, items: int, success: bool) -> None:
+        """Record one poll. A success resets the failure streak; a failure extends it and, from
+        FEED_FAILURE_LIMIT on, schedules the next attempt `feed_pause` seconds ahead (see `feed_due`)."""
         now = int(time.time())
         with self.connect() as conn:
+            row = conn.execute("SELECT failures FROM feed_state WHERE url = ?", (url,)).fetchone()
+            failures = 0 if success else (row["failures"] if row else 0) + 1
+            pause = feed_pause(failures)
             conn.execute(
                 """INSERT INTO feed_state(url, media_id, etag, last_modified, last_attempt, last_success,
-                                          last_status, last_items)
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                                          last_status, last_items, failures, next_attempt)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                    ON CONFLICT(url) DO UPDATE SET
                      media_id=excluded.media_id,
                      etag=COALESCE(excluded.etag, feed_state.etag),
@@ -254,9 +279,30 @@ class Database:
                      last_attempt=excluded.last_attempt,
                      last_success=COALESCE(excluded.last_success, feed_state.last_success),
                      last_status=excluded.last_status,
-                     last_items=excluded.last_items""",
-                (url, media_id, etag, last_modified, now, now if success else None, status, items),
+                     last_items=excluded.last_items,
+                     failures=excluded.failures,
+                     next_attempt=excluded.next_attempt""",
+                (url, media_id, etag, last_modified, now, now if success else None, status, items,
+                 failures, now + pause if pause else None),
             )
+
+    @staticmethod
+    def feed_due(state: sqlite3.Row | None, now: int | None = None) -> bool:
+        """False while a feed is paused after too many consecutive failures."""
+        if state is None or not state["next_attempt"]:
+            return True
+        return (now or int(time.time())) >= state["next_attempt"]
+
+    def feed_states(self) -> list[sqlite3.Row]:
+        with self.connect() as conn:
+            return conn.execute("SELECT * FROM feed_state").fetchall()
+
+    def size_bytes(self) -> int:
+        """Size of the database file (the headline index) on disk; 0 when it cannot be read."""
+        try:
+            return self.path.stat().st_size
+        except OSError:
+            return 0
 
     # --- reads ------------------------------------------------------------
     def search_full(self, query: str, *, since: int | None = None, limit: int = 400, broad: bool = False,

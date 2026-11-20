@@ -55,6 +55,7 @@ from .sections import query_is_incident
 from .security import RateLimitMiddleware, SecurityHeadersMiddleware
 from .sponsored import evidence as sponsored_evidence
 from .sponsored import rules_meta as sponsored_rules_meta
+from .status import feed_status
 from .stories import assign_stories, central_article, link_clusters
 from .suggest import MIN_CHARS as SUGGEST_MIN
 from .suggest import SuggestCache, normalise, similar_stories, suggest
@@ -568,6 +569,12 @@ async def how_to_read(request: Request):
 @app.get("/privacidad", response_class=HTMLResponse)
 async def privacy(request: Request):
     return render(request, "privacy.html")
+
+
+@app.get("/estado", response_class=HTMLResponse)
+async def service_status(request: Request):
+    data = await asyncio.to_thread(feed_status, catalog, db)
+    return render(request, "estado.html", s=data)
 
 
 @app.get("/acerca", response_class=HTMLResponse)

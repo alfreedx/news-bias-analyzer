@@ -440,13 +440,26 @@ def keyword_overlap(shared: int, n_a: int, n_b: int, min_shared: int = MIN_SHARE
 
 def best_match(keys: set[str], seeds: list[set[str]], index: dict[str, list[int]],
                min_shared: int = MIN_SHARED, min_overlap: float = MIN_OVERLAP) -> int | None:
-    """Index of the seed (via the inverted `index` word -> seed positions) that best matches `keys`."""
-    if len(keys) < 2:
+    """Index of the seed (via the inverted `index` word -> seed positions) that best matches `keys`.
+
+    Candidate generation is exact and sub-quadratic. A seed can only match when it shares at least
+    ``need = min(min_shared, len(keys))`` words with the headline (see `keyword_overlap`). By the pigeonhole
+    principle such a seed shares at least one of ANY ``len(keys) - need + 1`` words of the headline, so only the
+    postings of the rarest of them are walked; the very common words («gobierno», «presidente»), whose posting
+    lists are the long ones, are only read when the headline has hardly any rarer word. Candidates are then scored
+    on their real intersection. Ties go to the earliest seed (deterministic, unlike a hash-ordered scan).
+    """
+    n = len(keys)
+    if n < 2:
         return None
+    need = min(min_shared, n)
+    by_rarity = sorted(keys, key=lambda k: len(index.get(k, ())))
+    candidates: set[int] = set()
+    for k in by_rarity[: n - need + 1]:
+        candidates.update(index.get(k, ()))
     best, best_score = None, 0.0
-    candidates = Counter(i for k in keys for i in index.get(k, ()))
-    for idx, shared in candidates.items():
-        overlap = keyword_overlap(shared, len(keys), len(seeds[idx]), min_shared, min_overlap)
+    for idx in sorted(candidates):
+        overlap = keyword_overlap(len(keys & seeds[idx]), n, len(seeds[idx]), min_shared, min_overlap)
         if overlap > best_score:
             best, best_score = idx, overlap
     return best

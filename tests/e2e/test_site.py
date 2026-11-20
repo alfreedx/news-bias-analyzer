@@ -17,6 +17,7 @@ PAGES = [
     "/como-leer",
     "/privacidad",
     "/acerca",
+    "/estado",
 ]
 SEARCH = "/buscar?q=vivienda"
 

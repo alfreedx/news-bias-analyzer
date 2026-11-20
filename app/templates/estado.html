@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Estado · Contraste{% endblock %}
+{% block description %}Cuántos feeds de medios se leen con normalidad, cuáles fallan y cuánto pesa el índice de titulares.{% endblock %}
+
+{% block content %}
+<article class="prose">
+  <h1>Estado del servicio</h1>
+  <p class="lead">Contraste lee los feeds públicos de cada medio cada pocos minutos. Esta página muestra qué se lee bien y qué no. Solo contiene datos del catálogo y del índice: ninguna dirección IP ni dato de quien visita.</p>
+
+  <h2>En cifras</h2>
+  <dl class="ficha">
+    <dt>Feeds en el catálogo</dt><dd>{{ s.feeds_total }}</dd>
+    <dt>Se leen con normalidad</dt><dd>{{ s.counts.active }}</dd>
+    <dt>Con fallos recientes</dt><dd>{{ s.counts.failing }}</dd>
+    <dt>En pausa</dt><dd>{{ s.counts.paused }}</dd>
+    <dt>Aún sin leer</dt><dd>{{ s.counts.pending }}</dd>
+    <dt>Medios</dt><dd>{{ s.outlets }} ({{ s.outlets_with_headlines }} con titulares en el índice)</dd>
+    <dt>Titulares en el índice</dt><dd>{{ s.articles }}{% if s.oldest %}, el más antiguo del {{ long_date(s.oldest) }}{% endif %}</dd>
+    <dt>Tamaño del índice</dt><dd>{{ "%.1f"|format(s.index_bytes / 1048576) }} MB</dd>
+    <dt>Última lectura de feeds</dt><dd>{% if s.last_ingest %}<time datetime="{{ iso(s.last_ingest) }}">{{ time_ago(s.last_ingest) }}</time>{% else %}todavía ninguna{% endif %}</dd>
+  </dl>
+
+  <h2>Cómo se tratan los feeds que fallan</h2>
+  <p>Un feed que falla {{ s.failure_limit }} veces seguidas se deja de consultar durante 24 horas; si sigue fallando, la pausa se duplica en cada intento (hasta 7 días). En cuanto responde bien, vuelve a leerse con normalidad.</p>
+
+  <h2>Feeds con problemas</h2>
+  {% if s.problems %}
+  <div class="table-wrap"><table class="table">
+    <thead><tr><th scope="col">Medio</th><th scope="col">Estado</th><th scope="col">Última respuesta</th><th scope="col">Fallos seguidos</th><th scope="col">Última lectura correcta</th></tr></thead>
+    <tbody>
+    {% for r in s.problems %}
+      <tr>
+        <th scope="row"><a href="/medios/{{ r.outlet_id }}">{{ r.outlet }}</a></th>
+        <td>{% if r.state == "paused" %}En pausa hasta <time datetime="{{ iso(r.next_attempt) }}">{{ clock(r.next_attempt) }}</time>{% elif r.state == "pending" %}Sin leer todavía{% else %}Con fallos{% endif %}</td>
+        <td>{{ r.status or "—" }}</td>
+        <td>{{ r.failures }}</td>
+        <td>{% if r.last_success %}<time datetime="{{ iso(r.last_success) }}">{{ time_ago(r.last_success) }}</time>{% else %}nunca{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+  {% if s.problems_hidden %}<p class="small muted">Y {{ s.problems_hidden }} más.</p>{% endif %}
+  {% else %}
+  <p>Ahora mismo todos los feeds responden con normalidad.</p>
+  {% endif %}
+  <p class="small muted">Si un medio no quiere aparecer o su feed ha cambiado, <a href="{{ settings.repo_url }}/issues" rel="noopener noreferrer">abre una incidencia</a>.</p>
+</article>
+{% endblock %}

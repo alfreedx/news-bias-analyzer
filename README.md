@@ -106,7 +106,8 @@ El plan gratuito se suspende tras 15 minutos sin visitas: la primera visita tard
 los 120 días de historial sin servicios de terceros, el workflow
 [`data-snapshot.yml`](.github/workflows/data-snapshot.yml) (cada 6 horas, a mano y justo antes de cada despliegue)
 guarda una **instantánea cifrada** como asset de la release `data-snapshot`: `gzip` del SQLite cifrado con
-Fernet (`cryptography`), sin firmas (autores) y limitada por `RETENTION_DAYS`. Cada ejecución parte de la
+Fernet (`cryptography`) **por bloques de 4 MB** (ni al crearla ni al restaurarla se carga el archivo entero en
+memoria; el formato anterior, un único token, se sigue leyendo), sin firmas (autores) y limitada por `RETENTION_DAYS`. Cada ejecución parte de la
 anterior, así que acumula historial aunque el servidor esté dormido. Para activarlo:
 
 1. Genera una clave: `python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"`.
@@ -146,13 +147,15 @@ app/
   catalog.py     carga y valida data/*.json, asocia URLs a medios
   scoring.py     tablas públicas etiqueta → posición (la «metodología» en código)
   analysis.py    agrupación de historias, cobertura, noticias que cuenta sobre todo un lado
-  feeds.py       descarga y análisis seguro de RSS/Atom
+  feeds.py       descarga y análisis seguro de RSS/Atom (concurrencia configurable, máx. 2 peticiones por servidor)
+  status.py      datos de la página pública /estado
   sponsored.py   reglas públicas de contenido patrocinado marcado por el medio
   db.py          SQLite + FTS5, consultas parametrizadas
   security.py    cabeceras de seguridad y limitador de peticiones
   templates/     HTML (Jinja2)   ·   static/  CSS, JS e icono
 data/            catálogo de medios y grupos (CC BY-SA 4.0)
-scripts/         verify_sources.py: comprueba fuentes y calificaciones; sponsored_survey.py: mide las marcas de patrocinio de los RSS
+scripts/         verify_sources.py: comprueba fuentes y calificaciones; sponsored_survey.py: mide las marcas de patrocinio de los RSS;
+                 discover_media.py: descubre medios candidatos (Wikidata + feeds) y los da de alta con --apply
 tests/           pytest
 ```
 
@@ -163,6 +166,19 @@ tests/           pytest
 | `GET /api/buscar?q=texto&dias=7\|30\|todo` | Historias, cobertura y verificaciones en JSON |
 | `GET /api/medios` | Catálogo completo con evaluaciones |
 | `GET /api/salud` | Estado del servicio |
+| `GET /estado` | Página pública: feeds activos, con fallos y en pausa, última lectura y tamaño del índice (sin IP ni datos de visitantes) |
+
+### Descubrimiento de medios
+
+`python scripts/discover_media.py` busca en Wikidata periódicos, emisoras, agencias y webs de noticias de España
+con web oficial, descubre su feed (`<link rel="alternate">` y rutas habituales, respetando `robots.txt`, máximo 3
+peticiones por sitio) y aplica la misma puerta de entrada que el catálogo. Escribe `data/candidates.json`
+(informe completo con motivos) y `data/media.candidates.json` (entradas listas para fusionar); nunca toca
+`data/media.json`. El workflow semanal [`discover-media.yml`](.github/workflows/discover-media.yml) abre un pull
+request con los que pasan; el alta es manual con `--apply` (ver [CONTRIBUTING.md](CONTRIBUTING.md)).
+
+Los feeds que fallan 20 veces seguidas se dejan de consultar 24 horas (duplicando la pausa en cada nuevo fallo, hasta
+7 días). `INGEST_CONCURRENCY` (por defecto 8) limita las peticiones simultáneas.
 
 ## Calidad y seguridad
 

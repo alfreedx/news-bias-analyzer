@@ -23,6 +23,31 @@ python -m pytest
 python scripts/verify_sources.py   # comprueba enlaces y calificaciones de MBFC
 ```
 
+## Altas automáticas de medios
+
+Cada lunes (05:23 UTC) y a mano (`gh workflow run discover-media.yml`) el workflow
+[`discover-media.yml`](.github/workflows/discover-media.yml) ejecuta `scripts/discover_media.py`: busca candidatos en
+Wikidata, descubre sus feeds y valida cada uno con la misma puerta que el catálogo (feed con 5 o más titulares y
+alguno de los últimos 7 días, enlaces en el dominio del propio medio, idioma de España, propietario o artículo de
+es.wikipedia, ni agregador ni duplicado). Si cambia `data/media.candidates.json`, abre o actualiza **un único pull
+request** en la rama `bot/media-candidates` con la lista de candidatos (nombre, dominio, feed, propietario y enlace a
+su fuente) y una lista de revisión. Los medios **no entran solos** en el catálogo. Pasos para darlos de alta:
+
+1. Revisa el PR: abre cada feed, comprueba que es el medio (no un agregador, no sátira, no solo deportes/cultura) y
+   que la fuente de identidad dice lo que se afirma. `type`, `scope`, `region` y `group` se derivan de Wikidata y
+   pueden necesitar corrección. Si un medio pide no ser indexado, no lo des de alta.
+2. Haz merge del PR (solo añade `data/candidates.json` y `data/media.candidates.json`).
+3. En tu copia actualizada de `main`: `python scripts/discover_media.py --apply ID [ID ...]` con los `id` elegidos
+   (los ves en `data/media.candidates.json`). Añade las entradas a `data/media.json` con el formato del archivo; si algo
+   no cuadra (id repetido, dominio ya catalogado, grupo inexistente) no cambia nada.
+4. Ajusta a mano lo que haga falta, ejecuta `python -m pytest` y `python scripts/verify_sources.py`, y abre el PR del alta.
+   Las entradas nacen con `evidence: []`: las etiquetas de orientación solo se añaden con una fuente citable.
+5. Los candidatos que descartes seguirán apareciendo en el informe mientras pasen la validación; no hace falta hacer
+   nada para silenciarlos.
+
+Requisito único del repositorio: *Settings → Actions → General → Allow GitHub Actions to create and approve pull requests*.
+Para ejecutarlo en local (tarda varios minutos y reanuda si Wikidata limita las consultas): `python scripts/discover_media.py`.
+
 ## Cómo proponer palabras equivalentes
 
 La búsqueda amplía las palabras con `data/synonyms.json` (cada grupo es una lista de términos que los medios usan indistintamente). Para proponer un grupo, abre un PR que lo añada o lo modifique, **un grupo por PR**.

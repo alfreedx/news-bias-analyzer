@@ -1,6 +1,9 @@
 """Encrypted, author-free snapshot of the headline index (restores the demo after Render wipes its disk).
 
-File format: gzip(SQLite file), then Fernet-encrypted (cryptography). The key (SNAPSHOT_KEY) never leaves the
+File format (current, "chunked"): the magic ``CTSNAP2`` followed by gzip(SQLite file) cut into 4 MiB pieces, each
+one its own Fernet token (cryptography), written as ``<4-byte big-endian length><token>`` and closed by a zero
+length. Neither building nor restoring ever holds the whole file in memory. The previous format (one Fernet token
+around the whole gzip) is still read. The key (SNAPSHOT_KEY) never leaves the
 environment and is never logged. Everything here is written so that a failure leaves the existing database
 untouched: the snapshot is unpacked into a temporary file next to the target, checked, and only then moved
 into place with an atomic ``os.replace``.
@@ -10,9 +13,11 @@ from __future__ import annotations
 
 import contextlib
 import gzip
+import io
 import logging
 import os
 import sqlite3
+import struct
 import tempfile
 import time
 import zlib
@@ -29,6 +34,9 @@ TIMEOUT = 60.0
 MAX_DOWNLOAD = 80 * 1024 * 1024
 MAX_UNPACKED = 300 * 1024 * 1024
 MAX_REDIRECTS = 5
+MAGIC = b"CTSNAP2\n"  # a legacy token starts with "gAAAAA" (Fernet version byte): the two never collide
+CHUNK = 4 * 1024 * 1024  # plaintext bytes per Fernet token
+MAX_TOKEN = 2 * CHUNK  # a longer block is not one of ours: refused before it is read
 ALLOWED_REDIRECT_HOSTS = frozenset({"github.com", "objects.githubusercontent.com",
                                     "release-assets.githubusercontent.com"})
 REQUIRED_TABLES = frozenset({"articles", "articles_fts", "feed_state", "stories", "story_articles"})
@@ -46,29 +54,108 @@ def _fernet(key: str | bytes) -> Fernet:
         raise SnapshotError("SNAPSHOT_KEY is not a valid Fernet key") from exc
 
 
+class _ChunkWriter:
+    """File-like sink that encrypts everything written to it in `chunk`-sized, length-prefixed Fernet tokens."""
+
+    def __init__(self, out, fernet: Fernet, chunk: int = CHUNK):
+        self.out, self.fernet, self.chunk = out, fernet, chunk
+        self.buf = bytearray()
+        out.write(MAGIC)
+        self.written = len(MAGIC)
+
+    def write(self, data) -> int:
+        self.buf += data
+        while len(self.buf) >= self.chunk:
+            self._emit(bytes(self.buf[: self.chunk]))
+            del self.buf[: self.chunk]
+        return len(data)
+
+    def flush(self) -> None:  # GzipFile calls it; pieces are only cut at chunk boundaries
+        pass
+
+    def _emit(self, plain: bytes) -> None:
+        token = self.fernet.encrypt(plain)
+        self.out.write(struct.pack(">I", len(token)))
+        self.out.write(token)
+        self.written += 4 + len(token)
+
+    def finish(self) -> int:
+        if self.buf:
+            self._emit(bytes(self.buf))
+            self.buf.clear()
+        self.out.write(struct.pack(">I", 0))
+        return self.written + 4
+
+
+def pack_to(db_file: Path, out, key: str | bytes, chunk: int = CHUNK) -> int:
+    """gzip the SQLite file and write it encrypted, in chunks, to the binary file object ``out``.
+    Streams: memory stays around one chunk. Returns the number of bytes written."""
+    sink = _ChunkWriter(out, _fernet(key), chunk)
+    with open(db_file, "rb") as src, gzip.GzipFile(fileobj=sink, mode="wb", compresslevel=9, mtime=0) as gz:
+        while block := src.read(1024 * 1024):
+            gz.write(block)
+    return sink.finish()
+
+
 def pack(db_file: Path, key: str | bytes) -> bytes:
-    """gzip the SQLite file and encrypt it."""
-    return _fernet(key).encrypt(gzip.compress(Path(db_file).read_bytes(), compresslevel=9, mtime=0))
+    """Same as `pack_to`, returning the bytes (small databases and tests)."""
+    buf = io.BytesIO()
+    pack_to(db_file, buf, key)
+    return buf.getvalue()
 
 
-def unpack(blob: bytes, key: str | bytes, dest: Path, max_size: int = MAX_UNPACKED) -> int:
-    """Decrypt and gunzip ``blob`` into ``dest`` refusing to write more than ``max_size`` bytes."""
-    try:
-        gz = _fernet(key).decrypt(blob)
-    except InvalidToken as exc:
-        raise SnapshotError("cannot decrypt the snapshot (wrong key or corrupted file)") from exc
+def _read_exact(fh, n: int) -> bytes:
+    data = fh.read(n)
+    if len(data) != n:
+        raise SnapshotError("snapshot is truncated")
+    return data
+
+
+def _decrypted_pieces(fh, fernet: Fernet, max_blob: int):
+    """Yield the gzip bytes of a snapshot read from ``fh`` (either format), one block at a time."""
+    head = fh.read(len(MAGIC))
+    if head != MAGIC:  # legacy: one Fernet token around the whole gzip
+        rest = fh.read(max_blob + 1)
+        if len(head) + len(rest) > max_blob:
+            raise SnapshotError("snapshot is larger than the allowed size")
+        try:
+            yield fernet.decrypt(head + rest)
+        except InvalidToken as exc:
+            raise SnapshotError("cannot decrypt the snapshot (wrong key or corrupted file)") from exc
+        return
+    while True:
+        (size,) = struct.unpack(">I", _read_exact(fh, 4))
+        if size == 0:
+            if fh.read(1):
+                raise SnapshotError("unexpected data after the end of the snapshot")
+            return
+        if size > MAX_TOKEN:
+            raise SnapshotError("snapshot is corrupted (oversized block)")
+        try:
+            yield fernet.decrypt(_read_exact(fh, size))
+        except InvalidToken as exc:
+            raise SnapshotError("cannot decrypt the snapshot (wrong key or corrupted file)") from exc
+
+
+def unpack_stream(fh, key: str | bytes, dest: Path, max_size: int = MAX_UNPACKED,
+                  max_blob: int = MAX_DOWNLOAD) -> int:
+    """Decrypt and gunzip the snapshot read from the binary file object ``fh`` into ``dest``, refusing to write
+    more than ``max_size`` bytes. Reads the chunked and the legacy format."""
     dec = zlib.decompressobj(16 + zlib.MAX_WBITS)
     written = 0
     try:
         with open(dest, "wb") as out:
-            data = gz
-            while data:
-                chunk = dec.decompress(data, 1024 * 1024)
-                written += len(chunk)
-                if written > max_size:
-                    raise SnapshotError(f"unpacked snapshot exceeds {max_size} bytes")
-                out.write(chunk)
-                data = dec.unconsumed_tail
+            for piece in _decrypted_pieces(fh, _fernet(key), max_blob):
+                data = piece
+                while data:
+                    if dec.eof:
+                        raise SnapshotError("snapshot has data after the end of the gzip stream")
+                    chunk = dec.decompress(data, 1024 * 1024)
+                    written += len(chunk)
+                    if written > max_size:
+                        raise SnapshotError(f"unpacked snapshot exceeds {max_size} bytes")
+                    out.write(chunk)
+                    data = dec.unconsumed_tail
             tail = dec.flush()
             written += len(tail)
             if written > max_size:
@@ -79,6 +166,18 @@ def unpack(blob: bytes, key: str | bytes, dest: Path, max_size: int = MAX_UNPACK
     if not dec.eof:
         raise SnapshotError("snapshot gzip stream is truncated")
     return written
+
+
+def unpack(blob: bytes, key: str | bytes, dest: Path, max_size: int = MAX_UNPACKED) -> int:
+    """Decrypt and gunzip ``blob`` into ``dest`` refusing to write more than ``max_size`` bytes."""
+    return unpack_stream(io.BytesIO(blob), key, dest, max_size, max_blob=max(len(blob), 1))
+
+
+def unpack_file(path: Path, key: str | bytes, dest: Path, max_size: int = MAX_UNPACKED,
+                max_blob: int = MAX_DOWNLOAD) -> int:
+    """Like `unpack`, reading the snapshot from a file instead of memory."""
+    with open(path, "rb") as fh:
+        return unpack_stream(fh, key, dest, max_size, max_blob)
 
 
 # --- database checks ---------------------------------------------------------------
@@ -140,17 +239,18 @@ def export_db(src: Path, out_file: Path, key: str | bytes) -> dict[str, int]:
         finally:
             conn.close()
         counts = verify_db(copy2)
-        blob = pack(copy2, key)
-    out_file = Path(out_file)
-    out_file.parent.mkdir(parents=True, exist_ok=True)
-    out_file.write_bytes(blob)
-    return {**counts, "bytes": len(blob)}
+        out_file = Path(out_file)
+        out_file.parent.mkdir(parents=True, exist_ok=True)
+        with open(out_file, "wb") as fh:
+            size = pack_to(copy2, fh, key)
+    return {**counts, "bytes": size}
 
 
 # --- download ----------------------------------------------------------------------------
-def download(url: str, *, max_bytes: int = MAX_DOWNLOAD, timeout: float = TIMEOUT,
-             deadline: float | None = None, transport: httpx.BaseTransport | None = None) -> bytes:
-    """GET ``url`` following at most MAX_REDIRECTS redirects, only to GitHub release hosts, over https."""
+def _fetch(url: str, sink, *, max_bytes: int, timeout: float, deadline: float | None,
+           transport: httpx.BaseTransport | None) -> int:
+    """GET ``url`` following at most MAX_REDIRECTS redirects, only to GitHub release hosts, over https; every
+    piece of the body goes to ``sink(bytes)``. Returns the size."""
     current = url
     with httpx.Client(timeout=timeout, follow_redirects=False, transport=transport,
                       headers={"User-Agent": "contraste-snapshot/1.0"}) as client:
@@ -172,15 +272,31 @@ def download(url: str, *, max_bytes: int = MAX_DOWNLOAD, timeout: float = TIMEOU
                 declared = resp.headers.get("content-length")
                 if declared and declared.isdigit() and int(declared) > max_bytes:
                     raise SnapshotError("snapshot is larger than the allowed size")
-                buf = bytearray()
+                size = 0
                 for chunk in resp.iter_bytes():
-                    buf.extend(chunk)
-                    if len(buf) > max_bytes:
+                    size += len(chunk)
+                    if size > max_bytes:
                         raise SnapshotError("snapshot is larger than the allowed size")
+                    sink(chunk)
                     if deadline is not None and time.monotonic() > deadline:
                         raise SnapshotError("download timed out")
-                return bytes(buf)
+                return size
     raise SnapshotError("too many redirects")
+
+
+def download(url: str, *, max_bytes: int = MAX_DOWNLOAD, timeout: float = TIMEOUT,
+             deadline: float | None = None, transport: httpx.BaseTransport | None = None) -> bytes:
+    """Download into memory (small payloads and tests); restores use `download_to`."""
+    buf = bytearray()
+    _fetch(url, buf.extend, max_bytes=max_bytes, timeout=timeout, deadline=deadline, transport=transport)
+    return bytes(buf)
+
+
+def download_to(url: str, dest: Path, *, max_bytes: int = MAX_DOWNLOAD, timeout: float = TIMEOUT,
+                deadline: float | None = None, transport: httpx.BaseTransport | None = None) -> int:
+    """Download straight into the file ``dest`` (nothing is kept in memory)."""
+    with open(dest, "wb") as fh:
+        return _fetch(url, fh.write, max_bytes=max_bytes, timeout=timeout, deadline=deadline, transport=transport)
 
 
 # --- restore -----------------------------------------------------------------------------
@@ -189,22 +305,42 @@ def restore(url: str, key: str | bytes, dest: Path, *, deadline: float | None = 
             max_download: int = MAX_DOWNLOAD) -> dict[str, int]:
     """Download, decrypt, verify and atomically move the snapshot to ``dest``. Raises SnapshotError.
 
-    ``dest`` is only replaced after every check passed; on any failure it is left exactly as it was.
+    The download goes to a temporary file and is decrypted block by block, so the snapshot is never held twice
+    in memory. ``dest`` is only replaced after every check passed; on any failure it is left exactly as it was.
     """
-    blob = download(url, max_bytes=max_download, deadline=deadline, transport=transport)
-    return install(blob, key, dest, deadline=deadline, max_unpacked=max_unpacked)
+    dest = Path(dest)
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp_name = tempfile.mkstemp(prefix=".download-", suffix=".enc", dir=dest.parent)
+    os.close(fd)
+    tmp = Path(tmp_name)
+    try:
+        download_to(url, tmp, max_bytes=max_download, deadline=deadline, transport=transport)
+        return install_file(tmp, key, dest, deadline=deadline, max_unpacked=max_unpacked, max_blob=max_download)
+    finally:
+        with contextlib.suppress(FileNotFoundError):
+            tmp.unlink()
 
 
 def install(blob: bytes, key: str | bytes, dest: Path, *, deadline: float | None = None,
             max_unpacked: int = MAX_UNPACKED) -> dict[str, int]:
     """Decrypt ``blob`` into a temporary file beside ``dest``, verify it and atomically replace ``dest``."""
+    return _install(lambda tmp: unpack(blob, key, tmp, max_size=max_unpacked), dest, deadline)
+
+
+def install_file(path: Path, key: str | bytes, dest: Path, *, deadline: float | None = None,
+                 max_unpacked: int = MAX_UNPACKED, max_blob: int = MAX_DOWNLOAD) -> dict[str, int]:
+    """Like `install`, streaming the encrypted snapshot from ``path`` (never loaded whole)."""
+    return _install(lambda tmp: unpack_file(path, key, tmp, max_size=max_unpacked, max_blob=max_blob), dest, deadline)
+
+
+def _install(write_plain, dest: Path, deadline: float | None) -> dict[str, int]:
     dest = Path(dest)
     dest.parent.mkdir(parents=True, exist_ok=True)
     fd, tmp_name = tempfile.mkstemp(prefix=".restore-", suffix=".sqlite3", dir=dest.parent)
     os.close(fd)
     tmp = Path(tmp_name)
     try:
-        unpack(blob, key, tmp, max_size=max_unpacked)
+        write_plain(tmp)
         counts = verify_db(tmp)
         if deadline is not None and time.monotonic() > deadline:
             raise SnapshotError("restore timed out before it could be applied")

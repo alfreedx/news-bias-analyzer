@@ -49,7 +49,7 @@ def build(out: Path, previous: Path | None) -> int:
         work = Path(tmp) / "news.sqlite3"
         if previous is not None and previous.is_file():
             try:
-                snapshot.unpack(previous.read_bytes(), key, work)
+                snapshot.unpack_file(previous, key, work)
                 snapshot.verify_db(work)
             except snapshot.SnapshotError as exc:
                 # Never replace good history with a fresh near-empty index because of a wrong key.
@@ -79,7 +79,7 @@ def restore(url: str, dest: Path) -> int:
     try:
         local = Path(url)
         if not url.startswith(("http://", "https://")) and local.is_file():  # handy for local tests
-            counts = snapshot.install(local.read_bytes(), key, dest)
+            counts = snapshot.install_file(local, key, dest)
         else:
             counts = snapshot.restore(url, key, dest, deadline=started + 120)
     except Exception as exc:

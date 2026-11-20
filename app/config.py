@@ -67,6 +67,7 @@ class Settings:
     # Ingestion
     ingest_enabled: bool = field(default_factory=lambda: _bool("INGEST_ENABLED", True))
     ingest_interval_minutes: int = field(default_factory=lambda: _int("INGEST_INTERVAL_MINUTES", 10, 5))
+    ingest_concurrency: int = field(default_factory=lambda: _int("INGEST_CONCURRENCY", 8, 1))
     retention_days: int = field(default_factory=lambda: _int("RETENTION_DAYS", 120, 7))
     user_agent: str = field(
         default_factory=lambda: os.environ.get(

@@ -152,13 +152,19 @@ def build_facts(qid: str, entity: dict, labels: dict[str, str], retrieved: str) 
 
 
 # --- Wikidata access --------------------------------------------------------------
+FAILED_BATCHES = 0  # API batches that never got an answer (throttled); callers needing completeness check it
+
+
 def fetch_entities(ids: list[str], props: str) -> dict[str, dict]:
+    global FAILED_BATCHES
     out: dict[str, dict] = {}
     for batch in chunks(sorted(set(ids))):
         data = request(API, {"action": "wbgetentities", "format": "json", "ids": "|".join(batch),
                                      "props": props, "languages": "es|en", "languagefallback": 1})
         if data:
             out.update(data.get("entities", {}))
+        else:
+            FAILED_BATCHES += 1
         time.sleep(1)
     return out
 

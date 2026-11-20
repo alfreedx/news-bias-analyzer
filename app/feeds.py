@@ -262,19 +262,42 @@ async def _ingest_feed(client: httpx.AsyncClient, db: Database, catalog: Catalog
     return added
 
 
-async def ingest_all(catalog: Catalog, db: Database, concurrency: int = 6) -> int:
-    """Fetch every catalog feed once. Returns number of new articles."""
-    sem = asyncio.Semaphore(concurrency)
-    async with make_client() as client:
-        async def run(media_id: str, url: str) -> int:
-            async with sem:
-                return await _ingest_feed(client, db, catalog, media_id, url)
+PER_HOST_LIMIT = 2  # simultaneous requests to one host (several feeds of an outlet share its server)
 
-        tasks = [run(m.id, f) for m in catalog.media.values() for f in m.feeds]
-        results = await asyncio.gather(*tasks, return_exceptions=True)
+
+def host_of(url: str) -> str:
+    try:
+        return (urlsplit(url).hostname or "").lower()
+    except ValueError:
+        return ""
+
+
+async def ingest_all(catalog: Catalog, db: Database, concurrency: int | None = None,
+                     per_host: int = PER_HOST_LIMIT, client: httpx.AsyncClient | None = None) -> int:
+    """Fetch every catalog feed once. Returns number of new articles.
+
+    At most `concurrency` requests run at once (default: INGEST_CONCURRENCY, 8) and at most `per_host` to the same
+    host. Feeds that failed too many times in a row are paused for a while (`Database.feed_due`).
+    """
+    sem = asyncio.Semaphore(concurrency or settings.ingest_concurrency)
+    hosts: dict[str, asyncio.Semaphore] = {}
+    now = int(time.time())
+    due = [(m.id, f) for m in catalog.media.values() for f in m.feeds if db.feed_due(db.get_feed_state(f), now)]
+    skipped = sum(len(m.feeds) for m in catalog.media.values()) - len(due)
+
+    async def run(http: httpx.AsyncClient, media_id: str, url: str) -> int:
+        host_sem = hosts.setdefault(host_of(url), asyncio.Semaphore(per_host))
+        async with host_sem, sem:
+            return await _ingest_feed(http, db, catalog, media_id, url)
+
+    if client is not None:
+        results = await asyncio.gather(*(run(client, m, f) for m, f in due), return_exceptions=True)
+    else:
+        async with make_client() as http:
+            results = await asyncio.gather(*(run(http, m, f) for m, f in due), return_exceptions=True)
     added = sum(r for r in results if isinstance(r, int))
     purged = db.purge_older_than(settings.retention_days)
-    log.info("ingest finished: %d new articles, %d purged", added, purged)
+    log.info("ingest finished: %d new articles, %d purged, %d feeds paused", added, purged, skipped)
     return added
 
 
