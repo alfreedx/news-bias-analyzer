@@ -15,7 +15,11 @@
     var viewSel = panel.querySelector("[data-view]");
     var sortSel = panel.querySelector("[data-sort]");
     var countEl = panel.querySelector("[data-count]");
-    var noMatch = document.querySelector("[data-no-match]");
+    // The «no match» message does not exist in the HTML: it is added only while the filters hide everything.
+    var noMatch = document.createElement("p");
+    noMatch.className = "empty";
+    noMatch.setAttribute("data-no-match", "");
+    noMatch.textContent = "Ningún titular coincide con los filtros.";
     var activePos = "all";
     var flatRoot = null;
 
@@ -44,7 +48,8 @@
     }
 
     function sortStories() {
-      var blocks = Array.prototype.slice.call(storiesRoot.children);
+      var fold = storiesRoot.querySelector(":scope > details[data-more]");
+      var blocks = Array.prototype.slice.call(storiesRoot.children).filter(function (b) { return b !== fold; });
       blocks.forEach(function (b, i) { if (!b.hasAttribute("data-order")) b.setAttribute("data-order", String(i)); });
       var byTime = sortSel.value === "recent";
       function newest(b) {
@@ -57,6 +62,7 @@
         return Number(a.getAttribute("data-order")) - Number(b.getAttribute("data-order"));
       });
       blocks.forEach(function (b) { storiesRoot.appendChild(b); });
+      if (fold) storiesRoot.appendChild(fold);
     }
 
     function matches(el) {
@@ -84,8 +90,19 @@
           story.hidden = !story.querySelector("[data-item]:not([hidden])");
         });
       }
+      var more = storiesRoot.querySelector(":scope > details[data-more]");
+      if (more) {
+        var inFold = more.querySelectorAll("[data-item]:not([hidden])").length;
+        more.hidden = !flat && !inFold;
+        // the filters left nothing outside the fold: open it so the visible headlines are not hidden away
+        if (inFold && shown === inFold) more.open = true;
+      }
       countEl.textContent = shown === 1 ? "1 titular visible" : shown + " titulares visibles";
-      noMatch.hidden = shown !== 0;
+      if (shown === 0) {
+        if (!noMatch.parentNode) storiesRoot.parentNode.insertBefore(noMatch, storiesRoot.nextSibling);
+      } else if (noMatch.parentNode) {
+        noMatch.parentNode.removeChild(noMatch);
+      }
     }
 
     pills.forEach(function (pill) {

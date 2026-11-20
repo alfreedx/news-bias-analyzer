@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 import math
+import re
 import time
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
+from functools import cached_property
 
-from . import sponsored
+from . import sections, sponsored
 from .catalog import Catalog, Media
 from .facts import language_note
 from .scoring import POSITION_LABELS
@@ -16,6 +18,24 @@ from .text import _WORD, fold, keywords
 POSITIONS = [-2, -1, 0, 1, 2]
 
 SIDES = [("left", "Izquierda"), ("center", "Centro"), ("right", "Derecha")]
+
+
+# --- Agencies --------------------------------------------------------------------------
+# (regex over title + summary, name shown). First match wins.
+AGENCIES = [
+    (re.compile(r"\(\s*EFE\s*\)|\bag[eé]ncia\s+EFE\b|\bagencia\s+EFE\b", re.I), "EFE"),
+    (re.compile(r"\(\s*EP\s*\)|\beuropa\s+press\b", re.I), "Europa Press"),
+    (re.compile(r"\(\s*Servimedia\s*\)|\bservimedia\b", re.I), "Servimedia"),
+    (re.compile(r"\bag[eé]ncias\b", re.I), "Agencias"),
+]
+
+
+def agency_text_of(title: str, summary: str) -> str | None:
+    text = f"{title} {summary}"
+    for pattern, name in AGENCIES:
+        if pattern.search(text):
+            return name
+    return None
 
 
 def side_of(position: int | None) -> str | None:
@@ -49,6 +69,20 @@ class Article:
     def sponsored_evidence(self) -> str | None:
         """Exact mark the outlet published («Categoría RSS «Contenido patrocinado»», «Ruta /branded/»…)."""
         return sponsored.evidence(self.sponsored, self.url, self.title, self.categories) if self.sponsored else None
+
+    @cached_property
+    def opinion_evidence(self) -> str | None:
+        """What the outlet published that marks this piece as opinion (RSS category or URL section)."""
+        return sections.opinion_evidence(self.url, self.categories)
+
+    @property
+    def opinion(self) -> bool:
+        return self.opinion_evidence is not None
+
+    @cached_property
+    def incident_evidence(self) -> str | None:
+        """What the outlet published that files this piece under sucesos, tribunales, tráfico…"""
+        return sections.incident_evidence(self.url, self.categories)
 
     @property
     def position(self) -> int | None:
@@ -146,6 +180,7 @@ class Story:
     score: float = 0.0
     seed: Article | None = None  # the most relevant headline, kept as the story's title
     story_id: int | None = None  # id of the persisted story this cluster maps to, when there is one
+    incidental: bool = False  # most headlines come from sucesos/tribunales sections and the search was not about that
 
     @property
     def lead(self) -> Article:
@@ -269,33 +304,44 @@ def blind_spots(stories: list[Story], limit: int = 4, min_labelled: int = 3, thr
     return found[:limit]
 
 
+MIN_RATED = 30  # labelled headlines needed before any percentage or coloured bar is shown
+PUBLISH_NOTE = "El reparto refleja cuánto publica cada medio; no mide el sesgo de la noticia."
+
+
 def coverage_summary(cov: Coverage) -> str:
-    """Plain-language, purely descriptive reading of the coverage counts, with its base stated explicitly."""
-    parts = []
+    """Plain-language, purely descriptive reading of the coverage counts, with its base stated explicitly.
+
+    Percentages appear only with a solid base (`Coverage.reliable`: 30+ labelled headlines and at least half
+    of the total). Otherwise only counts are given, with an explicit warning. Either way the text says that the
+    split reflects how much each outlet publishes.
+    """
     unrated = cov.total - cov.rated
-    if cov.rated:
-        pct_ = lambda n: round(100 * n / cov.rated)  # noqa: E731
-        left = cov.by_position[-2] + cov.by_position[-1]
-        right = cov.by_position[1] + cov.by_position[2]
-        bits = []
-        for n, text in ((right, "a la derecha del centro"), (left, "a la izquierda"),
-                        (cov.by_position[0], "en el centro")):
-            if n:
-                bits.append((n, f"el {pct_(n)} % procede de medios situados {text}"))
-        bits.sort(key=lambda b: -b[0])
-        texts = [b[1] for b in bits]
-        for i in range(1, len(texts)):
-            texts[i] = texts[i].replace("procede de medios situados", "de medios situados", 1)
-        body = texts[0] if len(texts) == 1 else ", ".join(texts[:-1]) + " y " + texts[-1]
-        parts.append(f"{'De los ' + str(cov.rated) + ' titulares' if cov.rated != 1 else 'Del único titular'} "
-                     f"de medios con etiqueta, {body}.")
-    else:
-        parts.append("Ningún titular procede de medios con etiqueta publicada.")
-    if unrated and cov.rated:
+    if not cov.rated:
+        return f"Ningún titular procede de medios con etiqueta publicada. {PUBLISH_NOTE}"
+    left = cov.by_position[-2] + cov.by_position[-1]
+    right = cov.by_position[1] + cov.by_position[2]
+    centre = cov.by_position[0]
+    if not cov.reliable and not unrated:
+        return (f"Poca base para comparar: solo hay {cov.rated} titulares, todos de medios con etiqueta publicada. "
+                "El reparto refleja también cuánto publica cada medio.")
+    if not cov.reliable:
+        return (f"Poca base para comparar: solo {cov.rated} de {cov.total} titulares proceden de medios con "
+                "etiqueta publicada. El reparto refleja también cuánto publica cada medio.")
+    pct_ = lambda n: round(100 * n / cov.rated)  # noqa: E731
+    bits = []
+    for n, text in ((right, "a la derecha del centro"), (left, "a la izquierda"), (centre, "en el centro")):
+        if n:
+            bits.append((n, f"el {pct_(n)} % procede de medios situados {text}"))
+    bits.sort(key=lambda b: -b[0])
+    texts = [b[1] for b in bits]
+    for i in range(1, len(texts)):
+        texts[i] = texts[i].replace("procede de medios situados", "de medios situados", 1)
+    body = texts[0] if len(texts) == 1 else ", ".join(texts[:-1]) + " y " + texts[-1]
+    parts = [f"De los {cov.rated} titulares de medios con etiqueta, {body}."]
+    if unrated:
         parts.append(f"Calculado sobre {cov.rated} de {cov.total} titulares "
                      "(el resto son de medios sin etiqueta publicada).")
-        if cov.rated * 2 < cov.total:
-            parts.append("Dato orientativo: menos de la mitad de los titulares tienen etiqueta.")
+    parts.append(PUBLISH_NOTE)
     return " ".join(parts)
 
 
@@ -311,6 +357,13 @@ class Coverage:
     center_share: float
     right_share: float
     warnings: list[dict]
+    agency_headlines: int = 0  # headlines that carry a news agency's mark (EFE, Europa Press…)
+    agency_names: list[str] = field(default_factory=list)
+
+    @property
+    def reliable(self) -> bool:
+        """Enough labelled headlines to quote shares: at least MIN_RATED of them and at least half of the total."""
+        return self.rated >= MIN_RATED and self.rated * 2 >= self.total
 
     def to_public(self) -> dict:
         return {
@@ -321,6 +374,7 @@ class Coverage:
             "by_group": self.by_group,
             "shares": {"left": self.left_share, "center": self.center_share, "right": self.right_share},
             "warnings": self.warnings,
+            "agency_headlines": self.agency_headlines,
         }
 
 
@@ -417,6 +471,8 @@ def cluster(articles: list[Article], min_shared: int = MIN_SHARED, min_overlap: 
             if all(a.source_name != art.source_name for a in story.articles):
                 story.articles.append(art)
     for s in stories:
+        if s.seed is not None and s.seed.opinion:  # an opinion column never gives its name to a news story
+            s.seed = next((a for a in s.articles if not a.opinion), s.seed)
         s.score = story_score(s.articles)
         s.articles.sort(key=lambda a: (a.position is None, a.position if a.position is not None else 0))
     stories.sort(key=lambda s: s.score, reverse=True)
@@ -429,6 +485,7 @@ def coverage(articles: list[Article]) -> Coverage:
     groups: Counter[str] = Counter()
     media_counts: Counter[str] = Counter()
     media_ref: dict[str, Media | None] = {}
+    agencies: Counter[str] = Counter(n for a in articles if (n := agency_text_of(a.title, a.summary)))
     for a in articles:
         if a.position is not None:
             by_position[a.position] += 1
@@ -480,4 +537,6 @@ def coverage(articles: list[Article]) -> Coverage:
         center_share=share(center),
         right_share=share(right),
         warnings=warnings,
+        agency_headlines=sum(agencies.values()),
+        agency_names=[n for n, _ in agencies.most_common()],
     )

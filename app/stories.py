@@ -135,3 +135,27 @@ def majority_story(articles: list[Article], story_of: dict[int, int]) -> int | N
         return None
     sid, n = counts.most_common(1)[0]
     return sid if n >= 2 and n * 2 >= len(articles) else None
+
+
+def link_clusters(clusters: list[list[Article]], story_of: dict[int, int]) -> list[int | None]:
+    """Persisted story id for each clustered story, never the same id for two of them.
+
+    A cluster may link to a persisted story only when that story holds at least half of the cluster's headlines
+    (and at least two: `majority_story`). Persisted stories grow over 72 h and can swallow several events of one
+    news cycle (an election campaign, say); without this rule every cluster that has two headlines in such a
+    story would point at it. The claim goes to the cluster with the most headlines in the story (ties: the
+    earlier cluster, i.e. the better ranked); the others get None and the page falls back to a search link.
+    """
+    claims = []
+    for i, arts in enumerate(clusters):
+        sid = majority_story(arts, story_of)
+        if sid is not None:
+            n = sum(story_of.get(a.id) == sid for a in arts)
+            claims.append((-n, i, sid))
+    result: list[int | None] = [None] * len(clusters)
+    taken: set[int] = set()
+    for _neg, i, sid in sorted(claims):
+        if sid not in taken:
+            taken.add(sid)
+            result[i] = sid
+    return result

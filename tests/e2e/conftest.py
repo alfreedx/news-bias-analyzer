@@ -48,6 +48,17 @@ def _seed(data_dir: Path) -> None:
         "https://elpais.com/economia/branded/seguros-hogar/2026-11-18/vivienda-y-alquiler-el-seguro.html",
         "el-pais", "Vivienda y alquiler: el seguro que protege tu hogar y tu bolsillo", "Contenido de una marca.",
         now - 600, None, None))
+    # an incident story from two outlets (the outlets' own section marks): it must sit in the «Más titulares» fold
+    for mid, title in (("el-pais", "Incendio en una vivienda de Valencia deja dos heridos graves"),
+                       ("abc", "Un incendio en una vivienda de Valencia deja dos heridos")):
+        rows.append((f"https://example.com/sucesos/{mid}/incendio.html", mid, title, "Los bomberos sofocaron el fuego.",
+                     now - 1800, None, "Sucesos"))
+    # a single headline about the topic and an opinion column
+    rows.append(("https://example.com/publico/turistica", "publico",
+                 "La vivienda turística crece en Canarias pese a las restricciones", "Datos de ocupación.",
+                 now - 5400, None, None))
+    rows.append(("https://example.com/opinion/okdiario/columna.html", "okdiario",
+                 "Vivienda: la columna de la semana", "Opinión del autor.", now - 4000, None, "Opinión"))
     db = Database(data_dir / "news.sqlite3")
     db.insert_articles(rows)
     assign_stories(db, get_catalog())

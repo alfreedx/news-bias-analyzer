@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import subtitle, chip, factual, row_byline, comparison, spectrum_dots, tags, coverage_panel, help %}
+{% from "_macros.html" import subtitle, chip, factual, row_byline, comparison, spectrum_dots, tags, coverage_panel, help, check_line %}
 {% block title %}{{ title }} · Contraste{% endblock %}
 {% block description %}{{ story.outlets }} medios cuentan esta noticia. Qué datos repiten fuentes independientes de distintos grupos y tendencias, y qué solo cuenta un lado.{% endblock %}
 {% block body_class %}page-story{% endblock %}
@@ -14,7 +14,21 @@
     <span>{{ story.spread_label }}</span>
     <span>Del <time datetime="{{ iso(first) }}">{{ time_ago(first) }}</time> al <time datetime="{{ iso(last) }}">{{ time_ago(last) }}</time></span>
   </p>
+  {% if very_recent %}<p class="story-head__recent" data-recent>Noticia muy reciente: la cobertura todavía está creciendo.</p>{% endif %}
 </header>
+
+{% if c.headline and c.voices >= 2 %}
+{% set h = c.headline %}
+<section class="majority" aria-labelledby="majority-title">
+  <h2 id="majority-title" class="majority__title">La noticia, según la mayoría</h2>
+  <p class="majority__by">Según {% if h.media %}<a href="/medios/{{ h.media.id }}">{{ h.source_name }}</a>{% else %}{{ h.source_name }}{% endif %}:</p>
+  <blockquote class="majority__quote">
+    <a class="majority__headline" href="{{ h.url }}" rel="noopener noreferrer" target="_blank">{{ h.title }}</a>
+    {% if h.subtitle %}<p class="majority__sub">{{ h.subtitle|truncate(300) }}</p>{% endif %}
+  </blockquote>
+  <p class="majority__label small">Titular más representativo (el que más comparte con los demás). Es texto del medio, no un resumen nuestro.</p>
+</section>
+{% endif %}
 
 <section class="resumen" aria-labelledby="resumen-title">
   <h2 id="resumen-title" class="resumen__title">En resumen</h2>
@@ -48,7 +62,7 @@
         {% if factchecks %}
         <ul class="checks checks--inline">
           {% for a in factchecks %}
-          <li><a href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a> <span class="checks__by">{{ a.source_name }} · {{ time_ago(a.published) }}</span></li>
+          <li class="check">{{ check_line(a) }}</li>
           {% endfor %}
         </ul>
         {% else %}
@@ -119,9 +133,6 @@
       {% for name, n in c.agencies %}
       <p class="consensus__origin">Origen común: {{ name }}. {{ n }} medios reproducen su texto y se cuentan como una sola fuente.</p>
       {% endfor %}
-      {% if c.headline %}
-      <p class="consensus__head small">Titular más representativo (el que más palabras comparte con los demás): <a href="{{ c.headline.url }}" rel="noopener noreferrer" target="_blank">{{ c.headline.title }}</a> ({{ c.headline.source_name }}).</p>
-      {% endif %}
       {% if c.one_sided %}
       <h3 class="consensus__sub">Solo lo cuenta un lado</h3>
       <ul class="pieces pieces--one">

@@ -81,10 +81,10 @@ def test_position_pill_filters_items(page: Page, base_url):
     page.locator(f".pill[data-pos='{target}']").click()
     assert count(page) < total
     for item in page.locator("[data-item]").all():
-        if item.is_visible():
-            assert item.get_attribute("data-pos") == target
-        else:
+        if item.evaluate("e => e.hidden"):  # items inside the closed «Más titulares» fold are not hidden by the filter
             assert item.get_attribute("data-pos") != target
+        else:
+            assert item.get_attribute("data-pos") == target
     page.locator(".pill[data-pos='all']").click()
     assert count(page) == total
 
@@ -150,7 +150,7 @@ def test_comparison_block(browser, base_url, width):
     xs = {round(c.bounding_box()["x"]) for c in cols.all()}
     ys = {round(c.bounding_box()["y"]) for c in cols.all()}
     assert (len(xs) == 1) if width == 390 else (len(ys) == 1)
-    assert "No hemos encontrado este tema en medios de este lado" in block.inner_text()
+    assert "No aparece en los RSS que leemos de medios de este lado" in block.inner_text()
     sw, cw = page.evaluate("[document.documentElement.scrollWidth, document.documentElement.clientWidth]")
     assert sw <= cw
     ctx.close()
@@ -158,7 +158,8 @@ def test_comparison_block(browser, base_url, width):
 
 def test_coverage_summary_sentence(page: Page, base_url):
     page.goto(base_url + SEARCH)
-    expect(page.locator(".panel__summary")).to_contain_text("titulares de medios con etiqueta")
+    expect(page.locator(".panel__summary")).to_contain_text("Poca base para comparar")
+    expect(page.locator(".panel__summary")).to_contain_text("medios con etiqueta publicada")
 
 
 @pytest.mark.parametrize("width", [390, 1280])
@@ -268,9 +269,11 @@ def test_filters_folded_in_details_closed_by_default(page: Page, base_url):
 
 def test_coverage_bar_shows_unlabelled_segment(page: Page, base_url):
     page.goto(base_url + SEARCH)
-    # the seeded outlets are all labelled, so no hatched segment (unit tests cover the unlabelled case)
-    assert page.locator(".stack__seg--na").count() == 0
-    expect(page.locator(".panel__summary")).not_to_contain_text("Calculado sobre")
+    # a handful of labelled headlines is too thin a base: no bar, no percentages, an explicit warning
+    assert page.locator(".stack__seg--na").count() == 0 and page.locator(".stack").count() == 0
+    expect(page.locator(".panel__summary")).to_contain_text("Poca base para comparar")
+    assert "%" not in page.locator(".panel__summary").inner_text()
+    expect(page.locator(".panel__summary")).to_contain_text("cuánto publica cada medio")
     assert "Sin etiqueta" in page.locator(".legend").inner_text()
 
 
@@ -432,3 +435,70 @@ def test_without_javascript_search_still_works(browser, base_url):
     page.wait_for_url(re.compile(r"/buscar\?q=vivienda"))
     assert page.locator("[data-item]").count() > 0
     ctx.close()
+
+
+def test_no_match_message_only_when_filters_hide_everything(page: Page, base_url):
+    page.goto(base_url + SEARCH)
+    assert "Ningún titular coincide con los filtros" not in page.content()
+    open_filters(page)
+    page.locator(".pill[data-pos='0']").click()  # no seeded outlet sits in the centre
+    expect(page.get_by_text("Ningún titular coincide con los filtros")).to_be_visible()
+    page.locator(".pill[data-pos='all']").click()
+    assert page.get_by_text("Ningún titular coincide con los filtros").count() == 0
+
+
+def test_no_match_message_absent_without_javascript(browser, base_url):
+    ctx = browser.new_context(java_script_enabled=False)
+    page = ctx.new_page()
+    page.goto(base_url + SEARCH)
+    assert "Ningún titular coincide" not in page.content()
+    assert page.locator("[data-item]").count() > 0
+    ctx.close()
+
+
+@pytest.mark.parametrize("width,height", [(390, 844), (1280, 800)])
+def test_search_folds_minor_headlines_and_shows_brief(page: Page, base_url, width, height):
+    page.set_viewport_size({"width": width, "height": height})
+    page.goto(base_url + SEARCH)
+    brief = page.locator("[data-brief]").first
+    expect(brief).to_be_visible()
+    expect(brief).to_contain_text("En resumen:")
+    expect(brief).to_contain_text("Verificaciones:")
+    fold = page.locator("details[data-more]")
+    expect(fold).to_be_visible()
+    expect(fold.locator("summary")).to_contain_text("Más titulares (")
+    assert fold.get_attribute("open") is None
+    # the incident story and the single headline are inside the fold, the policy story is above it
+    assert "Incendio" not in page.locator("[data-stories] > article.story").first.inner_text()
+    fold.locator("summary").click()
+    expect(fold.get_by_text("La vivienda turística crece")).to_be_visible()
+    expect(fold.locator(".story__title").first).to_be_visible()
+    sw, cw = page.evaluate("[document.documentElement.scrollWidth, document.documentElement.clientWidth]")
+    assert sw <= cw
+
+
+def test_opinion_badge_is_visible_with_evidence(page: Page, base_url):
+    page.goto(base_url + SEARCH)
+    page.locator("details[data-more] summary").click()
+    badge = page.locator(".mark-opinion").first
+    expect(badge).to_be_visible()
+    assert "Categoría RSS" in badge.get_attribute("title")
+
+
+def test_home_positioning_sentence_is_visible(page: Page, base_url):
+    page.goto(base_url + "/")
+    expect(page.locator(".positioning")).to_contain_text("Contraste no decide qué es verdad")
+
+
+@pytest.mark.parametrize("width,height", [(390, 844), (1280, 800)])
+def test_story_page_majority_block_comes_first(page: Page, base_url, story_path, width, height):
+    page.set_viewport_size({"width": width, "height": height})
+    page.goto(base_url + story_path)
+    block = page.locator(".majority")
+    expect(block).to_be_visible()
+    expect(block).to_contain_text("La noticia, según la mayoría")
+    expect(block).to_contain_text("Titular más representativo (el que más comparte con los demás)")
+    y_major = block.bounding_box()["y"]
+    assert y_major < page.locator(".resumen").bounding_box()["y"]
+    sw, cw = page.evaluate("[document.documentElement.scrollWidth, document.documentElement.clientWidth]")
+    assert sw <= cw

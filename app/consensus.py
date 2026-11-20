@@ -12,7 +12,7 @@ from collections import Counter
 from dataclasses import dataclass, field
 from functools import lru_cache
 
-from .analysis import Article, norm_title, owner, side_of
+from .analysis import Article, agency_text_of, norm_title, owner, side_of
 from .text import STOPWORDS, fold, keywords
 
 MIN_VOICES = 3      # independent voices needed to talk about coincidences at all
@@ -33,21 +33,9 @@ SIDE_ORDER = ("left", "center", "right")
 KIND_ORDER = {"cifra": 0, "cita": 1, "fecha": 2, "nombre": 3}
 
 # --- Agencies --------------------------------------------------------------------------
-# (regex over title + summary, name shown). First match wins.
-AGENCIES = [
-    (re.compile(r"\(\s*EFE\s*\)|\bag[eé]ncia\s+EFE\b|\bagencia\s+EFE\b", re.I), "EFE"),
-    (re.compile(r"\(\s*EP\s*\)|\beuropa\s+press\b", re.I), "Europa Press"),
-    (re.compile(r"\(\s*Servimedia\s*\)|\bservimedia\b", re.I), "Servimedia"),
-    (re.compile(r"\bag[eé]ncias\b", re.I), "Agencias"),
-]
-
-
+# The detection rules live in analysis.AGENCIES (also used by the coverage panel).
 def agency_of(article: Article) -> str | None:
-    text = f"{article.title} {article.summary}"
-    for pattern, name in AGENCIES:
-        if pattern.search(text):
-            return name
-    return None
+    return agency_text_of(article.title, article.summary)
 
 
 # --- Extractors ------------------------------------------------------------------------
@@ -277,6 +265,8 @@ def build_voices(articles: list[Article]) -> list[Voice]:
     unique: dict[str, Article] = {}
     for a in articles:
         if a.sponsored:  # a mark by the outlet itself: advertising is not a voice about the story
+            continue
+        if a.opinion:  # opinion section (RSS category or URL): a view, not a report; kept in coverage and lists
             continue
         unique.setdefault(norm_title(a.title) or a.url, a)
     voices: dict[str, Voice] = {}

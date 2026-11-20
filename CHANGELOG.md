@@ -21,12 +21,21 @@ Todos los cambios relevantes se documentan aquí. El formato sigue
 - Página de historia: caja «En resumen» (qué coinciden en contar, qué cambia según el medio, verificaciones) con la advertencia «Coincidir no prueba que algo sea cierto», aviso de agrupación automática con enlace a una incidencia de GitHub prefijada (solo dirección y título) y «Cronología» por hora del RSS.
 - Búsqueda: `amplio=1` para incluir coincidencias solo en la entradilla; marca «en catalán/gallego/euskera/asturiano» en la firma de medios que no publican en español; pie de página «Contraste no sustituye leer la noticia completa».
 
+- Confianza y claridad (tras la evaluación del consejo): «La noticia, según la mayoría» al inicio de cada historia (titular y entradilla del RSS del medio más representativo, atribuidos, sin texto propio); aviso «Noticia muy reciente» si la primera publicación tiene menos de 3 h; frase de posicionamiento en la portada; titular del verificador en destacado con «X lo califica:» cuando empieza por una señal de veredicto (`app/factcheck.py`, siempre atribuido al verificador); marca «Opinión» con la prueba en `title` (categoría RSS o sección de la URL; «análisis» no cuenta) y exclusión de la opinión de las voces de «En lo que coinciden» y del título de las historias; nota de agencia en «Quién la cuenta» («N titulares reproducen textos de agencia»); `app/sections.py` con las listas documentadas de opinión y sucesos.
+- Búsqueda: primero las historias de 2 o más medios (hasta 5, desplegadas, con «En resumen» corto: palabras compartidas y verificaciones y enlace «Ver historia»); el resto y los titulares sueltos, en el apartado plegable «Más titulares (N)». Los titulares de sucesos, policía, tribunales, incendios o tráfico (según el propio medio) salen después de los temáticos cuando la consulta no habla de eso, y su historia necesita 3 medios para estar entre las 5 primeras.
+
 ### Cambiado
+- «Quién la cuenta»: porcentajes y barra de colores solo con 30 o más titulares de medios con etiqueta y la mitad o más del total; si no, solo recuentos y «Poca base para comparar: solo X de Y titulares proceden de medios con etiqueta publicada». El texto siempre dice que el reparto refleja cuánto publica cada medio.
+- Aviso de lado ausente: «No aparece en los RSS que leemos de medios de este lado».
 - Lenguaje llano: «Radiografía de la cobertura» pasa a «Quién la cuenta»; «Puntos ciegos» a «Noticias que cuenta sobre todo un lado»; «Contada desde ambos lados» a «La publican medios de izquierda y de derecha»; fracciones sustituidas por frases.
 - La barra de reparto muestra el tramo «sin etiqueta» (rayado) y la frase resumen indica la base («Calculado sobre 107 de 210 titulares…») y avisa si menos de la mitad tienen etiqueta.
 - Relevancia: las coincidencias en el titular pesan diez veces más que en la entradilla; con 15 o más titulares coincidentes se ocultan por defecto los que solo coinciden en la entradilla.
 - Búsqueda: posición, grupo, vista y orden quedan dentro de «Filtrar y ordenar» (plegado). En listas se muestra como máximo una etiqueta citada y «+N» enlaza a la ficha del medio.
 - Las verificaciones de la historia pasan a la caja «En resumen».
+
+### Corregido
+- Varias historias distintas de la portada enlazaban a la misma `/historia/1`: una historia guardada puede absorber varios sucesos de un mismo ciclo (una campaña electoral) y todo grupo con dos titulares en ella la reclamaba. Ahora `link_clusters` (`app/stories.py`) concede cada historia guardada a un solo grupo (el que tiene más titulares en ella) y los demás enlazan a una búsqueda.
+- `/buscar`: el texto «Ningún titular coincide con los filtros» estaba en el HTML (oculto con el atributo `hidden`) y lo leían extractores de texto y lectores sin CSS debajo de los resultados. Ahora no existe en el HTML: el script lo añade solo mientras los filtros ocultan todo.
 
 ### Eliminado
 - Las «señales del titular» (cebo, lenguaje cargado, exclamaciones, mayúsculas): eran una opinión algorítmica sin fuente citada. Se elimina `headline_signals` y el campo `signals` de la API.

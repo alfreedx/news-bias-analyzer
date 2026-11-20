@@ -38,6 +38,7 @@ from .catalog import get_catalog
 from .config import BASE_DIR, settings
 from .consensus import SIDE_LABEL, Consensus, consensus
 from .db import Database
+from .factcheck import verdict_cue
 from .facts import (
     NO_GROUP_TEXT,
     OWNERSHIP_LABELS,
@@ -50,10 +51,11 @@ from .facts import (
 )
 from .feeds import ingest_all, search_google_news
 from .scoring import DESCRIPTIVE_LABELS, FACTUAL_MAP, IDEOLOGY_MAP, POSITION_LABELS, TERRITORIAL_LABELS, bucket
+from .sections import query_is_incident
 from .security import RateLimitMiddleware, SecurityHeadersMiddleware
 from .sponsored import evidence as sponsored_evidence
 from .sponsored import rules_meta as sponsored_rules_meta
-from .stories import assign_stories, central_article, majority_story
+from .stories import assign_stories, central_article, link_clusters
 from .suggest import MIN_CHARS as SUGGEST_MIN
 from .suggest import SuggestCache, normalise, similar_stories, suggest
 
@@ -85,10 +87,11 @@ state = State()
 
 
 def link_stories(stories: list[Story]) -> None:
-    """Point each clustered story at the persisted story holding most of its headlines (None when none does)."""
+    """Point each clustered story at the persisted story holding most of its headlines (None when none does).
+    No persisted story is claimed by two clustered stories (see `link_clusters`)."""
     story_of = db.story_ids_for([a.id for s in stories for a in s.articles if a.id is not None])
-    for s in stories:
-        s.story_id = majority_story(s.articles, story_of)
+    for s, sid in zip(stories, link_clusters([s.articles for s in stories], story_of), strict=True):
+        s.story_id = sid
 
 
 def build_front_page() -> None:
@@ -244,7 +247,7 @@ templates.env.filters["urlq"] = urlq
 templates.env.globals.update(
     issue_url=issue_url, sponsored_issue_url=sponsored_issue_url, clock=clock,
     long_date=long_date, time_ago=time_ago, iso=iso, pos_class=pos_class, score_step=score_step, pct=pct,
-    coverage_summary=coverage_summary, sponsored_evidence=sponsored_evidence,
+    coverage_summary=coverage_summary, verdict_cue=verdict_cue, sponsored_evidence=sponsored_evidence,
     POSITION_LABELS=POSITION_LABELS, bucket=bucket, settings=settings, version=__version__,
 )
 
@@ -256,6 +259,9 @@ def render(request: Request, name: str, status_code: int = 200, **ctx) -> HTMLRe
 # --- Search --------------------------------------------------------------------
 _cache: OrderedDict[tuple, tuple[float, dict]] = OrderedDict()
 CACHE_TTL, CACHE_SIZE = 300, 128
+TOP_STORIES = 5  # stories shown expanded before the «Más titulares» fold
+INCIDENT_FACTOR = 0.25  # relevance multiplier of an item filed under sucesos/tribunales when the query is not
+INCIDENT_MIN_OUTLETS = 3  # such a story still reaches the top stories when this many outlets carry it
 SIMILAR_BELOW = 5  # «Quizá buscabas…» appears when a search finds fewer headlines than this
 _suggest_cache = SuggestCache(size=512, ttl=120)
 
@@ -301,11 +307,22 @@ async def run_search(query: str, days: int, broad: bool = False, exact: bool = F
             articles.append(art)
 
     rank(articles, bm25)
+    incident_query = query_is_incident(query)
+    if not incident_query:  # «incendio en una vivienda» is not what «vivienda» is about: rank it after the topical ones
+        for a in articles:
+            if a.incident_evidence:
+                a.relevance *= INCIDENT_FACTOR
+        articles.sort(key=lambda a: a.relevance, reverse=True)
     articles, marked = split_sponsored(articles)  # the outlet's own «patrocinado» marks: listed apart, never counted
     factchecks = [a for a in articles if a.media and a.media.factchecker][:6]
     news = [a for a in articles if not (a.media and a.media.factchecker)]
     stories = cluster(news)
+    for s in stories:
+        s.incidental = not incident_query and sum(bool(a.incident_evidence) for a in s.articles) * 2 > len(s.articles)
     await asyncio.to_thread(link_stories, stories)
+    top, rest = split_top(stories)
+    briefs = await asyncio.gather(*(asyncio.to_thread(story_brief, s) for s in top))  # SQLite releases the GIL
+    top_info = [{"story": s, **b} for s, b in zip(top, briefs, strict=True)]
     suggestions = []
     if len(found.units) >= 2 and (found.approx or not news):
         suggestions = await asyncio.to_thread(lambda: db.suggest_removals(query, since=since, exact=exact))
@@ -326,6 +343,9 @@ async def run_search(query: str, days: int, broad: bool = False, exact: bool = F
         "hidden_summary": hidden,
         "articles": news,
         "stories": stories,
+        "top": top_info,
+        "rest": rest,
+        "rest_count": sum(len(s.articles) for s in rest),
         "coverage": coverage(news),
         "factchecks": factchecks,
         "sponsored": marked,
@@ -334,6 +354,20 @@ async def run_search(query: str, days: int, broad: bool = False, exact: bool = F
     if len(_cache) > CACHE_SIZE:
         _cache.popitem(last=False)
     return result
+
+
+def split_top(stories: list[Story]) -> tuple[list[Story], list[Story]]:
+    """(stories shown expanded, the rest in the fold).
+
+    Top: stories carried by 2+ outlets, best score first, at most TOP_STORIES; a story that comes mostly from
+    sucesos/tribunales sections (and the query was not about that) needs INCIDENT_MIN_OUTLETS outlets to qualify.
+    The rest keeps multi-outlet stories before single headlines and topical before incidental ones.
+    """
+    eligible = [s for s in stories if len(s.articles) > 1 and (not s.incidental or s.outlets >= INCIDENT_MIN_OUTLETS)]
+    top = eligible[:TOP_STORIES]
+    ids = {id(s) for s in top}
+    rest = sorted((s for s in stories if id(s) not in ids), key=lambda s: (len(s.articles) == 1, s.incidental))
+    return top, rest
 
 
 def find_similar(query: str, since: int | None, news: list[Article], stories: list[Story]) -> list[dict]:
@@ -407,6 +441,26 @@ def story_summary(c: Consensus, story: Story) -> dict:
             "sides_text": _join(sides), "differences": differences}
 
 
+def fact_checks_for(story: Story, first: int) -> list[Article]:
+    """Fact-checker headlines (up to 6) that match the story's shared words, from a day before its first headline."""
+    if not story.topic_query:
+        return []
+    hits = db.search(story.topic_query, since=first - 86400, exact=True)
+    return [a for a in (make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"],
+                                     published=r["published"], media_id=r["media_id"]) for r in hits)
+            if a.media and a.media.factchecker][:6]
+
+
+def story_brief(story: Story) -> dict:
+    """Compact «En resumen» of a story in the search results: shared terms and fact-checks, nothing else."""
+    summary = story_summary(consensus(story.articles), story)
+    summary["points"] = summary["points"][:3]
+    return {"summary": summary, "checks": fact_checks_for(story, min(a.published for a in story.articles))[:2]}
+
+
+RECENT_SECONDS = 3 * 3600  # a story whose first headline is younger than this is still growing
+
+
 def load_story(story_id: int) -> dict | None:
     if story_id > 2**62:
         return None
@@ -422,15 +476,11 @@ def load_story(story_id: int) -> dict | None:
     story.score = story_score(articles)
     story.articles.sort(key=lambda a: (a.position is None, a.position if a.position is not None else 0))
     first = min(a.published for a in articles)
-    checks = []
-    if story.topic_query:
-        hits = db.search(story.topic_query, since=first - 86400, exact=True)
-        checks = [a for a in (make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"],
-                                           published=r["published"], media_id=r["media_id"]) for r in hits)
-                  if a.media and a.media.factchecker][:6]
+    checks = fact_checks_for(story, first)
     c = consensus(articles)
     return {"story": story, "title": row["title"], "cov": coverage(articles), "consensus": c,
             "summary": story_summary(c, story), "factchecks": checks, "first": first,
+            "very_recent": time.time() - first < RECENT_SECONDS,
             "last": max(a.published for a in articles)}
 
 

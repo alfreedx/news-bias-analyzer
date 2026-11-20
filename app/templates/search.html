@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import subtitle, chip, factual, byline, sponsored_mark, row_byline, comparison, spectrum_dots, tags, coverage_panel %}
+{% from "_macros.html" import subtitle, chip, factual, byline, sponsored_mark, row_byline, comparison, spectrum_dots, tags, coverage_panel, check_line %}
 {% block title %}{% if query %}{{ query }} · {% endif %}Contraste{% endblock %}
 {% block body_class %}page-search{% endblock %}
 
@@ -31,6 +31,58 @@
     </ul>
   </section>
   {%- endif -%}
+{%- endmacro %}
+
+{% macro story_card(s, result, info) -%}
+      {% if s.articles|length > 1 %}
+      <article class="story">
+        <header class="story__head">
+          <h3 class="story__title">{% if s.story_id %}<a href="/historia/{{ s.story_id }}">{{ s.lead.title }}</a>{% else %}{{ s.lead.title }}{% endif %}</h3>
+          <p class="story__meta">{{ spectrum_dots(s.positions) }} {{ s.outlets }} medios · {{ s.spread_label }}</p>
+        </header>
+        {% if info %}
+        <div class="brief" data-brief>
+          <p class="brief__row"><strong>En resumen:</strong>
+            {% if info.summary.enough %}{{ info.summary.points|join(" · ") }} <span class="brief__note">({{ info.summary.voices }} fuentes independientes)</span>
+            {% else %}aún hay pocas fuentes independientes para comparar.{% endif %}</p>
+          <p class="brief__row"><strong>Verificaciones:</strong>
+            {% if info.checks %}{{ check_line(info.checks[0]) }}
+            {% else %}ningún verificador (Maldita, Newtral, EFE Verifica) lo ha publicado todavía.{% endif %}
+            {% if s.story_id %}<a class="brief__more" href="/historia/{{ s.story_id }}">Ver historia</a>{% endif %}</p>
+        </div>
+        {% endif %}
+        {% set note = result.story_notes.get(s.story_id) if s.story_id else none %}
+        {% if note %}
+        <p class="story__words" data-story-words>Incluida porque los medios usan estas palabras por separado: {% for n in note %}«{{ n.word }}»{% if n.equivalent_of %} (equivalente de «{{ n.equivalent_of }}»){% endif %} en {{ n.outlets|join(" y ") }}{% if not loop.last %} · {% endif %}{% endfor %}</p>
+        {% endif %}
+        {{ comparison(s) }}
+        <ul class="story__list">
+          {% for r in s.rows %}
+          {% set a = r.lead %}
+          <li class="item" data-item data-pos="{{ a.position if a.position is not none else 'na' }}" data-group="{{ r.group.name if r.group else (a.media.group.name if a.media and a.media.group else '') }}" data-time="{{ r.published }}" data-rel="{{ loop.index0 }}">
+            <div class="item__aside">{{ chip(a.media) }}</div>
+            <div class="item__body">
+              <a class="item__title" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
+              {{ subtitle(r) }}
+              <div class="item__meta">{{ row_byline(r) }} {{ factual(a.media) }}</div>
+              {{ tags(a.media, limit=1) }}
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </article>
+      {% else %}
+      {% set a = s.lead %}
+      <article class="single item" data-item data-pos="{{ a.position if a.position is not none else 'na' }}" data-group="{{ a.media.group.name if a.media and a.media.group else '' }}" data-time="{{ a.published }}">
+        <div class="item__aside">{{ chip(a.media) }}</div>
+        <div class="item__body">
+          <a class="item__title" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
+          {{ subtitle(a) }}
+          <div class="item__meta">{{ byline(a) }} {{ factual(a.media) }}</div>
+          {{ tags(a.media, limit=1) }}
+        </div>
+      </article>
+      {% endif %}
 {%- endmacro %}
 
 {% block content %}
@@ -81,10 +133,7 @@
     {% if result.factchecks %}
     <ul class="checks">
       {% for a in result.factchecks %}
-      <li>
-        <a href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
-        <span class="checks__by">{{ a.source_name }} · {{ time_ago(a.published) }}</span>
-      </li>
+      <li class="check">{{ check_line(a) }}</li>
       {% endfor %}
     </ul>
     {% else %}
@@ -152,48 +201,18 @@
     </details>
 
     <div data-stories>
-    {% for s in result.stories %}
-      {% if s.articles|length > 1 %}
-      <article class="story">
-        <header class="story__head">
-          <h3 class="story__title">{% if s.story_id %}<a href="/historia/{{ s.story_id }}">{{ s.lead.title }}</a>{% else %}{{ s.lead.title }}{% endif %}</h3>
-          <p class="story__meta">{{ spectrum_dots(s.positions) }} {{ s.outlets }} medios · {{ s.spread_label }}</p>
-        </header>
-        {% set note = result.story_notes.get(s.story_id) if s.story_id else none %}
-        {% if note %}
-        <p class="story__words" data-story-words>Incluida porque los medios usan estas palabras por separado: {% for n in note %}«{{ n.word }}»{% if n.equivalent_of %} (equivalente de «{{ n.equivalent_of }}»){% endif %} en {{ n.outlets|join(" y ") }}{% if not loop.last %} · {% endif %}{% endfor %}</p>
-        {% endif %}
-        {{ comparison(s) }}
-        <ul class="story__list">
-          {% for r in s.rows %}
-          {% set a = r.lead %}
-          <li class="item" data-item data-pos="{{ a.position if a.position is not none else 'na' }}" data-group="{{ r.group.name if r.group else (a.media.group.name if a.media and a.media.group else '') }}" data-time="{{ r.published }}" data-rel="{{ loop.index0 }}">
-            <div class="item__aside">{{ chip(a.media) }}</div>
-            <div class="item__body">
-              <a class="item__title" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
-              {{ subtitle(r) }}
-              <div class="item__meta">{{ row_byline(r) }} {{ factual(a.media) }}</div>
-              {{ tags(a.media, limit=1) }}
-            </div>
-          </li>
-          {% endfor %}
-        </ul>
-      </article>
-      {% else %}
-      {% set a = s.lead %}
-      <article class="single item" data-item data-pos="{{ a.position if a.position is not none else 'na' }}" data-group="{{ a.media.group.name if a.media and a.media.group else '' }}" data-time="{{ a.published }}">
-        <div class="item__aside">{{ chip(a.media) }}</div>
-        <div class="item__body">
-          <a class="item__title" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
-          {{ subtitle(a) }}
-          <div class="item__meta">{{ byline(a) }} {{ factual(a.media) }}</div>
-              {{ tags(a.media, limit=1) }}
-        </div>
-      </article>
-      {% endif %}
+    {% for info in result.top %}
+      {{ story_card(info.story, result, info) }}
     {% endfor %}
+    {% if result.top and result.rest %}
+    <details class="more-results" data-more>
+      <summary class="more-results__toggle">Más titulares ({{ result.rest_count }})</summary>
+      {% for s in result.rest %}{{ story_card(s, result, none) }}{% endfor %}
+    </details>
+    {% else %}
+    {% for s in result.rest %}{{ story_card(s, result, none) }}{% endfor %}
+    {% endif %}
     </div>
-    <p class="empty" data-no-match hidden>Ningún titular coincide con los filtros.</p>
     {{ similar_box(result) }}
     {{ sponsored_box(result) }}
   </section>

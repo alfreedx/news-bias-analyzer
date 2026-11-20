@@ -708,3 +708,32 @@ h1, h2, .story__title, .search-head__title { font-variation-settings: "opsz" 48;
 .piece__outlets p { margin: 4px 0 0; overflow-wrap: anywhere; }
 .callout { margin: 16px 0 6px; padding: 10px 14px; border: 1px solid var(--rule-strong); background: var(--paper-2); font-size: .95rem; color: var(--ink); overflow-wrap: anywhere; }
 .empty--tight { padding: 0 0 8px; }
+
+/* ---------- Trust and clarity additions ---------- */
+.positioning { max-width: 640px; margin: .8em auto 0; font: .95rem/1.45 var(--sans); color: var(--ink-2); }
+.panel__agency { color: var(--ink-2); margin: 8px 0 0; }
+.mark-opinion {
+  font: 600 .68rem var(--sans); letter-spacing: .05em; text-transform: uppercase; color: var(--ink-2);
+  border: 1px solid var(--rule-strong); border-radius: 2px; padding: .1em .45em; white-space: nowrap;
+}
+.check__by { font: .8rem var(--sans); color: var(--muted); }
+.check__title { font-weight: 600; overflow-wrap: anywhere; }
+.checks li.check { margin-bottom: 12px; }
+.checks li.check .checks__by { display: inline; margin-left: .3em; }
+.story-head__recent { font: .88rem var(--sans); color: var(--warn-ink); background: var(--warn-bg); padding: 6px 10px; margin: 10px 0 0; display: inline-block; }
+
+.majority { border: 1px solid var(--rule); border-top: 3px solid var(--rule-strong); background: var(--card); padding: 14px 18px 10px; margin: 0 0 12px; }
+.majority__title { font: 600 .78rem var(--sans); text-transform: uppercase; letter-spacing: .08em; margin: 0 0 8px; }
+.majority__by { font: .88rem var(--sans); color: var(--ink-2); margin: 0 0 4px; }
+.majority__quote { margin: 0 0 8px; padding: 0 0 0 14px; border-left: 3px solid var(--rule-strong); overflow-wrap: anywhere; }
+.majority__headline { font: 600 1.25rem/1.3 var(--display); text-decoration: none; }
+.majority__sub { margin: .4em 0 0; color: var(--ink-2); }
+.majority__label { margin: 0; color: var(--muted); font-family: var(--sans); }
+
+.brief { background: var(--card); border: 1px solid var(--rule); padding: 8px 12px; margin: 0 0 12px; font-size: .95rem; overflow-wrap: anywhere; }
+.brief__row { margin: 0 0 .35em; }
+.brief__row:last-child { margin-bottom: 0; }
+.brief__note { font: .8rem var(--sans); color: var(--muted); }
+.brief__more { display: inline-block; margin-left: .6em; font: 600 .85rem var(--sans); }
+.more-results { margin-top: 20px; border-top: 3px double var(--rule-strong); padding-top: 8px; }
+.more-results__toggle { cursor: pointer; font: 600 .95rem var(--sans); padding: 8px 0 14px; }
