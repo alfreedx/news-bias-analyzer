@@ -31,4 +31,23 @@ Solo la rama `main`.
 
 ## Secretos
 
-La aplicación no necesita ningún secreto. `.env` está en `.gitignore`; no lo subas nunca.
+La aplicación funciona sin ningún secreto. La única excepción opcional es `SNAPSHOT_KEY`, la clave Fernet de la instantánea de datos (ver abajo). `.env` está en `.gitignore`; no lo subas nunca.
+
+## Copia de seguridad cifrada (instantánea de datos)
+
+Para no perder el historial cuando Render borra su disco, un workflow de GitHub Actions publica el índice como
+asset de la release `data-snapshot` (repositorio público). Por eso:
+
+- **Va cifrada** (`gzip` + Fernet, AES-128-CBC con HMAC-SHA256, paquete `cryptography` fijado y auditado): los
+  titulares y resúmenes son de terceros y no deben redistribuirse en bloque. Sin la clave el archivo es ilegible.
+- **Sin firmas**: antes de exportar se pone `author = NULL` en la copia y se vuelve a compactar (`VACUUM INTO`)
+  para que los nombres no queden en páginas libres. No contiene IPs, búsquedas ni otros datos personales.
+- **Respeta `RETENTION_DAYS`**: cada ejecución purga lo antiguo igual que la aplicación.
+- **La clave** vive solo en el secreto `SNAPSHOT_KEY` de GitHub Actions y en una variable de entorno privada de
+  Render (`sync: false`). Nunca se escribe en el repositorio, en el registro ni en mensajes de error. Para
+  rotarla, genera otra, actualiza ambos sitios y lanza el workflow; la instantánea anterior dejará de abrirse y
+  el workflow se detendrá con error en lugar de sobrescribirla: borra el asset para empezar de cero.
+- **Restauración defensiva**: descarga con límite de 80 MB y 60 s, redirecciones solo a `github.com`,
+  `objects.githubusercontent.com` y `release-assets.githubusercontent.com`, descompresión limitada a 300 MB,
+  `PRAGMA integrity_check` y comprobación de tablas antes de sustituir la base de forma atómica. Un fallo deja
+  la base existente intacta.

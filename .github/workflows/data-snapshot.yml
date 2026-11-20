@@ -1,0 +1,70 @@
+name: Data snapshot
+
+# Keeps an ENCRYPTED, author-free copy of the headline index as a release asset (tag data-snapshot),
+# so the free Render service can restore its history after every deploy. See SECURITY.md.
+# Runs every 6 hours, on demand, and from CI right before a deploy (workflow_call).
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SNAPSHOT_KEY: ${{ secrets.SNAPSHOT_KEY }}
+      ASSET: contraste-db.sqlite3.gz.enc
+    steps:
+      - name: Check the encryption key is configured
+        id: key
+        run: |
+          if [ -z "$SNAPSHOT_KEY" ]; then
+            echo "SNAPSHOT_KEY secret is not set; skipping the snapshot"
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v7
+        if: steps.key.outputs.present == 'true'
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        if: steps.key.outputs.present == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - name: Install requirements
+        if: steps.key.outputs.present == 'true'
+        run: pip install -r requirements.txt
+      - name: Download the current snapshot (if any)
+        if: steps.key.outputs.present == 'true'
+        run: |
+          mkdir -p var
+          gh release download data-snapshot -R "$GITHUB_REPOSITORY" -p "$ASSET" --dir var --clobber || echo "No previous snapshot"
+      - name: Build the new snapshot
+        if: steps.key.outputs.present == 'true'
+        run: |
+          if [ -f "var/$ASSET" ]; then FROM="--from var/$ASSET"; else FROM=""; fi
+          python scripts/snapshot.py build $FROM --out "var/new-$ASSET"
+      - name: Create the release if missing
+        if: steps.key.outputs.present == 'true'
+        run: |
+          gh release view data-snapshot -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || gh release create data-snapshot -R "$GITHUB_REPOSITORY" \
+            --prerelease --title "Instantánea de datos (cifrada)" \
+            --notes "Copia de seguridad cifrada y sin firmas (autores) del índice de titulares. Se usa solo para restaurar la demo tras un reinicio del servicio: no es un conjunto de datos y no se puede abrir sin la clave."
+      - name: Upload the snapshot
+        if: steps.key.outputs.present == 'true'
+        run: |
+          mv "var/new-$ASSET" "var/$ASSET"
+          gh release upload data-snapshot "var/$ASSET" -R "$GITHUB_REPOSITORY" --clobber

@@ -99,14 +99,32 @@ docker run -d --name contraste -p 8000:8000 \
 El repositorio incluye un [`render.yaml`](render.yaml) que crea un servicio web gratuito a partir del
 `Dockerfile`, con HTTPS y cabeceras de seguridad. El job `deploy` de CI lanza el despliegue (Deploy Hook de Render, guardado como secreto `RENDER_DEPLOY_HOOK`) solo cuando pasan los tests, el e2e y la imagen Docker.
 El nombre público que asigna Render (`RENDER_EXTERNAL_HOSTNAME`) se admite automáticamente.
-El plan gratuito se suspende tras 15 minutos sin visitas: la primera visita tarda unos segundos y el
-índice se reconstruye solo desde los RSS.
+El plan gratuito se suspende tras 15 minutos sin visitas: la primera visita tarda unos segundos.
+
+**Historial entre reinicios.** El disco de Render gratuito es efímero: cada despliegue o reinicio borra
+`var/news.sqlite3` y el índice volvería a tener solo lo que ofrecen ahora los RSS (1-2 días). Para conservar
+los 120 días de historial sin servicios de terceros, el workflow
+[`data-snapshot.yml`](.github/workflows/data-snapshot.yml) (cada 6 horas, a mano y justo antes de cada despliegue)
+guarda una **instantánea cifrada** como asset de la release `data-snapshot`: `gzip` del SQLite cifrado con
+Fernet (`cryptography`), sin firmas (autores) y limitada por `RETENTION_DAYS`. Cada ejecución parte de la
+anterior, así que acumula historial aunque el servidor esté dormido. Para activarlo:
+
+1. Genera una clave: `python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"`.
+2. Guárdala como secreto de GitHub Actions `SNAPSHOT_KEY` (`gh secret set SNAPSHOT_KEY`) **y** como variable
+   `SNAPSHOT_KEY` del servicio en Render (el `render.yaml` la declara con `sync: false`).
+3. Lanza el workflow una vez (`gh workflow run data-snapshot.yml`); crea la release si no existe.
+
+Al arrancar, si hay clave y el índice local tiene menos de 2000 titulares, la app descarga la instantánea
+(`SNAPSHOT_URL`, derivada de `REPO_URL`; solo hosts de GitHub), la descifra, comprueba `PRAGMA integrity_check`
+y las tablas esperadas y la mueve a su sitio de forma atómica. Si algo falla, avisa en el registro y sigue con
+el índice local. Sin `SNAPSHOT_KEY` no se hace nada. Para probarlo en local:
+`python scripts/snapshot.py build --out var/s.enc` y `python scripts/snapshot.py restore --url var/s.enc --to var/x.sqlite3`.
 
 ### Otros servicios
 
 Cualquier servicio que ejecute un contenedor Docker sirve (por ejemplo, Hugging Face Spaces o Render
 en su plan gratuito en el momento de escribir esto). Si el disco del servicio es efímero no pasa nada:
-el índice se reconstruye solo al arrancar.
+el índice se reconstruye solo al arrancar (o se restaura de la instantánea cifrada descrita arriba).
 
 En producción configura como mínimo:
 

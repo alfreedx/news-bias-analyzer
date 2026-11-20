@@ -20,7 +20,7 @@ from fastapi.templating import Jinja2Templates
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
-from . import __version__, synonyms
+from . import __version__, snapshot, synonyms
 from .analysis import (
     Article,
     Story,
@@ -119,9 +119,32 @@ async def ingest_loop() -> None:
         await asyncio.sleep(settings.ingest_interval_minutes * 60)
 
 
+SNAPSHOT_TIMEOUT = 90.0
+
+
+async def restore_snapshot() -> bool:
+    """Restore the encrypted snapshot into a nearly empty index (Render's disk is wiped on each deploy)."""
+    if not (settings.snapshot_url and settings.snapshot_key):
+        return False
+    try:
+        restored = await asyncio.wait_for(
+            asyncio.to_thread(snapshot.restore_if_needed, settings.snapshot_url, settings.snapshot_key,
+                              settings.db_path, min_articles=settings.snapshot_min_articles,
+                              total_timeout=SNAPSHOT_TIMEOUT),
+            timeout=SNAPSHOT_TIMEOUT + 15,
+        )
+        if restored:
+            await asyncio.to_thread(Database, settings.db_path)  # migrate an older snapshot
+        return restored
+    except Exception as exc:  # startup must never fail because of the snapshot
+        log.warning("snapshot restore aborted (%s)", type(exc).__name__)
+        return False
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     task = None
+    await restore_snapshot()
     await asyncio.to_thread(build_front_page)
     if settings.ingest_enabled:
         task = asyncio.create_task(ingest_loop())

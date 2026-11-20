@@ -87,6 +87,15 @@ class Settings:
         default_factory=lambda: os.environ.get("REPO_URL", "https://github.com/alfreedx/news-bias-analyzer")
     )
 
+    # Encrypted snapshot restored at startup when the local index is small (only runs with SNAPSHOT_KEY set)
+    snapshot_url: str = field(
+        default_factory=lambda: os.environ.get("SNAPSHOT_URL")
+        or os.environ.get("REPO_URL", "https://github.com/alfreedx/news-bias-analyzer").rstrip("/")
+        + "/releases/download/data-snapshot/contraste-db.sqlite3.gz.enc"
+    )
+    snapshot_key: str = field(default_factory=lambda: os.environ.get("SNAPSHOT_KEY", "").strip(), repr=False)
+    snapshot_min_articles: int = field(default_factory=lambda: _int("SNAPSHOT_MIN_ARTICLES", 2000, 1))
+
     @property
     def db_path(self) -> Path:
         return self.data_dir / "news.sqlite3"

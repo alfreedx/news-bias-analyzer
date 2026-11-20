@@ -28,3 +28,7 @@ services:
         value: "10"
       - key: GOOGLE_NEWS_ENABLED
         value: "false"
+      # Clave Fernet que descifra la instantánea de datos (release `data-snapshot`). Se pega a mano en el
+      # panel de Render (el mismo valor que el secreto SNAPSHOT_KEY de GitHub Actions); sin ella no se restaura nada.
+      - key: SNAPSHOT_KEY
+        sync: false
