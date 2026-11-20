@@ -351,6 +351,7 @@ h1, h2, .story__title, .search-head__title { font-variation-settings: "opsz" 48;
 .byline__media { color: var(--ink); font-weight: 600; }
 .byline__sep { margin: 0 .35em; }
 
+.story__words { font: .82rem/1.45 var(--sans); color: var(--ink-2); margin: 2px 0 8px; }
 .empty { padding: 30px 0; color: var(--ink-2); font-style: italic; }
 
 /* ---------- Media pages ---------- */

@@ -27,6 +27,15 @@ def fold(text: str) -> str:
     return "".join(c for c in text if unicodedata.category(c) != "Mn")
 
 
+def stem(token: str) -> str:
+    """Very light Spanish plural folding so «viviendas» also finds «vivienda»."""
+    if len(token) >= 5 and token.endswith("s"):
+        token = token[:-1]
+        if len(token) >= 6 and token.endswith("e") and token[-2] in "nrlzd":
+            token = token[:-1]
+    return token
+
+
 def clean_text(raw: str | None, max_len: int = 400) -> str:
     """Strip tags/entities from feed text. Output is plain text; templates escape it again."""
     if not raw:

@@ -1,0 +1,1551 @@
+{
+ "note": "Consultas reales y titulares copiados de un índice real (noviembre 2026). 'expect': fragmentos de URL de los que al menos uno debe aparecer entre los 10 primeros resultados. 'story': URLs de una historia persistida que se crea al sembrar.",
+ "cases": [
+  {
+   "query": "subvencion sanchez",
+   "expect": [
+    "anuncia-bono-joven"
+   ],
+   "story": null,
+   "seed": [
+    {
+     "url": "https://www.diariodesevilla.es/espana/elecciones/pedro-sanchez-anuncia-bono-joven_0_2008539869.html",
+     "media_id": "diario-de-sevilla",
+     "title": "Pedro Sánchez anuncia un Bono Joven de Deporte de 200 euros al año",
+     "summary": "El presidente propone una ayuda para jóvenes de 18 a 25 años en un vídeo con la camiseta del Estudiantes"
+    },
+    {
+     "url": "https://www.diariodecadiz.es/espana/elecciones/pedro-sanchez-anuncia-bono-joven_0_2008539870.html",
+     "media_id": "diario-de-cadiz",
+     "title": "Pedro Sánchez anuncia un Bono Joven de Deporte de 200 euros al año",
+     "summary": "El presidente propone una ayuda para jóvenes de 18 a 25 años en un vídeo con la camiseta del Estudiantes"
+    },
+    {
+     "url": "https://www.diariodealmeria.es/espana/elecciones/pedro-sanchez-anuncia-bono-joven_0_2008539872.html",
+     "media_id": "diario-de-almeria",
+     "title": "Pedro Sánchez anuncia un Bono Joven de Deporte de 200 euros al año",
+     "summary": "El presidente propone una ayuda para jóvenes de 18 a 25 años en un vídeo con la camiseta del Estudiantes"
+    },
+    {
+     "url": "https://www.diariodejerez.es/espana/elecciones/pedro-sanchez-anuncia-bono-joven_0_2008539871.html",
+     "media_id": "diario-de-jerez",
+     "title": "Pedro Sánchez anuncia un Bono Joven de Deporte de 200 euros al año",
+     "summary": "El presidente propone una ayuda para jóvenes de 18 a 25 años en un vídeo con la camiseta del Estudiantes"
+    },
+    {
+     "url": "https://www.libertaddigital.com/libremercado/2026-11-19/pedro-sanchez-vuelve-a-pedir-el-voto-a-cambio-de-pagas-con-su-bono-deporte-de-200-euros-7494387/?utm_source=rss&utm_medium=feed&utm_campaign=Libertad+Digital%3A+Noticias+y+opini%C3%B3n+en+la+red",
+     "media_id": "libertad-digital",
+     "title": "Pedro Sánchez a la desesperada: pide el voto joven a cambio de un Bono Deporte de 200 euros",
+     "summary": "El líder del PSOE promete otra ayuda directa con cargo al contribuyente destinada a los menores de 25 años."
+    },
+    {
+     "url": "https://okdiario.com/espana/xabier-garcia-albiol-explota-contra-gobierno-pedro-sanchez-pensiones-no-paga-sanchez-yo-ahora-estoy-pagando-pensiones-que-estan-cobrando-21114788",
+     "media_id": "okdiario",
+     "title": "Xabier García Albiol explota contra el Gobierno de Pedro Sánchez: «Las pensiones no las paga Sánchez. Yo ahora estoy pagando las pensiones de los que las están cobrando»",
+     "summary": "Xavier García Albiol ha lanzado un mensaje contundente contra el Gobierno de Pedro Sánchez al hablar del futuro de las pensiones en España. El alcalde de Badalona ha defendido que las prestaciones de "
+    },
+    {
+     "url": "https://www.elmundo.es/economia/empresas/2026/11/17/6af60134e9cf4a93598b45c1.html",
+     "media_id": "actualidad-economica",
+     "title": "El PP propone una 'Ley Beckham' para profesionales tecnológicos y un 'cheque IA' para ayudar a formarse a los trabajadores",
+     "summary": "La principal fractura con Sánchez se da en los centros de datos, cuya conexión el PP busca facilitar tras un plan de choque en la red eléctrica"
+    },
+    {
+     "url": "https://www.eldebate.com/espana/20261119/sanchez-pide-voto-anuncio-bono-joven-deporte-200-euros-ano-jovenes-18-25-anos_482718.html",
+     "media_id": "el-debate",
+     "title": "Sánchez busca comprar el voto joven con un bono de deporte de 200 euros al año para personas de 18 a 25 años",
+     "summary": ""
+    },
+    {
+     "url": "https://www.marca.com/baloncesto/basketfeb/2026/11/19/pedro-sanchez-vuelve-jugar-estudiantes-presentar-nuevo-bono-deporte-200-euros.html",
+     "media_id": "marca",
+     "title": "Pedro Sánchez vuelve a 'jugar' con Estudiantes para presentar un nuevo Bono Deporte de 200 euros",
+     "summary": "Pedro Sánchez, que se formó en el Estudiantes, vuelve a enfundarse la camiseta del equipo colegial"
+    },
+    {
+     "url": "https://www.20minutos.es/deportes/baloncesto/pedro-sanchez-se-enfunda-camiseta-estudiantes-equipo-para-que-jugo-para-anunciar-un-bono-joven-deportes_7063008_0.html",
+     "media_id": "20minutos",
+     "title": "Pedro Sánchez se pone la camiseta del Estudiantes para anunciar un bono joven de deportes",
+     "summary": "El presidente del Gobierno, candidato a la reelección el próximo 29 de noviembre, pide así el voto de la juventud."
+    },
+    {
+     "url": "https://theobjective.com/espana/politica/2026-11-19/sanchez-bono-deporte-200-euros-anuales-jovenes/",
+     "media_id": "the-objective",
+     "title": "Sánchez anuncia un Bono Deporte de 200 euros anuales para jóvenes entre 18 y 25 años",
+     "summary": "El presidente del Gobierno, Pedro Sánchez, ha anunciado este jueves un Bono Deporte de 200 euros anuales dirigido a los jóvenes: «No nos estamos tirando un […]"
+    },
+    {
+     "url": "https://www.elespanol.com/espana/politica/20261119/sanchez-anuncia-paga-euros-jovenes-hacer-deporte-reclamo-mundo-votando/1003744464626_0.html",
+     "media_id": "el-espanol",
+     "title": "Sánchez anuncia una paga de 200 euros a los jóvenes para hacer deporte con el reclamo: \"Todo el mundo votando\"",
+     "summary": "El líder socialista incorpora esta nueva propuesta, que no estaba en el programa electoral, para atraer el voto de los menores de 25 años. La medida costaría, al menos, 866 millones de euros al año. M"
+    },
+    {
+     "url": "https://www.diariodeleon.es/nacional/261119/2103645/sanchez-anuncia-bono-deporte-200-euros-ano-jovenes-18-25-anos.html",
+     "media_id": "diario-de-leon",
+     "title": "Sánchez anuncia un Bono Deporte de 200 euros al año para jóvenes de 18 a 25 años",
+     "summary": "Sánchez utiliza el símil del baloncesto para dar a conocer la propuesta, deporte que practicó en su juventud en la cantera del equipo madrileño"
+    },
+    {
+     "url": "https://www.antena3.com/noticias/espana/pedro-sanchez-anuncia-bono-joven-deporte-200-euros-ano-29n-todo-mundo-votando_202611196afeccdc21e74551e81f3389.html",
+     "media_id": "antena3",
+     "title": "Pedro Sánchez anuncia un bono joven de deporte de 200 euros al año: \"El 29-N, todo el mundo votando\"",
+     "summary": "En plena campaña electoral el presidente Pedro Sánchez ha anunciado un bono deporte de 200 euros al año para jóvenes entre 18 y 25 años."
+    },
+    {
+     "url": "https://www.europapress.es/nacional/noticia-sanchez-pide-voto-anuncio-bono-joven-deporte-200-euros-ano-jovenes-18-25-anos-20261119101212.html",
+     "media_id": "europa-press",
+     "title": "Sánchez pide el voto con el anuncio de un bono joven de deporte de 200 euros al año para jóvenes de 18 a 25 años",
+     "summary": "El presidente del Gobierno, Pedro Sánchez, ha reclamado hoy el voto en las elecciones del próximo 29 de noviembre con el anuncio de un bono joven de deporte de 200 euros al año."
+    },
+    {
+     "url": "https://www.eldebate.com/cultura/20261119/brecha-entre-publico-general-artistas-subvencionados-esta-destruyendo-cultura-espana_482337.html",
+     "media_id": "el-debate",
+     "title": "La brecha entre el público general y los artistas subvencionados que está destruyendo la cultura en España",
+     "summary": ""
+    },
+    {
+     "url": "https://www.laverdad.es/murcia/lorca/subvencion-ayuntamiento-lorca-ampliar-colegio-juan-navarro-20261119134712-nt.html",
+     "media_id": "la-verdad",
+     "title": "Subvención al Ayuntamiento de Lorca para ampliar el colegio Juan Navarro de La Hoya",
+     "summary": "Se prevé la construcción de ocho aulas para la creación de dos líneas completas de Educación Secundaria Obligatoria en el centro, que cuenta actualmente con 417 alumnos"
+    },
+    {
+     "url": "https://www.lasexta.com/noticias/nacional/subvenciones-ceuta-ayudas-victimas-urda-nuevas-bajas-menopausia-siete-decretos-aprobados-diputacion-permanente_202611186afe234cf6b335433bb52374.html",
+     "media_id": "lasexta",
+     "title": "Subvenciones a Ceuta, ayudas para las víctimas de Urda y nuevas bajas por menopausia: los siete decretos aprobados en la Diputación Permanente",
+     "summary": "Los detalles También se ha prorrogado el decreto ley de ayuda urgente tras los daños por la DANA Adam y un decreto para el refuerzo de la seguridad ferroviaria."
+    },
+    {
+     "url": "https://www.que.es/2026/11/19/ayudas-coche-electrico-plazo/",
+     "media_id": "que",
+     "title": "Las ayudas al coche eléctrico se agotan en medio mes: cómo solicitar la subvención antes de que se cierre el plazo",
+     "summary": "Las ayudas al coche eléctrico del plan Auto+ se agotan en unas dos semanas: 326,27 millones pedidos de 350 y hasta 4.500 euros por coche. La entrada Las ayudas al coche eléctrico se agotan en medio me"
+    },
+    {
+     "url": "https://www.abc.es/espana/sanchez-psicovillano-lecturas-20261118202625-nt.html",
+     "media_id": "abc",
+     "title": "«Sánchez, de psicovillano en 'Lecturas'»",
+     "summary": ""
+    },
+    {
+     "url": "https://www.lavozdegalicia.es/noticia/opinion/2026/11/19/enoja-sanchez/0003_202611G19P26993.htm",
+     "media_id": "la-voz-de-galicia",
+     "title": "Por qué se enoja Sánchez",
+     "summary": ""
+    },
+    {
+     "url": "https://www.laregion.es/opinion/risa-nerviosa-pedro-sanchez_1_20261114-4492620.html",
+     "media_id": "la-region",
+     "title": "La risa nerviosa de Pedro Sánchez",
+     "summary": ""
+    },
+    {
+     "url": "https://www.laregion.es/opinion/publico-rescate-sanchez_1_20261115-4493377.html",
+     "media_id": "la-region",
+     "title": "Lo público, al rescate de Sánchez",
+     "summary": ""
+    }
+   ]
+  },
+  {
+   "query": "ayuda jovenes deporte",
+   "expect": [
+    "anuncia-bono-joven"
+   ],
+   "story": null,
+   "seed": [
+    {
+     "url": "https://www.diariodesevilla.es/espana/elecciones/pedro-sanchez-anuncia-bono-joven_0_2008539869.html",
+     "media_id": "diario-de-sevilla",
+     "title": "Pedro Sánchez anuncia un Bono Joven de Deporte de 200 euros al año",
+     "summary": "El presidente propone una ayuda para jóvenes de 18 a 25 años en un vídeo con la camiseta del Estudiantes"
+    },
+    {
+     "url": "https://www.diariodecadiz.es/espana/elecciones/pedro-sanchez-anuncia-bono-joven_0_2008539870.html",
+     "media_id": "diario-de-cadiz",
+     "title": "Pedro Sánchez anuncia un Bono Joven de Deporte de 200 euros al año",
+     "summary": "El presidente propone una ayuda para jóvenes de 18 a 25 años en un vídeo con la camiseta del Estudiantes"
+    },
+    {
+     "url": "https://www.diariodealmeria.es/espana/elecciones/pedro-sanchez-anuncia-bono-joven_0_2008539872.html",
+     "media_id": "diario-de-almeria",
+     "title": "Pedro Sánchez anuncia un Bono Joven de Deporte de 200 euros al año",
+     "summary": "El presidente propone una ayuda para jóvenes de 18 a 25 años en un vídeo con la camiseta del Estudiantes"
+    },
+    {
+     "url": "https://www.diariodejerez.es/espana/elecciones/pedro-sanchez-anuncia-bono-joven_0_2008539871.html",
+     "media_id": "diario-de-jerez",
+     "title": "Pedro Sánchez anuncia un Bono Joven de Deporte de 200 euros al año",
+     "summary": "El presidente propone una ayuda para jóvenes de 18 a 25 años en un vídeo con la camiseta del Estudiantes"
+    },
+    {
+     "url": "https://www.libertaddigital.com/libremercado/2026-11-19/pedro-sanchez-vuelve-a-pedir-el-voto-a-cambio-de-pagas-con-su-bono-deporte-de-200-euros-7494387/?utm_source=rss&utm_medium=feed&utm_campaign=Libertad+Digital%3A+Noticias+y+opini%C3%B3n+en+la+red",
+     "media_id": "libertad-digital",
+     "title": "Pedro Sánchez a la desesperada: pide el voto joven a cambio de un Bono Deporte de 200 euros",
+     "summary": "El líder del PSOE promete otra ayuda directa con cargo al contribuyente destinada a los menores de 25 años."
+    },
+    {
+     "url": "https://www.eldebate.com/espana/20261119/sanchez-pide-voto-anuncio-bono-joven-deporte-200-euros-ano-jovenes-18-25-anos_482718.html",
+     "media_id": "el-debate",
+     "title": "Sánchez busca comprar el voto joven con un bono de deporte de 200 euros al año para personas de 18 a 25 años",
+     "summary": ""
+    },
+    {
+     "url": "https://www.20minutos.es/deportes/baloncesto/pedro-sanchez-se-enfunda-camiseta-estudiantes-equipo-para-que-jugo-para-anunciar-un-bono-joven-deportes_7063008_0.html",
+     "media_id": "20minutos",
+     "title": "Pedro Sánchez se pone la camiseta del Estudiantes para anunciar un bono joven de deportes",
+     "summary": "El presidente del Gobierno, candidato a la reelección el próximo 29 de noviembre, pide así el voto de la juventud."
+    },
+    {
+     "url": "https://theobjective.com/espana/politica/2026-11-19/sanchez-bono-deporte-200-euros-anuales-jovenes/",
+     "media_id": "the-objective",
+     "title": "Sánchez anuncia un Bono Deporte de 200 euros anuales para jóvenes entre 18 y 25 años",
+     "summary": "El presidente del Gobierno, Pedro Sánchez, ha anunciado este jueves un Bono Deporte de 200 euros anuales dirigido a los jóvenes: «No nos estamos tirando un […]"
+    },
+    {
+     "url": "https://www.diariodeleon.es/nacional/261119/2103645/sanchez-anuncia-bono-deporte-200-euros-ano-jovenes-18-25-anos.html",
+     "media_id": "diario-de-leon",
+     "title": "Sánchez anuncia un Bono Deporte de 200 euros al año para jóvenes de 18 a 25 años",
+     "summary": "Sánchez utiliza el símil del baloncesto para dar a conocer la propuesta, deporte que practicó en su juventud en la cantera del equipo madrileño"
+    },
+    {
+     "url": "https://www.antena3.com/noticias/espana/pedro-sanchez-anuncia-bono-joven-deporte-200-euros-ano-29n-todo-mundo-votando_202611196afeccdc21e74551e81f3389.html",
+     "media_id": "antena3",
+     "title": "Pedro Sánchez anuncia un bono joven de deporte de 200 euros al año: \"El 29-N, todo el mundo votando\"",
+     "summary": "En plena campaña electoral el presidente Pedro Sánchez ha anunciado un bono deporte de 200 euros al año para jóvenes entre 18 y 25 años."
+    },
+    {
+     "url": "https://www.europapress.es/nacional/noticia-sanchez-pide-voto-anuncio-bono-joven-deporte-200-euros-ano-jovenes-18-25-anos-20261119101212.html",
+     "media_id": "europa-press",
+     "title": "Sánchez pide el voto con el anuncio de un bono joven de deporte de 200 euros al año para jóvenes de 18 a 25 años",
+     "summary": "El presidente del Gobierno, Pedro Sánchez, ha reclamado hoy el voto en las elecciones del próximo 29 de noviembre con el anuncio de un bono joven de deporte de 200 euros al año."
+    },
+    {
+     "url": "https://elpais.com/espana/elecciones-generales/2026-11-19/el-29-de-noviembre-todo-el-mundo-votando-sanchez-llama-al-voto-joven-a-la-vez-que-promete-un-bono-para-el-deporte-de-200-euros.html",
+     "media_id": "el-pais",
+     "title": "“El 29 de noviembre, todo el mundo votando”: Sánchez llama al voto joven a la vez que promete un bono para el deporte de 200 euros",
+     "summary": "El presidente del Gobierno aparece en un anuncio electoral sonriente con una camiseta del Estudiantes botando una pelota, mientras el PP califica la propuesta de “paguita”"
+    },
+    {
+     "url": "https://www.elespanol.com/espana/politica/20261119/sanchez-anuncia-paga-euros-jovenes-hacer-deporte-reclamo-mundo-votando/1003744464626_0.html",
+     "media_id": "el-espanol",
+     "title": "Sánchez anuncia una paga de 200 euros a los jóvenes para hacer deporte con el reclamo: \"Todo el mundo votando\"",
+     "summary": "El líder socialista incorpora esta nueva propuesta, que no estaba en el programa electoral, para atraer el voto de los menores de 25 años. La medida costaría, al menos, 866 millones de euros al año. M"
+    },
+    {
+     "url": "https://www.huffingtonpost.es/politica/pedro-sanchez-vuelve-camiseta-estudiantes-baloncesto-promete-bono-joven-deporte-200-euros-que-consiste-plan-f202611.html",
+     "media_id": "huffpost",
+     "title": "Pedro Sánchez 'vuelve' al baloncesto y promete un 'bono joven de deporte' de 200 euros: en qué consiste y a quién se dirige",
+     "summary": "Le hemos visto corriendo, montando en bici y, por supuesto, jugando al baloncesto. Hay memes históricos de él en modo basket. El balón naranja es parte de su vida igual que lo fue el Estudiantes y a a"
+    },
+    {
+     "url": "https://okdiario.com/espana/sanchez-saquea-bolsillo-espanoles-prometiendo-ahora-otra-paguita-200-jovenes-hacer-deporte-21142314",
+     "media_id": "okdiario",
+     "title": "Sánchez saquea el bolsillo de los españoles prometiendo ahora otra paguita de 200 € a los jóvenes para hacer deporte",
+     "summary": "El presidente del Gobierno, Pedro Sánchez, da un paso más en la campaña electoral en busca del voto joven. El líder del PSOE y candidato del partido para las elecciones generales del 29-N, que lleva d"
+    },
+    {
+     "url": "https://www.eldebate.com/salud-y-bienestar/bienestar/20261119/olor-romero-puede-ayudar-recordar-aprendemos_482229.html",
+     "media_id": "el-debate",
+     "title": "El olor a romero puede ayudar a recordar lo que aprendemos",
+     "summary": ""
+    },
+    {
+     "url": "https://www.eldebate.com/sociedad/sociedad-medio-ambiente/20261118/estudio-analiza-como-recuperar-grandes-herbivoros-podria-ayudar-prevenir-incendios_482590.html",
+     "media_id": "el-debate",
+     "title": "Un estudio analiza cómo recuperar grandes herbívoros podría ayudar a prevenir incendios",
+     "summary": ""
+    },
+    {
+     "url": "https://www.elcorreo.com/bizkaia/bizkaia-comienza-pagar-ayudas-sequia-683-baserritarras-20261119124543-nt.html",
+     "media_id": "el-correo",
+     "title": "Bizkaia comienza a pagar las ayudas por la sequía a 683 baserritarras y ganaderos",
+     "summary": ""
+    },
+    {
+     "url": "https://www.elcorreo.com/vivir/habitos/tener-tener-hijos-ayudamos-resolver-dilema-grande-20261117000100-ntrc.html",
+     "media_id": "el-correo",
+     "title": "¿Tener o no tener hijos? Te ayudamos a resolver el dilema más grande del mundo",
+     "summary": ""
+    },
+    {
+     "url": "https://www.marca.com/futbol/2026/11/19/ruediger-explica-retirada-alemania-turno-jovenes-video.html",
+     "media_id": "marca",
+     "title": "Rüdiger explica su retirada de Alemania: \"Es el turno de los jóvenes\"",
+     "summary": ""
+    },
+    {
+     "url": "https://www.marca.com/baloncesto/2026/11/19/pedro-sanchez-rememora-pasado-estudiantes-apoyar-deporte-joven-video.html",
+     "media_id": "marca",
+     "title": "Pedro Sánchez rememora su pasado en Estudiantes para apoyar el deporte joven",
+     "summary": ""
+    },
+    {
+     "url": "https://www.hoy.es/prov-badajoz/jornadas-diocesanas-esperan-reunir-1500-jovenes-santos-20261119075701-nt.html",
+     "media_id": "hoy",
+     "title": "Las jornadas diocesanas esperan reunir a 1.500 jóvenes en Los Santos de Maimona",
+     "summary": ""
+    },
+    {
+     "url": "https://www.diariovasco.com/san-sebastian/obras-edificio-aemet-san-sebastian-vivienda-joven-2028-20261117130826-nt.html",
+     "media_id": "diario-vasco",
+     "title": "La construcción de 42 apartamentos para jóvenes en la sede de Aemet arrancará en 2028",
+     "summary": ""
+    },
+    {
+     "url": "https://www.hoy.es/extremadura/150-asistentes-simposio-ia-aplicada-deporte-fundacion-20261119080427-nt.html",
+     "media_id": "hoy",
+     "title": "Más de 150 asistentes en el I Simposio de IA aplicada al deporte de la Fundación Jóvenes y Deporte",
+     "summary": "Reunió a especialistas en investigación, innovación y gestión deportiva en Cáceres"
+    },
+    {
+     "url": "https://www.lavanguardia.com/deportes/20261118/11687452/constelacion-historias-iluminan-deporte-brl.html",
+     "media_id": "la-vanguardia",
+     "title": "Una constelación de historias que iluminan el deporte",
+     "summary": ""
+    },
+    {
+     "url": "https://www.lasprovincias.es/deportes/mas-deportes/irene-tomas-protagoniza-marina-clinic-vela-dentro-20261117193444-nt.html",
+     "media_id": "las-provincias",
+     "title": "Irene de Tomás protagoniza en la Marina un clínic de vela dentro del programa Mujer y Deporte",
+     "summary": ""
+    }
+   ]
+  },
+  {
+   "query": "fake news alvise",
+   "expect": [
+    "alvise"
+   ],
+   "story": null,
+   "seed": [
+    {
+     "url": "https://elpais.com/espana/elecciones-generales/2026-11-19/el-primer-gran-bulo-de-la-campana-se-derrumba-alvise-un-garaje-en-burgos-y-un-ataque-violento-en-un-domicilio.html",
+     "media_id": "el-pais",
+     "title": "El primer gran bulo de la campaña se derrumba: Alvise, un garaje en Burgos y un “ataque violento” en un domicilio",
+     "summary": "El líder de Se Acabó La Fiesta (SALF) publica en sus redes una supuesta agresión en la casa de su candidata al Congreso, pero la realidad es bien distinta"
+    },
+    {
+     "url": "https://www.lasprovincias.es/sociedad/provincias-presenta-nueva-newsletter-especie-extincion-20261109135000-nt.html",
+     "media_id": "las-provincias",
+     "title": "La newsletter 'Especie en extinción' llega a LAS PROVINCIAS el sábado 21 de noviembre",
+     "summary": ""
+    },
+    {
+     "url": "https://www.larazon.es/internacional/donald-trump-resta-importancia-ayuda-rusa-china-iran_202611196afea0e418c34d33accea56d.html",
+     "media_id": "la-razon",
+     "title": "Donald Trump resta importancia a la ayuda rusa y china a Irán",
+     "summary": "En una entrevista concedida a Fox News, afirma que EE UU sabe lo que le están aportando, y que \"es poca cosa\""
+    },
+    {
+     "url": "https://www.20minutos.es/internacional/trump-pide-calma-ante-los-fallos-tecnicos-eeuu-descarta-necesidad-hacer-acopio-alimentos-agua_7062911_0.html",
+     "media_id": "20minutos",
+     "title": "Trump pide calma ante los fallos técnicos en EEUU y descarta la necesidad de hacer acopio de alimentos o agua",
+     "summary": "El mandatario minimizó en Fox News las interrupciones y negó que se debieran a un ataque coordinado."
+    },
+    {
+     "url": "https://cronicaglobal.elespanol.com/business/20261118/marroqui-catalan-entrada-marsa-maroc-puerto-barcelona/1003742813031_0.html",
+     "media_id": "cronica-global",
+     "title": "La prensa de Rabat se hace eco del lío en el Puerto de Barcelona por la entrada de Marruecos",
+     "summary": "El medio 'Morocco World News' recoge la información de 'Crónica Global' y sitúa el rechazo de las acereras dentro de la estrategia de expansión internacional del operador estatal alauí Contenido relac"
+    },
+    {
+     "url": "https://www.dbalears.cat/balears/balears/2026/11/15/424103/junta-electoral-rebutja-les-exigencies-extrema-dreta-alvise-ib3.html",
+     "media_id": "dbalears",
+     "title": "La Junta Electoral rebutja les exigències de l'extrema dreta d'Alvise a IB3",
+     "summary": "La Junta Electoral Provincial ha desestimat íntegrament el recurs de SALF (Se acabó la fiesta) contra..."
+    }
+   ]
+  },
+  {
+   "query": "coronavirus vacunas andalucia",
+   "expect": [
+    "unaciones-cita-gripe"
+   ],
+   "story": null,
+   "seed": [
+    {
+     "url": "https://www.canalsur.es/noticias/andalucia/primer-miercoles-vacunaciones-cita-gripe_1_1453644.html",
+     "media_id": "canal-sur-television",
+     "title": "Primer día de vacunaciones sin cita contra la gripe y el covid en Andalucía",
+     "summary": "Se han habilitado 541 puntos, que estarán operativos hasta el 16 de diciembre para menores de entre 6 meses a 4 años y 11 meses, personas de 60 años o más, personas con enfermedades crónicas y embaraz"
+    },
+    {
+     "url": "https://www.diariodealmeria.es/almeria/donde-vacunarse-gripe-covid-sin-cita-previa-almeria_0_2008532563.html",
+     "media_id": "diario-de-almeria",
+     "title": "Dónde vacunarse de la gripe y covid sin cita previa en Almería este miércoles",
+     "summary": "La convocatoria comienza este 18 de noviembre, y hay convocados también para el 25, así como para el 2, 9 y 16 de diciembre Habilitan 50 puntos de vacunación sin cita en Almería, 34 de ellos por la ta"
+    },
+    {
+     "url": "https://www.elcorreo.com/sociedad/salud/osakidetza-pagar-vacunas-covid-viruela-mono-20261118001129-nt.html",
+     "media_id": "el-correo",
+     "title": "Osakidetza tendrá que pagar las vacunas del covid y de la viruela del mono",
+     "summary": ""
+    },
+    {
+     "url": "https://www.diariodecadiz.es/cadiz/supersabado-vacunacion-mercado-abastos-cadiz_0_2008534990.html",
+     "media_id": "diario-de-cadiz",
+     "title": "El \"supersábado\" de vacunación llega al Mercado de Abastos de Cádiz",
+     "summary": "Este 21 de noviembre se habilitarán también cuatro puntos más para vacunarse en la provincia gaditana Vacunas para todos contra la gripe y el Covid a partir del miércoles"
+    },
+    {
+     "url": "https://www.20minutos.es/salud/desarrollan-una-vacuna-para-personas-alergicas-los-gatos-esta-basada-una-innovadora-estrategia-inmunoterapia_7062889_0.html",
+     "media_id": "20minutos",
+     "title": "Desarrollan una vacuna para alérgicos a los gatos, basada en una innovadora estrategia de inmunoterapia",
+     "summary": "La inmunoterapia busca modificar la respuesta del sistema inmunitario frente al alérgeno responsable de los síntomas, más allá del mero control farmacológico de las manifestaciones alérgicas."
+    },
+    {
+     "url": "https://www.elmira.es/articulo/andalucia/confirmado-oficial-andaluces-60-80-anos-ya-pueden-vacunarse-gratis-neumococo-junta-andalucia/20261119063824629293.html",
+     "media_id": "el-mira",
+     "title": "Está confirmado y es oficial: los andaluces de 60 a 80 años ya pueden vacunarse gratis del neumococo gracias a la Junta de Andalucía",
+     "summary": "Es una sola dosis en atención primaria y se puede poner el mismo día que la de la gripe"
+    },
+    {
+     "url": "https://www.diariodesevilla.es/opinion/articulos/resultados-andalucia_0_2008531021.html",
+     "media_id": "diario-de-sevilla",
+     "title": "Resultados en Andalucía",
+     "summary": ""
+    },
+    {
+     "url": "https://www.diariodecadiz.es/opinion/articulos/resultados-andalucia_0_2008530995.html",
+     "media_id": "diario-de-cadiz",
+     "title": "Resultados en Andalucía",
+     "summary": ""
+    },
+    {
+     "url": "https://www.diariodejerez.es/opinion/articulos/resultados-andalucia_0_2008531009.html",
+     "media_id": "diario-de-jerez",
+     "title": "Resultados en Andalucía",
+     "summary": ""
+    },
+    {
+     "url": "https://www.diariodealmeria.es/opinion/editorial/empresas-miran-andalucia_0_2008531038.html",
+     "media_id": "diario-de-almeria",
+     "title": "Las empresas miran a Andalucía",
+     "summary": ""
+    }
+   ]
+  },
+  {
+   "query": "hackeo criptomonedas webs",
+   "expect": [
+    "ones-robar-20261117145855-ntrc"
+   ],
+   "story": null,
+   "seed": [
+    {
+     "url": "https://www.elcorreo.com/tecnologia/ataque-informatico-infecta-webs-178-organizaciones-robar-20261117145855-ntrc.html",
+     "media_id": "el-correo",
+     "title": "Un ataque informático infecta las webs de 178 organizaciones para robar criptomonedas y acceder a dispositivos de Apple",
+     "summary": ""
+    },
+    {
+     "url": "https://www.elmundo.es/economia/2026/11/17/6afc778ce4d4d8cf2d8b458f.html",
+     "media_id": "actualidad-economica",
+     "title": "Un ataque informático compromete las webs de Zoom, Ikea y HSBC para robar criptomonedas, datos personales e infectar dispositivos de iPhone",
+     "summary": "La vulnerabilidad afectó a páginas de 178 organizaciones de distintos sectores a través de la plataforma Optimizely. El código malicioso intentaba sustraer datos bancarios, robar información personal "
+    },
+    {
+     "url": "https://cincodias.elpais.com/criptoactivos/2026-11-17/las-webs-de-ikea-zoom-o-hsbc-sufren-un-ciberataque-para-robar-criptomonedas-e-infectar-a-los-usuarios-de-iphone.html",
+     "media_id": "cinco-dias",
+     "title": "Las webs de Ikea, Zoom y HSBC sufren un ciberataque para robar criptomonedas e infectar a los usuarios de iPhone",
+     "summary": "Los sitios de algunas de las grandes empresas se han visto atacados a través de la plataforma Optimizely para distribuir código malicioso"
+    },
+    {
+     "url": "https://www.que.es/2026/11/18/ciberataque-optimizely-webs-infectadas/",
+     "media_id": "que",
+     "title": "El ciberataque de Optimizely infecta IKEA, Zoom y BBC: 178 webs y aviso para iPhone",
+     "summary": "Un script de Optimizely sirvió malware a 178 webs, entre ellas IKEA, Zoom y la BBC, y Apple pide actualizar el iPhone para cerrar la vía de entrada. La entrada El ciberataque de Optimizely infecta IKE"
+    },
+    {
+     "url": "https://www.atlantico.net/encuestas/encuesta-has-sido-victima-estafa_11_20261112-4489567.html",
+     "media_id": "atlantico-diario",
+     "title": "Encuesta | ¿Has sido víctima de una estafa por hackeo?",
+     "summary": ""
+    },
+    {
+     "url": "https://www.lavanguardia.com/dinero/bolsillo/20261117/11685543/bitcoin-criptomonedas-ciberseguridad-bolsillo-podcast.html",
+     "media_id": "la-vanguardia",
+     "title": "El dilema de invertir en bitcoin: hackeos, estafas y errores que cuestan dinero",
+     "summary": "Los últimos hackeos cripto reabren el debate sobre la seguridad del sector"
+    },
+    {
+     "url": "https://www.larazon.es/economia/que-hay-detras-hackeos-que-afectan-bancos-aerolineas-experto-explica_202611186afdc79918c34d33accdf49f.html",
+     "media_id": "la-razon",
+     "title": "¿Qué hay detrás de los \"hackeos\" que afectan a bancos y aerolíneas? Un experto lo explica",
+     "summary": "Las numerosas incidencias que se han producido recientemente en empresas y entidades de Estados Unidos han provocado el aumento de la preocupación ante la seguridad de los sistemas. Sin embargo, los e"
+    },
+    {
+     "url": "https://www.lavanguardia.com/participacion/debates/20261119/11683326/encuesta-seguro-invertir-criptomonedas.html",
+     "media_id": "la-vanguardia",
+     "title": "Encuesta: ¿Es seguro invertir en criptomonedas?",
+     "summary": "El robo de unos 6.300 millones de dólares en el hackeo a Binance ha sido el mayor en la historia"
+    },
+    {
+     "url": "https://www.diariovasco.com/economia/miles-vascos-atrapados-binance-buscan-salida-cierre-20261118000329-nt.html",
+     "media_id": "diario-vasco",
+     "title": "Miles de vascos atrapados en Binance buscan salida antes del cierre de sus cuentas de criptomonedas",
+     "summary": ""
+    },
+    {
+     "url": "https://www.20minutos.es/lainformacion/economia-y-finanzas/bruselas-da-dos-meses-espana-para-aplicar-las-normas-fiscales-sobre-criptomonedas-antes-escalar-tjue_7063221_0.html",
+     "media_id": "20minutos",
+     "title": "Bruselas da dos meses a España para aplicar las normas fiscales sobre el control de criptomonedas",
+     "summary": "La Comisión Europea podría denunciar al país ante el Tribunal de Justicia de la Unión Europea (TJUE) y solicitar sanciones económicas."
+    },
+    {
+     "url": "https://www.20minutos.es/tecnologia/ciberseguridad/optimizely-revela-como-hackers-atacaron-webs-ikea-zoom-robar-datos_7062641_0.html",
+     "media_id": "20minutos",
+     "title": "Optimizely revela cómo los hackers consiguieron colarse en las webs de IKEA, Zoom y otras empresas",
+     "summary": "Optimizely revela cómo los ciberdelincuentes aprovecharon una vulnerabilidad en sus sistemas para distribuir código malicioso a través de las webs de sus clientes."
+    }
+   ]
+  },
+  {
+   "query": "gota fria valencia",
+   "expect": [
+    "marcado-ceuta-dana"
+   ],
+   "story": null,
+   "seed": [
+    {
+     "url": "https://www.lasprovincias.es/politica/catala-bernabe-chocan-debate-marcado-ceuta-dana-20261118231537-nt.html",
+     "media_id": "las-provincias",
+     "title": "Catalá y Bernabé chocan en un debate marcado por Ceuta, la dana... y Valencia",
+     "summary": ""
+    },
+    {
+     "url": "https://www.cope.es/emisoras/comunidad-valenciana/valencia-provincia/valencia/noticias/gestion-dana-tragedias-urda-adamuz-enciende-duro-cruce-acusaciones-eldebateclave-20261118_3477899.html",
+     "media_id": "cope",
+     "title": "La gestión de la dana y las tragedias de Urda y Adamuz enciende un duro cruce de acusaciones en #ElDebateClave",
+     "summary": "La gestión de la reconstrucción tras la dana del 29 de octubre y de tragedias recientes como las de Urda y Adamuz ha protagonizado el bloque más tenso de #ElDebateClave. Los cabezas de lista por Valen"
+    },
+    {
+     "url": "https://www.larioja.com/culturas/gota-acoge-cabaret-funebre-apegotomia-20261118171126-nt.html",
+     "media_id": "la-rioja",
+     "title": "La Gota acoge el cabaret fúnebre 'Apegotomía'",
+     "summary": "El concierto performativo que protagoniza Clara Palet se representa este jueves, en el marco del festival Artefacto de Logroño"
+    },
+    {
+     "url": "https://www.20minutos.es/salud/ciencia-ficcion-lucha-contra-alzheimer-unas-gotas-nasales-consiguen-restaurar-memoria_7062761_0.html",
+     "media_id": "20minutos",
+     "title": "De relato a la lucha contra el alzhéimer: unas gotas logran un avance ilusionante en la recuperación de la memoria",
+     "summary": "El sorprendente avance ha sido desarrollado por la Universidad de Sídney, y se ha probado con éxito en ratones."
+    },
+    {
+     "url": "https://elpais.com/escaparate/estilo-de-vida/zapatillas-y-botas-ofertas.html",
+     "media_id": "el-pais",
+     "title": "Adidas, Columbia, Salomon y más: zapatillas y botas de montaña que ya están rebajadas por Black Friday",
+     "summary": "Una selección pensada tanto para caminar horas por el asfalto como para pisar barro sin que entre ni una gota"
+    },
+    {
+     "url": "https://okdiario.com/curiosidades/joan-manuel-serrat-82-cantante-espanol-sincera-buen-momento-que-nosotros-podamos-decir-lo-que-pensamos-todo-esto-20715325",
+     "media_id": "okdiario",
+     "title": "Joan Manuel Serrat (82), cantante español se sincera : «Es un buen momento para que nosotros podamos decir lo que pensamos de todo esto»",
+     "summary": "La sociedad española se encuentra en estos momentos extremadamente polarizada debido a la inestabilidad política. La legislatura de Pedro Sánchez está dejando a su paso un sinfín de escándalos, siendo"
+    },
+    {
+     "url": "https://www.lavanguardia.com/natural/20261119/11688273/jarro-agua-fria-cop31-nueva-oferta-pacto-suprime-idea-eliminar-energia-fosil.html",
+     "media_id": "la-vanguardia",
+     "title": "Jarro de agua fría en la COP31: la nueva oferta de pacto suprime la idea de eliminar la energía fósil",
+     "summary": "Las dos referencias a la eliminación de los combustibles fósiles, recogidas en el primer borrador, desaparecen en la nueva propuesta de los organizadores"
+    },
+    {
+     "url": "https://www.libertaddigital.com/espana/politica/2026-11-19/jarro-de-agua-fria-para-plus-ultra-en-su-busqueda-de-un-salvador-avoris-no-tiene-el-menor-interes-en-la-aerolinea-7494396/?utm_source=rss&utm_medium=feed&utm_campaign=Libertad+Digital%3A+Noticias+y+opini%C3%B3n+en+la+red",
+     "media_id": "libertad-digital",
+     "title": "Jarro de agua fría para Plus Ultra en su búsqueda de un salvador: Ávoris no tiene \"el menor interés\" en la aerolínea",
+     "summary": "Plus Ultra trata de ganar tiempo para evitar la liquidación. \"Si no entran accionistas, no sobreviven\". Ávoris niega tajantemente los rumores."
+    },
+    {
+     "url": "https://www.larazon.es/internacional/prensa-japonesa-destaca-evidente-frialdad-recibimiento-takaichi-apec_202611196afeabbb103a0e0a474fe310.html",
+     "media_id": "la-razon",
+     "title": "La prensa japonesa destaca la \"evidente frialdad\" del recibimiento a Takaichi en la APEC",
+     "summary": "La escalada de la tensión entre Japón y China se remonta a noviembre del año pasado, cuando Takaichi dijo que Japón podría activar a su Ejército en el caso de un ataque chino contra Taiwán"
+    },
+    {
+     "url": "https://okdiario.com/viajes/benidorm-esta-bien-pero-jubilados-espanoles-lo-han-cambiado-termas-aire-libre-que-estan-38-o-40oc-junto-poza-fria-alternar-21131015",
+     "media_id": "okdiario",
+     "title": "Benidorm está bien pero los jubilados españoles lo han cambiado por las termas al aire libre que están a 38 o 40ºC junto a una poza fría para alternar",
+     "summary": "Alrededor de hace 2.000 años, los romanos erigieron unos baños próximos a un manantial de agua caliente en el núcleo de un reconocido municipio gallego. La construcción se encuentra en el mismo sitio,"
+    },
+    {
+     "url": "https://www.lasprovincias.es/culturas/hermano-david-broncano-valencia-20261118133504-nt.html",
+     "media_id": "las-provincias",
+     "title": "El hermano de David Broncano, en Valencia",
+     "summary": ""
+    },
+    {
+     "url": "https://www.lasprovincias.es/valenciacf/gran-oportunidad-elliott-valencia-20261119162949-nt.html",
+     "media_id": "las-provincias",
+     "title": "La gran oportunidad de Elliott en el Valencia",
+     "summary": ""
+    },
+    {
+     "url": "https://www.lasprovincias.es/culturas/cine/compromis-gusta-mostra-valencia-20261118132126-nt.html",
+     "media_id": "las-provincias",
+     "title": "A Compromís no le gusta la Mostra de Valencia",
+     "summary": ""
+    },
+    {
+     "url": "https://www.lasprovincias.es/valencia-ciudad/dormir-calle-pleno-centro-valencia-20261118004229-nt.html",
+     "media_id": "las-provincias",
+     "title": "Dormir en la calle en pleno centro de Valencia",
+     "summary": ""
+    }
+   ]
+  },
+  {
+   "query": "fallece actor",
+   "expect": [
+    "7063062"
+   ],
+   "story": null,
+   "seed": [
+    {
+     "url": "https://www.20minutos.es/cinemania/noticias/muere-los-66-anos-larry-poindexter-actor-friends-csi_7063062_0.html",
+     "media_id": "20minutos",
+     "title": "Muere a los 66 años Larry Poindexter, actor de series como 'Friends' y 'CSI'",
+     "summary": "El intérprete ha fallecido en el hospital tras varios días ingresado como consecuencia de un atropello."
+    },
+    {
+     "url": "https://www.lavanguardia.com/gente/20261119/11688305/muere-actor-larry-poindexter-66-anos-atropellado-angeles.html",
+     "media_id": "la-vanguardia",
+     "title": "Muere el actor Larry Poindexter a los 66 años tras ser atropellado en Los Ángeles",
+     "summary": "El intérprete, conocido por sus papeles en 'S.W.A.T.' y 'Los días de nuestra vida', permanecía hospitalizado desde el pasado viernes"
+    },
+    {
+     "url": "https://www.elcorreo.com/deportes/ciclismo/fallece-exciclista-profesional-alberto-hierro-anos-20261119151949-nt.html",
+     "media_id": "el-correo",
+     "title": "Fallece el exciclista profesional Alberto Hierro a los 48 años",
+     "summary": ""
+    },
+    {
+     "url": "https://www.elnortedecastilla.es/palencia/fallece-jorge-juan-fernandez-director-museo-palencia-20261118164134-nt.html",
+     "media_id": "el-norte-de-castilla",
+     "title": "Fallece Jorge Juan Fernández, director del Museo de Palencia entre 2006 y 2017",
+     "summary": "«Su esfuerzo, dedicación y legado permanecerán siempre entre nosotros», publican sus antiguos compañeros"
+    },
+    {
+     "url": "https://www.larazon.es/videojuegos/creadora-contenido-fallece-25-anos-causa-cancer-cerebral-dedico-sus-ultimos-meses-educar-su-audiencia-proceso_202611196afeb097103a0e0a474fe58d.html",
+     "media_id": "la-razon",
+     "title": "Una creadora de contenido fallece a los 25 años a causa de un cáncer cerebral: dedicó sus últimos meses a educar a su audiencia sobre el proceso",
+     "summary": "TikTok"
+    },
+    {
+     "url": "https://www.laverdad.es/murcia/ciudad-murcia/hombre-anos-fallece-atropellado-estacion-autobuses-murcia-20261119094921-nt.html",
+     "media_id": "la-verdad",
+     "title": "Un hombre de 70 años fallece atropellado en la estación de autobuses de Murcia",
+     "summary": "Pese a los esfuerzos realizados no se pudo hacer nada por salvarle la vida"
+    },
+    {
+     "url": "https://www.eldebate.com/cine-tv-series/20261119/actor-dos-premios-oscar-postula-proximo-villano-james-bond_482739.html",
+     "media_id": "el-debate",
+     "title": "El actor con dos Premios Oscar que se postula para ser el próximo villano de James Bond",
+     "summary": ""
+    },
+    {
+     "url": "https://www.lasprovincias.es/gastronomia/actor-insignia-avecina-prueba-valencia-tres-mejores-20261118003517-nt.html",
+     "media_id": "las-provincias",
+     "title": "El actor insignia de 'La que se avecina' prueba en Valencia los tres mejores bocadillos de la Comunitat",
+     "summary": ""
+    },
+    {
+     "url": "https://www.elcorreo.com/gente-estilo/actor-alberto-san-juan-achaca-falta-sexo-20261119073423-nt.html",
+     "media_id": "el-correo",
+     "title": "El actor Alberto San Juan achaca su falta de sexo a la política: «Sin el capitalismo, lo haríamos más»",
+     "summary": ""
+    },
+    {
+     "url": "https://www.eldebate.com/cine-tv-series/20261118/alla-peaky-blinders-papeles-hacen-cillian-murphy-mejores-actores-siglo-xxi_481397.html",
+     "media_id": "el-debate",
+     "title": "Más allá de 'Peaky Blinders': los papeles que hacen de Cillian Murphy uno de los mejores actores del siglo XXI",
+     "summary": ""
+    }
+   ]
+  },
+  {
+   "query": "inteligencia artificial anthropic nobel",
+   "expect": [
+    "6afebbb4a6f8072789ee9499"
+   ],
+   "story": null,
+   "seed": [
+    {
+     "url": "https://www.larazon.es/tecnologia-consumo/inteligencia-artificial/premios-nobel-referentes-seguridad-ia-cargan-anthropic-horas-antes-su-salida-bolsa-no-es-empresa-segura_202611196afebbb4a6f8072789ee9499.html",
+     "media_id": "la-razon",
+     "title": "Premios Nobel y referentes de la seguridad en IA cargan contra Anthropic horas antes de su salida a bolsa: «No es una empresa segura»",
+     "summary": "Inteligencia Artificial"
+    },
+    {
+     "url": "https://www.elcorreo.com/internacional/europa/ciberataque-inteligencia-artificial-pone-jaque-comision-europea-20261119151256-ntrc.html",
+     "media_id": "el-correo",
+     "title": "Un ciberataque con Inteligencia Artificial pone en jaque a la Comisión Europea",
+     "summary": ""
+    },
+    {
+     "url": "https://www.lasprovincias.es/tecnologia/nuevo-sistema-deteccion-geometrica-rlt_arx-20261119071105-nt.html",
+     "media_id": "las-provincias",
+     "title": "Un nuevo sistema de detección geométrica blinda los modelos de inteligencia artificial frente a manipulaciones maliciosas",
+     "summary": ""
+    },
+    {
+     "url": "https://www.canalsur.es/television/en-red/olivaria-inteligencia-artificial-olivos_1_1453313.html",
+     "media_id": "canal-sur-television",
+     "title": "OlivarIA, la inteligencia artificial entre olivos",
+     "summary": "OlivarIA es un proyecto de innovación que combina robótica autónoma, sensores e Inteligencia Artificial para avanzar hacia una agricultura de precisión."
+    },
+    {
+     "url": "https://www.larazon.es/lr-content/recomienda-inteligencia-artificial-empresa-nuevo-desafio-visibilidad-digital_202611176af33edd03bbf30bb0473357.html",
+     "media_id": "la-razon",
+     "title": "¿Recomienda la Inteligencia Artificial a tu empresa? El nuevo desafío de visibilidad digital",
+     "summary": "La inteligencia artificial está transformando la forma en que los usuarios buscan información, comparan alternativas y descubren empresas"
+    },
+    {
+     "url": "https://www.eldebate.com/economia/20261119/anthropic-protagoniza-mayor-salida-bolsa-historia-fuerte-subida_482984.html",
+     "media_id": "el-debate",
+     "title": "Anthropic protagoniza la mayor salida a Bolsa de la historia con una fuerte subida",
+     "summary": ""
+    },
+    {
+     "url": "https://www.eldebate.com/economia/bolsa/20261119/anthropic-eleva-83-dolares-precio-acciones-historica-salida-bolsa_482647.html",
+     "media_id": "el-debate",
+     "title": "Anthropic eleva a 83 dólares el precio de sus acciones en su histórica salida a Bolsa",
+     "summary": ""
+    },
+    {
+     "url": "https://www.elcorreo.com/economia/salida-bolsa-anthropic-pone-prueba-fiebre-ia-20261118183712-ntrc.html",
+     "media_id": "el-correo",
+     "title": "La salida a Bolsa de Anthropic pone a prueba la fiebre de la IA en Wall Street",
+     "summary": ""
+    },
+    {
+     "url": "https://www.elcorreo.com/economia/anthropic-bate-record-spacex-cierra-mayor-salida-20261119140814-ntrc.html",
+     "media_id": "el-correo",
+     "title": "Máxima expectación en los mercados ante el debut de Anthropic, la mayor salida a bolsa de la historia",
+     "summary": ""
+    },
+    {
+     "url": "https://www.diariovasco.com/culturas/libros/arantzazuko-tinbrean-hilda-zegoen-euli-batek-eman-20261109173623-nt.html",
+     "media_id": "diario-vasco",
+     "title": "Arantzazuko tinbrean hilda zegoen euli batek eman zion nobelaren ideia",
+     "summary": ""
+    },
+    {
+     "url": "https://www.pontevedraviva.com/gl/xeral/paixon-consello-nobel-thomas-cech-mozos-estudantes_522888_102.html",
+     "media_id": "pontevedra-viva",
+     "title": "\"Un debe seguir a súa paixón\": o consello do Nobel Thomas Cech aos mozos estudantes",
+     "summary": "O científico estadounidense alertou en Pontevedra de que \"os políticos teñen unha visión a moi curto prazo\" coa investigación científica"
+    },
+    {
+     "url": "https://www.berria.eus/kultura/iraganeko-bi-lagun-eta-memoria-zatitu-bat-aintzane-usandizagaren-nobela-berriko-protagonistak_2166748_102.html",
+     "media_id": "berria",
+     "title": "Iraganeko bi lagun eta memoria zatitu bat, Aintzane Usandizagaren nobela berriko protagonistak",
+     "summary": "Susa argitaletxearekin plazaratu du 'Esadazu gezurra', bere lehen eleberria. Haurtzaroko bi lagun dira pertsonaia nagusiak, Luxia eta Laida. Haien harremana hautsita dago, baina gertakari batek berrir"
+    }
+   ]
+  },
+  {
+   "query": "bono alquiler vivienda",
+   "expect": [
+    "6afeda4df6b335433bb5a509"
+   ],
+   "story": null,
+   "seed": [
+    {
+     "url": "https://www.20minutos.es/madrid/los-madrilenos-18-35-anos-podran-volver-pedir-las-ayudas-250-euros-mes-bono-alquiler-joven_7062808_0.html",
+     "media_id": "20minutos",
+     "title": "Los madrileños de 18 a 35 años podrán volver a pedir las ayudas de 250 euros al mes del Bono Alquiler Joven",
+     "summary": "El Consejo de Gobierno ha autorizado el reparto de 31,8 millones de euros procedentes del Plan Estatal para el Acceso a la Vivienda 2022-2025."
+    },
+    {
+     "url": "https://www.larazon.es/andalucia/granada/municipio-granada-que-pueden-pedir-ayudas-alquiler-vivienda-habitual-1200-euros-ano_202611196afeda4df6b335433bb5a509.html",
+     "media_id": "la-razon",
+     "title": "El municipio de Granada en el que se pueden pedir ayudas al alquiler de vivienda habitual de hasta 1.200 euros al año",
+     "summary": "La convocatoria está dirigida a cualquier vecino residente mayor de edad"
+    },
+    {
+     "url": "https://www.elmira.es/articulo/andalucia/junta-andalucia-reserva-716-millones-2027-vivienda-jovenes-ayudas-250-euros-mes-alquiler/20261119115932629552.html",
+     "media_id": "el-mira",
+     "title": "La Junta de Andalucía reserva 71,6 millones en 2027 para la vivienda de los jóvenes, con ayudas de 250 euros al mes al alquiler",
+     "summary": "Más de 3.100 jóvenes han accedido a una vivienda con avales que cubren el 20% del precio"
+    },
+    {
+     "url": "https://www.larazon.es/castilla-y-leon/23-noviembre-termina-plazo-acceder-ayudas-plan-soria-multiservicios-ruinas-rehabilitacion-vivienda_202611196afecfb9a6f8072789eea48a.html",
+     "media_id": "la-razon",
+     "title": "El 23 de noviembre termina el plazo para acceder a las ayudas del Plan Soria para multiservicios, ruinas y rehabilitación de vivienda",
+     "summary": "La Diputación destina 416.000 euros a las tres convocatorias y prevé recuperar viviendas municipales y destinarlas al alquiler social"
+    },
+    {
+     "url": "https://www.eldiario.es/consumoclaro/claves-fontanero-evitar-atascos-tuberias-productos-comerciales-ayudan-xp_1_13667255.html",
+     "media_id": "eldiario-es",
+     "title": "Las claves de un fontanero para evitar atascos en las tuberías: “Los productos comerciales pocas veces ayudan”",
+     "summary": "De los errores comunes al uso correcto de la ventosa, el profesional Emilio Monagas repasa las claves para cuidar la fontanería del hogar Un abogado aclara quién paga las averías en un piso de alquile"
+    },
+    {
+     "url": "https://www.que.es/2026/11/18/bono-alquiler-joven-madrid-250-euros/",
+     "media_id": "que",
+     "title": "Bono Alquiler Joven en Madrid: 250 euros al mes para menores de 35 y 31,8 millones",
+     "summary": "La Comunidad de Madrid reserva 31,8 millones para el Bono Alquiler Joven: 250 euros al mes hasta dos años para jóvenes de 18 a 35 años. La entrada Bono Alquiler Joven en Madrid: 250 euros al mes para "
+    },
+    {
+     "url": "https://www.20minutos.es/lainformacion/economia-y-finanzas/pagar-10-euros-mes-fibra-movil-como-pedir-bono-social-conectividad_7057512_0.html",
+     "media_id": "20minutos",
+     "title": "Pagar 10 euros al mes por la fibra y el móvil: cómo pedir el bono de conectividad",
+     "summary": "El Bono Social de Telecomunicaciones para colectivos vulnerables abarata las facturas de fibra y teléfono móvil"
+    },
+    {
+     "url": "https://www.lasprovincias.es/sorteos/la-bonoloto/bonoloto-resultados-loteria-lunes-20261116205500-nt.html",
+     "media_id": "las-provincias",
+     "title": "Resultados de La Bonoloto de hoy lunes",
+     "summary": ""
+    },
+    {
+     "url": "https://www.lasprovincias.es/sorteos/la-bonoloto/comprobar-bonoloto-resultados-sorteo-hoy-miercoles-noviembre-20261118182750-nt.html",
+     "media_id": "las-provincias",
+     "title": "Comprobar Bonoloto hoy: númeroy resultados del sorteo del miércoles 18 de noviembre026",
+     "summary": ""
+    },
+    {
+     "url": "https://www.lavanguardia.com/local/catalunya/20261104/11676140/como-acceder-bono-social-electricoy-reducir-factura-luz.html",
+     "media_id": "la-vanguardia",
+     "title": "Cómo acceder al bono social eléctrico y reducir la factura de la luz",
+     "summary": ""
+    },
+    {
+     "url": "https://www.lasprovincias.es/sorteos/la-bonoloto/bonoloto-miercoles-deja-140000-euros-capital-provincia-20261118071548-nt.html",
+     "media_id": "las-provincias",
+     "title": "La Bonoloto del miércoles deja 140.000 euros en una capital de provincia",
+     "summary": ""
+    },
+    {
+     "url": "https://www.eldebate.com/espana/baleares/20261119/problema-alquiler-psoe-brocha-gorda-fino-pincel_482583.html",
+     "media_id": "el-debate",
+     "title": "El problema del alquiler para el PSOE: de la brocha gorda al fino pincel",
+     "summary": ""
+    },
+    {
+     "url": "https://www.eldebate.com/espana/baleares/20261118/pareja-secretaria-estado-rosario-sanchez-dedica-tambien-alquiler-vacacional-villa_482025.html",
+     "media_id": "el-debate",
+     "title": "La pareja de la secretaria de Estado Rosario Sánchez se dedica también al alquiler vacacional de una villa",
+     "summary": ""
+    },
+    {
+     "url": "https://www.eldebate.com/espana/20261118/marido-mar-espinar-prepara-negocio-alquileres-turisticos-caceres-mientras-psoe-pide-vetarlos_481162.html",
+     "media_id": "el-debate",
+     "title": "El marido de Mar Espinar prepara un negocio de alquileres turísticos en Cáceres mientras el PSOE pide vetarlos",
+     "summary": ""
+    },
+    {
+     "url": "https://www.eldebate.com/espana/madrid/20261118/gobierno-ayuso-tacha-hipocrita-espinar-negocio-alquileres-turisticos-marido_482386.html",
+     "media_id": "el-debate",
+     "title": "El Gobierno de Ayuso tacha de «hipócrita» a Espinar por el negocio de alquileres turísticos de su marido",
+     "summary": ""
+    },
+    {
+     "url": "https://www.laregion.es/opinion/vivienda_1_20261117-4497372.html",
+     "media_id": "la-region",
+     "title": "Más vivienda",
+     "summary": ""
+    },
+    {
+     "url": "https://www.laregion.es/opinion/vivienda-espana-post-psoe_1_20261026-4465841.html",
+     "media_id": "la-region",
+     "title": "La vivienda en la España post-PSOE",
+     "summary": ""
+    },
+    {
+     "url": "https://www.elcorreo.com/economia/compra-vivienda-euskadi-desploma-20261117104622-nt.html",
+     "media_id": "el-correo",
+     "title": "La compra de vivienda en Euskadi se desploma un 23%",
+     "summary": ""
+    },
+    {
+     "url": "https://www.lavozdegalicia.es/noticia/mercados/2026/11/15/tecnologia-aliada-resolver-reto-vivienda/0003_202611SM15P6995.htm",
+     "media_id": "la-voz-de-galicia",
+     "title": "La tecnología, gran aliada para resolver el reto de la vivienda",
+     "summary": ""
+    }
+   ]
+  },
+  {
+   "query": "f1 gran premio las vegas",
+   "expect": [
+    "subcampeonato-formula-1"
+   ],
+   "story": null,
+   "seed": [
+    {
+     "url": "https://www.marca.com/apuestas-deportivas/predicciones/2026/11/19/gran-premio-vegas-intensifica-lucha-subcampeonato-formula-1.html",
+     "media_id": "marca",
+     "title": "Gran Premio de Las Vegas: se intensifica la lucha por el subcampeonato de Fórmula 1",
+     "summary": "Con los títulos de Kimi Antonelli y Mercedes ya sentenciados, el circuito urbano de Nevada acoge un pulso eléctrico por el segundo puesto entre Verstappen, Russell, Hamilton y Norris: repasamos las cu"
+    },
+    {
+     "url": "https://www.marca.com/motor/formula1/gp-las-vegas/2026/11/18/cadillac-renueva-valtteri-bottas-f1-cierra-parrilla-2027.html",
+     "media_id": "marca",
+     "title": "Cadillac renueva a Valtteri Bottas y la F1 cierra la parrilla del 2027",
+     "summary": "Sólon queda el sitio de Haas por confirmar, pero será para Oliver Bearman cuando cierre los últimos flecos de su nuevo contrato"
+    },
+    {
+     "url": "https://www.marca.com/motor/formula1/gp-las-vegas/2026/11/18/alonso-piloto-infinito-f1-dakar-le-mans.html",
+     "media_id": "marca",
+     "title": "Alonso, el piloto infinito: F1 y Dakar al mismo tiempo, Le Mans...",
+     "summary": "El asturiano recupera esa versión nacida después de su primera retirada de la Fórmula 1 con su presencia en el Dakar... y ya rumores de Le Mans"
+    },
+    {
+     "url": "https://www.esdiario.com/deportes/261119/203351/verstappen-sentencia-f1-electrica-reclama-revolucion-motores.html",
+     "media_id": "esdiario",
+     "title": "Verstappen sentencia a la F1 eléctrica y reclama una revolución en los motores",
+     "summary": "El tetracampeón celebra el posible regreso de los V8 en 2030, reivindica el sonido de los V10 y deja en el aire su continuidad en la competición."
+    },
+    {
+     "url": "https://www.esdiario.com/deportes/261116/203084/alonso-pone-prueba-credibilidad-aston-martin-button-revela-clave-futuro-f1.html",
+     "media_id": "esdiario",
+     "title": "Alonso pone a prueba la credibilidad de Aston Martin: Button revela la clave de su futuro en la F1",
+     "summary": "El campeón del mundo de 2009 reconoce que el asturiano necesita comprobar que el proyecto de Adrian Newey y Honda avanza para mantener intacta su motivación."
+    },
+    {
+     "url": "https://www.laregion.es/esquelas-ourense/grande-santi_1_20261119-4499176.html",
+     "media_id": "la-region",
+     "title": "“Qué grande es el Santi”",
+     "summary": ""
+    },
+    {
+     "url": "https://www.diariovasco.com/mendira/rutas/navarra/mendibil-ruta-mendira-20261113101925-nt.html",
+     "media_id": "diario-vasco",
+     "title": "Mendibil, el escultor de grandes obras",
+     "summary": ""
+    },
+    {
+     "url": "https://www.elconfidencialdigital.com/religion/vaticano/secretario-dicasterio-culto-divino-isabel-catolica-fue-gran-mujer-gran-creyente-gran-reina/202611190500001503738.html",
+     "media_id": "el-confidencial-digital",
+     "title": "El secretario del Dicasterio para el Culto Divino sobre Isabel la Católica: “Fue una gran mujer, una gran creyente y una gran reina”",
+     "summary": "Mons. Aurelio García Macías, secretario del Dicasterio para el Culto Divino, recuerda que la reina ordenó paralizar las transacciones mientras consultaba a teólogos y juristas si podían hacerse «con b"
+    },
+    {
+     "url": "https://www.lasprovincias.es/valenciacf/gran-oportunidad-elliott-valencia-20261119162949-nt.html",
+     "media_id": "las-provincias",
+     "title": "La gran oportunidad de Elliott en el Valencia",
+     "summary": ""
+    },
+    {
+     "url": "https://www.diariodealmeria.es/videos/video-iii-premios-gamba-roja-almeria_8_2008328316.html",
+     "media_id": "diario-de-almeria",
+     "title": "III Premios Gamba Roja de Almería",
+     "summary": ""
+    },
+    {
+     "url": "https://www.diariodealmeria.es/videos/video-gala-anual-premios-macael-2026_8_2008497371.html",
+     "media_id": "diario-de-almeria",
+     "title": "Gala Anual de los Premios Macael 2026",
+     "summary": ""
+    },
+    {
+     "url": "https://www.larazon.es/castilla-y-leon/alberto-candido-premio-empresario-hostelero-gala-premios-nacionales-hosteleria_202611186afe0d95a6f8072789ee1aba.html",
+     "media_id": "la-razon",
+     "title": "Alberto Cándido, Premio Empresario Hostelero en la XX Gala de los Premios Nacionales de Hostelería",
+     "summary": "Se ha celebrado esta tarde en el Teatro Juan Bravo, donde también se reconocieron otras 17 trayectorias"
+    },
+    {
+     "url": "https://www.lavozdegalicia.es/album/galicia/2026/11/18/album-lxviii-edicion-premio-fernandez-latorre/01101795014158415655567.htm",
+     "media_id": "la-voz-de-galicia",
+     "title": "Álbum de la LXVIII edición del Premio Fernández Latorre",
+     "summary": ""
+    },
+    {
+     "url": "https://www.elcorreo.com/culturas/territorios/falla-eco-voces-frondas-20261114202835-nt.html",
+     "media_id": "el-correo",
+     "title": "El eco de las voces y las frondas",
+     "summary": ""
+    },
+    {
+     "url": "https://www.lasprovincias.es/deportes/motor/ciudad-artes-motos-20261117011703-nt.html",
+     "media_id": "las-provincias",
+     "title": "La Ciudad de las Artes y las Motos",
+     "summary": ""
+    },
+    {
+     "url": "https://www.diariovasco.com/gipuzkoademoda/tendencias/saten-botas-altas-tendencias-marcaran-otonoinvierno-20261116232650-nt.html",
+     "media_id": "diario-vasco",
+     "title": "Del satén a las botas altas: las tendencias que marcarán este otoño-invierno",
+     "summary": ""
+    },
+    {
+     "url": "https://www.eldebate.com/deportes/tenis/20261119/saltan-alarmas-alcaraz-resonancia-magnetica-marcara-futuro-atp-finals_482786.html",
+     "media_id": "el-debate",
+     "title": "Saltan las alarmas con Alcaraz: una resonancia magnética marcará su futuro en las ATP Finals",
+     "summary": ""
+    },
+    {
+     "url": "https://www.marca.com/motor/formula1/gp-las-vegas/2026/11/19/lluvia-sanciones-vegas-campeon-piastri-tendran-remontar.html",
+     "media_id": "marca",
+     "title": "Lluvia de sanciones en Las Vegas<br>",
+     "summary": "Kimi Antonelli atesora una sanción para este fin de semana en Las Vegas"
+    },
+    {
+     "url": "https://www.marca.com/motor/formula1/gp-las-vegas/2026/11/19/russell-rechaza-mejora-mercedes-trae-vegas.html",
+     "media_id": "marca",
+     "title": "Russell rechaza la mejora que Mercedes trae a Las Vegas",
+     "summary": "George Russell ha decidido no montar el nuevo turbo de Mercedes este Gran Premio"
+    },
+    {
+     "url": "https://diariodearousa.elidealgallego.com/arousa/2026-10-18/arousa-busca-opciones-veganas-en-una-hosteleria-que-aun-no-adapta-su-carta-885668.html",
+     "media_id": "diario-de-arousa",
+     "title": "Arousa busca opciones veganas en una hostelería que aún no adapta su carta",
+     "summary": "Los locales que ofrecen estos menús aseguran tener demanda porque “no hay mucha alternativa”"
+    },
+    {
+     "url": "https://www.lasexta.com/noticias/deportes/motor/formula1/honda-teme-peor-vegas-frio-peligro-motor_202611186afddd6a21e74551e81e7978.html",
+     "media_id": "lasexta",
+     "title": "Honda se teme lo peor para Las Vegas: el frío, un peligro para su motor",
+     "summary": "Shintaro Orihara, responsable de Honda en pista, dice que las bajas temperaturas son un desafío nuevo para ellos."
+    }
+   ]
+  },
+  {
+   "query": "migrante soria poblacion",
+   "expect": [
+    "poblacion-inmigrante"
+   ],
+   "story": null,
+   "seed": [
+    {
+     "url": "https://www.heraldodiariodesoria.es/soria/261116/213686/psoe-destaca-impulso-soria-poblacion-inmigrante.html",
+     "media_id": "heraldo-diario-de-soria",
+     "title": "El PSOE destaca el impulso a Soria de la población inmigrante",
+     "summary": "La candidatura socialista se reúne con colectivos de inmigrantes para escuchar sus necesidades y trasladar sus propuestas en materia de integración, acogida, igualdad y participación."
+    },
+    {
+     "url": "https://www.lasprovincias.es/opinion/luis-urios-ibanez-empatizar-persona-migrante-receta-racismo-20261118003217-nt.html",
+     "media_id": "las-provincias",
+     "title": "Cómo empatizar con una persona migrante: una receta contra el racismo",
+     "summary": ""
+    },
+    {
+     "url": "https://www.libertaddigital.com/canarias/2026-11-19/senegal-detiene-a-46-migrantes-y-cuatro-traficantes-en-dos-golpes-contra-las-salidas-hacia-canarias-7494370/?utm_source=rss&utm_medium=feed&utm_campaign=Libertad+Digital%3A+Noticias+y+opini%C3%B3n+en+la+red",
+     "media_id": "libertad-digital",
+     "title": "Senegal detiene a 46 migrantes y cuatro traficantes en dos golpes contra las salidas hacia Canarias",
+     "summary": "La Gendarmería senegalesa frustra dos travesías cerca de Dakar mientras Canarias suma 11.037 llegadas en quince días."
+    },
+    {
+     "url": "https://www.elindependiente.com/espana/2026/11/17/tardon-cita-al-consul-espanol-en-tetuan-para-esclarecer-si-advirtio-de-la-entrada-masiva-de-migrantes-en-ceuta/",
+     "media_id": "el-independiente",
+     "title": "Tardón cita al cónsul español en Tetuán para esclarecer si advirtió de la entrada masiva de migrantes en Ceuta",
+     "summary": "La jueza de la Audiencia Nacional María Tardón, que investiga la entrada masiva de migrantes en Ceuta los días 30 […]"
+    },
+    {
+     "url": "https://maldita.es/desinfo/20261117/la-inmigracion-en-espana-procede-mayoritariamente-de-colombia-y-marruecos-aunque-pedro-sanchez-afirma-que-un-40-es-de-europa-otro-40-de-latinoamerica-y-el-20-de-africa/",
+     "media_id": "maldita",
+     "title": "Las cifras sobre el origen de los migrantes que dio Sánchez en 'The Wild Project': coinciden con datos de 2008, pero en 2024 la distribución es distinta",
+     "summary": "<img src=\"https://public.flourish.studio/visualisation/30931722/thumbnail\" width=\"100%\" alt=\"chart visualization\" />…"
+    },
+    {
+     "url": "https://www.heraldodiariodesoria.es/soria/261117/213691/centro-refugiados-soria-desviacion-minima-ue.html",
+     "media_id": "heraldo-diario-de-soria",
+     "title": "El Centro de Refugiados de Soria y la «desviación mínima» de la UE",
+     "summary": "La Comisión Europea aceptaría pequeños cambios sobre el requisito del contenido"
+    },
+    {
+     "url": "https://www.heraldodiariodesoria.es/soria/261114/213596/proyecto-diversidad-funcional-visual-gana-catedra-caja-rural.html",
+     "media_id": "heraldo-diario-de-soria",
+     "title": "Un proyecto de diversidad funcional visual gana la Cátedra de Caja Rural de Soria",
+     "summary": "Blanca García destaca «la templanza» de los alumnos durante la presentación"
+    },
+    {
+     "url": "https://www.heraldodiariodesoria.es/soria/261119/213747/iluminacion-navidena-soria-encendera-proximo-4-diciembre.html",
+     "media_id": "heraldo-diario-de-soria",
+     "title": "La iluminación navideña de Soria se encenderá el próximo 4 de diciembre",
+     "summary": "Iluminaciones Ximénez continuará encargándose de las luces de Navidad como en años anteriores"
+    },
+    {
+     "url": "https://www.heraldodiariodesoria.es/soria/provincia/261116/213650/entrega-premios-sorianos-ano-multitudinario-acto.html",
+     "media_id": "heraldo-diario-de-soria",
+     "title": "Entrega de los Premios de los Sorianos del Año en un multitudinario acto",
+     "summary": "La Casa de Soria en Madrid reunió también a los galardonados de los años de la pandemia"
+    },
+    {
+     "url": "https://www.lasprovincias.es/horta/alcasser-protegera-poblacion-mota-junto-barranco-gran-20261118183702-nt.html",
+     "media_id": "las-provincias",
+     "title": "Alcàsser protegerá la población con una mota junto al barranco y un gran parque inundable",
+     "summary": ""
+    },
+    {
+     "url": "https://www.heraldodiariodesoria.es/soria/provincia/261117/213679/burgo-desestacionaliza-turismo-6-10-viajeros-visita-poblacion-fuera-dias-estivales.html",
+     "media_id": "heraldo-diario-de-soria",
+     "title": "El Burgo desestacionaliza el turismo y 6 de cada 10 viajeros visitan la población fuera de los días estivales",
+     "summary": "Un informe desvela que el 47% pernoctan en la localidad y el 57% son excursionistas"
+    },
+    {
+     "url": "https://www.elnortedecastilla.es/elecciones/generales/carlos-martinez-pide-poblacion-voto-inteligente-evitar-20261118155520-nt.html",
+     "media_id": "el-norte-de-castilla",
+     "title": "Carlos Martínez pide a la población un «voto inteligente» para evitar el regreso al «NODO» y al «blanco y negro»",
+     "summary": "El secretario general del PSOE regional defiende un bloque «de progreso» basado en la gestión «de hechos, realidades y principios de igualdad territorial»"
+    }
+   ]
+  },
+  {
+   "query": "ave liberalizacion accidentes",
+   "expect": [
+    "se-liberalizo"
+   ],
+   "story": null,
+   "seed": [
+    {
+     "url": "https://maldita.es/desinfo/20261113/desde-que-la-alta-velocidad-espanola-se-liberalizo-hay-mas-accidentes/",
+     "media_id": "maldita",
+     "title": "Qué sabemos sobre la supuesta relación entre la liberalización de la alta velocidad y los accidentes de tren",
+     "summary": "En 2002 tuvo lugar el accidente de Torredembarra (Tarragona) cuando un tren entró en la vía por la que circulaba un Euromed, chocando con él y dejando dos víctimas mortales. En 2013, un tren Alvia des"
+    },
+    {
+     "url": "https://www.lasprovincias.es/opinion/pablo-salazar-ave-presentismo-historico-20261118000309-nt.html",
+     "media_id": "las-provincias",
+     "title": "El AVE y el presentismo histórico",
+     "summary": ""
+    },
+    {
+     "url": "https://www.eldebate.com/espana/comunidad-valenciana/20261119/detenidos-dos-pasajeros-orihuela-intentar-subir-ave-revolver-municion_482892.html",
+     "media_id": "el-debate",
+     "title": "Detenidos dos pasajeros en Orihuela al intentar subir al AVE con un revólver y munición",
+     "summary": ""
+    },
+    {
+     "url": "https://www.eldebate.com/espana/20261119/detienen-pareja-queria-subir-ave-revolver-municion-mochila_482728.html",
+     "media_id": "el-debate",
+     "title": "Detienen a una pareja que se quería subir a un AVE con un revólver y munición en la mochila",
+     "summary": ""
+    },
+    {
+     "url": "https://www.lavozdegalicia.es/noticia/galicia/2026/11/18/renfe-plantea-pintar-ave-azul-oscuro-plena-tormenta-ferroviaria/0003_202611G18P14991.htm",
+     "media_id": "la-voz-de-galicia",
+     "title": "Renfe se plantea pintar los AVE de azul oscuro en plena tormenta ferroviaria",
+     "summary": "Los seis servicios que surgen de simplificar la oferta tendrán estéticas diferenciadas. Los trenes de media distancia serán todos regionales"
+    },
+    {
+     "url": "https://cronicaglobal.elespanol.com/business/20261116/competencia-anuncia-expansion-cmt-barcelona-convertirse-digital/1003742812411_0.html",
+     "media_id": "cronica-global",
+     "title": "Competencia ampliará la sede de Barcelona para convertirla en 'hub' digital que ayude a regular TikTok",
+     "summary": "El presidente de la CNMC, Juan José Ganuza, describe los 30 años de liberalización de las telecomunicaciones en España como \"una historia de éxito\""
+    },
+    {
+     "url": "https://www.marca.com/futbol/2026/11/18/heredero-7-cristiano-portugal-accident-video.html",
+     "media_id": "marca",
+     "title": "El heredero del '7' de Cristiano en Portugal... ¡casi por accidente!",
+     "summary": ""
+    },
+    {
+     "url": "https://www.eldebate.com/economia/20261119/alto-cargo-puente-implicada-caso-mascarillas-apunta-defensor-victimas-accidentes_482445.html",
+     "media_id": "el-debate",
+     "title": "​Una alto cargo de Puente implicada en el caso mascarillas apunta a Defensor de Víctimas de Accidentes",
+     "summary": ""
+    },
+    {
+     "url": "https://www.lasprovincias.es/sucesos/muere-conductor-camion-accidente-a23-termino-barracas-20261117213230-nt.html",
+     "media_id": "las-provincias",
+     "title": "Muere el conductor de un camión en un accidente en la A-23 en el término de Barracas",
+     "summary": ""
+    },
+    {
+     "url": "https://www.eldebate.com/espana/andalucia/20261119/junta-andalucia-abre-oficina-especifica-atender-victimas-accidentes-adamuz-urda_482724.html",
+     "media_id": "el-debate",
+     "title": "La Junta de Andalucía abre una oficina específica para atender a víctimas de los accidentes de Adamuz y Urda",
+     "summary": ""
+    }
+   ]
+  },
+  {
+   "query": "lograr letras",
+   "expect": [
+    "tura/2026/11/19/6afe9199e85ece407a8b45a5.html",
+    "o-mas-prestigioso-de-las-letras-en-ee-uu.html",
+    "anar-national-book-award/1003744463943_0.html",
+    "rd-2026_202611196afeb972103a0e0a474feba6.html",
+    "espanol-ganar-national-20261119115639-nt.html",
+    "tor-cordobes-vicente-luis-mora_1_1454192.html",
+    "a-gana-national-book-20261119134038-ntrc.html",
+    "as-estados-unidos/00031795102247597268347.htm",
+    "anol-national-book-award/1003742813291_0.html",
+    "a-gana-national-book-20261119134038-ntrc.html",
+    "a-gana-national-book-20261119134038-ntrc.html",
+    "a-gana-national-book-20261119134038-ntrc.html",
+    "a-gana-national-book-20261119134038-ntrc.html"
+   ],
+   "story": [
+    "https://www.elmundo.es/cultura/literatura/2026/11/19/6afe9199e85ece407a8b45a5.html",
+    "https://elpais.com/cultura/2026-11-19/el-escritor-espanol-vicente-luis-mora-gana-el-national-book-award-el-premio-mas-prestigioso-de-las-letras-en-ee-uu.html",
+    "https://www.elespanol.com/el-cultural/letras/20261119/vicente-luis-mora-convierte-primer-espanol-ganar-national-book-award/1003744463943_0.html",
+    "https://www.larazon.es/cultura/literatura/espanol-vicente-luis-mora-conquista-prestigioso-national-book-award-2026_202611196afeb972103a0e0a474feba6.html",
+    "https://www.abc.es/cultura/libros/vicente-luis-mora-primer-espanol-ganar-national-20261119115639-nt.html",
+    "https://www.canalsur.es/noticias/andalucia/cordoba/escritor-cordobes-vicente-luis-mora_1_1454192.html",
+    "https://www.larioja.com/culturas/libros/espanol-vicente-luis-mora-gana-national-book-20261119134038-ntrc.html",
+    "https://www.lavozdegalicia.es/noticia/cultura/2026/11/19/espanol-vicente-luis-mora-gana-national-book-award-premio-prestigioso-letras-estados-unidos/00031795102247597268347.htm",
+    "https://cronicaglobal.elespanol.com/letraglobal/letras/20261119/vicente-luis-mora-espanol-national-book-award/1003742813291_0.html",
+    "https://www.hoy.es/culturas/libros/espanol-vicente-luis-mora-gana-national-book-20261119134038-ntrc.html",
+    "https://www.canarias7.es/cultura/espanol-vicente-luis-mora-gana-national-book-20261119134038-ntrc.html",
+    "https://www.laverdad.es/culturas/libros/espanol-vicente-luis-mora-gana-national-book-20261119134038-ntrc.html",
+    "https://www.elnortedecastilla.es/culturas/libros/espanol-vicente-luis-mora-gana-national-book-20261119134038-ntrc.html"
+   ],
+   "seed": [
+    {
+     "url": "https://www.elmundo.es/cultura/literatura/2026/11/19/6afe9199e85ece407a8b45a5.html",
+     "media_id": "el-mundo",
+     "title": "Vicente Luis Mora, primer español en lograr el National Book Award, el premio literario más importante de EEUU",
+     "summary": "El poeta cordobés se impone en los prestigiosos premios literarios estadounidenses en la categoría de traducción seis años con un texto \"descabellado\" sobre Prusia Leer"
+    },
+    {
+     "url": "https://elpais.com/cultura/2026-11-19/el-escritor-espanol-vicente-luis-mora-gana-el-national-book-award-el-premio-mas-prestigioso-de-las-letras-en-ee-uu.html",
+     "media_id": "el-pais",
+     "title": "El escritor español Vicente Luis Mora gana el National Book Award, el premio más prestigioso de las letras en EE UU",
+     "summary": "El poeta cordobés obtiene el galardón a obra traducido por ‘Centroeuropa’"
+    },
+    {
+     "url": "https://www.elespanol.com/el-cultural/letras/20261119/vicente-luis-mora-convierte-primer-espanol-ganar-national-book-award/1003744463943_0.html",
+     "media_id": "el-espanol",
+     "title": "Vicente Luis Mora se convierte en el primer español en ganar el National Book Award",
+     "summary": "El autor cordobés conquista el prestigioso galardón estadounidense por 'Centroeuropa' en la categoría de obra traducida. Más información: Crítica de 'Nosotras', la nueva novela de Vicente Luis Mora, g"
+    },
+    {
+     "url": "https://www.larazon.es/cultura/literatura/espanol-vicente-luis-mora-conquista-prestigioso-national-book-award-2026_202611196afeb972103a0e0a474feba6.html",
+     "media_id": "la-razon",
+     "title": "El español Vicente Luis Mora conquista el prestigioso National Book Award 2026",
+     "summary": "El escritor cordobés se impone en la categoría de Literatura Traducida con \"Centroeuropa\", una obra ambientada en la Prusia del siglo XIX"
+    },
+    {
+     "url": "https://www.abc.es/cultura/libros/vicente-luis-mora-primer-espanol-ganar-national-20261119115639-nt.html",
+     "media_id": "abc",
+     "title": "Vicente Luis Mora, primer español en ganar el National Book Award",
+     "summary": "Vicente Luis Mora se ha convertido en el primer escritor español en ganar el National Book Award, uno de los premios literarios más prestigiosos de Estados Unidos. El autor cordobés ha sido distinguid"
+    },
+    {
+     "url": "https://www.canalsur.es/noticias/andalucia/cordoba/escritor-cordobes-vicente-luis-mora_1_1454192.html",
+     "media_id": "canal-sur-television",
+     "title": "El escritor cordobés Vicente Luis Mora gana el National Book Award",
+     "summary": "El autor obtiene el reconocimiento en la categoría de literatura traducida, convirtiéndose en el segundo español en la historia en lograr este galardón tras Miguel de Unamuno."
+    },
+    {
+     "url": "https://www.larioja.com/culturas/libros/espanol-vicente-luis-mora-gana-national-book-20261119134038-ntrc.html",
+     "media_id": "la-rioja",
+     "title": "El español Vicente Luis Mora gana el National Book Award, el premio más prestigioso de las letras en Estados Unidos",
+     "summary": "El profesor de la Universidad de Málaga logra el galardón en la categoría de obra traducida por su novela 'Centroeuropa'"
+    },
+    {
+     "url": "https://www.lavozdegalicia.es/noticia/cultura/2026/11/19/espanol-vicente-luis-mora-gana-national-book-award-premio-prestigioso-letras-estados-unidos/00031795102247597268347.htm",
+     "media_id": "la-voz-de-galicia",
+     "title": "El español Vicente Luis Mora gana el National Book Award, el premio más prestigioso de las letras en Estados Unidos",
+     "summary": "El profesor de la Universidad de Málaga logra el galardón en la categoría de obra traducida por su novela «Centroeuropa»"
+    },
+    {
+     "url": "https://cronicaglobal.elespanol.com/letraglobal/letras/20261119/vicente-luis-mora-espanol-national-book-award/1003742813291_0.html",
+     "media_id": "cronica-global",
+     "title": "Vicente Luis Mora, el primer español en ganar el National Book Award",
+     "summary": "El escritor cordobés Vicente Luis Mora se convierte en el primer español en ganar el National Book Award en la categoría de obra traducida por 'Centroeuropa' También: 'Circular 22', de Vicente Luis Mo"
+    },
+    {
+     "url": "https://www.hoy.es/culturas/libros/espanol-vicente-luis-mora-gana-national-book-20261119134038-ntrc.html",
+     "media_id": "hoy",
+     "title": "El español Vicente Luis Mora gana el National Book Award, el premio más prestigioso de las letras en Estados Unidos",
+     "summary": "El profesor de la Universidad de Málaga logra el galardón en la categoría de obra traducida por su novela 'Centroeuropa'"
+    },
+    {
+     "url": "https://www.canarias7.es/cultura/espanol-vicente-luis-mora-gana-national-book-20261119134038-ntrc.html",
+     "media_id": "canarias7",
+     "title": "El español Vicente Luis Mora gana el National Book Award, el premio más prestigioso de las letras en Estados Unidos",
+     "summary": "El profesor de la Universidad de Málaga logra el galardón en la categoría de obra traducida por su novela 'Centroeuropa'"
+    },
+    {
+     "url": "https://www.laverdad.es/culturas/libros/espanol-vicente-luis-mora-gana-national-book-20261119134038-ntrc.html",
+     "media_id": "la-verdad",
+     "title": "El español Vicente Luis Mora gana el National Book Award, el premio más prestigioso de las letras en Estados Unidos",
+     "summary": "El profesor de la Universidad de Málaga logra el galardón en la categoría de obra traducida por su novela 'Centroeuropa'"
+    },
+    {
+     "url": "https://www.elnortedecastilla.es/culturas/libros/espanol-vicente-luis-mora-gana-national-book-20261119134038-ntrc.html",
+     "media_id": "el-norte-de-castilla",
+     "title": "El español Vicente Luis Mora gana el National Book Award, el premio más prestigioso de las letras en Estados Unidos",
+     "summary": "El profesor de la Universidad de Málaga logra el galardón en la categoría de obra traducida por su novela 'Centroeuropa'"
+    },
+    {
+     "url": "https://www.libertaddigital.com/chic/recetas/2026-11-17/los-secretos-del-chef-jose-andres-para-lograr-unas-croquetas-cremosas-y-crujientes-7489045/?utm_source=rss&utm_medium=feed&utm_campaign=Libertad+Digital%3A+Noticias+y+opini%C3%B3n+en+la+red",
+     "media_id": "libertad-digital",
+     "title": "Los secretos del chef José Andrés para lograr unas croquetas cremosas y crujientes",
+     "summary": "El maestro de los fogones revela el secreto del rebozado y la temperatura del aceite para elevar el resultado de esta fritura casera."
+    },
+    {
+     "url": "https://theobjective.com/economia/2026-11-19/espana-lograr-mejores-resultados-fondos-europeos/",
+     "media_id": "the-objective",
+     "title": "España confía en lograr «los mejores resultados posibles» en el último pago de fondos europeos",
+     "summary": "El secretario de Estado para la Unión Europea, Fernando Sampedro, ha expresado este jueves su confianza en que España consiga «los mejores resultados posibles» en las […]"
+    },
+    {
+     "url": "https://www.elespanol.com/espana/tribunales/20261118/juez-teruel-envia-pedraz-caso-forestalia-detectar-gestiones-cerdan-gobierno-lograr-pelotazos/1003744462613_0.html",
+     "media_id": "el-espanol",
+     "title": "Un juez de Teruel envía a Pedraz el 'caso Forestalia' tras detectar \"gestiones\" de Cerdán ante el Gobierno para lograr pelotazos",
+     "summary": "El PSOE también manda a la Audiencia la lista de los abogados que contrató entre 2021 y 2025. El juez acepta su petición de mantenerlos en secreto. Más información: Antxon y Cerdán influían en el Mini"
+    },
+    {
+     "url": "https://www.larazon.es/motor/pagar-40000-euros-cuatro-letras-matricula-coche-lujo-personalizacion-llega-mundo-motor-b51m_202611176afc14ad18c34d33accc1d6d.html",
+     "media_id": "la-razon",
+     "title": "Pagar 40.000 euros por cuatro letras en la matrícula del coche: el lujo de la personalización llega al mundo del motor",
+     "summary": "Mónaco permitirá crear identificaciones personalizadas con letras y números, aunque su precio dependerá de la cantidad de caracteres alfabéticos elegidos"
+    }
+   ]
+  },
+  {
+   "query": "disputa dolares",
+   "expect": [
+    "ones-castanos-flor-vendidos-disputa-nazi.html",
+    "lones-dolares-cuadro-20261119090240-ntrc.html",
+    "lones-dolares-cuadro-20261119090240-ntrc.html",
+    "lones-dolares-cuadro-20261119090240-ntrc.html",
+    "lones-dolares-cuadro-20261119090240-ntrc.html",
+    "lones-dolares-cuadro-20261119090240-ntrc.html",
+    "lones-dolares-cuadro-20261119090240-ntrc.html",
+    "ta-castanos-flor-gogh-alcanza_3_02239528.html",
+    "an-gogh_202611196afeb5f118c34d33acceb259.html",
+    "rse-por-190-4-millones-dolares_7063045_0.html"
+   ],
+   "story": [
+    "https://www.lavanguardia.com/cultura/20261119/11687845/gogh-llega-record-190-4-millones-castanos-flor-vendidos-disputa-nazi.html",
+    "https://www.elcorreo.com/culturas/vendido-cifra-record-1735-millones-dolares-cuadro-20261119090240-ntrc.html",
+    "https://www.hoy.es/culturas/vendido-cifra-record-1735-millones-dolares-cuadro-20261119090240-ntrc.html",
+    "https://www.canarias7.es/cultura/vendido-cifra-record-1735-millones-dolares-cuadro-20261119090240-ntrc.html",
+    "https://www.laverdad.es/culturas/vendido-cifra-record-1735-millones-dolares-cuadro-20261119090240-ntrc.html",
+    "https://www.elnortedecastilla.es/culturas/vendido-cifra-record-1735-millones-dolares-cuadro-20261119090240-ntrc.html",
+    "https://www.larioja.com/culturas/vendido-cifra-record-1735-millones-dolares-cuadro-20261119090240-ntrc.html",
+    "https://www.atlas-news.com/cultura/venta-castanos-flor-gogh-alcanza_3_02239528.html",
+    "https://www.larazon.es/cultura/record-cuanto-vendido-cuadro-castanos-flor-van-gogh_202611196afeb5f118c34d33acceb259.html",
+    "https://www.20minutos.es/theluxonomist/subastas/castanos-flor-van-gogh-pulveriza-record-artista-venderse-por-190-4-millones-dolares_7063045_0.html"
+   ],
+   "seed": [
+    {
+     "url": "https://www.lavanguardia.com/cultura/20261119/11687845/gogh-llega-record-190-4-millones-castanos-flor-vendidos-disputa-nazi.html",
+     "media_id": "la-vanguardia",
+     "title": "Van Gogh llega al récord de 190,4 millones con 'Los castaños en flor' vendidos bajo la disputa nazi",
+     "summary": "La puja carece de la emoción que suscita una obra de esa entidad, y más después de que estuviera a punto de no salir a la venta por el conflicto entre la familia propietaria actual y los herederos del"
+    },
+    {
+     "url": "https://www.elcorreo.com/culturas/vendido-cifra-record-1735-millones-dolares-cuadro-20261119090240-ntrc.html",
+     "media_id": "el-correo",
+     "title": "Vendido por la cifra récord de 173,5 millones de dólares el cuadro 'Castaños en flor' de Van Gogh",
+     "summary": ""
+    },
+    {
+     "url": "https://www.hoy.es/culturas/vendido-cifra-record-1735-millones-dolares-cuadro-20261119090240-ntrc.html",
+     "media_id": "hoy",
+     "title": "Vendido por la cifra récord de 173,5 millones de dólares el cuadro 'Castaños en flor' de Van Gogh",
+     "summary": "La subasta de la familia argentina Blaquier-Arrieta también ha incluido el 'Arlequín' de Cézanne, con un precio de 101,2 millones de euros"
+    },
+    {
+     "url": "https://www.canarias7.es/cultura/vendido-cifra-record-1735-millones-dolares-cuadro-20261119090240-ntrc.html",
+     "media_id": "canarias7",
+     "title": "Vendido por la cifra récord de 173,5 millones de dólares el cuadro 'Castaños en flor' de Van Gogh",
+     "summary": "La subasta de la familia argentina Blaquier-Arrieta también ha incluido el 'Arlequín' de Cézanne, con un precio de 101,2 millones de euros"
+    },
+    {
+     "url": "https://www.laverdad.es/culturas/vendido-cifra-record-1735-millones-dolares-cuadro-20261119090240-ntrc.html",
+     "media_id": "la-verdad",
+     "title": "Vendido por la cifra récord de 173,5 millones de dólares el cuadro 'Castaños en flor' de Van Gogh",
+     "summary": "La subasta de la familia argentina Blaquier-Arrieta también ha incluido el 'Arlequín' de Cézanne, con un precio de 101,2 millones de euros"
+    },
+    {
+     "url": "https://www.elnortedecastilla.es/culturas/vendido-cifra-record-1735-millones-dolares-cuadro-20261119090240-ntrc.html",
+     "media_id": "el-norte-de-castilla",
+     "title": "Vendido por la cifra récord de 173,5 millones de dólares el cuadro 'Castaños en flor' de Van Gogh",
+     "summary": "La subasta de la familia argentina Blaquier-Arrieta también ha incluido el 'Arlequín' de Cézanne, con un precio de 101,2 millones de euros"
+    },
+    {
+     "url": "https://www.larioja.com/culturas/vendido-cifra-record-1735-millones-dolares-cuadro-20261119090240-ntrc.html",
+     "media_id": "la-rioja",
+     "title": "Vendido por la cifra récord de 173,5 millones de dólares el cuadro 'Castaños en flor' de Van Gogh",
+     "summary": "La subasta de la familia argentina Blaquier-Arrieta también ha incluido el 'Arlequín' de Cézanne, con un precio de 101,2 millones de euros"
+    },
+    {
+     "url": "https://www.atlas-news.com/cultura/venta-castanos-flor-gogh-alcanza_3_02239528.html",
+     "media_id": "atlas-news",
+     "title": "La venta de Los castaños en flor de Van Gogh alcanza la cifra récord de 190,4 millones de dólares",
+     "summary": "El cuadro, de 1890, se ha subastado en la casa Sotheby’s de Nueva York"
+    },
+    {
+     "url": "https://www.larazon.es/cultura/record-cuanto-vendido-cuadro-castanos-flor-van-gogh_202611196afeb5f118c34d33acceb259.html",
+     "media_id": "la-razon",
+     "title": "Récord: ¿por cuánto se ha vendido el cuadro 'Castaños en flor' de Van Gogh?",
+     "summary": "El lienzo, terminado en 1890 durante los últimos meses de vida del pintor, \"llevaba casi 60 años sin mostrarse en público\"."
+    },
+    {
+     "url": "https://www.20minutos.es/theluxonomist/subastas/castanos-flor-van-gogh-pulveriza-record-artista-venderse-por-190-4-millones-dolares_7063045_0.html",
+     "media_id": "20minutos",
+     "title": "‘Castaños en flor’, de Van Gogh, pulveriza el récord del artista al venderse por 190,4 millones",
+     "summary": "La obra, que llevaba 60 años sin exhibirse, se subastó en poco más de tres minutos en Sotheby´s Nueva York"
+    },
+    {
+     "url": "https://www.diariovasco.com/politica/feroz-disputa-voto-util-20261118131550-nt.html",
+     "media_id": "diario-vasco",
+     "title": "La feroz disputa del voto útil",
+     "summary": ""
+    },
+    {
+     "url": "https://www.elnacional.cat/es/sociedad/guerra-correos-disputa-burocratica-explica-incumplimiento-servicios-minimos-en-rodalies_1727627_102.html",
+     "media_id": "el-nacional",
+     "title": "Guerra de correos: una disputa burocrática explica el incumplimiento de los servicios mínimos en Rodalies",
+     "summary": "Los maquinistas no aceptan que se les comuniquen los servicios mínimos por correo electrónico y fuera de horario laboral"
+    },
+    {
+     "url": "https://www.elsaltodiario.com/cuadernos-de-ciudad/futuros-urbanos-nocturnos-disputa?utm_source=feed",
+     "media_id": "el-salto",
+     "title": "Futuros urbanos nocturnos en disputa",
+     "summary": "Mientras el capitalismo avanza en la colonización de la noche urbana, repensar nuestras ciudades nocturnas como espacios de cuidados, encuentro y resistencia se convierte en una cuestión urgente Temas"
+    },
+    {
+     "url": "https://www.elespanol.com/deportes/tenis/20261119/rafa-jodar-vende-cara-eliminacion-atp-finals-perder-ben-shelton-partido-disputado/1003744464731_0.html",
+     "media_id": "el-espanol",
+     "title": "Rafa Jódar vende muy cara su eliminación en las ATP Finals y pierde ante Ben Shelton en un partido muy disputado",
+     "summary": "El madrileño, que dependía de una carambola, no consiguió hacer sus deberes y consumó su despedida ante el norteamericano (7-6, 7-5)."
+    },
+    {
+     "url": "https://www.eldebate.com/economia/bolsa/20261119/anthropic-eleva-83-dolares-precio-acciones-historica-salida-bolsa_482647.html",
+     "media_id": "el-debate",
+     "title": "Anthropic eleva a 83 dólares el precio de sus acciones en su histórica salida a Bolsa",
+     "summary": ""
+    },
+    {
+     "url": "https://www.eldebate.com/internacional/20261119/musk-arrepiente-haber-gastado-445-millones-dolares-campana-trump-me-siento-bastante-tonto_482648.html",
+     "media_id": "el-debate",
+     "title": "Musk se arrepiente de haber gastado 445 millones de dólares en la campaña de Trump: «Me siento bastante tonto»",
+     "summary": ""
+    },
+    {
+     "url": "https://www.eldebate.com/cultura/20261119/polemico-gogh-robado-nazis-vende-190-millones-dolares-subasta-record_482946.html",
+     "media_id": "el-debate",
+     "title": "El polémico Van Gogh robado por los nazis se vende por más de 190 millones de dólares en una subasta de récord",
+     "summary": ""
+    }
+   ]
+  },
+  {
+   "query": "emergencia mantienen",
+   "expect": [
+    "eleon.es/bierzo/261117/2103455/manzanedo.html",
+    "ancia-manzanedo-valdueza-riesgo-derrumbe.html",
+    "sgo-de-derrumbe-en-manzanedo-de-valdueza.html"
+   ],
+   "story": [
+    "https://www.diariodeleon.es/bierzo/261117/2103455/manzanedo.html",
+    "https://www.diariodeleon.es/bierzo/261119/2103658/bomberos-policia-ponferrada-mantienen-vigilancia-manzanedo-valdueza-riesgo-derrumbe.html",
+    "https://www.diariodecastillayleon.es/leon/el-bierzo/261119/110268/ponferrada-mantiene-activo-el-aviso-1-por-riesgo-de-derrumbe-en-manzanedo-de-valdueza.html"
+   ],
+   "seed": [
+    {
+     "url": "https://www.diariodeleon.es/bierzo/261117/2103455/manzanedo.html",
+     "media_id": "diario-de-leon",
+     "title": "Declarado nivel 1 de emergencia en Manzanedo de Valdueza por riesgo de derrumbe de la ladera",
+     "summary": "Ponferrada extrema las medidas y prepara a Bomberos y Policía Municipal para un hipotético desalojo del pueblo si la amenaza persiste, ante la posibilidad de que se repita una riada como la que mató a"
+    },
+    {
+     "url": "https://www.diariodeleon.es/bierzo/261119/2103658/bomberos-policia-ponferrada-mantienen-vigilancia-manzanedo-valdueza-riesgo-derrumbe.html",
+     "media_id": "diario-de-leon",
+     "title": "Bomberos y policía de Ponferrada mantienen la vigilancia en Manzanedo de Valdueza ante el riesgo de derrumbe",
+     "summary": "El Ayuntamiento mantienen activado el nivel 1 del Plan de Protección Civil ante el riesgo de deslizamiento de una ladera"
+    },
+    {
+     "url": "https://www.diariodecastillayleon.es/leon/el-bierzo/261119/110268/ponferrada-mantiene-activo-el-aviso-1-por-riesgo-de-derrumbe-en-manzanedo-de-valdueza.html",
+     "media_id": "diario-de-castilla-y-leon",
+     "title": "Ponferrada mantiene activo el aviso 1 por riesgo de derrumbe en Manzanedo de Valdueza",
+     "summary": "Técnicos, bomberos y policías continúan su vigilancia en la zona"
+    },
+    {
+     "url": "https://www.elcorreo.com/talento-negocios/desfibrilador-puede-quedarse-bateria-emergencia-20261118003034-nt.html",
+     "media_id": "el-correo",
+     "title": "«Un desfibrilador no puede quedarse sin batería en una emergencia»",
+     "summary": ""
+    },
+    {
+     "url": "https://www.elcorreo.com/bizkaia/euskadi-activara-alertas-emergencia-quimica-proximos-dias-20261118120158-nt.html",
+     "media_id": "el-correo",
+     "title": "Euskadi activará las alertas de emergencia química en los próximos días en estos municipios",
+     "summary": ""
+    },
+    {
+     "url": "https://www.diariodeleon.es/nacional/261119/2103593/siete-decretos-emergencia-examen.html",
+     "media_id": "diario-de-leon",
+     "title": "Siete decretos de emergencia, a examen",
+     "summary": "La sesión comenzó en el Congreso con el choque por las ayudas de 45,32 millones a Ceuta"
+    },
+    {
+     "url": "https://naciodigital.cat/societat/com-cal-actuar-en-cas-daccident-a-laeroport-del-prat-fan-un-simulacre-demergencia.html",
+     "media_id": "nacio-digital",
+     "title": "Com cal actuar en cas d'accident a l'aeroport del Prat? Fan un simulacre d'emergència",
+     "summary": "L'exercici ha avaluat la integració dels plans d'emergència i la capacitat de resposta dels serveis davant d'un sinistre al mar"
+    },
+    {
+     "url": "https://www.lavanguardia.com/natural/20261119/11687570/financiacion-mantiene-duro-pulso-bloques-paises-enfrentados-cop31.html",
+     "media_id": "la-vanguardia",
+     "title": "Bloques de países enfrentados mantienen un duro pulso por la financiación en la COP31",
+     "summary": "La UE rehúye los nuevos compromisos en materia económica y sugiere fórmulas para implicar también a las economías emergentes, sabedora de que Estados Unidos dejó el Acuerdo de París y ha cerrado el 'g"
+    },
+    {
+     "url": "https://www.elmundo.es/elecciones/elecciones-generales/2026/11/18/6afdd75c21efa083408b45b2.html",
+     "media_id": "el-mundo",
+     "title": "PP y Vox mantienen su mayoría, Podemos baja del 1% y los bloques se estancan a la espera del voto de un 14,3% de indecisos",
+     "summary": "El PSOE sigue rascando décimas a su izquierda, pero la ventaja de la derecha no se altera y permanece entre 185 y 196 escaños Leer"
+    },
+    {
+     "url": "https://www.elespanol.com/invertia/observatorios/movilidad/20261118/cuerpo-convence-ccoo-ugt-sfc-no-semaf-maquinistas-mantienen-huelga-noviembre/1003744462318_0.html",
+     "media_id": "el-espanol",
+     "title": "Cuerpo convence a CCOO, UGT y SCF, pero no a Semaf: los maquinistas mantienen la huelga del 23 de noviembre",
+     "summary": "El acuerdo con Transportes supone la desconvocatoria del paro de los controladores ferroviarios previsto para el 19 de noviembre. Más información: Puente describe el caos del control de Adif: otro maq"
+    }
+   ]
+  },
+  {
+   "query": "apagon microsoft",
+   "expect": [
+    "apagon-de-microsoft"
+   ],
+   "story": null,
+   "seed": [
+    {
+     "url": "https://cincodias.elpais.com/opinion/2026-11-17/el-apagon-de-microsoft-activa-los-planes-b.html",
+     "media_id": "cinco-dias",
+     "title": "El apagón de Microsoft activa los planes B",
+     "summary": "Fallos técnicos como el de Microsoft, más probables que un bloqueo político, impulsarán la demanda de servicios tecnológicos de respaldo"
+    },
+    {
+     "url": "https://www.larazon.es/tecnologia-consumo/apagon-microsoft-outlook-alerta-cloro-hotel-alemania-15-intoxicados_202611196afec069103a0e0a474ff0a2.html",
+     "media_id": "la-razon",
+     "title": "El apagón de Microsoft no solo paró oficinas y trenes: bloqueó una alerta por correo y acabó intoxicando con gas cloro a 15 huéspedes de un hotel en Alemania",
+     "summary": "Tecnología"
+    },
+    {
+     "url": "https://www.elmundo.es/economia/2026/11/19/6afed51ae85ece744b8b45ac.html",
+     "media_id": "actualidad-economica",
+     "title": "El \"bugmageddon\": las tres hipótesis que explican la oleada de apagones, ciberataques y amenazas",
+     "summary": "Desde Microsoft hasta la NSA, pasando por Apple: una semana de fallos sin precedentes alimenta las sospechas de ataques coordinados"
+    },
+    {
+     "url": "https://www.laregion.es/mundo/fallos-masivos-apple-outlook-red_1_20261117-4497360.html",
+     "media_id": "la-region",
+     "title": "Fallos masivos en Apple, Outlook y la red interna de la NSA ponen en alerta a Estados Unidos",
+     "summary": "Estados Unidos registra este martes interrupciones simultáneas en servicios como Apple, Gmail, Microsoft y los hoteles Marriott, además de una caída en la red interna de la NSA, en medio de rumores en"
+    },
+    {
+     "url": "https://www.elmundo.es/economia/2026/11/17/6afc15e021efa0f6078b458e.html",
+     "media_id": "actualidad-economica",
+     "title": "¿Apagón este 17 de noviembre? La verdad sobre un rumor que se está volviendo viral y que ya predijeron Los Simpson",
+     "summary": "El origen está en un simulacro de emergencia que va a tener lugar en EEUU en esta fecha"
+    },
+    {
+     "url": "https://cincodias.elpais.com/fortunas/2026-11-10/maria-vazquez-en-microsoft-santiago-vivas-en-impar-capital-y-otros-nombramientos-de-la-semana.html",
+     "media_id": "cinco-dias",
+     "title": "María Vázquez en Microsoft, Santiago Vivas en Impar Capital y otros nombramientos de la semana",
+     "summary": "María Vázquez en Microsoft, Santiago Vivas en Impar Capital y otros nombramientos de la semana"
+    },
+    {
+     "url": "https://www.lavanguardia.com/comprar/tecnologia/20260813/11607022/estreno-rakuten-tv-microsoft-rewards-mkt-micr.html",
+     "media_id": "la-vanguardia",
+     "title": "Una noche de cine en casa con Rakuten TV y Microsoft Rewards",
+     "summary": "Descubre cómo conseguir un alquiler de película en HD con la promoción de Microsoft Rewards y prepara tu próxima sesión de cine en casa."
+    }
+   ]
+  }
+ ]
+}

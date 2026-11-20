@@ -25,6 +25,7 @@
   <form class="period" action="/buscar" method="get">
     <input type="hidden" name="q" value="{{ query }}">
     {% if broad %}<input type="hidden" name="amplio" value="1">{% endif %}
+    {% if exact %}<input type="hidden" name="exacta" value="1">{% endif %}
     <span class="period__label">Periodo</span>
     {% for key, label in [("7", "7 días"), ("30", "30 días"), ("todo", "Todo el índice")] %}
       <button type="submit" name="dias" value="{{ key }}" {% if days_key == key %}aria-pressed="true"{% endif %}>{{ label }}</button>
@@ -37,10 +38,16 @@
 
 {% if result %}
 {% set cov = result.coverage %}
+{% set ex = "&amp;exacta=1" if exact else "" %}
 {% if not result.articles %}
   <div class="empty">
     <p>No hemos encontrado titulares sobre «{{ query }}» en este periodo.</p>
-    <p>Prueba con menos palabras, otro sinónimo o amplía el periodo a <a href="/buscar?q={{ query|urlq }}&amp;dias=todo">todo el índice</a>.</p>
+    {% if result.suggestions %}
+    <p>Prueba con {% for sg in result.suggestions %}<a href="/buscar?q={{ sg.query|urlq }}&amp;dias={{ days_key }}{{ ex }}">«{{ sg.query }}»</a> ({{ sg.count }}){% if not loop.last %}, {% endif %}{% endfor %}.</p>
+    {% else %}
+    <p>Prueba con menos palabras, otro sinónimo o amplía el periodo a <a href="/buscar?q={{ query|urlq }}&amp;dias=todo{{ ex }}">todo el índice</a>.</p>
+    {% endif %}
+    {% if exact %}<p><a href="/buscar?q={{ query|urlq }}&amp;dias={{ days_key }}">Incluir palabras equivalentes</a></p>{% endif %}
   </div>
   {{ sponsored_box(result) }}
 {% else %}
@@ -75,10 +82,25 @@
   <section class="results" aria-labelledby="results-title">
     <h2 id="results-title" class="visually-hidden">Resultados</h2>
 
+    {% if result.approx %}
+    <p class="notice" data-approx>No hay resultados con todas las palabras. Mostramos resultados aproximados que contienen al menos {{ result.approx_words|length - 1 }} de las {{ result.approx_words|length }} palabras: {% for w in result.approx_words %}«{{ w }}»{% if not loop.last %}, {% endif %}{% endfor %}.
+      {% if result.suggestions %}Prueba con {% for sg in result.suggestions %}<a href="/buscar?q={{ sg.query|urlq }}&amp;dias={{ days_key }}{{ ex }}">«{{ sg.query }}»</a> ({{ sg.count }}){% if not loop.last %}, {% endif %}{% endfor %}.{% endif %}</p>
+    {% endif %}
+
+    {% if result.equivalents or result.story_notes %}
+    <p class="notice" data-equivalents>
+      {% if result.equivalents %}También hemos buscado: {{ result.equivalents|join(", ") }}{% if result.equivalents|length >= 6 %}…{% endif %} (palabras equivalentes). {% endif %}
+      {% if result.story_notes %}Incluimos historias en las que distintos medios usan esas palabras por separado. {% endif %}
+      <a href="/buscar?q={{ query|urlq }}&amp;dias={{ days_key }}&amp;exacta=1">Buscar solo mis palabras</a>
+    </p>
+    {% elif exact %}
+    <p class="notice" data-exact>Búsqueda literal: solo las palabras que has escrito. <a href="/buscar?q={{ query|urlq }}&amp;dias={{ days_key }}">Incluir palabras equivalentes</a></p>
+    {% endif %}
+
     {% if result.hidden_summary %}
-    <p class="notice">Mostramos los titulares que contienen «{{ query }}». Hemos dejado fuera {{ result.hidden_summary }} resultado{{ "s" if result.hidden_summary != 1 }} que solo lo mencionan en la entradilla. <a href="/buscar?q={{ query|urlq }}&amp;dias={{ days_key }}&amp;amplio=1">Incluir coincidencias solo en la entradilla</a></p>
+    <p class="notice">Mostramos los titulares que contienen «{{ query }}». Hemos dejado fuera {{ result.hidden_summary }} resultado{{ "s" if result.hidden_summary != 1 }} que solo lo mencionan en la entradilla. <a href="/buscar?q={{ query|urlq }}&amp;dias={{ days_key }}&amp;amplio=1{{ ex }}">Incluir coincidencias solo en la entradilla</a></p>
     {% elif result.broad %}
-    <p class="notice">Se incluyen las coincidencias solo en la entradilla. <a href="/buscar?q={{ query|urlq }}&amp;dias={{ days_key }}">Mostrar solo titulares</a></p>
+    <p class="notice">Se incluyen las coincidencias solo en la entradilla. <a href="/buscar?q={{ query|urlq }}&amp;dias={{ days_key }}{{ ex }}">Mostrar solo titulares</a></p>
     {% endif %}
 
     <details class="filters" data-filters hidden>
@@ -123,6 +145,10 @@
           <h3 class="story__title">{% if s.story_id %}<a href="/historia/{{ s.story_id }}">{{ s.lead.title }}</a>{% else %}{{ s.lead.title }}{% endif %}</h3>
           <p class="story__meta">{{ spectrum_dots(s.positions) }} {{ s.outlets }} medios · {{ s.spread_label }}</p>
         </header>
+        {% set note = result.story_notes.get(s.story_id) if s.story_id else none %}
+        {% if note %}
+        <p class="story__words" data-story-words>Incluida porque los medios usan estas palabras por separado: {% for n in note %}«{{ n.word }}»{% if n.equivalent_of %} (equivalente de «{{ n.equivalent_of }}»){% endif %} en {{ n.outlets|join(" y ") }}{% if not loop.last %} · {% endif %}{% endfor %}</p>
+        {% endif %}
         {{ comparison(s) }}
         <ul class="story__list">
           {% for r in s.rows %}

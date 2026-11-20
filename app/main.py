@@ -20,7 +20,7 @@ from fastapi.templating import Jinja2Templates
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
-from . import __version__
+from . import __version__, synonyms
 from .analysis import (
     Article,
     Story,
@@ -236,15 +236,25 @@ def clean_query(raw: str) -> str:
     return " ".join(text.split())[:MAX_QUERY]
 
 
-async def run_search(query: str, days: int, broad: bool = False) -> dict:
-    key = (query.lower(), days, broad)
+def story_note_lines(notes: dict[int, list[dict]]) -> dict[int, list[dict]]:
+    """Persisted story id -> [{word, equivalent_of, outlets}] with outlet names instead of ids."""
+    def name(mid: str) -> str:
+        m = catalog.media.get(mid)
+        return m.name if m else mid
+    return {sid: [{**n, "outlets": [name(m) for m in n["media"]]} for n in lines] for sid, lines in notes.items()}
+
+
+async def run_search(query: str, days: int, broad: bool = False, exact: bool = False) -> dict:
+    key = (query.lower(), days, broad, exact)
     cached = _cache.get(key)
     if cached and time.time() - cached[0] < CACHE_TTL:
         _cache.move_to_end(key)
         return cached[1]
 
     since = int(time.time()) - days * 86400 if days else None
-    rows, hidden = await asyncio.to_thread(lambda: db.search_ex(query, since=since, broad=broad))
+    found = await asyncio.to_thread(
+        lambda: db.search_full(query, since=since, broad=broad, exact=exact, fallback=True))
+    rows, hidden = found.rows, found.hidden
     bm25 = {r["url"]: r["rank"] for r in rows}
     articles: list[Article] = [article_from_row(catalog, r) for r in rows]
 
@@ -267,7 +277,16 @@ async def run_search(query: str, days: int, broad: bool = False) -> dict:
     news = [a for a in articles if not (a.media and a.media.factchecker)]
     stories = cluster(news)
     await asyncio.to_thread(link_stories, stories)
+    suggestions = []
+    if len(found.units) >= 2 and (found.approx or not news):
+        suggestions = await asyncio.to_thread(lambda: db.suggest_removals(query, since=since, exact=exact))
     result = {
+        "exact": exact,
+        "equivalents": found.synonyms_used[:6],
+        "story_notes": story_note_lines(found.story_notes),
+        "approx": found.approx,
+        "approx_words": [u.display for u in found.units],
+        "suggestions": suggestions,
         "query": query,
         "days": days,
         "broad": broad,
@@ -298,7 +317,7 @@ async def home(request: Request):
 
 @app.get("/buscar", response_class=HTMLResponse)
 async def search_page(request: Request, q: str = Query("", max_length=500), dias: str = "30",
-                      autor: str = Query("", max_length=200), amplio: str = ""):
+                      autor: str = Query("", max_length=200), amplio: str = "", exacta: str = ""):
     name = clean_query(autor)
     if name:
         return await author_page(request, name)
@@ -308,10 +327,11 @@ async def search_page(request: Request, q: str = Query("", max_length=500), dias
         return render(request, "search.html", query=query, days_key=days_key, result=None,
                       error="Escribe al menos dos letras." if q else None)
     broad = amplio == "1"
-    result = await run_search(query, days, broad)
+    exact = exacta == "1"
+    result = await run_search(query, days, broad, exact)
     groups = sorted({a.media.group.name for a in result["articles"] if a.media and a.media.group})
     return render(request, "search.html", query=query, days_key=days_key, result=result, groups=groups,
-                  broad=broad, error=None)
+                  broad=broad, exact=exact, error=None)
 
 
 async def author_page(request: Request, name: str):
@@ -364,7 +384,7 @@ def load_story(story_id: int) -> dict | None:
     first = min(a.published for a in articles)
     checks = []
     if story.topic_query:
-        hits = db.search(story.topic_query, since=first - 86400)
+        hits = db.search(story.topic_query, since=first - 86400, exact=True)
         checks = [a for a in (make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"],
                                            published=r["published"], media_id=r["media_id"]) for r in hits)
                   if a.media and a.media.factchecker][:6]
@@ -443,7 +463,8 @@ async def methodology(request: Request):
         "religious_owners": sorted(RELIGIOUS_OWNER_QIDS.items()), "group_kinds": PUBLIC_GROUP_KIND_PREFIXES,
         "types": PUBLIC_TYPE_PREFIXES, "religious_group_kinds": RELIGIOUS_GROUP_KINDS, "no_group": NO_GROUP_TEXT,
     }
-    return render(request, "methodology.html", sponsored=sponsored_rules_meta(), by_pos=by_pos,
+    return render(request, "methodology.html", sponsored=sponsored_rules_meta(),
+                  synonyms=synonyms.meta(), by_pos=by_pos,
                   territorial=sorted(TERRITORIAL_LABELS.values()),
                   factual=FACTUAL_MAP, audit=audit, descriptive=sorted(DESCRIPTIVE_LABELS), counts=counts,
                   rules=rules)
@@ -466,12 +487,12 @@ async def about(request: Request):
 
 # --- JSON API ------------------------------------------------------------------
 @app.get("/api/buscar")
-async def api_search(q: str = Query(..., max_length=500), dias: str = "30"):
+async def api_search(q: str = Query(..., max_length=500), dias: str = "30", exacta: str = ""):
     query = clean_query(q)
     if len(query) < MIN_QUERY:
         raise HTTPException(422, "La consulta debe tener al menos dos caracteres.")
     _, days = parse_days(dias)
-    r = await run_search(query, days)
+    r = await run_search(query, days, exact=exacta == "1")
     return {
         "query": r["query"],
         "days": r["days"],

@@ -23,6 +23,17 @@ python -m pytest
 python scripts/verify_sources.py   # comprueba enlaces y calificaciones de MBFC
 ```
 
+## Cómo proponer palabras equivalentes
+
+La búsqueda amplía las palabras con `data/synonyms.json` (cada grupo es una lista de términos que los medios usan indistintamente). Para proponer un grupo, abre un PR que lo añada o lo modifique, **un grupo por PR**.
+
+- Escribe los términos sin tildes y en minúsculas; las frases van tal cual («partido popular»). No hace falta añadir el plural.
+- Incluye en el PR la justificación con **titulares reales** de al menos dos medios distintos que usen cada término para lo mismo (enlaces o fragmentos).
+- Solo equivalentes claros del lenguaje periodístico. No se aceptan términos con carga ideológica o que encuadren la noticia (p. ej. «okupa» e «inquilino», «ilegal» e «irregular», «golpe» y «proceso», «terrorista» y «militante»): `tests/test_search_expansion.py` tiene una lista de pares prohibidos; añade ahí los que detectes.
+- Evita palabras muy genéricas o que coincidan con nombres propios («pau», «luz»).
+- Añade, si ayuda, un campo `note` al grupo (`{"words": [...], "note": "..."}`) y actualiza `updated`.
+- Comprueba el efecto con `python scripts/eval_search.py` y añade, si puedes, un caso a `tests/search_cases.json`.
+
 ## Código
 
 ```bash
