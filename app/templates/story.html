@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import subtitle, chip, factual, row_byline, comparison, spectrum_dots, tags, coverage_panel, help, check_line %}
+{% from "_macros.html" import subtitle, chip, factual, row_byline, comparison, spectrum_dots, tags, coverage_panel, help, verification %}
 {% block title %}{{ title }} · Contraste{% endblock %}
 {% block description %}{{ story.outlets }} medios cuentan esta noticia. Qué datos repiten fuentes independientes de distintos grupos y tendencias, y qué solo cuenta un lado.{% endblock %}
 {% block body_class %}page-story{% endblock %}
@@ -60,14 +60,14 @@
       <dt>Verificaciones</dt>
       <dd>
         {% if factchecks %}
+        <p class="check__intro">Estas verificaciones citan, en sus propios datos, la dirección de una de las noticias de esta historia. La calificación es del verificador.</p>
         <ul class="checks checks--inline">
-          {% for a in factchecks %}
-          <li class="check">{{ check_line(a) }}</li>
-          {% endfor %}
+          {% for v in factchecks %}{{ verification(v) }}{% endfor %}
         </ul>
         {% else %}
-        Ningún verificador (Maldita, Newtral, EFE Verifica) lo ha publicado todavía.
+        <p>No hemos encontrado verificaciones enlazadas a estas noticias. Eso no significa que sean ciertas ni falsas.</p>
         {% endif %}
+        {% if topic_query %}<p class="small"><a href="/verificaciones?q={{ topic_query|urlq }}">Ver verificaciones sobre este tema</a> <span class="muted">(pueden tratar de otras cosas)</span></p>{% endif %}
       </dd>
     </div>
   </dl>

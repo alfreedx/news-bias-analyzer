@@ -23,6 +23,18 @@ python -m pytest
 python scripts/verify_sources.py   # comprueba enlaces y calificaciones de MBFC
 ```
 
+## Cómo proponer un dato de propiedad
+
+Edita `data/ownership.json` (clave por id de grupo o de medio). Cada fila necesita:
+
+1. `text`: el hecho tal como lo dice la fuente, sin deducciones (nada de «controla», «influye» ni etiquetas políticas).
+2. `source_title` y `url`: una **fuente primaria** con enlace `https` (CNMV, BOE, página oficial o la transparencia del propio medio, en cuyo caso el texto empieza por «Según el propio medio»).
+3. `date` y `date_kind`: la fecha que indica la fuente (`"datos"`) o, si no da ninguna, el día que la consultaste (`"consulta"`).
+4. Personas físicas: solo si figuran en un registro público (CNMV) o el medio las presenta como titulares reales; si solo las nombra su propia web, agrúpalas.
+5. No añadas cifras de publicidad o subvenciones, ni comparaciones entre medios. Wikipedia no basta como fuente.
+
+`python -m pytest tests/test_ownership.py` valida el formato.
+
 ## Altas automáticas de medios
 
 Cada lunes (05:23 UTC) y a mano (`gh workflow run discover-media.yml`) el workflow

@@ -737,3 +737,24 @@ h1, h2, .story__title, .search-head__title { font-variation-settings: "opsz" 48;
 .brief__more { display: inline-block; margin-left: .6em; font: 600 .85rem var(--sans); }
 .more-results { margin-top: 20px; border-top: 3px double var(--rule-strong); padding-top: 8px; }
 .more-results__toggle { cursor: pointer; font: 600 .95rem var(--sans); padding: 8px 0 14px; }
+
+/* ---------- Fact-checks: quoted from the checkers, never rated by us ---------- */
+.checks li.check { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+.checks li.check:last-child { border-bottom: 0; }
+.check__claim { font-weight: 600; margin: 0 0 4px; overflow-wrap: anywhere; }
+.check__rating { font: .9rem var(--sans); margin: 0 0 4px; }
+.check__meta { font: .8rem var(--sans); color: var(--muted); margin: 0 0 2px; overflow-wrap: anywhere; }
+.check__meta a { color: var(--ink-2); }
+.check__intro { font: .85rem var(--sans); color: var(--muted); margin: 0 0 8px; }
+.checks--list li.check { font-size: 1rem; }
+.checks-search { max-width: 640px; margin: 0 0 8px; }
+.notice--block { margin-top: 28px; }
+.notice--block ul { margin: 6px 0; padding-left: 1.2em; }
+.notice--block li { margin-bottom: 6px; }
+
+/* Ownership facts: every row is a citation */
+.ownership__list { list-style: none; padding: 0; margin: 0 0 12px; }
+.ownership__list li { margin-bottom: 10px; }
+.ownership__list p { margin: 0; }
+.ownership__note { margin: 12px 0; padding: 10px 12px; border-left: 3px solid var(--border, currentColor); }
+.ownership__note p { margin: 0; }

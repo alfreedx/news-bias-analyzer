@@ -464,7 +464,6 @@ def test_search_folds_minor_headlines_and_shows_brief(page: Page, base_url, widt
     brief = page.locator("[data-brief]").first
     expect(brief).to_be_visible()
     expect(brief).to_contain_text("En resumen:")
-    expect(brief).to_contain_text("Verificaciones:")
     fold = page.locator("details[data-more]")
     expect(fold).to_be_visible()
     expect(fold.locator("summary")).to_contain_text("Más titulares (")

@@ -1,4 +1,4 @@
-"""Trust and clarity rules: honest percentages, section evidence, relevance, fact-check cues, story links."""
+"""Trust and clarity rules: honest percentages, section evidence, relevance, story links."""
 
 import asyncio
 import time
@@ -10,7 +10,6 @@ from app import main
 from app.analysis import Coverage, Story, coverage, coverage_summary, make_article
 from app.catalog import get_catalog
 from app.consensus import build_voices, consensus
-from app.factcheck import verdict_cue
 from app.sections import incident_evidence, opinion_evidence, query_is_incident
 from app.stories import link_clusters
 
@@ -189,8 +188,8 @@ def test_search_puts_topical_stories_first_and_folds_the_rest(client):
         if info["story"].incidental:
             assert info["story"].outlets >= 3
     html = client.get("/buscar", params={"q": "vivienda tarpeya"}).text
-    assert "data-brief" in html and "En resumen:" in html and "Verificaciones:" in html
-    assert "Ningún verificador" in html
+    assert "data-brief" in html and "En resumen:" in html
+    assert "Verificaciones:" not in html and "Ningún verificador" not in html  # no fact-checks inside briefs
 
 
 def test_incident_story_with_two_outlets_goes_to_the_fold(client):
@@ -228,34 +227,6 @@ def test_opinion_badge_has_evidence_in_title(client):
 def test_no_match_message_is_not_in_the_html(client):
     assert "Ningún titular coincide" not in client.get("/buscar", params={"q": "vivienda tarpeya"}).text
     assert "data-no-match" not in client.get("/buscar", params={"q": "vivienda tarpeya"}).text
-
-
-# --- T3: fact-check verdict cues --------------------------------------------------------
-@pytest.mark.parametrize("title,cue", [
-    ("Es falso que el Gobierno vaya a prohibir las gasolineras", "falso"),
-    ("Bulo: no hay una alerta sanitaria en Madrid", "bulo"),
-    ("Engañoso: el vídeo no es de esta semana", "engañoso"),
-    ("No, la Seguridad Social no cobra por jubilarse", "no"),
-    ("Sí, es cierto que el IVA baja en alimentos", "cierto"),
-    ("Imagen descontextualizada de las inundaciones", "descontextualizado"),
-    ("Qué sabemos de la reforma de la vivienda", None),
-    ("Cómo se combate y se difunde en las redes sociales durante campañas el bulo", None),  # cue not at the start
-    ("Novedades sobre el alquiler", None),
-    ("", None),
-])
-def test_verdict_cue(title, cue):
-    assert verdict_cue(title) == cue
-
-
-def test_factcheck_label_is_attributed_to_the_checker():
-    a = make_article(cat, title="Es falso que se vaya a cobrar por respirar", url="https://maldita.es/1", summary="",
-                     published=int(time.time()), media_id="maldita")
-    html = str(macros().check_line(a))
-    assert f"{a.source_name} lo califica:" in html and "«Es falso que se vaya a cobrar por respirar»" in html
-    neutral = make_article(cat, title="Qué hay detrás del mensaje viral", url="https://maldita.es/2", summary="",
-                           published=1, media_id="maldita")
-    out = str(macros().check_line(neutral))
-    assert "lo califica" not in out and f"Verificación de {neutral.source_name}:" in out
 
 
 # --- T5, T6, T7, T8 --------------------------------------------------------------------

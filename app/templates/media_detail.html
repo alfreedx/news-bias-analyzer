@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import chip, factual, meter %}
+{% from "_macros.html" import chip, factual, meter, ownership_section %}
 {% set a = m.assessment %}
 {% block title %}{{ m.name }} · Contraste{% endblock %}
 {% block description %}{{ m.name }}: orientación según fuentes externas, fiabilidad y propietarios.{% endblock %}
@@ -23,6 +23,8 @@
       <dd>{{ r.value }}{% if r.source %}<span class="ficha__src"><a href="{{ r.source }}"{% if r.source.startswith('http') %} rel="noopener noreferrer"{% endif %}>{{ r.source_name }}{% if r.retrieved %} · {{ r.retrieved }}{% endif %}</a></span>{% endif %}</dd>
       {% endfor %}
     </dl>
+
+    {{ ownership_section(m.ownership, m.name) }}
 
     <h2 class="section-title">Orientación ideológica</h2>
     {% if a.rated %}

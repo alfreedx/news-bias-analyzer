@@ -5,6 +5,7 @@ from __future__ import annotations
 import html
 import re
 import unicodedata
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 STOPWORDS = frozenset(
     """a al algo algun alguna algunas alguno algunos ante antes aqui asi aun aunque bajo bien cada como con contra cual
@@ -50,3 +51,39 @@ def clean_text(raw: str | None, max_len: int = 400) -> str:
 def keywords(text: str) -> set[str]:
     """Meaningful words of a headline, used to group the same story across outlets."""
     return {w for w in _WORD.findall(fold(text)) if len(w) > 2 and w not in STOPWORDS and not w.isdigit()}
+
+
+_TRACKING_EXACT = frozenset({"fbclid", "gclid", "igshid", "ref", "ref_src", "si", "ito", "cmpid"})
+
+
+# --- URLs -------------------------------------------------------------------------
+def safe_url(value) -> str | None:
+    """The URL when it is a plain http(s) address of reasonable length, else None."""
+    if not isinstance(value, str):
+        return None
+    value = value.strip()
+    if not value or len(value) > 2048:
+        return None
+    try:
+        parts = urlsplit(value)
+        host = parts.hostname
+    except ValueError:
+        return None
+    if parts.scheme.lower() not in ("http", "https") or not host:
+        return None
+    return value
+
+
+def normalize_url(url: str) -> str | None:
+    """Canonical form used to compare addresses: https, lower-case host without "www.", no fragment, no trailing
+    slash, no tracking parameters (utm_*, fbclid, ...); other query parameters kept, sorted. None when unusable."""
+    url = safe_url(url)
+    if url is None:
+        return None
+    parts = urlsplit(url)
+    host = (parts.hostname or "").lower().removeprefix("www.")
+    if parts.port not in (None, 80, 443):
+        host = f"{host}:{parts.port}"
+    query = sorted((k, v) for k, v in parse_qsl(parts.query, keep_blank_values=True)
+                   if not k.lower().startswith("utm_") and k.lower() not in _TRACKING_EXACT)
+    return urlunsplit(("https", host, parts.path.rstrip("/"), urlencode(query), ""))

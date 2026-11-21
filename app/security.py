@@ -63,7 +63,7 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
     expire after one minute.
     """
 
-    LIMITED_PREFIXES = ("/buscar", "/api/")
+    LIMITED_PREFIXES = ("/buscar", "/verificaciones", "/api/")
     # Typing triggers many small requests, so the suggestions endpoint has its own, larger budget and does not
     # eat into the search one.
     SUGGEST_PREFIX = "/api/sugerencias"

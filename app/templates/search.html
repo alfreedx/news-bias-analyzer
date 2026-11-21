@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import subtitle, chip, factual, byline, sponsored_mark, row_byline, comparison, spectrum_dots, tags, coverage_panel, check_line %}
+{% from "_macros.html" import subtitle, chip, factual, byline, sponsored_mark, row_byline, comparison, spectrum_dots, tags, coverage_panel, verification %}
 {% block title %}{% if query %}{{ query }} · {% endif %}Contraste{% endblock %}
 {% block body_class %}page-search{% endblock %}
 
@@ -45,10 +45,7 @@
           <p class="brief__row"><strong>En resumen:</strong>
             {% if info.summary.enough %}{{ info.summary.points|join(" · ") }} <span class="brief__note">({{ info.summary.voices }} fuentes independientes)</span>
             {% else %}aún hay pocas fuentes independientes para comparar.{% endif %}</p>
-          <p class="brief__row"><strong>Verificaciones:</strong>
-            {% if info.checks %}{{ check_line(info.checks[0]) }}
-            {% else %}ningún verificador (Maldita, Newtral, EFE Verifica) lo ha publicado todavía.{% endif %}
-            {% if s.story_id %}<a class="brief__more" href="/historia/{{ s.story_id }}">Ver historia</a>{% endif %}</p>
+          {% if s.story_id %}<p class="brief__row"><a class="brief__more" href="/historia/{{ s.story_id }}">Ver historia</a></p>{% endif %}
         </div>
         {% endif %}
         {% set note = result.story_notes.get(s.story_id) if s.story_id else none %}
@@ -129,16 +126,16 @@
       {% endfor %}
     </ul>
 
-    <h3 class="panel__sub">Verificaciones relacionadas</h3>
+    <h3 class="panel__sub">Verificaciones que mencionan estos términos</h3>
+    <p class="muted small">No necesariamente tratan de estas noticias: son verificaciones de Maldita.es, Newtral, EFE Verifica o Verificat que contienen tus palabras. La calificación es siempre del verificador.</p>
     {% if result.factchecks %}
     <ul class="checks">
-      {% for a in result.factchecks %}
-      <li class="check">{{ check_line(a) }}</li>
-      {% endfor %}
+      {% for v in result.factchecks %}{{ verification(v) }}{% endfor %}
     </ul>
     {% else %}
-    <p class="muted small">Ningún verificador (Maldita, Newtral, EFE Verifica) ha publicado nada que coincida en este periodo.</p>
+    <p class="muted small">No hemos encontrado verificaciones con estos términos en este periodo. Eso no significa que lo que buscas sea cierto ni falso.</p>
     {% endif %}
+    <p class="small"><a href="/verificaciones?q={{ query|urlq }}">Buscar también en todas las verificaciones</a></p>
   </aside>
   </div>
 

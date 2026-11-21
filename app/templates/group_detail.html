@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import chip, factual %}
+{% from "_macros.html" import chip, factual, ownership_section %}
 {% block title %}{{ g.name }} · Contraste{% endblock %}
 
 {% block content %}
@@ -13,6 +13,8 @@
   <section class="profile__main">
     <h2 class="section-title">Propietarios</h2>
     <p>{{ g.owners }}</p>
+
+    {{ ownership_section(g.ownership, g.name) }}
 
     <h2 class="section-title">Cabeceras del grupo</h2>
     <ul class="group-media">

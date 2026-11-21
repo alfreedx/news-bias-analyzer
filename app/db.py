@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import re
 import sqlite3
 import time
@@ -12,7 +13,7 @@ from pathlib import Path
 
 from . import sponsored, synonyms
 from .synonyms import Unit
-from .text import STOPWORDS, fold, stem
+from .text import STOPWORDS, fold, normalize_url, stem
 
 SCHEMA = """
 PRAGMA journal_mode=WAL;
@@ -75,6 +76,54 @@ CREATE TABLE IF NOT EXISTS story_articles (
     PRIMARY KEY (story_id, article_id)
 );
 CREATE INDEX IF NOT EXISTS idx_story_articles_article ON story_articles(article_id);
+"""
+
+# Fact-checker pages read for schema.org ClaimReview data (app/claims.py). Reviews are small and kept much
+# longer than headlines (CLAIMS_RETENTION_DAYS); `claim_review_urls` holds the normalised addresses the checker
+# says the claim appeared at, which is the only way a review is linked to a story.
+CLAIMS_SCHEMA = """
+CREATE TABLE IF NOT EXISTS claim_pages (
+    url TEXT PRIMARY KEY,
+    media_id TEXT NOT NULL,
+    fetched_at INTEGER NOT NULL,
+    status TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS claim_reviews (
+    id INTEGER PRIMARY KEY,
+    page_url TEXT NOT NULL,
+    media_id TEXT NOT NULL,
+    claim TEXT NOT NULL,
+    rating TEXT,
+    claimant TEXT,
+    reviewed_urls TEXT NOT NULL DEFAULT '[]',
+    headline TEXT NOT NULL DEFAULT '',
+    published INTEGER NOT NULL,
+    fetched_at INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_claim_reviews_page ON claim_reviews(page_url);
+CREATE INDEX IF NOT EXISTS idx_claim_reviews_published ON claim_reviews(published);
+CREATE TABLE IF NOT EXISTS claim_review_urls (
+    review_id INTEGER NOT NULL,
+    norm_url TEXT NOT NULL,
+    PRIMARY KEY (review_id, norm_url)
+);
+CREATE INDEX IF NOT EXISTS idx_claim_review_urls_url ON claim_review_urls(norm_url);
+CREATE VIRTUAL TABLE IF NOT EXISTS claim_reviews_fts USING fts5(
+    claim, headline, content='claim_reviews', content_rowid='id',
+    tokenize='unicode61 remove_diacritics 2'
+);
+CREATE TRIGGER IF NOT EXISTS claim_reviews_ai AFTER INSERT ON claim_reviews BEGIN
+    INSERT INTO claim_reviews_fts(rowid, claim, headline) VALUES (new.id, new.claim, new.headline);
+END;
+CREATE TRIGGER IF NOT EXISTS claim_reviews_ad AFTER DELETE ON claim_reviews BEGIN
+    INSERT INTO claim_reviews_fts(claim_reviews_fts, rowid, claim, headline)
+    VALUES ('delete', old.id, old.claim, old.headline);
+END;
+CREATE TABLE IF NOT EXISTS host_backoff (
+    host TEXT PRIMARY KEY,
+    until INTEGER NOT NULL,
+    status TEXT
+);
 """
 
 FEED_FAILURE_LIMIT = 20  # consecutive failures before a feed is left alone for a while
@@ -178,6 +227,7 @@ class Database:
             conn.execute("ALTER TABLE feed_state ADD COLUMN next_attempt INTEGER")
         conn.execute("CREATE INDEX IF NOT EXISTS idx_articles_author ON articles(author) WHERE author IS NOT NULL")
         conn.executescript(STORY_SCHEMA)
+        conn.executescript(CLAIMS_SCHEMA)
 
     @staticmethod
     def reevaluate_sponsored(conn: sqlite3.Connection) -> int:
@@ -254,6 +304,140 @@ class Database:
                      "(SELECT 1 FROM articles a WHERE a.id = story_articles.article_id)")
         conn.execute("DELETE FROM stories WHERE NOT EXISTS "
                      "(SELECT 1 FROM story_articles sa WHERE sa.story_id = stories.id)")
+
+    # --- fact-checker pages and ClaimReview data ---------------------------
+    def hosts_resting(self, now: int | None = None) -> set[str]:
+        """Hosts that refused us (HTTP 401/403/429) and must not be contacted yet."""
+        with self.connect() as conn:
+            return {r[0] for r in conn.execute("SELECT host FROM host_backoff WHERE until > ?",
+                                               (now or int(time.time()),))}
+
+    def rest_host(self, host: str, status: int | str, seconds: int) -> None:
+        with self.connect() as conn:
+            conn.execute("INSERT INTO host_backoff(host, until, status) VALUES (?, ?, ?) "
+                         "ON CONFLICT(host) DO UPDATE SET until = excluded.until, status = excluded.status",
+                         (host, int(time.time()) + seconds, str(status)))
+
+    def claim_pages_pending(self, media_ids: list[str], *, since: int, retry_before: int,
+                            limit: int) -> list[sqlite3.Row]:
+        """Newest-first fact-checker articles whose page was never read (or failed transiently long ago)."""
+        if not media_ids:
+            return []
+        marks = ",".join("?" * len(media_ids))
+        sql = (f"SELECT a.url, a.media_id, a.title, a.published FROM articles a "  # noqa: S608 (placeholders only)
+               f"LEFT JOIN claim_pages p ON p.url = a.url WHERE a.media_id IN ({marks}) AND a.published >= ? "
+               "AND (p.url IS NULL OR (p.status = 'error' AND p.fetched_at < ?)) "
+               "ORDER BY a.published DESC LIMIT ?")
+        with self.connect() as conn:
+            return conn.execute(sql, [*media_ids, since, retry_before, limit]).fetchall()
+
+    def save_claim_page(self, url: str, media_id: str, status: str) -> None:
+        with self.connect() as conn:
+            conn.execute("INSERT INTO claim_pages(url, media_id, fetched_at, status) VALUES (?, ?, ?, ?) "
+                         "ON CONFLICT(url) DO UPDATE SET fetched_at = excluded.fetched_at, status = excluded.status",
+                         (url, media_id, int(time.time()), status))
+
+    def save_claim_reviews(self, page_url: str, media_id: str, headline: str, article_published: int,
+                           reviews: list) -> int:
+        """Replace the reviews of one page with `reviews` (claims.ClaimReview objects); returns how many."""
+        now = int(time.time())
+        with self.connect() as conn:
+            self._delete_reviews(conn, "page_url = ?", (page_url,))
+            for r in reviews:
+                cur = conn.execute(
+                    "INSERT INTO claim_reviews(page_url, media_id, claim, rating, claimant, reviewed_urls, headline, "
+                    "published, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    (page_url, media_id, r.claim, r.rating, r.claimant, json.dumps(r.reviewed_urls), headline,
+                     r.published or article_published, now))
+                norms = {n for n in map(normalize_url, r.reviewed_urls) if n}
+                conn.executemany("INSERT OR IGNORE INTO claim_review_urls(review_id, norm_url) VALUES (?, ?)",
+                                 [(cur.lastrowid, n) for n in norms])
+            conn.execute("INSERT INTO claim_pages(url, media_id, fetched_at, status) VALUES (?, ?, ?, ?) "
+                         "ON CONFLICT(url) DO UPDATE SET fetched_at = excluded.fetched_at, status = excluded.status",
+                         (page_url, media_id, now, "ok" if reviews else "none"))
+        return len(reviews)
+
+    @staticmethod
+    def _delete_reviews(conn: sqlite3.Connection, where: str, params: tuple) -> int:
+        """Delete reviews and their address rows by hand (no cascading foreign keys)."""
+        ids = [r[0] for r in conn.execute(f"SELECT id FROM claim_reviews WHERE {where}", params)]  # noqa: S608
+        for start in range(0, len(ids), 500):
+            chunk = ids[start:start + 500]
+            marks = ",".join("?" * len(chunk))
+            conn.execute(f"DELETE FROM claim_review_urls WHERE review_id IN ({marks})", chunk)  # noqa: S608
+            conn.execute(f"DELETE FROM claim_reviews WHERE id IN ({marks})", chunk)  # noqa: S608
+        return len(ids)
+
+    def purge_claims(self, days: int) -> int:
+        """Drop reviews and page records older than `days` (by the review's date / the read time)."""
+        cutoff = int(time.time()) - days * 86400
+        with self.connect() as conn:
+            removed = self._delete_reviews(conn, "published < ?", (cutoff,))
+            conn.execute("DELETE FROM claim_pages WHERE fetched_at < ?", (cutoff,))
+            conn.execute("DELETE FROM host_backoff WHERE until < ?", (int(time.time()),))
+            return removed
+
+    def claim_reviews_for_urls(self, urls: list[str], limit: int = 12) -> list[dict]:
+        """Reviews whose checker names (after normalisation) the address of one of `urls`. No keyword matching."""
+        norms = list(dict.fromkeys(n for n in map(normalize_url, urls) if n))
+        found: dict[int, dict] = {}
+        with self.connect() as conn:
+            for start in range(0, len(norms), 500):
+                chunk = norms[start:start + 500]
+                marks = ",".join("?" * len(chunk))
+                sql = ("SELECT DISTINCT cr.* FROM claim_review_urls u JOIN claim_reviews cr ON cr.id = u.review_id "  # noqa: S608
+                       f"WHERE u.norm_url IN ({marks})")
+                for r in conn.execute(sql, chunk):
+                    found[r["id"]] = {**dict(r), "url": r["page_url"]}
+        return sorted(found.values(), key=lambda r: -r["published"])[:limit]
+
+    def claim_reviews_for_pages(self, page_urls: list[str]) -> dict[str, list[dict]]:
+        """page address -> its stored reviews (for fact-checker articles shown in a list)."""
+        out: dict[str, list[dict]] = {}
+        urls = list(dict.fromkeys(page_urls))
+        with self.connect() as conn:
+            for start in range(0, len(urls), 500):
+                chunk = urls[start:start + 500]
+                marks = ",".join("?" * len(chunk))
+                sql = f"SELECT * FROM claim_reviews WHERE page_url IN ({marks}) ORDER BY id"  # noqa: S608
+                for r in conn.execute(sql, chunk):
+                    out.setdefault(r["page_url"], []).append(dict(r))
+        return out
+
+    def verifications(self, query: str = "", *, media_ids: list[str], limit: int = 30) -> list[dict]:
+        """Fact-checks, newest first: stored ClaimReviews plus checker headlines that have none.
+
+        With a query, only items whose claim or headline contain every word (or an equivalent one). Each item:
+        media_id, url, headline, claim (None without ClaimReview), rating, claimant, published.
+        """
+        fts = build_fts_query(query) if query else None
+        if query and not fts:
+            return []
+        items: list[dict] = []
+        with self.connect() as conn:
+            if fts:
+                rows = conn.execute(
+                    "SELECT cr.* FROM claim_reviews_fts JOIN claim_reviews cr ON cr.id = claim_reviews_fts.rowid "
+                    "WHERE claim_reviews_fts MATCH ? ORDER BY cr.published DESC LIMIT ?", (fts, limit)).fetchall()
+            else:
+                rows = conn.execute("SELECT * FROM claim_reviews ORDER BY published DESC LIMIT ?", (limit,)).fetchall()
+            items += [{"media_id": r["media_id"], "url": r["page_url"], "headline": r["headline"],
+                       "claim": r["claim"], "rating": r["rating"], "claimant": r["claimant"],
+                       "published": r["published"]} for r in rows]
+            if media_ids:
+                marks = ",".join("?" * len(media_ids))
+                join = "JOIN articles_fts ON articles_fts.rowid = a.id " if fts else ""
+                match = "AND articles_fts MATCH ? " if fts else ""
+                sql = (f"SELECT a.* FROM articles a {join}WHERE a.media_id IN ({marks}) "  # noqa: S608
+                       "AND a.sponsored IS NULL "
+                       "AND NOT EXISTS (SELECT 1 FROM claim_reviews c WHERE c.page_url = a.url) "
+                       f"{match}ORDER BY a.published DESC LIMIT ?")
+                params = [*media_ids, *([fts] if fts else []), limit]
+                items += [{"media_id": r["media_id"], "url": r["url"], "headline": r["title"], "claim": None,
+                           "rating": None, "claimant": None, "published": r["published"]}
+                          for r in conn.execute(sql, params)]
+        items.sort(key=lambda i: -i["published"])
+        return items[:limit]
 
     def get_feed_state(self, url: str) -> sqlite3.Row | None:
         with self.connect() as conn:

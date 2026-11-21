@@ -34,11 +34,11 @@ from .analysis import (
     split_sponsored,
     story_score,
 )
-from .catalog import get_catalog
+from .catalog import NO_OWNERSHIP_DATA, get_catalog, ownership_public
+from .claims import fetch_claims
 from .config import BASE_DIR, settings
 from .consensus import SIDE_LABEL, Consensus, consensus
 from .db import Database
-from .factcheck import verdict_cue
 from .facts import (
     NO_GROUP_TEXT,
     OWNERSHIP_LABELS,
@@ -107,11 +107,20 @@ def build_front_page() -> None:
     state.front_updated = int(time.time())
 
 
+async def read_claim_pages() -> None:
+    """Read a few fact-checker pages for ClaimReview data. Whatever goes wrong here never stops the ingest."""
+    try:
+        await fetch_claims(catalog, db)
+    except Exception:
+        log.exception("reading fact-checker pages failed")
+
+
 async def ingest_loop() -> None:
     while True:
         state.ingesting = True
         try:
             await ingest_all(catalog, db)
+            await read_claim_pages()
             await asyncio.to_thread(assign_stories, db, catalog)
             await asyncio.to_thread(build_front_page)
             _cache.clear()
@@ -244,11 +253,20 @@ def sponsored_issue_url() -> str:
     return f"{settings.repo_url}/issues/new?title={urlq('Marca de patrocinado: falta o sobra')}&body={urlq(body)}"
 
 
+def ownership_issue_url(name: str) -> str:
+    """Prefilled GitHub issue to report a wrong ownership fact: only the page name and the questions to answer."""
+    body = "\n".join([f"Página: {name}", "", "¿Qué dato es incorrecto o está desactualizado?",
+                       "Enlace a la fuente pública que lo muestra, con su fecha:"])
+    title = urlq("Propiedad: dato incorrecto en " + name[:100])
+    return f"{settings.repo_url}/issues/new?title={title}&body={urlq(body)}"
+
+
 templates.env.filters["urlq"] = urlq
 templates.env.globals.update(
-    issue_url=issue_url, sponsored_issue_url=sponsored_issue_url, clock=clock,
+    issue_url=issue_url, sponsored_issue_url=sponsored_issue_url,
+    ownership_issue_url=ownership_issue_url, NO_OWNERSHIP_DATA=NO_OWNERSHIP_DATA, clock=clock,
     long_date=long_date, time_ago=time_ago, iso=iso, pos_class=pos_class, score_step=score_step, pct=pct,
-    coverage_summary=coverage_summary, verdict_cue=verdict_cue, sponsored_evidence=sponsored_evidence,
+    coverage_summary=coverage_summary, sponsored_evidence=sponsored_evidence,
     POSITION_LABELS=POSITION_LABELS, bucket=bucket, settings=settings, version=__version__,
 )
 
@@ -315,7 +333,8 @@ async def run_search(query: str, days: int, broad: bool = False, exact: bool = F
                 a.relevance *= INCIDENT_FACTOR
         articles.sort(key=lambda a: a.relevance, reverse=True)
     articles, marked = split_sponsored(articles)  # the outlet's own «patrocinado» marks: listed apart, never counted
-    factchecks = [a for a in articles if a.media and a.media.factchecker][:6]
+    factchecks = await asyncio.to_thread(
+        check_items, [a for a in articles if a.media and a.media.factchecker][:6])
     news = [a for a in articles if not (a.media and a.media.factchecker)]
     stories = cluster(news)
     for s in stories:
@@ -442,21 +461,39 @@ def story_summary(c: Consensus, story: Story) -> dict:
             "sides_text": _join(sides), "differences": differences}
 
 
-def fact_checks_for(story: Story, first: int) -> list[Article]:
-    """Fact-checker headlines (up to 6) that match the story's shared words, from a day before its first headline."""
-    if not story.topic_query:
-        return []
-    hits = db.search(story.topic_query, since=first - 86400, exact=True)
-    return [a for a in (make_article(catalog, title=r["title"], url=r["url"], summary=r["summary"],
-                                     published=r["published"], media_id=r["media_id"]) for r in hits)
-            if a.media and a.media.factchecker][:6]
+def present_check(item: dict) -> dict:
+    """A fact-check as the pages show it: the checker's own words (claim, rating, who said it), never ours."""
+    media = catalog.media.get(item["media_id"])
+    return {"source": media.name if media else item["media_id"], "source_id": item["media_id"], "url": item["url"],
+            "headline": item.get("headline") or "", "claim": item.get("claim"), "rating": item.get("rating"),
+            "claimant": item.get("claimant"), "published": item["published"]}
+
+
+def check_items(articles: list[Article]) -> list[dict]:
+    """Fact-checker articles matched by the reader's own words: their ClaimReview when we have it, else the
+    headline alone. The rating never comes from the headline."""
+    stored = db.claim_reviews_for_pages([a.url for a in articles])
+    out = []
+    for a in articles:
+        base = {"media_id": a.media.id if a.media else "", "url": a.url, "headline": a.title,
+                "published": a.published}
+        for r in stored.get(a.url) or [None]:
+            item = dict(base)
+            if r:
+                item |= {"claim": r["claim"], "rating": r["rating"], "claimant": r["claimant"],
+                         "published": r["published"]}
+            out.append(present_check(item))
+    return out
+
+
+VERIFICATIONS_LIMIT = 30
 
 
 def story_brief(story: Story) -> dict:
-    """Compact «En resumen» of a story in the search results: shared terms and fact-checks, nothing else."""
+    """Compact «En resumen» of a story in the search results: shared terms only (never fact-checks)."""
     summary = story_summary(consensus(story.articles), story)
     summary["points"] = summary["points"][:3]
-    return {"summary": summary, "checks": fact_checks_for(story, min(a.published for a in story.articles))[:2]}
+    return {"summary": summary}
 
 
 RECENT_SECONDS = 3 * 3600  # a story whose first headline is younger than this is still growing
@@ -477,10 +514,11 @@ def load_story(story_id: int) -> dict | None:
     story.score = story_score(articles)
     story.articles.sort(key=lambda a: (a.position is None, a.position if a.position is not None else 0))
     first = min(a.published for a in articles)
-    checks = fact_checks_for(story, first)
+    checks = [present_check(r) for r in db.claim_reviews_for_urls([a.url for a in articles])]
     c = consensus(articles)
     return {"story": story, "title": row["title"], "cov": coverage(articles), "consensus": c,
             "summary": story_summary(c, story), "factchecks": checks, "first": first,
+            "topic_query": story.topic_query,
             "very_recent": time.time() - first < RECENT_SECONDS,
             "last": max(a.published for a in articles)}
 
@@ -491,6 +529,21 @@ async def story_page(request: Request, story_id: int):
     if data is None:
         raise HTTPException(404)
     return render(request, "story.html", **data)
+
+
+@app.get("/verificaciones", response_class=HTMLResponse)
+async def verifications_page(request: Request, q: str = Query("", max_length=500)):
+    query = clean_query(q)
+    items = await asyncio.to_thread(find_verifications, query)
+    return render(request, "verificaciones.html", query=query, items=items, checkers=catalog.factcheckers)
+
+
+def find_verifications(query: str) -> list[dict]:
+    """Recent fact-checks (or those matching `query`), newest first, at most VERIFICATIONS_LIMIT."""
+    if query and len(query) < MIN_QUERY:
+        return []
+    rows = db.verifications(query, media_ids=[m.id for m in catalog.factcheckers], limit=VERIFICATIONS_LIMIT)
+    return [present_check(r) for r in rows]
 
 
 @app.get("/medios", response_class=HTMLResponse)
@@ -595,9 +648,19 @@ async def api_search(q: str = Query(..., max_length=500), dias: str = "30", exac
         "days": r["days"],
         "coverage": r["coverage"].to_public(),
         "stories": [[a.to_public() for a in s.articles] for s in r["stories"]],
-        "factchecks": [a.to_public() for a in r["factchecks"]],
+        "factchecks": r["factchecks"],
         "sponsored": [a.to_public() for a in r["sponsored"]],
     }
+
+
+@app.get("/api/verificaciones")
+async def api_verifications(q: str = Query("", max_length=500)):
+    """Fact-checks quoted from the checkers themselves; `q` filters by words in the claim or the headline."""
+    query = clean_query(q)
+    if q and len(query) < MIN_QUERY:
+        raise HTTPException(422, "La consulta debe tener al menos dos caracteres.")
+    items = await asyncio.to_thread(find_verifications, query)
+    return {"query": query, "verifications": items}
 
 
 @app.get("/api/sugerencias")
@@ -623,7 +686,8 @@ async def api_suggestions(q: str = ""):
 @app.get("/api/medios")
 async def api_media():
     return {"media": [m.to_public() for m in catalog.media.values()],
-            "groups": [{"id": g.id, "name": g.name, "owners": g.owners, "sources": g.sources}
+            "groups": [{"id": g.id, "name": g.name, "owners": g.owners, "sources": g.sources,
+                        "ownership_facts": ownership_public(g.ownership)}
                        for g in catalog.groups.values()]}
 
 

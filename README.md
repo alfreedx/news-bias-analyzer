@@ -26,7 +26,7 @@ Media Bias/Fact Check, Wikipedia and Wikidata), its factual reliability, who own
 | **En resumen** | En cada historia: qué coinciden en contar, qué cambia según el medio y qué han verificado Maldita, Newtral o EFE Verifica; con cronología y aviso de agrupación automática. |
 | **Contenido patrocinado** | Solo cuando lo marca el propio medio (categoría RSS, sección de la URL o prefijo del titular) según reglas públicas en `data/sponsored_rules.json`: nota «Marcado como patrocinado por el medio», fuera de historias y recuentos, y aparte en las búsquedas. No detectar una marca no garantiza que una pieza no sea publicidad. |
 | **Cómo leer** | Glosario `/como-leer` con los términos del sitio. |
-| **Verificaciones** | Desmentidos relacionados de Maldita.es, Newtral y EFE Verifica. |
+| **Verificaciones** | Página `/verificaciones`: afirmaciones revisadas por Maldita.es, Newtral, EFE Verifica y Verificat, citadas tal como las publican (datos `ClaimReview` de su web). Una historia solo muestra una verificación si el verificador cita la dirección de una de sus noticias; nunca por palabras parecidas. Contraste no emite veredictos. |
 
 Sin cookies, sin rastreadores, sin cuentas y sin coste.
 
@@ -153,7 +153,7 @@ app/
   db.py          SQLite + FTS5, consultas parametrizadas
   security.py    cabeceras de seguridad y limitador de peticiones
   templates/     HTML (Jinja2)   ·   static/  CSS, JS e icono
-data/            catálogo de medios y grupos (CC BY-SA 4.0)
+data/            catálogo de medios y grupos y propiedad citada, `ownership.json` (CC BY-SA 4.0)
 scripts/         verify_sources.py: comprueba fuentes y calificaciones; sponsored_survey.py: mide las marcas de patrocinio de los RSS;
                  discover_media.py: descubre medios candidatos (Wikidata + feeds) y los da de alta con --apply
 tests/           pytest
@@ -164,7 +164,7 @@ tests/           pytest
 | Ruta | Descripción |
 |---|---|
 | `GET /api/buscar?q=texto&dias=7\|30\|todo` | Historias, cobertura y verificaciones en JSON |
-| `GET /api/medios` | Catálogo completo con evaluaciones |
+| `GET /api/medios` | Catálogo completo con evaluaciones y propiedad citada (`ownership_facts`: texto, fuente y fecha de cada dato) |
 | `GET /api/salud` | Estado del servicio |
 | `GET /estado` | Página pública: feeds activos, con fallos y en pausa, última lectura y tamaño del índice (sin IP ni datos de visitantes) |
 

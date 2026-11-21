@@ -30,12 +30,23 @@
   {%- if a.opinion -%}<span class="byline__sep" aria-hidden="true">·</span><span class="mark-opinion" title="{{ a.opinion_evidence }}. Es una pieza de opinión según el propio medio, no una noticia.">Opinión</span>{%- endif -%}
 {%- endmacro %}
 
-{#- A fact-checker's own headline, with a short attributed label; the cue word found is shown as evidence. -#}
-{% macro check_line(a) -%}
-  {%- set cue = verdict_cue(a.title) -%}
-  <span class="check__by">{% if cue %}<span title="Palabra clave detectada al inicio de su titular: «{{ cue }}»">{{ a.source_name }} lo califica:</span>{% else %}Verificación de {{ a.source_name }}:{% endif %}</span>
-  <a class="check__title" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">«{{ a.title }}»</a>
-  <span class="checks__by">{{ time_ago(a.published) }}</span>
+{#- One fact-check, quoted from the checker: the claim, its rating and who said it come from the checker's own
+    structured data (ClaimReview) and are never inferred from a headline. Without that data: headline and link. -#}
+{% macro verification(v) -%}
+  <li class="check">
+    {%- if v.claim %}
+    <p class="check__claim">Lo que se dice: «{{ v.claim }}»</p>
+    {%- if v.rating %}
+    <p class="check__rating">{{ v.source }} lo califica: <strong>{{ v.rating }}</strong></p>
+    {%- endif %}
+    {%- if v.claimant %}
+    <p class="check__meta">Atribuido a: {{ v.claimant }}</p>
+    {%- endif %}
+    {%- else %}
+    <p class="check__claim">«{{ v.headline }}»</p>
+    {%- endif %}
+    <p class="check__meta">{{ v.source }} · <time datetime="{{ iso(v.published) }}">{{ time_ago(v.published) }}</time> · <a href="{{ v.url }}" rel="noopener noreferrer" target="_blank">Leer la verificación completa</a></p>
+  </li>
 {%- endmacro %}
 
 {% macro byline(a, show_group=True) -%}
@@ -159,3 +170,29 @@
     {% endfor %}
   </aside>
 {%- endmacro %}
+
+
+{# Cited ownership facts: every row is a citation (text, source link, date); missing data is stated, never left blank. #}
+{% macro ownership_section(own, name) %}
+<section class="ownership" aria-labelledby="propietario-titulo">
+  <h2 class="section-title" id="propietario-titulo">Quién figura como propietario</h2>
+  {% if own.rows %}
+    {% if own.context %}<p class="small muted">{{ own.context }}</p>{% endif %}
+    <ul class="ownership__list">
+      {% for r in own.rows %}
+      <li>
+        <p>{{ r.text }}</p>
+        <p class="small muted">Fuente: <a href="{{ r.url }}" rel="noopener noreferrer">{{ r.source_title }}</a> · {{ r.date_label }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="muted">{{ NO_OWNERSHIP_DATA }}</p>
+  {% endif %}
+  <div class="ownership__note small">
+    <h3 class="sub">Qué no significa esto</h3>
+    <p>Ser accionista de una empresa no demuestra que influya en lo que publica el medio. Los porcentajes de la CNMV son la última comunicación de cada accionista, pueden estar desactualizados y no deben sumarse: una misma participación puede figurar a nombre de una sociedad y de quien la controla, como «indirecta».</p>
+  </div>
+  <p class="small"><a href="{{ ownership_issue_url(name) }}" rel="noopener noreferrer" target="_blank">¿Ves un dato incorrecto? Avísanos</a> · <a href="/metodologia#propiedad">Cómo lo hacemos</a></p>
+</section>
+{% endmacro %}

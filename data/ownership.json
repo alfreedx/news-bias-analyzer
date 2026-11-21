@@ -1,0 +1,1758 @@
+{
+  "_meta": {
+    "description": "Quién figura como propietario según fuentes públicas citadas (CNMV, la web del propio medio, BOE y páginas oficiales). Cada fila lleva su fuente y su fecha; no se incluyen inferencias.",
+    "license": "CC BY-SA 4.0",
+    "retrieved": "2026-11-21"
+  },
+  "groups": {
+    "prisa": {
+      "context": "Accionistas con participación significativa de Promotora de Informaciones, S.A. (Prisa), según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "Amber Capital UK LLP: 29,568 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2022-12-15",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Oughourlian, Joseph: 29,568 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2022-12-15",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Oviedo Holdings S.A.R.L.: 24,787 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2023-05-22",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Vivendi, S.E.: 11,795 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2023-05-25",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Rucandio, S.A.: 7,611 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2019-04-22",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Global Alconaba SL: 7,076 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2022-05-20",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Control Empresarial de Capitales, S.A. de C.V.: 7,015 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2023-05-23",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Amber Capital Investment Management ICAV - Amber Global Opportunities Fund: 5,225 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2024-05-13",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Utor Martínez, Juan Adolfo: 4,924 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2025-04-11",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Banco Santander, S.A.: 4,145 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2017-02-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Al Thani, Khalid Thani Abdullah: 3,353 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2024-12-19",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "vocento": {
+      "context": "Accionistas con participación significativa de Vocento, S.A., según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2024-03-04",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Mezouna, S.A.: 11,077 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2011-04-01",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Careaga, Carmen: 10,675 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Valjarafe, S.L.: 10,143 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2025-01-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Bergareche Busquet, Jorge: 6,722 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2022-04-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Ybarra, Enrique: 6,536 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2017-03-27",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Acción concertada: 6,393 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2014-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Selección, FI: 5,011 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2019-10-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Iberia, FI: 3,091 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-03-19",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "planeta": {
+      "context": "Accionistas con participación significativa de Atresmedia Corporación de Medios de Comunicación, S.A. (empresa editora de Antena 3, laSexta y Onda Cero), según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "Planeta Corporación, S.R.L.: 41,697 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Atresmedia Corporación de Medios de Comunicación, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-78839271&lang=es",
+          "date": "2016-12-28",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Bertelsmann, A.G.: 19,166 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Atresmedia Corporación de Medios de Comunicación, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-78839271&lang=es",
+          "date": "2013-03-12",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "mediaset": {
+      "context": "Accionistas de MFE-MediaForEurope N.V., sociedad matriz de Mediaset España según nuestro catálogo, según su propia web. No son datos de Mediaset España.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "Fininvest S.p.A.: 33,34 % del total de acciones MFE A+B (50,57 % de las MFE B; 24,71 % de las MFE A; 46,268 % por valor nominal, criterio AFM)",
+          "source_title": "MFE-MediaForEurope: estructura del capital social (web propia)",
+          "url": "https://www.mfemediaforeurope.com/en/governance/share-capital-structure/",
+          "date": "2026-10-20",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Vivendi S.E.: 15,89 % del total de acciones MFE A+B (23,79 % de las MFE B; 11,93 % de las MFE A; 21,82 % por valor nominal)",
+          "source_title": "MFE-MediaForEurope: estructura del capital social (web propia)",
+          "url": "https://www.mfemediaforeurope.com/en/governance/share-capital-structure/",
+          "date": "2026-10-20",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "efe": {
+      "context": null,
+      "rows": [
+        {
+          "kind": "publico",
+          "text": "SEPI (Sociedad Estatal de Participaciones Industriales) figura con el 100 % de Agencia EFE.",
+          "source_title": "SEPI: Agencia EFE",
+          "url": "https://www.sepi.es/en/sectores/agencia-efe",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        }
+      ]
+    },
+    "rtve": {
+      "context": null,
+      "rows": [
+        {
+          "kind": "publico",
+          "text": "La Ley 17/2006 define la Corporación RTVE como sociedad mercantil estatal con capital de titularidad íntegramente estatal.",
+          "source_title": "BOE: Ley 17/2006, de la radio y la televisión de titularidad estatal",
+          "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2006-9958",
+          "date": "2006-06-06",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "diario-prensa-digital": {
+      "context": null,
+      "rows": [
+        {
+          "kind": "propia",
+          "text": "Según el propio medio, los principales accionistas de elDiario.es son personas que trabajan en el periódico.",
+          "source_title": "elDiario.es: cuentas de 2024",
+          "url": "https://www.eldiario.es/escolar/cuentas-eldiario-2024-periodico-blindado-comunidad_132_12421645.html",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        }
+      ]
+    }
+  },
+  "outlets": {
+    "eldiario-es": {
+      "context": null,
+      "rows": [
+        {
+          "kind": "propia",
+          "text": "Según el propio medio, los principales accionistas son personas que trabajan en el periódico, y publica sus cuentas de 2024 y el número de socios (98.019 a cierre de 2024).",
+          "source_title": "elDiario.es: cuentas de 2024",
+          "url": "https://www.eldiario.es/escolar/cuentas-eldiario-2024-periodico-blindado-comunidad_132_12421645.html",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        },
+        {
+          "kind": "financiacion",
+          "text": "Según el propio medio, se financia sobre todo con aportaciones de socios y con publicidad, y sus estatutos limitan lo que puede aportar un solo anunciante.",
+          "source_title": "elDiario.es: cuentas de 2024",
+          "url": "https://www.eldiario.es/escolar/cuentas-eldiario-2024-periodico-blindado-comunidad_132_12421645.html",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        }
+      ]
+    },
+    "infolibre": {
+      "context": null,
+      "rows": [
+        {
+          "kind": "propia",
+          "text": "Según el propio medio, los accionistas de Ediciones Prensa Libre, S.L. son: Rockville S.L. (44,40 %), FiatLux Ediciones S.L. (16,08 %), Société Éditrice de Mediapart (10,35 %), cuatro personas físicas con un 4,48 % cada una, Sociedad de Amigos de infoLibre S.L. (3,67 %) y el resto por debajo del 1 %.",
+          "source_title": "infoLibre: transparencia",
+          "url": "https://www.infolibre.es/transparencia/",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        },
+        {
+          "kind": "financiacion",
+          "text": "Según el propio medio, se apoya en tres pilares: suscripciones (16.207 socias y socios activos a 28/02/2026), publicidad e ingresos complementarios (revista, licencias y ayudas públicas).",
+          "source_title": "infoLibre: transparencia",
+          "url": "https://www.infolibre.es/transparencia/",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        }
+      ]
+    },
+    "publico": {
+      "context": null,
+      "rows": [
+        {
+          "kind": "propia",
+          "text": "Según el propio medio, está editado por Display Connectors S.L., cuyo capital pertenece a Orpheus Media S.L. (81,15 %) y Mediacable Servicios de Producción S.L. (18,85 %), y la titularidad real corresponde a Jaume Roures Llop.",
+          "source_title": "Público: transparencia",
+          "url": "https://www.publico.es/info/transparencia.html",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        },
+        {
+          "kind": "financiacion",
+          "text": "Según el propio medio, en 2025 sus ingresos procedieron de socias y socios, administraciones públicas y publicidad comercial con derechos de publicación; cuenta con 12.436 socios a 31/12/2025.",
+          "source_title": "Público: transparencia",
+          "url": "https://www.publico.es/info/transparencia.html",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        }
+      ]
+    },
+    "la-marea": {
+      "context": null,
+      "rows": [
+        {
+          "kind": "propia",
+          "text": "Según el propio medio, es una cooperativa sin ánimo de lucro (MásPúblico) con 76 socias de consumo y 3 de trabajo a 26/01/2026, y un voto por socia.",
+          "source_title": "La Marea: transparencia",
+          "url": "https://lamarea.com/transparencia",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        },
+        {
+          "kind": "financiacion",
+          "text": "Según el propio medio, ingresa sobre todo por venta de revistas y suscripciones.",
+          "source_title": "La Marea: transparencia",
+          "url": "https://lamarea.com/transparencia",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        }
+      ]
+    },
+    "ctxt": {
+      "context": null,
+      "rows": [
+        {
+          "kind": "propia",
+          "text": "Según el propio medio, la editora es Revista Contexto S.L., con 190 pequeños accionistas y 300.000 euros de capital social en 2024.",
+          "source_title": "CTXT: cuentas y quiénes somos",
+          "url": "https://ctxt.es/es/20210501/Firmas/36/Cuentas-qui%C3%A9nes-somos.htm",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        },
+        {
+          "kind": "financiacion",
+          "text": "Según el propio medio, su modelo de negocio se basa, desde octubre de 2016, en las suscripciones (9.587 suscriptores en diciembre de 2024).",
+          "source_title": "CTXT: cuentas y quiénes somos",
+          "url": "https://ctxt.es/es/20210501/Firmas/36/Cuentas-qui%C3%A9nes-somos.htm",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        }
+      ]
+    },
+    "el-salto": {
+      "context": null,
+      "rows": [
+        {
+          "kind": "propia",
+          "text": "Según el propio medio, es un proyecto de «propiedad colectiva», con más de 10.400 personas suscritas y Cooperativa Editorial como editora.",
+          "source_title": "El Salto: cuentas de 2025",
+          "url": "https://www.elsaltodiario.com/salto-de-carro/cuentas-salto-2025-2026-tenemos-un-problema",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        },
+        {
+          "kind": "propia",
+          "text": "Según el propio medio, el 40 % del voto está reservado a las socias y la venta de la cabecera exige un referéndum vinculante.",
+          "source_title": "El Salto: diez principios",
+          "url": "https://www.elsaltodiario.com/salto-de-carro/diez-principios-diferencias-el-salto",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        },
+        {
+          "kind": "financiacion",
+          "text": "Según el propio medio, el 67 % de sus ingresos de 2025 procede de cuotas, donaciones y bonos de apoyo.",
+          "source_title": "El Salto: cuentas de 2025",
+          "url": "https://www.elsaltodiario.com/salto-de-carro/cuentas-salto-2025-2026-tenemos-un-problema",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        }
+      ]
+    },
+    "directa": {
+      "context": null,
+      "rows": [
+        {
+          "kind": "propia",
+          "text": "Según el propio medio, La Directa SCCL es una cooperativa y publica en su web sus cuentas de 2025.",
+          "source_title": "La Directa: transparencia",
+          "url": "https://cooperativa.directa.cat/transparencia/",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        },
+        {
+          "kind": "financiacion",
+          "text": "Según el propio medio, las suscripciones suponen cerca del 70 % de sus ingresos totales de 2025.",
+          "source_title": "La Directa: transparencia",
+          "url": "https://cooperativa.directa.cat/transparencia/",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        }
+      ]
+    },
+    "vilaweb": {
+      "context": null,
+      "rows": [
+        {
+          "kind": "propia",
+          "text": "Según el propio medio (en catalán), su editora es Partal, Maresma & Associats, fundada en 1996 por dos personas físicas que, dice, siguen siendo sus propietarias.",
+          "source_title": "VilaWeb: qui som",
+          "url": "https://www.vilaweb.cat/qui-som/",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        },
+        {
+          "kind": "financiacion",
+          "text": "Según el propio medio, sus 25.000 suscriptores representan el 70 % de los ingresos del presupuesto anual.",
+          "source_title": "VilaWeb: qui som",
+          "url": "https://www.vilaweb.cat/qui-som/",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        }
+      ]
+    },
+    "canal-sur-television": {
+      "context": null,
+      "rows": [
+        {
+          "kind": "publico",
+          "text": "La Ley 18/2007 establece que el capital de Canal Sur Televisión, S.A. estará suscrito íntegramente por la Junta de Andalucía a través de la RTVA (art. 9).",
+          "source_title": "BOE: Ley 18/2007, de la Radio y Televisión de titularidad autonómica",
+          "url": "https://www.boe.es/buscar/doc.php?id=BOE-A-2008-1185",
+          "date": "2008-01-23",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "el-pais": {
+      "context": "Accionistas con participación significativa de Promotora de Informaciones, S.A. (Prisa), según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "Amber Capital UK LLP: 29,568 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2022-12-15",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Oughourlian, Joseph: 29,568 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2022-12-15",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Oviedo Holdings S.A.R.L.: 24,787 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2023-05-22",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Vivendi, S.E.: 11,795 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2023-05-25",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Rucandio, S.A.: 7,611 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2019-04-22",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Global Alconaba SL: 7,076 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2022-05-20",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Control Empresarial de Capitales, S.A. de C.V.: 7,015 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2023-05-23",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Amber Capital Investment Management ICAV - Amber Global Opportunities Fund: 5,225 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2024-05-13",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Utor Martínez, Juan Adolfo: 4,924 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2025-04-11",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Banco Santander, S.A.: 4,145 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2017-02-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Al Thani, Khalid Thani Abdullah: 3,353 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2024-12-19",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "abc": {
+      "context": "Accionistas con participación significativa de Vocento, S.A., según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2024-03-04",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Mezouna, S.A.: 11,077 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2011-04-01",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Careaga, Carmen: 10,675 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Valjarafe, S.L.: 10,143 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2025-01-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Bergareche Busquet, Jorge: 6,722 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2022-04-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Ybarra, Enrique: 6,536 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2017-03-27",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Acción concertada: 6,393 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2014-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Selección, FI: 5,011 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2019-10-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Iberia, FI: 3,091 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-03-19",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "rtve": {
+      "context": null,
+      "rows": [
+        {
+          "kind": "publico",
+          "text": "La Ley 17/2006 define la Corporación RTVE como sociedad mercantil estatal con capital de titularidad íntegramente estatal.",
+          "source_title": "BOE: Ley 17/2006, de la radio y la televisión de titularidad estatal",
+          "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2006-9958",
+          "date": "2006-06-06",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "efe": {
+      "context": null,
+      "rows": [
+        {
+          "kind": "publico",
+          "text": "SEPI (Sociedad Estatal de Participaciones Industriales) figura con el 100 % de Agencia EFE.",
+          "source_title": "SEPI: Agencia EFE",
+          "url": "https://www.sepi.es/en/sectores/agencia-efe",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        }
+      ]
+    },
+    "cadena-ser": {
+      "context": "Accionistas con participación significativa de Promotora de Informaciones, S.A. (Prisa), según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "Amber Capital UK LLP: 29,568 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2022-12-15",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Oughourlian, Joseph: 29,568 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2022-12-15",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Oviedo Holdings S.A.R.L.: 24,787 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2023-05-22",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Vivendi, S.E.: 11,795 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2023-05-25",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Rucandio, S.A.: 7,611 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2019-04-22",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Global Alconaba SL: 7,076 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2022-05-20",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Control Empresarial de Capitales, S.A. de C.V.: 7,015 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2023-05-23",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Amber Capital Investment Management ICAV - Amber Global Opportunities Fund: 5,225 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2024-05-13",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Utor Martínez, Juan Adolfo: 4,924 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2025-04-11",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Banco Santander, S.A.: 4,145 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2017-02-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Al Thani, Khalid Thani Abdullah: 3,353 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2024-12-19",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "lasexta": {
+      "context": "Accionistas con participación significativa de Atresmedia Corporación de Medios de Comunicación, S.A. (empresa editora de Antena 3, laSexta y Onda Cero), según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "Planeta Corporación, S.R.L.: 41,697 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Atresmedia Corporación de Medios de Comunicación, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-78839271&lang=es",
+          "date": "2016-12-28",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Bertelsmann, A.G.: 19,166 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Atresmedia Corporación de Medios de Comunicación, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-78839271&lang=es",
+          "date": "2013-03-12",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "antena3": {
+      "context": "Accionistas con participación significativa de Atresmedia Corporación de Medios de Comunicación, S.A. (empresa editora de Antena 3, laSexta y Onda Cero), según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "Planeta Corporación, S.R.L.: 41,697 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Atresmedia Corporación de Medios de Comunicación, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-78839271&lang=es",
+          "date": "2016-12-28",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Bertelsmann, A.G.: 19,166 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Atresmedia Corporación de Medios de Comunicación, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-78839271&lang=es",
+          "date": "2013-03-12",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "onda-cero": {
+      "context": "Accionistas con participación significativa de Atresmedia Corporación de Medios de Comunicación, S.A. (empresa editora de Antena 3, laSexta y Onda Cero), según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "Planeta Corporación, S.R.L.: 41,697 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Atresmedia Corporación de Medios de Comunicación, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-78839271&lang=es",
+          "date": "2016-12-28",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Bertelsmann, A.G.: 19,166 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Atresmedia Corporación de Medios de Comunicación, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-78839271&lang=es",
+          "date": "2013-03-12",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "telecinco": {
+      "context": "Accionistas de MFE-MediaForEurope N.V., sociedad matriz de Mediaset España según nuestro catálogo, según su propia web. No son datos de Mediaset España.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "Fininvest S.p.A.: 33,34 % del total de acciones MFE A+B (50,57 % de las MFE B; 24,71 % de las MFE A; 46,268 % por valor nominal, criterio AFM)",
+          "source_title": "MFE-MediaForEurope: estructura del capital social (web propia)",
+          "url": "https://www.mfemediaforeurope.com/en/governance/share-capital-structure/",
+          "date": "2026-10-20",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Vivendi S.E.: 15,89 % del total de acciones MFE A+B (23,79 % de las MFE B; 11,93 % de las MFE A; 21,82 % por valor nominal)",
+          "source_title": "MFE-MediaForEurope: estructura del capital social (web propia)",
+          "url": "https://www.mfemediaforeurope.com/en/governance/share-capital-structure/",
+          "date": "2026-10-20",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "cuatro": {
+      "context": "Accionistas de MFE-MediaForEurope N.V., sociedad matriz de Mediaset España según nuestro catálogo, según su propia web. No son datos de Mediaset España.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "Fininvest S.p.A.: 33,34 % del total de acciones MFE A+B (50,57 % de las MFE B; 24,71 % de las MFE A; 46,268 % por valor nominal, criterio AFM)",
+          "source_title": "MFE-MediaForEurope: estructura del capital social (web propia)",
+          "url": "https://www.mfemediaforeurope.com/en/governance/share-capital-structure/",
+          "date": "2026-10-20",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Vivendi S.E.: 15,89 % del total de acciones MFE A+B (23,79 % de las MFE B; 11,93 % de las MFE A; 21,82 % por valor nominal)",
+          "source_title": "MFE-MediaForEurope: estructura del capital social (web propia)",
+          "url": "https://www.mfemediaforeurope.com/en/governance/share-capital-structure/",
+          "date": "2026-10-20",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "cinco-dias": {
+      "context": "Accionistas con participación significativa de Promotora de Informaciones, S.A. (Prisa), según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "Amber Capital UK LLP: 29,568 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2022-12-15",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Oughourlian, Joseph: 29,568 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2022-12-15",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Oviedo Holdings S.A.R.L.: 24,787 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2023-05-22",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Vivendi, S.E.: 11,795 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2023-05-25",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Rucandio, S.A.: 7,611 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2019-04-22",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Global Alconaba SL: 7,076 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2022-05-20",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Control Empresarial de Capitales, S.A. de C.V.: 7,015 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2023-05-23",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Amber Capital Investment Management ICAV - Amber Global Opportunities Fund: 5,225 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2024-05-13",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Utor Martínez, Juan Adolfo: 4,924 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2025-04-11",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Banco Santander, S.A.: 4,145 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2017-02-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Al Thani, Khalid Thani Abdullah: 3,353 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2024-12-19",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "huffpost": {
+      "context": "Accionistas con participación significativa de Promotora de Informaciones, S.A. (Prisa), según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "Amber Capital UK LLP: 29,568 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2022-12-15",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Oughourlian, Joseph: 29,568 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2022-12-15",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Oviedo Holdings S.A.R.L.: 24,787 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2023-05-22",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Vivendi, S.E.: 11,795 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2023-05-25",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Rucandio, S.A.: 7,611 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2019-04-22",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Global Alconaba SL: 7,076 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2022-05-20",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Control Empresarial de Capitales, S.A. de C.V.: 7,015 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2023-05-23",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Amber Capital Investment Management ICAV - Amber Global Opportunities Fund: 5,225 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2024-05-13",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Utor Martínez, Juan Adolfo: 4,924 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2025-04-11",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Banco Santander, S.A.: 4,145 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2017-02-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Al Thani, Khalid Thani Abdullah: 3,353 %",
+          "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
+          "date": "2024-12-19",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "el-correo": {
+      "context": "Accionistas con participación significativa de Vocento, S.A., según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2024-03-04",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Mezouna, S.A.: 11,077 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2011-04-01",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Careaga, Carmen: 10,675 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Valjarafe, S.L.: 10,143 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2025-01-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Bergareche Busquet, Jorge: 6,722 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2022-04-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Ybarra, Enrique: 6,536 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2017-03-27",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Acción concertada: 6,393 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2014-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Selección, FI: 5,011 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2019-10-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Iberia, FI: 3,091 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-03-19",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "diario-vasco": {
+      "context": "Accionistas con participación significativa de Vocento, S.A., según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2024-03-04",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Mezouna, S.A.: 11,077 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2011-04-01",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Careaga, Carmen: 10,675 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Valjarafe, S.L.: 10,143 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2025-01-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Bergareche Busquet, Jorge: 6,722 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2022-04-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Ybarra, Enrique: 6,536 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2017-03-27",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Acción concertada: 6,393 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2014-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Selección, FI: 5,011 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2019-10-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Iberia, FI: 3,091 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-03-19",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "las-provincias": {
+      "context": "Accionistas con participación significativa de Vocento, S.A., según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2024-03-04",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Mezouna, S.A.: 11,077 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2011-04-01",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Careaga, Carmen: 10,675 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Valjarafe, S.L.: 10,143 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2025-01-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Bergareche Busquet, Jorge: 6,722 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2022-04-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Ybarra, Enrique: 6,536 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2017-03-27",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Acción concertada: 6,393 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2014-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Selección, FI: 5,011 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2019-10-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Iberia, FI: 3,091 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-03-19",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "diario-sur": {
+      "context": "Accionistas con participación significativa de Vocento, S.A., según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2024-03-04",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Mezouna, S.A.: 11,077 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2011-04-01",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Careaga, Carmen: 10,675 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Valjarafe, S.L.: 10,143 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2025-01-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Bergareche Busquet, Jorge: 6,722 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2022-04-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Ybarra, Enrique: 6,536 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2017-03-27",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Acción concertada: 6,393 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2014-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Selección, FI: 5,011 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2019-10-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Iberia, FI: 3,091 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-03-19",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "el-diario-montanes": {
+      "context": "Accionistas con participación significativa de Vocento, S.A., según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2024-03-04",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Mezouna, S.A.: 11,077 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2011-04-01",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Careaga, Carmen: 10,675 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Valjarafe, S.L.: 10,143 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2025-01-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Bergareche Busquet, Jorge: 6,722 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2022-04-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Ybarra, Enrique: 6,536 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2017-03-27",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Acción concertada: 6,393 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2014-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Selección, FI: 5,011 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2019-10-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Iberia, FI: 3,091 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-03-19",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "hoy": {
+      "context": "Accionistas con participación significativa de Vocento, S.A., según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2024-03-04",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Mezouna, S.A.: 11,077 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2011-04-01",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Careaga, Carmen: 10,675 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Valjarafe, S.L.: 10,143 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2025-01-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Bergareche Busquet, Jorge: 6,722 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2022-04-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Ybarra, Enrique: 6,536 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2017-03-27",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Acción concertada: 6,393 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2014-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Selección, FI: 5,011 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2019-10-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Iberia, FI: 3,091 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-03-19",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "la-verdad": {
+      "context": "Accionistas con participación significativa de Vocento, S.A., según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2024-03-04",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Mezouna, S.A.: 11,077 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2011-04-01",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Careaga, Carmen: 10,675 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Valjarafe, S.L.: 10,143 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2025-01-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Bergareche Busquet, Jorge: 6,722 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2022-04-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Ybarra, Enrique: 6,536 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2017-03-27",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Acción concertada: 6,393 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2014-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Selección, FI: 5,011 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2019-10-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Iberia, FI: 3,091 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-03-19",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "el-norte-de-castilla": {
+      "context": "Accionistas con participación significativa de Vocento, S.A., según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2024-03-04",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Mezouna, S.A.: 11,077 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2011-04-01",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Careaga, Carmen: 10,675 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Valjarafe, S.L.: 10,143 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2025-01-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Bergareche Busquet, Jorge: 6,722 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2022-04-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Ybarra, Enrique: 6,536 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2017-03-27",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Acción concertada: 6,393 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2014-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Selección, FI: 5,011 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2019-10-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Iberia, FI: 3,091 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-03-19",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "la-rioja": {
+      "context": "Accionistas con participación significativa de Vocento, S.A., según la CNMV.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2024-03-04",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Mezouna, S.A.: 11,077 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2011-04-01",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Careaga, Carmen: 10,675 % (participación indirecta)",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Valjarafe, S.L.: 10,143 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2025-01-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Bergareche Busquet, Jorge: 6,722 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2022-04-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Ybarra Ybarra, Enrique: 6,536 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2017-03-27",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Acción concertada: 6,393 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2014-06-10",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Selección, FI: 5,011 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2019-10-07",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Cobas Iberia, FI: 3,091 %",
+          "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
+          "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
+          "date": "2026-03-19",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "atlas-news": {
+      "context": "Accionistas de MFE-MediaForEurope N.V., sociedad matriz de Mediaset España según nuestro catálogo, según su propia web. No son datos de Mediaset España.",
+      "rows": [
+        {
+          "kind": "accionista",
+          "text": "Fininvest S.p.A.: 33,34 % del total de acciones MFE A+B (50,57 % de las MFE B; 24,71 % de las MFE A; 46,268 % por valor nominal, criterio AFM)",
+          "source_title": "MFE-MediaForEurope: estructura del capital social (web propia)",
+          "url": "https://www.mfemediaforeurope.com/en/governance/share-capital-structure/",
+          "date": "2026-10-20",
+          "date_kind": "datos"
+        },
+        {
+          "kind": "accionista",
+          "text": "Vivendi S.E.: 15,89 % del total de acciones MFE A+B (23,79 % de las MFE B; 11,93 % de las MFE A; 21,82 % por valor nominal)",
+          "source_title": "MFE-MediaForEurope: estructura del capital social (web propia)",
+          "url": "https://www.mfemediaforeurope.com/en/governance/share-capital-structure/",
+          "date": "2026-10-20",
+          "date_kind": "datos"
+        }
+      ]
+    },
+    "efe-verifica": {
+      "context": null,
+      "rows": [
+        {
+          "kind": "publico",
+          "text": "SEPI (Sociedad Estatal de Participaciones Industriales) figura con el 100 % de Agencia EFE.",
+          "source_title": "SEPI: Agencia EFE",
+          "url": "https://www.sepi.es/en/sectores/agencia-efe",
+          "date": "2026-11-21",
+          "date_kind": "consulta"
+        }
+      ]
+    }
+  }
+}

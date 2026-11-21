@@ -213,8 +213,12 @@
       "id": "rtve",
       "name": "Corporación RTVE",
       "kind": "Medio público estatal",
-      "owners": "Corporación pública estatal (participada por la SEPI). Su consejo de administración lo eligen las Cortes Generales.",
+      "owners": "Sociedad mercantil estatal con capital de titularidad íntegramente estatal (Ley 17/2006). Su consejo de administración lo eligen las Cortes Generales.",
       "sources": [
+        {
+          "title": "BOE: Ley 17/2006, de la radio y la televisión de titularidad estatal",
+          "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2006-9958"
+        },
         {
           "title": "Wikipedia: Radiotelevisión Española",
           "url": "https://es.wikipedia.org/wiki/Radiotelevisión_Española"
@@ -277,8 +281,12 @@
       "id": "diario-prensa-digital",
       "name": "Diario de Prensa Digital, S.L.",
       "kind": "Editora independiente",
-      "owners": "Más del 70 % del capital en manos de personas que trabajan en la redacción (según Wikipedia).",
+      "owners": "Según el propio medio, sus principales accionistas son personas que trabajan en el periódico.",
       "sources": [
+        {
+          "title": "elDiario.es: cuentas de 2024",
+          "url": "https://www.eldiario.es/escolar/cuentas-eldiario-2024-periodico-blindado-comunidad_132_12421645.html"
+        },
         {
           "title": "Wikipedia: elDiario.es",
           "url": "https://es.wikipedia.org/wiki/ElDiario.es"

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% from "_macros.html" import verification %}
+{% block title %}¿Es verdad lo que has visto? · Contraste{% endblock %}
+{% block description %}Verificaciones de Maldita.es, Newtral, EFE Verifica y Verificat, citadas tal como las publican. Contraste no califica nada por su cuenta.{% endblock %}
+{% block robots %}{% if query %}<meta name="robots" content="noindex, nofollow">{% endif %}{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <h1>¿Es verdad lo que has visto?</h1>
+  <p class="page-head__lead">Aquí reunimos lo que han comprobado los verificadores de noticias de España. Escribe una palabra de lo que has visto o leído y mira si alguno lo ha revisado.</p>
+</header>
+
+<form class="searchbar searchbar--inline checks-search" action="/verificaciones" method="get" role="search">
+  <label class="visually-hidden" for="q-ver">Buscar en las verificaciones</label>
+  <input id="q-ver" name="q" type="search" value="{{ query }}" placeholder="Por ejemplo: vacunas, apagón, inmigración…" maxlength="120" autocomplete="off" spellcheck="false">
+  <button type="submit">Buscar</button>
+</form>
+
+<section class="verif" aria-labelledby="verif-title">
+  <h2 id="verif-title" class="section-title">{% if query %}Verificaciones que mencionan «{{ query }}»{% else %}Verificaciones más recientes{% endif %}</h2>
+  {% if items %}
+  <ul class="checks checks--list">
+    {% for v in items %}{{ verification(v) }}{% endfor %}
+  </ul>
+  {% elif query %}
+  <div class="empty" data-no-checks>
+    <p>No hemos encontrado verificaciones con «{{ query }}».</p>
+    <p>Que no encontremos una verificación no significa que algo sea cierto ni falso: puede que nadie lo haya revisado todavía o que lo hayan titulado con otras palabras. Prueba con menos palabras o <a href="/verificaciones">mira las más recientes</a>.</p>
+  </div>
+  {% else %}
+  <div class="empty" data-no-checks>
+    <p>Todavía no tenemos verificaciones guardadas. Vuelve en unos minutos.</p>
+  </div>
+  {% endif %}
+  {% if items|length >= 30 %}<p class="muted small">Mostramos las 30 más recientes{% if query %} que coinciden{% endif %}. Para ver más, afina la búsqueda.</p>{% endif %}
+</section>
+
+<aside class="notice notice--block" aria-labelledby="verif-how">
+  <h2 id="verif-how" class="panel__sub panel__sub--first">Cómo leer esta página</h2>
+  <ul>
+    <li><strong>Quién verifica:</strong> {{ checkers|map(attribute='name')|join(", ") }}. Son los {{ checkers|length }} verificadores españoles de nuestro catálogo, que se han comprometido, según la red internacional de verificadores (IFCN), con su código de principios.</li>
+    <li><strong>Contraste no califica nada.</strong> Copiamos lo que dicen: lo que se afirma, cómo lo califica el verificador y a quién se atribuye. Si el verificador no publica esos datos de forma estructurada, solo mostramos su titular y el enlace.</li>
+    <li><strong>Una verificación trata de una afirmación</strong> (muchas veces un mensaje en redes sociales), no de una noticia o un medio. Por eso solo la enlazamos a una historia cuando el propio verificador cita la dirección de esa noticia.</li>
+    <li><strong>No encontrar una verificación no significa que algo sea cierto.</strong> Solo que ninguno de estos cuatro verificadores lo ha publicado, o que no lo hemos leído aún.</li>
+  </ul>
+  <p class="small"><a href="/metodologia#verificaciones">Cómo obtenemos y enlazamos las verificaciones</a></p>
+</aside>
+{% endblock %}

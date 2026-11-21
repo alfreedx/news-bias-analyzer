@@ -69,6 +69,9 @@ class Settings:
     ingest_interval_minutes: int = field(default_factory=lambda: _int("INGEST_INTERVAL_MINUTES", 10, 5))
     ingest_concurrency: int = field(default_factory=lambda: _int("INGEST_CONCURRENCY", 8, 1))
     retention_days: int = field(default_factory=lambda: _int("RETENTION_DAYS", 120, 7))
+    # Fact-checker pages (schema.org ClaimReview): pages fetched per ingest cycle and how long reviews are kept
+    claims_per_cycle: int = field(default_factory=lambda: _int("CLAIMS_PER_CYCLE", 20, 0))
+    claims_retention_days: int = field(default_factory=lambda: _int("CLAIMS_RETENTION_DAYS", 730, 30))
     user_agent: str = field(
         default_factory=lambda: os.environ.get(
             "USER_AGENT", "Mozilla/5.0 (compatible; NewsBiasAnalyzer/1.0; open-source RSS reader)"
