@@ -1,0 +1,271 @@
+{
+ "_meta": {
+  "description": "Percepción del público: posición media (escala 1-10) que la población encuestada por el CIS atribuye a cada medio. Es una percepción, no una etiqueta publicada por una fuente sobre el medio, y nunca se mezcla con la media de etiquetas. Los medios sin etiqueta publicada se clasifican con esta percepción (ver app/perception.py).",
+  "license": "CC BY 4.0 (Centro de Investigaciones Sociológicas)",
+  "attribution": "Centro de Investigaciones Sociológicas (CIS)",
+  "source_title": "Estudio nº 3511. Estudio sobre audiencias de medios de comunicación social (II)",
+  "study_number": 3511,
+  "url": "https://www.cis.es/documents/d/cis/es3511marMT_a",
+  "study_url": "https://www.cis.es/en/w/3511-estudio-sobre-audiencias-de-medios-de-comunicacion-social-ii",
+  "fieldwork": "mayo de 2025",
+  "sample": 15017,
+  "population": "población de 18 años y más",
+  "questions": {
+   "22": "Cuando se habla de política se utilizan las expresiones 'izquierda' y 'derecha'. En lo que se refiere a los medios de comunicación, por lo que Ud. sabe, usando una escala que va del 1 al 10, en la que 1 es 'lo más a la izquierda' y 10 'lo más a la derecha', ¿dónde colocaría a los siguientes periódicos...?",
+   "23": "Y usando la misma escala de 1 a 10, ¿dónde colocaría las siguientes cadenas de televisión?",
+   "24": "¿Y dónde colocaría las siguientes emisoras de radio?"
+  },
+  "scale": "1 = lo más a la izquierda, 10 = lo más a la derecha",
+  "note": "Es neutral / No la conoce / N.S. / N.C. quedan fuera de la media, según el CIS. La media, la desviación típica y el número de respuestas son los que publica el CIS.",
+  "retrieved": "2026-11-21",
+  "acknowledgement": "Recopilación de referencia: Carlos Gonzalo, «El perfil ideológico de los medios de prensa españoles» (https://www.carlosgonzalo.es/el-perfil-ideologico-de-los-medios-de-prensa-espanoles/)"
+ },
+ "media": {
+  "el-pais": [
+   {
+    "cis_name": "El País",
+    "kind": "periódico",
+    "question": 22,
+    "mean": 4.22,
+    "sd": 2.49,
+    "n": 11817
+   }
+  ],
+  "el-mundo": [
+   {
+    "cis_name": "El Mundo",
+    "kind": "periódico",
+    "question": 22,
+    "mean": 6.83,
+    "sd": 2.23,
+    "n": 11677
+   }
+  ],
+  "abc": [
+   {
+    "cis_name": "ABC",
+    "kind": "periódico",
+    "question": 22,
+    "mean": 7.43,
+    "sd": 2.38,
+    "n": 11425
+   }
+  ],
+  "la-vanguardia": [
+   {
+    "cis_name": "La Vanguardia",
+    "kind": "periódico",
+    "question": 22,
+    "mean": 5.38,
+    "sd": 2.26,
+    "n": 9910
+   }
+  ],
+  "eldiario-es": [
+   {
+    "cis_name": "El Diario.es",
+    "kind": "periódico",
+    "question": 22,
+    "mean": 4.6,
+    "sd": 2.52,
+    "n": 8288
+   }
+  ],
+  "la-razon": [
+   {
+    "cis_name": "La Razón",
+    "kind": "periódico",
+    "question": 22,
+    "mean": 7.28,
+    "sd": 2.39,
+    "n": 10923
+   }
+  ],
+  "el-confidencial": [
+   {
+    "cis_name": "El Confidencial.com",
+    "kind": "periódico",
+    "question": 22,
+    "mean": 5.89,
+    "sd": 2.24,
+    "n": 7576
+   }
+  ],
+  "la-voz-de-galicia": [
+   {
+    "cis_name": "La Voz de Galicia",
+    "kind": "periódico",
+    "question": 22,
+    "mean": 5.76,
+    "sd": 2.2,
+    "n": 5214
+   }
+  ],
+  "publico": [
+   {
+    "cis_name": "Público.es",
+    "kind": "periódico",
+    "question": 22,
+    "mean": 3.86,
+    "sd": 2.2,
+    "n": 6870
+   }
+  ],
+  "20minutos": [
+   {
+    "cis_name": "20 Minutos",
+    "kind": "periódico",
+    "question": 22,
+    "mean": 5.04,
+    "sd": 1.89,
+    "n": 7427
+   }
+  ],
+  "okdiario": [
+   {
+    "cis_name": "OK Diario.es",
+    "kind": "periódico",
+    "question": 22,
+    "mean": 7.31,
+    "sd": 2.6,
+    "n": 8551
+   }
+  ],
+  "el-periodico": [
+   {
+    "cis_name": "El Periódico de Cataluña",
+    "kind": "periódico",
+    "question": 22,
+    "mean": 4.29,
+    "sd": 2.37,
+    "n": 6896
+   }
+  ],
+  "rtve": [
+   {
+    "cis_name": "TVE1",
+    "kind": "cadena de televisión",
+    "question": 23,
+    "mean": 3.96,
+    "sd": 2.45,
+    "n": 13894
+   },
+   {
+    "cis_name": "Canal 24 horas",
+    "kind": "cadena de televisión",
+    "question": 23,
+    "mean": 4.13,
+    "sd": 2.29,
+    "n": 12142
+   },
+   {
+    "cis_name": "RNE",
+    "kind": "emisora de radio",
+    "question": 24,
+    "mean": 4.29,
+    "sd": 2.33,
+    "n": 11757
+   }
+  ],
+  "antena3": [
+   {
+    "cis_name": "Antena 3",
+    "kind": "cadena de televisión",
+    "question": 23,
+    "mean": 6.37,
+    "sd": 2.17,
+    "n": 13738
+   }
+  ],
+  "lasexta": [
+   {
+    "cis_name": "La Sexta",
+    "kind": "cadena de televisión",
+    "question": 23,
+    "mean": 4.0,
+    "sd": 2.49,
+    "n": 13491
+   }
+  ],
+  "telecinco": [
+   {
+    "cis_name": "Telecinco",
+    "kind": "cadena de televisión",
+    "question": 23,
+    "mean": 5.73,
+    "sd": 2.43,
+    "n": 12745
+   }
+  ],
+  "cuatro": [
+   {
+    "cis_name": "Cuatro",
+    "kind": "cadena de televisión",
+    "question": 23,
+    "mean": 5.14,
+    "sd": 2.03,
+    "n": 12198
+   }
+  ],
+  "canal-sur-television": [
+   {
+    "cis_name": "Canal Sur",
+    "kind": "cadena de televisión",
+    "question": 23,
+    "mean": 5.79,
+    "sd": 2.24,
+    "n": 7298
+   }
+  ],
+  "cadena-ser": [
+   {
+    "cis_name": "Cadena SER",
+    "kind": "emisora de radio",
+    "question": 24,
+    "mean": 4.02,
+    "sd": 2.43,
+    "n": 11927
+   }
+  ],
+  "cope": [
+   {
+    "cis_name": "Cadena COPE",
+    "kind": "emisora de radio",
+    "question": 24,
+    "mean": 7.67,
+    "sd": 2.16,
+    "n": 12232
+   }
+  ],
+  "onda-cero": [
+   {
+    "cis_name": "Onda Cero",
+    "kind": "emisora de radio",
+    "question": 24,
+    "mean": 6.0,
+    "sd": 2.01,
+    "n": 10869
+   }
+  ]
+ },
+ "unmapped": [
+  {
+   "cis_name": "TV3",
+   "kind": "cadena de televisión",
+   "question": 23,
+   "mean": 4.37,
+   "sd": 2.43,
+   "n": 7838,
+   "reason": "No está en el catálogo"
+  },
+  {
+   "cis_name": "Es Radio",
+   "kind": "emisora de radio",
+   "question": 24,
+   "mean": 6.27,
+   "sd": null,
+   "n": null,
+   "reason": "El catálogo tiene la web de Libertad Digital, un medio distinto"
+  }
+ ]
+}

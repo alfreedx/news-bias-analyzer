@@ -35,7 +35,7 @@
   </div>
   <p>Si una fuente da varias etiquetas (por ejemplo «Conservadurismo, Monarquismo»), hacemos su media. Después hacemos la media entre fuentes y la redondeamos a la posición más cercana. Indicamos si las fuentes <em>coinciden</em>, <em>coinciden parcialmente</em> o <em>discrepan</em>.</p>
   <p>Las etiquetas del <strong>eje territorial</strong> ({{ territorial|join(', ') }}) no mueven la posición izquierda–derecha: se muestran aparte, porque en España son una dimensión distinta.</p>
-  <p>Si no hay ninguna fuente, el medio aparece como <span class="chip chip--na">Sin etiqueta publicada</span>. No rellenamos huecos con nuestra opinión.</p>
+  <p>Si no hay ninguna fuente, el medio aparece como <span class="chip chip--na">Sin etiqueta publicada</span>. No rellenamos huecos con nuestra opinión. La única excepción es la percepción del público de la encuesta del CIS (véase «Percepción del público (CIS)»), que se usa solo para los medios sin ninguna etiqueta y se marca siempre como tal.</p>
 
   <h2>Etiquetas citadas</h2>
   <p>Además de la posición, cada ficha muestra las <strong>etiquetas tal como las publica cada fuente</strong> (por ejemplo «Wikipedia: Monarquismo»). Son citas, no adjetivos de Contraste: nunca escribimos «este medio es…». Cada etiqueta enlaza a la <strong>versión exacta</strong> de la página consultada y lleva su fecha, porque Wikipedia cambia y las líneas editoriales también.</p>
@@ -127,6 +127,42 @@
     <li><strong>No detectar una marca no garantiza que una pieza no sea publicidad.</strong> Muchos medios no marcan nada en su RSS, y por eso no mostramos nunca «no patrocinado». Tampoco señalamos enlaces de afiliación ni secciones de compras («ofertas», «chollos»).</li>
     <li>Los titulares ya guardados antes de que leyéramos las categorías del RSS solo pueden marcarse por su dirección o por el prefijo del titular; las categorías se guardan a partir de ahora.</li>
     <li><a href="{{ sponsored_issue_url() }}" rel="noopener noreferrer" target="_blank">¿Falta o sobra una marca? Avísanos</a>.</li>
+  </ul>
+
+  <h2 id="percepcion">Percepción del público (CIS)</h2>
+  <p>El <strong>Centro de Investigaciones Sociológicas (CIS)</strong> preguntó a {{ es_num(cis.sample) }} personas de 18 años o más, en <strong>{{ cis.fieldwork }}</strong>, dónde colocan a distintos periódicos, cadenas de televisión y emisoras de radio en una escala de 1 a 10 ({{ cis.scale }}). Es el <a href="{{ cis.study_url }}" rel="noopener noreferrer">{{ cis.source_title }}</a> (<a href="{{ cis.url }}" rel="noopener noreferrer">tabla de resultados</a>; datos con licencia {{ cis.license }}). Mostramos para cada medio la media, la desviación típica y el número de respuestas tal como las publica el CIS. «Es neutral», «No la conoce», «N.S.» y «N.C.» quedan fuera de la media, según el CIS.</p>
+  <p>Las preguntas, textualmente:</p>
+  <ul>
+    {% for q, text in cis.questions.items() %}<li><strong>P{{ q }}</strong>: «{{ text }}»</li>{% endfor %}
+  </ul>
+  <p><strong>Es una percepción, no una etiqueta.</strong> Se muestra aparte («Cómo lo percibe el público») y nunca se mezcla con la media de las etiquetas publicadas. Es lo que opina la población encuestada, no un análisis de lo que publica el medio.</p>
+  <h3>Regla de posición</h3>
+  <ul>
+    <li>Un medio <strong>con</strong> alguna etiqueta ideológica publicada mantiene la posición que dan esas etiquetas; la percepción solo se muestra.</li>
+    <li>Un medio <strong>sin</strong> ninguna etiqueta ideológica pero <strong>con</strong> dato del CIS recibe la posición de la banda en que cae su media. Las cinco bandas tienen la misma anchura (1,8 puntos, es decir, la escala de 1 a 10 dividida en cinco partes iguales) para no elegir nosotros dónde empieza cada posición. Cada banda incluye su límite superior:</li>
+  </ul>
+  <div class="table-wrap">
+    <table class="table" data-cis-bands>
+      <thead><tr><th scope="col">Posición</th><th scope="col">Media del CIS</th></tr></thead>
+      <tbody>
+        {% for p, interval in bands %}
+        <tr><th scope="row"><span class="chip chip--{{ pos_class(p) }}">{{ POSITION_LABELS[p] }}</span></th><td>{{ interval }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <ul>
+    <li>RTVE aparece en el CIS con tres medios (TVE1, Canal 24 horas y RNE). Los mostramos los tres, con el texto «medido sobre TVE1, Canal 24 horas y RNE», y solo le damos posición si los tres caen en la misma banda; si no, queda sin posición.</li>
+    <li>Estos medios se marcan «(CIS)» en el chip, en el catálogo y en la ficha («según la percepción del público (CIS 2025), no por etiquetas publicadas»), y «Quién la cuenta» indica cuántos de los medios contados están clasificados así. Cuentan como medios con posición en los repartos y en las comparaciones, y no entran en la auditoría de etiquetas de arriba, que solo cuenta etiquetas citadas. La fiabilidad factual no cambia.</li>
+  </ul>
+  <h3>Medios por los que preguntó el CIS</h3>
+  <p>{% for m, entries in cis_media %}{{ m.name }}{% if m.assessment.by_perception %} (clasificado por esta regla){% endif %}{% if not loop.last %}, {% endif %}{% endfor %}.{% if cis_unmapped %} El CIS preguntó también por {% for u in cis_unmapped %}{{ u.cis_name }}{% if not loop.last %} y {% endif %}{% endfor %}, que no usamos: {% for u in cis_unmapped %}{{ u.cis_name }} ({{ u.reason|lower }}){% if not loop.last %}; {% endif %}{% endfor %}.{% endif %}</p>
+  <p class="small">{{ cis.acknowledgement }}.</p>
+  <h3>Fuentes valoradas y no usadas</h3>
+  <ul>
+    <li><strong>Guerrero-Solé (2022)</strong>, <em>Communication &amp; Society</em> 35(1), <a href="https://doi.org/10.15581/003.35.1.29-43" rel="noopener noreferrer">doi:10.15581/003.35.1.29-43</a>: mide la coincidencia de audiencias en Twitter durante la campaña de 2019 y pondera con la ideología que el CIS atribuye a los partidos. No la usamos para clasificar porque mide el comportamiento de quienes comparten, no la línea del medio, y sus datos son de 2019.</li>
+    <li><strong>Political Watch, Media Bias Chart España (2021)</strong>: resultados publicados solo como gráfico, sin tabla de datos reutilizable, con una muestra de 16 artículos por medio.</li>
+    <li><strong>Categorías de Wikipedia «Periódicos por ideología»</strong>: la pertenencia a una categoría no exige cita y la mayoría son cabeceras históricas.</li>
   </ul>
 
   <h2 id="propiedad">Propiedad y financiación</h2>

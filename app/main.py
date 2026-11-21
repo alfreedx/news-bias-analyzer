@@ -50,6 +50,7 @@ from .facts import (
     RELIGIOUS_OWNER_QIDS,
 )
 from .feeds import ingest_all, search_google_news
+from .perception import BAND_INTERVALS
 from .scoring import DESCRIPTIVE_LABELS, FACTUAL_MAP, IDEOLOGY_MAP, POSITION_LABELS, TERRITORIAL_LABELS, bucket
 from .sections import query_is_incident
 from .security import RateLimitMiddleware, SecurityHeadersMiddleware
@@ -228,6 +229,16 @@ def score_step(score: float | None) -> int:
     return 20 if score is None else max(0, min(40, round((score + 2) * 10)))
 
 
+def es_num(value: float, decimals: int = 0) -> str:
+    """Spanish number format: decimal comma, dot as thousands separator (11.817 · 4,0)."""
+    return f"{value:,.{decimals}f}".replace(",", "\x00").replace(".", ",").replace("\x00", ".")
+
+
+def scale_step(mean: float) -> int:
+    """Map a 1-10 CIS mean to one of 41 marker positions (.at-0 … .at-40)."""
+    return max(0, min(40, round((mean - 1) / 9 * 40)))
+
+
 def pct(part: float, whole: float) -> int:
     """Integer percentage for width classes .w-0 … .w-100."""
     return 0 if not whole else max(0, min(100, round(part / whole * 100)))
@@ -265,7 +276,8 @@ templates.env.filters["urlq"] = urlq
 templates.env.globals.update(
     issue_url=issue_url, sponsored_issue_url=sponsored_issue_url,
     ownership_issue_url=ownership_issue_url, NO_OWNERSHIP_DATA=NO_OWNERSHIP_DATA, clock=clock,
-    long_date=long_date, time_ago=time_ago, iso=iso, pos_class=pos_class, score_step=score_step, pct=pct,
+    long_date=long_date, time_ago=time_ago, iso=iso, pos_class=pos_class, score_step=score_step,
+    es_num=es_num, scale_step=scale_step, pct=pct,
     coverage_summary=coverage_summary, sponsored_evidence=sponsored_evidence,
     POSITION_LABELS=POSITION_LABELS, bucket=bucket, settings=settings, version=__version__,
 )
@@ -569,7 +581,7 @@ async def media_detail(request: Request, media_id: str):
     if media is None:
         raise HTTPException(404)
     latest = await asyncio.to_thread(db.latest_for_media, media.id, 10)
-    return render(request, "media_detail.html", m=media, latest=latest)
+    return render(request, "media_detail.html", m=media, latest=latest, cis=catalog.perception_meta)
 
 
 @app.get("/grupos/{group_id}", response_class=HTMLResponse)
@@ -588,7 +600,7 @@ async def methodology(request: Request):
     audit = {"left": [0, 0], "center": [0, 0], "right": [0, 0]}  # outlets, quoted labels
     for m in catalog.news_media:
         a = m.assessment
-        if a.position is None:
+        if a.position is None or a.by_perception:  # the audit counts cited labels; CIS-classified outlets have none
             continue
         side = "left" if a.position < 0 else "right" if a.position > 0 else "center"
         audit[side][0] += 1
@@ -611,7 +623,10 @@ async def methodology(request: Request):
                   synonyms=synonyms.meta(), by_pos=by_pos,
                   territorial=sorted(TERRITORIAL_LABELS.values()),
                   factual=FACTUAL_MAP, audit=audit, descriptive=sorted(DESCRIPTIVE_LABELS), counts=counts,
-                  rules=rules)
+                  rules=rules, cis=catalog.perception_meta, bands=BAND_INTERVALS,
+                  cis_unmapped=catalog.perception_unmapped,
+                  cis_media=[(m, m.assessment.perception) for m in catalog.news_media if m.assessment.perception],
+                  cis_classified=[m for m in catalog.news_media if m.assessment.by_perception])
 
 
 @app.get("/como-leer", response_class=HTMLResponse)

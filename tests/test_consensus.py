@@ -127,7 +127,7 @@ def test_agency_detection_and_collapse():
 def test_voice_side_is_most_frequent_labelled_side():
     voices = build_voices([art("el-pais", "a b c uno"), art("huffpost", "a b c dos")])
     assert voices[0].side == "left"  # both Prisa, both left
-    assert build_voices([art("cope", "x y z")])[0].side is None
+    assert build_voices([art("deia", "x y z")])[0].side is None
 
 
 # --- consensus ------------------------------------------------------------------------
@@ -163,7 +163,7 @@ def test_consensus_threshold_of_three_voices():
 
 
 def test_unlabelled_voices_count_as_voices_not_sides():
-    arts = [art(m, f"T {m}", "El paro baja un 12,5 % hoy.") for m in ("cope", "20minutos", "eldiario-es")]
+    arts = [art(m, f"T {m}", "El paro baja un 12,5 % hoy.") for m in ("deia", "el-nacional", "eldiario-es")]
     c = consensus(arts)
     assert c.enough and c.pieces == []  # 3 voices but a single labelled side
 

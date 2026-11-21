@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import chip, factual, meter, ownership_section %}
+{% from "_macros.html" import chip, factual, meter, ownership_section, cis_scale %}
 {% set a = m.assessment %}
 {% block title %}{{ m.name }} · Contraste{% endblock %}
 {% block description %}{{ m.name }}: orientación según fuentes externas, fiabilidad y propietarios.{% endblock %}
@@ -27,7 +27,11 @@
     {{ ownership_section(m.ownership, m.name) }}
 
     <h2 class="section-title">Orientación ideológica</h2>
-    {% if a.rated %}
+    {% if a.by_perception %}
+      <p class="verdict">{{ chip(m) }} <span class="muted">· según la percepción del público (CIS 2025), no por etiquetas publicadas</span></p>
+      {{ meter(a.score, a.label) }}
+      <p><strong>Ninguna fuente externa ha publicado una etiqueta para este medio.</strong> Su posición sale solo de lo que opina la población en la encuesta del CIS (ver más abajo), con las bandas de <a href="/metodologia#percepcion">la metodología</a>.</p>
+    {% elif a.rated %}
       <p class="verdict">{{ chip(m) }} <span class="verdict__score">puntuación media {{ "%+.2f"|format(a.score) }}</span> <span class="muted">· {{ a.agreement }}</span></p>
       {{ meter(a.score, a.label) }}
     {% else %}
@@ -52,6 +56,21 @@
       </li>
       {% endfor %}
     </ol>
+    {% endif %}
+
+    {% if a.perception %}
+    <h3 class="sub" id="percepcion">Cómo lo percibe el público</h3>
+    <div class="perception" data-perception>
+      {% if a.perception|length > 1 %}<p>Encuesta del CIS de {{ cis.fieldwork }}. Medido sobre {% for e in a.perception %}{{ e.cis_name }}{% if loop.revindex == 2 %} y {% elif not loop.last %}, {% endif %}{% endfor %}.</p>{% endif %}
+      {% for e in a.perception %}
+      <div class="perception__item">
+        <p>{% if a.perception|length > 1 %}<strong>{{ e.cis_name }}</strong> ({{ e.kind }}): quienes lo conocen lo sitúan{% else %}En la encuesta del CIS de {{ cis.fieldwork }}, quienes conocen {{ e.cis_name }} {{ "la" if e.kind != "periódico" else "lo" }} sitúan{% endif %} de media en <strong title="Media exacta publicada por el CIS: {{ es_num(e.mean, 2) }}">{{ es_num(e.mean, 1) }}</strong> en una escala de 1 (lo más a la izquierda) a 10 (lo más a la derecha). <span class="small muted">({{ es_num(e.n) }} respuestas; desviación típica {{ es_num(e.sd, 1) }})</span></p>
+        {{ cis_scale(e) }}
+      </div>
+      {% endfor %}
+      <p class="small"><a href="{{ cis.url }}" rel="noopener noreferrer">Ver la tabla del CIS (preguntas 22–24)</a> · {{ cis.source_title }}, {{ cis.fieldwork }}.</p>
+      <p class="small muted">Es lo que opina la población encuestada, no un análisis de lo que publica el medio.</p>
+    </div>
     {% endif %}
 
     <h2 class="section-title">Fiabilidad factual</h2>

@@ -19,6 +19,7 @@ Media Bias/Fact Check, Wikipedia and Wikidata), its factual reliability, who own
 |---|---|
 | **Etiquetas citadas** | Lo que cada fuente dice del medio, con sus propias palabras («Wikipedia: Monarquismo, Catolicismo»), enlazado a la versión exacta consultada y con fecha. Nunca son adjetivos de Contraste. |
 | **Orientación del medio** | Posición izquierda–derecha calculada **solo** a partir de fuentes externas citadas (Media Bias/Fact Check, Wikipedia, Wikidata). Sin fuentes, el medio aparece como «sin etiqueta publicada». |
+| **Percepción del público** | Dónde sitúa la población a cada medio (encuesta del CIS, estudio 3511, mayo de 2025: media de 1 a 10, desviación típica y respuestas), mostrada aparte de las etiquetas. Solo da posición, con la marca «(CIS)», a los medios sin ninguna etiqueta. |
 | **Fiabilidad factual** | Calificación de Media Bias/Fact Check y acreditación IFCN de los verificadores. |
 | **Propiedad** | Grupo de comunicación de cada cabecera y quién está detrás de él. |
 | **Historias agrupadas** | Los titulares de distintos medios sobre el mismo hecho, juntos, para comparar el enfoque. |
@@ -153,7 +154,7 @@ app/
   db.py          SQLite + FTS5, consultas parametrizadas
   security.py    cabeceras de seguridad y limitador de peticiones
   templates/     HTML (Jinja2)   ·   static/  CSS, JS e icono
-data/            catálogo de medios y grupos y propiedad citada, `ownership.json` (CC BY-SA 4.0)
+data/            catálogo de medios y grupos y propiedad citada, `ownership.json` (CC BY-SA 4.0), y percepción del público del CIS, `perception.json` (CC BY 4.0)
 scripts/         verify_sources.py: comprueba fuentes y calificaciones; sponsored_survey.py: mide las marcas de patrocinio de los RSS;
                  discover_media.py: descubre medios candidatos (Wikidata + feeds) y los da de alta con --apply
 tests/           pytest

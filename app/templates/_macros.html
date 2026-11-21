@@ -1,5 +1,7 @@
 {% macro chip(media) -%}
-  {%- if media and media.assessment.rated -%}
+  {%- if media and media.assessment.by_perception -%}
+    <span class="chip chip--{{ pos_class(media.assessment.position) }} chip--perc" title="{{ media.assessment.label }}. Posición según la percepción del público (CIS), no por etiquetas publicadas. No es una opinión de Contraste.">{{ media.assessment.label }} <span class="chip__src">(CIS)</span></span>
+  {%- elif media and media.assessment.rated -%}
     <span class="chip chip--{{ pos_class(media.assessment.position) }}" title="{{ media.assessment.label }}: posición que fuentes externas citadas dan a este medio en la escala izquierda–derecha. No es una opinión de Contraste.">{{ media.assessment.label }}</span>
   {%- elif media -%}
     <span class="chip chip--na" title="Ninguna fuente externa ha publicado una orientación para este medio. No significa que sea neutral.">Sin etiqueta</span>
@@ -84,6 +86,14 @@
 {%- endmacro %}
 
 
+{#- One CIS entry as a plain sentence, with a CSS-only 1-10 marker (exact mean in the title). -#}
+{% macro cis_scale(e) -%}
+  <div class="pscale" role="img" aria-label="Posición media {{ es_num(e.mean, 1) }} en una escala de 1 (izquierda) a 10 (derecha)" title="Media exacta publicada por el CIS: {{ es_num(e.mean, 2) }}">
+    <div class="pscale__track"><span class="meter__marker at-{{ scale_step(e.mean) }}"></span></div>
+    <div class="pscale__labels"><span>1</span><span>10</span></div>
+  </div>
+{%- endmacro %}
+
 {% macro tags(media, limit=None, axes=('ideology', 'territorial', 'descriptive')) -%}
   {%- if media -%}
   {%- set items = media.assessment.tags|selectattr('axis', 'in', axes)|list -%}
@@ -160,6 +170,7 @@
       {% endfor %}
       <li><span class="dot dot--na is-on"></span>Sin etiqueta <span class="legend__n">{{ cov.total - cov.rated }}</span></li>
     </ul>
+    {% if cov.perception_outlets %}<p class="panel__perception small" data-perception-note>{{ cov.perception_outlets }} {{ "medios están clasificados" if cov.perception_outlets != 1 else "medio está clasificado" }} por la percepción del público (CIS), no por etiquetas.</p>{% endif %}
     <p class="panel__help small">{{ help("izquierda", "¿Qué significan estas etiquetas?") }} · {{ help("sin-etiqueta", "¿Qué es «sin etiqueta»?") }}</p>
 
     {% for w in cov.warnings %}

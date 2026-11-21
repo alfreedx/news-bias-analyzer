@@ -167,6 +167,10 @@ class Assessment:
     ifcn_evidence: dict | None = None
     evidence: list[EvidenceScore] = field(default_factory=list)
     tags: list[Tag] = field(default_factory=list)
+    # CIS public perception (app/perception.py): shown apart from labels. ``by_perception`` is True only
+    # when the position itself comes from it, because the outlet has no published ideology label.
+    perception: tuple = ()
+    by_perception: bool = False
 
     @property
     def rated(self) -> bool:

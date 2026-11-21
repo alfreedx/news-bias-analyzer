@@ -359,6 +359,7 @@ class Coverage:
     warnings: list[dict]
     agency_headlines: int = 0  # headlines that carry a news agency's mark (EFE, Europa Press…)
     agency_names: list[str] = field(default_factory=list)
+    perception_outlets: int = 0  # counted outlets whose position comes from the CIS perception, not from labels
 
     @property
     def reliable(self) -> bool:
@@ -375,6 +376,7 @@ class Coverage:
             "shares": {"left": self.left_share, "center": self.center_share, "right": self.right_share},
             "warnings": self.warnings,
             "agency_headlines": self.agency_headlines,
+            "perception_outlets": self.perception_outlets,
         }
 
 
@@ -552,4 +554,5 @@ def coverage(articles: list[Article]) -> Coverage:
         warnings=warnings,
         agency_headlines=sum(agencies.values()),
         agency_names=[n for n, _ in agencies.most_common()],
+        perception_outlets=sum(1 for m in media_ref.values() if m and m.assessment.by_perception),
     )

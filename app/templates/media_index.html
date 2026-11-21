@@ -18,14 +18,14 @@
     <ol class="spectrum-map__rows">
       {% for m in media if m.assessment.rated %}
       <li class="spectrum-map__row">
-        <a class="spectrum-map__pin at-{{ score_step(m.assessment.score) }} pin--{{ pos_class(m.assessment.position) }}" href="/medios/{{ m.id }}" title="{{ m.name }} · {{ m.assessment.label }} ({{ m.assessment.score }})">
-          <span class="spectrum-map__name">{{ m.name }}</span>
+        <a class="spectrum-map__pin at-{{ score_step(m.assessment.score) }} pin--{{ pos_class(m.assessment.position) }}" href="/medios/{{ m.id }}" title="{{ m.name }} · {{ m.assessment.label }}{% if m.assessment.by_perception %} (según la percepción del público, CIS){% else %} ({{ m.assessment.score }}){% endif %}">
+          <span class="spectrum-map__name">{{ m.name }}{% if m.assessment.by_perception %} <span class="small">(CIS)</span>{% endif %}</span>
         </a>
       </li>
       {% endfor %}
     </ol>
   </div>
-  <p class="muted small">Cada punto es la media de las posiciones que asignan las fuentes externas (escala −2 a +2). La línea de cada fila marca la posición exacta.</p>
+  <p class="muted small">Cada punto es la media de las posiciones que asignan las fuentes externas (escala −2 a +2). La línea de cada fila marca la posición exacta. Los medios marcados con «(CIS)» no tienen etiquetas publicadas: se sitúan según la percepción del público en la encuesta del CIS, en la banda que les corresponde.</p>
 </section>
 
 <section aria-labelledby="table-title">

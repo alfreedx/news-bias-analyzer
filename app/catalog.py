@@ -10,7 +10,8 @@ from urllib.parse import urlsplit
 
 from .config import settings
 from .facts import Derived, FichaRow, derive, ficha
-from .scoring import Assessment, assess
+from .perception import load_perception, position_of
+from .scoring import POSITION_LABELS, Assessment, assess
 
 NO_OWNERSHIP_DATA = "No consta en las fuentes públicas que hemos consultado."
 
@@ -110,7 +111,11 @@ class Media:
             "speciality": self.speciality,
             "tags": [{"label": t.label, "source": t.source, "url": t.permalink, "axis": t.axis,
                       "retrieved": t.retrieved} for t in a.tags],
-            "ideology": {"score": a.score, "position": a.position, "label": a.label, "agreement": a.agreement},
+            "ideology": {"score": None if a.by_perception else a.score, "position": a.position, "label": a.label,
+                         "agreement": a.agreement,
+                         "basis": "perception" if a.by_perception else "labels" if a.rated else None},
+            "perception": [{"medium": e.cis_name, "kind": e.kind, "question": e.question, "mean": e.mean,
+                            "sd": e.sd, "n": e.n} for e in a.perception],
             "territorial": a.territorial,
             "factual": {"level": a.factual_level, "label": a.factual_label},
             "ifcn": a.ifcn,
@@ -145,6 +150,8 @@ class Catalog:
         for gid, own in group_own.items():
             self.groups[gid].ownership = own  # KeyError = ownership.json names an unknown group
         self.media: dict[str, Media] = {}
+        self.perception_meta: dict = {}
+        self.perception_unmapped: tuple = ()
         self._domain_index: dict[str, Media] = {}
 
         for raw in media_raw:
@@ -178,6 +185,15 @@ class Catalog:
                 self._domain_index[domain] = item
         if media_own:
             raise ValueError(f"ownership.json names unknown outlets: {sorted(media_own)}")
+        perception = load_perception(directory, set(self.media))  # unknown ids raise
+        self.perception_meta = perception.meta
+        self.perception_unmapped = perception.unmapped
+        for oid, entries in perception.media.items():
+            a = self.media[oid].assessment
+            a.perception = entries
+            if a.position is None and (pos := position_of(entries)) is not None:
+                # No published label: fall back to the CIS band (never mixed with labels).
+                a.position, a.score, a.label, a.by_perception = pos, float(pos), POSITION_LABELS[pos], True
 
     def by_url(self, url: str) -> Media | None:
         """Find the outlet that owns a URL, matching the longest known domain suffix."""
