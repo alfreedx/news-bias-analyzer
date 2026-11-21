@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import subtitle, chip, factual, row_byline, comparison, spectrum_dots, tags, coverage_panel, help, verification %}
+{% from "_macros.html" import subtitle, chip, factual, row_byline, comparison, spectrum_dots, tags, coverage_panel, help, verification, media_link %}
 {% block title %}{{ title }} · Contraste{% endblock %}
 {% block description %}{{ story.outlets }} medios cuentan esta noticia. Qué datos repiten fuentes independientes de distintos grupos y tendencias, y qué solo cuenta un lado.{% endblock %}
 {% block body_class %}page-story{% endblock %}
@@ -131,7 +131,7 @@
       </ul>
       {% endif %}
       {% for name, n in c.agencies %}
-      <p class="consensus__origin">Origen común: {{ name }}. {{ n }} medios reproducen su texto y se cuentan como una sola fuente.</p>
+      <p class="consensus__origin">Origen común: {{ media_link(media_named(name), name) }}. {{ n }} medios reproducen su texto y se cuentan como una sola fuente.</p>
       {% endfor %}
       {% if c.one_sided %}
       <h3 class="consensus__sub">Solo lo cuenta un lado</h3>
@@ -185,7 +185,7 @@
           <time class="crono__time" datetime="{{ iso(r.first) }}">{{ clock(r.first) }}</time>
           <div class="crono__body"><a href="{{ r.lead.url }}" rel="noopener noreferrer" target="_blank">{{ r.lead.title }}</a>
             {{ subtitle(r, 160) }}
-            <span class="crono__by">{{ r.articles|map(attribute="source_name")|join(", ") }}{% if loop.first %} · <strong>Primera publicación en nuestro índice</strong>{% endif %}</span></div>
+            <span class="crono__by">{% for x in r.articles %}{{ media_link(x.media, x.source_name) }}{% if not loop.last %}, {% endif %}{% endfor %}{% if loop.first %} · <strong>Primera publicación en nuestro índice</strong>{% endif %}</span></div>
         </li>
         {% endfor %}
       </ol>

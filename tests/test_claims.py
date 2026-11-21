@@ -318,7 +318,7 @@ def story_html(client, url):
 def test_story_shows_review_only_through_explicit_url(client):
     html = story_html(client, "https://abc.es/z2")
     assert "Lo que se dice: «Circula que la frontera cierra el lunes»" in html
-    assert "Maldita.es lo califica: <strong>Falso.</strong>" in html
+    assert "Maldita.es</a> lo califica: <strong>Falso.</strong>" in html
     assert "Atribuido a: Cadena de WhatsApp" in html
     assert "Leer la verificación completa" in html and 'rel="noopener noreferrer"' in html
     assert "No hemos encontrado verificaciones enlazadas" not in html
@@ -354,7 +354,7 @@ def test_search_has_no_checks_in_briefs_and_labels_term_matches(client):
     assert all(c["rating"] is None for c in data["factchecks"] if c["claim"] is None)  # never from the headline
     assert any(c["rating"] == "Falso." for c in data["factchecks"])
     shown = client.get("/buscar", params={"q": "Zumbalino fronteras"}).text
-    assert "Maldita.es lo califica: <strong>Falso.</strong>" in shown  # rating only from the ClaimReview
+    assert "Maldita.es</a> lo califica: <strong>Falso.</strong>" in shown  # rating only from the ClaimReview
 
 
 def test_verificaciones_page_and_api(client):

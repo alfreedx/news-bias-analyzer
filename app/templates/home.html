@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import chip, byline, spectrum_dots, comparison %}
+{% from "_macros.html" import chip, byline, spectrum_dots, comparison, media_link %}
 {% block body_class %}page-home{% endblock %}
 
 {% block masthead %}
@@ -60,7 +60,7 @@
         <span class="front__spread">{{ s.spread_label }}</span>
       </div>
       <ul class="front__outlets">
-        {% for a in s.articles[:6] %}<li>{{ chip(a.media) }} {{ a.source_name }}</li>{% endfor %}
+        {% for a in s.articles[:6] %}<li>{{ chip(a.media) }} {{ media_link(a.media, a.source_name) }}</li>{% endfor %}
         {% if s.articles|length > 6 %}<li class="muted">y {{ s.articles|length - 6 }} más</li>{% endif %}
       </ul>
       {{ comparison(s) }}

@@ -38,7 +38,7 @@
 <aside class="notice notice--block" aria-labelledby="verif-how">
   <h2 id="verif-how" class="panel__sub panel__sub--first">Cómo leer esta página</h2>
   <ul>
-    <li><strong>Quién verifica:</strong> {{ checkers|map(attribute='name')|join(", ") }}. Son los {{ checkers|length }} verificadores españoles de nuestro catálogo, que se han comprometido, según la red internacional de verificadores (IFCN), con su código de principios.</li>
+    <li><strong>Quién verifica:</strong> {% for x in checkers %}<a href="/medios/{{ x.id }}">{{ x.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}. Son los {{ checkers|length }} verificadores españoles de nuestro catálogo, que se han comprometido, según la red internacional de verificadores (IFCN), con su código de principios.</li>
     <li><strong>Contraste no califica nada.</strong> Copiamos lo que dicen: lo que se afirma, cómo lo califica el verificador y a quién se atribuye. Si el verificador no publica esos datos de forma estructurada, solo mostramos su titular y el enlace.</li>
     <li><strong>Una verificación trata de una afirmación</strong> (muchas veces un mensaje en redes sociales), no de una noticia o un medio. Por eso solo la enlazamos a una historia cuando el propio verificador cita la dirección de esa noticia.</li>
     <li><strong>No encontrar una verificación no significa que algo sea cierto.</strong> Solo que ninguno de estos cuatro verificadores lo ha publicado, o que no lo hemos leído aún.</li>

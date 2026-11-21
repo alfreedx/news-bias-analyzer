@@ -157,7 +157,7 @@
     <li>Estos medios se marcan «(CIS)» en el chip, en el catálogo y en la ficha («según la percepción del público (CIS 2025), no por etiquetas publicadas»), y «Quién la cuenta» indica cuántos de los medios contados están clasificados así. Cuentan como medios con posición en los repartos y en las comparaciones, y no entran en la auditoría de etiquetas de arriba, que solo cuenta etiquetas citadas. La fiabilidad factual no cambia.</li>
   </ul>
   <h3>Medios por los que preguntó el CIS</h3>
-  <p>{% for m, entries in cis_media %}{{ m.name }}{% if m.assessment.by_perception %} (clasificado por esta regla){% endif %}{% if not loop.last %}, {% endif %}{% endfor %}.{% if cis_unmapped %} El CIS preguntó también por {% for u in cis_unmapped %}{{ u.cis_name }}{% if not loop.last %} y {% endif %}{% endfor %}, que no usamos: {% for u in cis_unmapped %}{{ u.cis_name }} ({{ u.reason|lower }}){% if not loop.last %}; {% endif %}{% endfor %}.{% endif %}</p>
+  <p>{% for m, entries in cis_media %}<a href="/medios/{{ m.id }}">{{ m.name }}</a>{% if m.assessment.by_perception %} (clasificado por esta regla){% endif %}{% if not loop.last %}, {% endif %}{% endfor %}.{% if cis_unmapped %} El CIS preguntó también por {% for u in cis_unmapped %}{{ u.cis_name }}{% if not loop.last %} y {% endif %}{% endfor %}, que no usamos: {% for u in cis_unmapped %}{{ u.cis_name }} ({{ u.reason|lower }}){% if not loop.last %}; {% endif %}{% endfor %}.{% endif %}</p>
   <p class="small">{{ cis.acknowledgement }}.</p>
   <h3>Fuentes valoradas y no usadas</h3>
   <ul>

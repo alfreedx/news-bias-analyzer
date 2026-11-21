@@ -98,7 +98,7 @@
     <li class="card">
       <a class="card__title" href="/grupos/{{ g.id }}">{{ g.name }}</a>
       <p class="card__meta">{{ g.kind }}</p>
-      <p class="card__text">{{ g.media|map(attribute='name')|join(', ') }}</p>
+      <p class="card__text">{% for x in g.media %}<a href="/medios/{{ x.id }}">{{ x.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
     </li>
     {% endfor %}
   </ul>

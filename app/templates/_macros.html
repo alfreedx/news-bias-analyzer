@@ -1,3 +1,8 @@
+{#- An outlet's name always links to its page on Contraste when the outlet is in the catalog. -#}
+{% macro media_link(m, text=None) -%}
+  {%- if m -%}<a class="media-link" href="/medios/{{ m.id }}">{{ text or m.name }}</a>{%- else -%}{{ text }}{%- endif -%}
+{%- endmacro %}
+
 {% macro chip(media) -%}
   {%- if media and media.assessment.by_perception -%}
     <span class="chip chip--{{ pos_class(media.assessment.position) }} chip--perc" title="{{ media.assessment.label }}. Posición según la percepción del público (CIS), no por etiquetas publicadas. No es una opinión de Contraste.">{{ media.assessment.label }} <span class="chip__src">(CIS)</span></span>
@@ -39,7 +44,7 @@
     {%- if v.claim %}
     <p class="check__claim">Lo que se dice: «{{ v.claim }}»</p>
     {%- if v.rating %}
-    <p class="check__rating">{{ v.source }} lo califica: <strong>{{ v.rating }}</strong></p>
+    <p class="check__rating">{{ media_link(media_by_id(v.source_id), v.source) }} lo califica: <strong>{{ v.rating }}</strong></p>
     {%- endif %}
     {%- if v.claimant %}
     <p class="check__meta">Atribuido a: {{ v.claimant }}</p>
@@ -47,7 +52,7 @@
     {%- else %}
     <p class="check__claim">«{{ v.headline }}»</p>
     {%- endif %}
-    <p class="check__meta">{{ v.source }} · <time datetime="{{ iso(v.published) }}">{{ time_ago(v.published) }}</time> · <a href="{{ v.url }}" rel="noopener noreferrer" target="_blank">Leer la verificación completa</a></p>
+    <p class="check__meta">{{ media_link(media_by_id(v.source_id), v.source) }} · <time datetime="{{ iso(v.published) }}">{{ time_ago(v.published) }}</time> · <a href="{{ v.url }}" rel="noopener noreferrer" target="_blank">Leer la verificación completa</a></p>
   </li>
 {%- endmacro %}
 
@@ -140,7 +145,7 @@
         {%- if a %}
         <a class="compare__headline" href="{{ a.url }}" rel="noopener noreferrer" target="_blank">{{ a.title }}</a>
         {{ subtitle(a, 140) }}
-        <p class="compare__outlet">{{ a.source_name }}{% if a.author %} · Por <a class="byline__author" href="/buscar?autor={{ a.author|urlencode }}">{{ a.author }}</a>{% endif %}</p>
+        <p class="compare__outlet">{{ media_link(a.media, a.source_name) }}{% if a.author %} · Por <a class="byline__author" href="/buscar?autor={{ a.author|urlencode }}">{{ a.author }}</a>{% endif %}</p>
         {%- else %}
         <p class="compare__none">No aparece en los RSS que leemos de medios de este lado</p>
         {%- endif %}
@@ -157,7 +162,7 @@
     <h2 id="panel-title" class="panel__title">Quién la cuenta</h2>
     <p class="panel__lead"><strong>{{ cov.total }}</strong> titulares de <strong>{{ cov.outlets }}</strong> medios</p>
     <p class="panel__summary">{{ coverage_summary(cov) }}</p>
-    {% if cov.agency_headlines %}<p class="panel__agency small" data-agency>{{ cov.agency_headlines }} titular{{ "es reproducen textos" if cov.agency_headlines != 1 else " reproduce un texto" }} de agencia ({{ cov.agency_names|join(", ") }}).</p>{% endif %}
+    {% if cov.agency_headlines %}<p class="panel__agency small" data-agency>{{ cov.agency_headlines }} titular{{ "es reproducen textos" if cov.agency_headlines != 1 else " reproduce un texto" }} de agencia ({% for n in cov.agency_names %}{{ media_link(media_named(n), n) }}{% if not loop.last %}, {% endif %}{% endfor %}).</p>{% endif %}
 
     {% if cov.reliable %}
     <div class="stack" role="img" aria-label="Reparto por orientación: {% for p, n in cov.by_position.items() %}{{ POSITION_LABELS[p] }} {{ n }}, {% endfor %}sin etiqueta publicada {{ cov.total - cov.rated }}">

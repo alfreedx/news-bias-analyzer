@@ -272,6 +272,15 @@ def ownership_issue_url(name: str) -> str:
     return f"{settings.repo_url}/issues/new?title={title}&body={urlq(body)}"
 
 
+def media_named(name: str):
+    """Catalog outlet whose display name is exactly ``name`` (agency names, checker names), or None."""
+    return _MEDIA_BY_NAME.get(name) or catalog.media.get(_NAME_ALIASES.get(name, ""))
+
+
+_NAME_ALIASES = {"EFE": "efe"}  # short agency name used in headlines → catalog id
+
+
+_MEDIA_BY_NAME = {m.name: m for m in catalog.media.values()}
 templates.env.filters["urlq"] = urlq
 templates.env.globals.update(
     issue_url=issue_url, sponsored_issue_url=sponsored_issue_url,
@@ -280,6 +289,7 @@ templates.env.globals.update(
     es_num=es_num, scale_step=scale_step, pct=pct,
     coverage_summary=coverage_summary, sponsored_evidence=sponsored_evidence,
     POSITION_LABELS=POSITION_LABELS, bucket=bucket, settings=settings, version=__version__,
+    media_named=media_named, media_by_id=catalog.media.get,
 )
 
 

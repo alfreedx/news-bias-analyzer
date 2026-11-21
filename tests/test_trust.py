@@ -103,7 +103,9 @@ def test_agency_note_counts_headlines_with_an_agency_mark():
             art("okdiario", "Sin marca")]
     c = coverage(arts)
     assert c.agency_headlines == 3 and c.agency_names == ["EFE", "Europa Press"]
-    assert "3 titulares reproducen textos de agencia (EFE, Europa Press)" in macros().coverage_panel(c)
+    panel = macros().coverage_panel(c)
+    assert "3 titulares reproducen textos de agencia (" in panel
+    assert "EFE</a>" in panel and "Europa Press</a>" in panel  # agency names link to their outlet pages
     assert "data-agency" not in macros().coverage_panel(coverage([art("abc", "Sin marca")]))
 
 
