@@ -765,5 +765,14 @@ h1, h2, .story__title, .search-head__title { font-variation-settings: "opsz" 48;
 .ownership__list { list-style: none; padding: 0; margin: 0 0 12px; }
 .ownership__list li { margin-bottom: 10px; }
 .ownership__list p { margin: 0; }
+.owner-desc { margin: 6px 0 0; }
+.owner-desc summary { cursor: pointer; font-size: 0.875rem; }
+.owner-desc__body { margin: 6px 0 0; padding-left: 12px; border-left: 3px solid var(--border, currentColor); }
+.owner-desc__body p { margin: 0 0 6px; }
+.owner-desc__facts { margin: 0 0 6px; }
+.owner-desc__facts dt { font-weight: 600; float: left; clear: left; margin-right: 6px; }
+.owner-desc__facts dt::after { content: ":"; }
+.owner-desc__facts dd { margin: 0 0 2px; }
+.owner-list { margin: 12px 0; }
 .ownership__note { margin: 12px 0; padding: 10px 12px; border-left: 3px solid var(--border, currentColor); }
 .ownership__note p { margin: 0; }

@@ -50,6 +50,7 @@ from .facts import (
     RELIGIOUS_OWNER_QIDS,
 )
 from .feeds import ingest_all, search_google_news
+from .owners import owner_view, owner_views_for_facts
 from .perception import BAND_INTERVALS
 from .scoring import DESCRIPTIVE_LABELS, FACTUAL_MAP, IDEOLOGY_MAP, POSITION_LABELS, TERRITORIAL_LABELS, bucket
 from .sections import query_is_incident
@@ -284,7 +285,8 @@ _MEDIA_BY_NAME = {m.name: m for m in catalog.media.values()}
 templates.env.filters["urlq"] = urlq
 templates.env.globals.update(
     issue_url=issue_url, sponsored_issue_url=sponsored_issue_url,
-    ownership_issue_url=ownership_issue_url, NO_OWNERSHIP_DATA=NO_OWNERSHIP_DATA, clock=clock,
+    ownership_issue_url=ownership_issue_url, owner_view=owner_view, owner_views_for_facts=owner_views_for_facts,
+    NO_OWNERSHIP_DATA=NO_OWNERSHIP_DATA, clock=clock,
     long_date=long_date, time_ago=time_ago, iso=iso, pos_class=pos_class, score_step=score_step,
     es_num=es_num, scale_step=scale_step, pct=pct,
     coverage_summary=coverage_summary, sponsored_evidence=sponsored_evidence,

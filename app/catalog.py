@@ -10,6 +10,7 @@ from urllib.parse import urlsplit
 
 from .config import settings
 from .facts import Derived, FichaRow, derive, ficha
+from .owners import owner_view, owner_views_for_facts
 from .perception import load_perception, position_of
 from .scoring import POSITION_LABELS, Assessment, assess
 
@@ -26,6 +27,7 @@ class OwnershipRow:
     url: str
     date: str  # ISO date
     date_kind: str  # "datos" (date stated by the source) | "consulta" (source states none: date we consulted it)
+    qid: str | None = None  # reviewed Wikidata item of the named shareholder, only when the match is certain
 
     @property
     def date_label(self) -> str:
@@ -124,6 +126,7 @@ class Media:
             "ownership": self.derived.ownership,
             "wikidata": self.facts.get("source"),
             "ownership_facts": ownership_public(self.ownership),
+            "owners": owner_views_for_facts(self.facts),
         }
 
 
@@ -131,7 +134,8 @@ def ownership_public(own: Ownership) -> dict:
     return {
         "context": own.context,
         "rows": [
-            {"text": r.text, "source": r.source_title, "url": r.url, "date": r.date, "date_kind": r.date_kind}
+            {"text": r.text, "source": r.source_title, "url": r.url, "date": r.date, "date_kind": r.date_kind,
+             "owner": owner_view(r.qid)}
             for r in own.rows
         ],
         "if_empty": None if own.rows else NO_OWNERSHIP_DATA,

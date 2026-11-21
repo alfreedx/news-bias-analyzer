@@ -18,6 +18,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q47491482",
           "text": "Oughourlian, Joseph: 29,568 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
@@ -34,6 +35,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q1127887",
           "text": "Vivendi, S.E.: 11,795 %",
           "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
@@ -82,6 +84,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q6496310",
           "text": "Banco Santander, S.A.: 4,145 %",
           "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
@@ -103,6 +106,7 @@
       "rows": [
         {
           "kind": "accionista",
+          "qid": "Q5865823",
           "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
@@ -188,6 +192,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q156913",
           "text": "Bertelsmann, A.G.: 19,166 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Atresmedia Corporación de Medios de Comunicación, S.A.",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-78839271&lang=es",
@@ -201,6 +206,7 @@
       "rows": [
         {
           "kind": "accionista",
+          "qid": "Q1417245",
           "text": "Fininvest S.p.A.: 33,34 % del total de acciones MFE A+B (50,57 % de las MFE B; 24,71 % de las MFE A; 46,268 % por valor nominal, criterio AFM)",
           "source_title": "MFE-MediaForEurope: estructura del capital social (web propia)",
           "url": "https://www.mfemediaforeurope.com/en/governance/share-capital-structure/",
@@ -209,6 +215,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q1127887",
           "text": "Vivendi S.E.: 15,89 % del total de acciones MFE A+B (23,79 % de las MFE B; 11,93 % de las MFE A; 21,82 % por valor nominal)",
           "source_title": "MFE-MediaForEurope: estructura del capital social (web propia)",
           "url": "https://www.mfemediaforeurope.com/en/governance/share-capital-structure/",
@@ -460,6 +467,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q47491482",
           "text": "Oughourlian, Joseph: 29,568 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
@@ -476,6 +484,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q1127887",
           "text": "Vivendi, S.E.: 11,795 %",
           "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
@@ -524,6 +533,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q6496310",
           "text": "Banco Santander, S.A.: 4,145 %",
           "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
@@ -545,6 +555,7 @@
       "rows": [
         {
           "kind": "accionista",
+          "qid": "Q5865823",
           "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
@@ -656,6 +667,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q47491482",
           "text": "Oughourlian, Joseph: 29,568 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
@@ -672,6 +684,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q1127887",
           "text": "Vivendi, S.E.: 11,795 %",
           "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
@@ -720,6 +733,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q6496310",
           "text": "Banco Santander, S.A.: 4,145 %",
           "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
@@ -749,6 +763,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q156913",
           "text": "Bertelsmann, A.G.: 19,166 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Atresmedia Corporación de Medios de Comunicación, S.A.",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-78839271&lang=es",
@@ -770,6 +785,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q156913",
           "text": "Bertelsmann, A.G.: 19,166 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Atresmedia Corporación de Medios de Comunicación, S.A.",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-78839271&lang=es",
@@ -791,6 +807,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q156913",
           "text": "Bertelsmann, A.G.: 19,166 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Atresmedia Corporación de Medios de Comunicación, S.A.",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-78839271&lang=es",
@@ -804,6 +821,7 @@
       "rows": [
         {
           "kind": "accionista",
+          "qid": "Q1417245",
           "text": "Fininvest S.p.A.: 33,34 % del total de acciones MFE A+B (50,57 % de las MFE B; 24,71 % de las MFE A; 46,268 % por valor nominal, criterio AFM)",
           "source_title": "MFE-MediaForEurope: estructura del capital social (web propia)",
           "url": "https://www.mfemediaforeurope.com/en/governance/share-capital-structure/",
@@ -812,6 +830,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q1127887",
           "text": "Vivendi S.E.: 15,89 % del total de acciones MFE A+B (23,79 % de las MFE B; 11,93 % de las MFE A; 21,82 % por valor nominal)",
           "source_title": "MFE-MediaForEurope: estructura del capital social (web propia)",
           "url": "https://www.mfemediaforeurope.com/en/governance/share-capital-structure/",
@@ -825,6 +844,7 @@
       "rows": [
         {
           "kind": "accionista",
+          "qid": "Q1417245",
           "text": "Fininvest S.p.A.: 33,34 % del total de acciones MFE A+B (50,57 % de las MFE B; 24,71 % de las MFE A; 46,268 % por valor nominal, criterio AFM)",
           "source_title": "MFE-MediaForEurope: estructura del capital social (web propia)",
           "url": "https://www.mfemediaforeurope.com/en/governance/share-capital-structure/",
@@ -833,6 +853,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q1127887",
           "text": "Vivendi S.E.: 15,89 % del total de acciones MFE A+B (23,79 % de las MFE B; 11,93 % de las MFE A; 21,82 % por valor nominal)",
           "source_title": "MFE-MediaForEurope: estructura del capital social (web propia)",
           "url": "https://www.mfemediaforeurope.com/en/governance/share-capital-structure/",
@@ -854,6 +875,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q47491482",
           "text": "Oughourlian, Joseph: 29,568 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
@@ -870,6 +892,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q1127887",
           "text": "Vivendi, S.E.: 11,795 %",
           "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
@@ -918,6 +941,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q6496310",
           "text": "Banco Santander, S.A.: 4,145 %",
           "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
@@ -947,6 +971,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q47491482",
           "text": "Oughourlian, Joseph: 29,568 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
@@ -963,6 +988,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q1127887",
           "text": "Vivendi, S.E.: 11,795 %",
           "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
@@ -1011,6 +1037,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q6496310",
           "text": "Banco Santander, S.A.: 4,145 %",
           "source_title": "CNMV: participaciones significativas de Promotora de Informaciones, S.A. (Prisa)",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A28297059&lang=es",
@@ -1032,6 +1059,7 @@
       "rows": [
         {
           "kind": "accionista",
+          "qid": "Q5865823",
           "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
@@ -1109,6 +1137,7 @@
       "rows": [
         {
           "kind": "accionista",
+          "qid": "Q5865823",
           "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
@@ -1186,6 +1215,7 @@
       "rows": [
         {
           "kind": "accionista",
+          "qid": "Q5865823",
           "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
@@ -1263,6 +1293,7 @@
       "rows": [
         {
           "kind": "accionista",
+          "qid": "Q5865823",
           "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
@@ -1340,6 +1371,7 @@
       "rows": [
         {
           "kind": "accionista",
+          "qid": "Q5865823",
           "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
@@ -1417,6 +1449,7 @@
       "rows": [
         {
           "kind": "accionista",
+          "qid": "Q5865823",
           "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
@@ -1494,6 +1527,7 @@
       "rows": [
         {
           "kind": "accionista",
+          "qid": "Q5865823",
           "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
@@ -1571,6 +1605,7 @@
       "rows": [
         {
           "kind": "accionista",
+          "qid": "Q5865823",
           "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
@@ -1648,6 +1683,7 @@
       "rows": [
         {
           "kind": "accionista",
+          "qid": "Q5865823",
           "text": "García Paramés, Francisco: 15,085 % (participación indirecta)",
           "source_title": "CNMV: participaciones significativas de Vocento, S.A.",
           "url": "https://www.cnmv.es/portal/consultas/derechosvoto/ps_ac_ini?nif=A-48001655&lang=es",
@@ -1725,6 +1761,7 @@
       "rows": [
         {
           "kind": "accionista",
+          "qid": "Q1417245",
           "text": "Fininvest S.p.A.: 33,34 % del total de acciones MFE A+B (50,57 % de las MFE B; 24,71 % de las MFE A; 46,268 % por valor nominal, criterio AFM)",
           "source_title": "MFE-MediaForEurope: estructura del capital social (web propia)",
           "url": "https://www.mfemediaforeurope.com/en/governance/share-capital-structure/",
@@ -1733,6 +1770,7 @@
         },
         {
           "kind": "accionista",
+          "qid": "Q1127887",
           "text": "Vivendi S.E.: 15,89 % del total de acciones MFE A+B (23,79 % de las MFE B; 11,93 % de las MFE A; 21,82 % por valor nominal)",
           "source_title": "MFE-MediaForEurope: estructura del capital social (web propia)",
           "url": "https://www.mfemediaforeurope.com/en/governance/share-capital-structure/",

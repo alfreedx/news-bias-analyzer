@@ -145,6 +145,7 @@ solo permiten uso personal y no comercial.
 ```
 app/
   main.py        rutas, ingesta en segundo plano, ayudas de plantilla
+  owners.py      descripciones breves de propietarios (data/owners.json) con formato en español
   catalog.py     carga y valida data/*.json, asocia URLs a medios
   scoring.py     tablas públicas etiqueta → posición (la «metodología» en código)
   analysis.py    agrupación de historias, cobertura, noticias que cuenta sobre todo un lado
@@ -154,7 +155,7 @@ app/
   db.py          SQLite + FTS5, consultas parametrizadas
   security.py    cabeceras de seguridad y limitador de peticiones
   templates/     HTML (Jinja2)   ·   static/  CSS, JS e icono
-data/            catálogo de medios y grupos y propiedad citada, `ownership.json` (CC BY-SA 4.0), y percepción del público del CIS, `perception.json` (CC BY 4.0)
+data/            catálogo de medios y grupos y propiedad citada, `ownership.json` (CC BY-SA 4.0), `owners.json` (descripciones de propietarios y accionistas, de Wikidata, CC0) y percepción del público del CIS, `perception.json` (CC BY 4.0)
 scripts/         verify_sources.py: comprueba fuentes y calificaciones; sponsored_survey.py: mide las marcas de patrocinio de los RSS;
                  discover_media.py: descubre medios candidatos (Wikidata + feeds) y los da de alta con --apply
 tests/           pytest

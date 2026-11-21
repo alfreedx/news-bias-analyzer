@@ -188,6 +188,21 @@
 {%- endmacro %}
 
 
+{# Short Wikidata description of one owner or shareholder (data/owners.json); prints nothing when we have none. #}
+{% macro owner_desc(qid) %}
+{% set o = owner_view(qid) %}
+{% if o %}
+<details class="owner-desc">
+  <summary>Quién es: {{ o.name }}</summary>
+  <div class="owner-desc__body small">
+    {% if o.description %}<p>Wikidata lo describe como: «{{ o.description }}»{% if o.description_lang == 'en' %} (texto en inglés){% endif %}.</p>{% endif %}
+    {% if o.facts %}<dl class="owner-desc__facts">{% for f in o.facts %}<dt>{{ f.label }}</dt><dd>{{ f.value }}</dd>{% endfor %}</dl>{% endif %}
+    <p class="muted">Fuente: <a href="{{ o.source }}" rel="noopener noreferrer">Wikidata ({{ o.qid }})</a>, consultado el {{ o.date_label }}.</p>
+  </div>
+</details>
+{% endif %}
+{% endmacro %}
+
 {# Cited ownership facts: every row is a citation (text, source link, date); missing data is stated, never left blank. #}
 {% macro ownership_section(own, name) %}
 <section class="ownership" aria-labelledby="propietario-titulo">
@@ -198,6 +213,7 @@
       {% for r in own.rows %}
       <li>
         <p>{{ r.text }}</p>
+        {% if r.qid %}{{ owner_desc(r.qid) }}{% endif %}
         <p class="small muted">Fuente: <a href="{{ r.url }}" rel="noopener noreferrer">{{ r.source_title }}</a> · {{ r.date_label }}</p>
       </li>
       {% endfor %}
@@ -207,6 +223,7 @@
   {% endif %}
   <div class="ownership__note small">
     <h3 class="sub">Qué no significa esto</h3>
+    <p>Las descripciones de quién es cada propietario salen de Wikidata, solo con datos profesionales o institucionales; no implican nada sobre lo que publica el medio.</p>
     <p>Ser accionista de una empresa no demuestra que influya en lo que publica el medio. Los porcentajes de la CNMV son la última comunicación de cada accionista, pueden estar desactualizados y no deben sumarse: una misma participación puede figurar a nombre de una sociedad y de quien la controla, como «indirecta».</p>
   </div>
   <p class="small"><a href="{{ ownership_issue_url(name) }}" rel="noopener noreferrer" target="_blank">¿Ves un dato incorrecto? Avísanos</a> · <a href="/metodologia#propiedad">Cómo lo hacemos</a></p>

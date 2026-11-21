@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import chip, factual, meter, ownership_section, cis_scale %}
+{% from "_macros.html" import chip, factual, meter, ownership_section, owner_desc, cis_scale %}
 {% set a = m.assessment %}
 {% block title %}{{ m.name }} · Contraste{% endblock %}
 {% block description %}{{ m.name }}: orientación según fuentes externas, fiabilidad y propietarios.{% endblock %}
@@ -23,6 +23,14 @@
       <dd>{{ r.value }}{% if r.source %}<span class="ficha__src"><a href="{{ r.source }}"{% if r.source.startswith('http') %} rel="noopener noreferrer"{% endif %}>{{ r.source_name }}{% if r.retrieved %} · {{ r.retrieved }}{% endif %}</a></span>{% endif %}</dd>
       {% endfor %}
     </dl>
+
+    {% set wd_owners = owner_views_for_facts(m.facts) %}
+    {% if wd_owners %}
+    <section class="owner-list" aria-labelledby="quienes-titulo">
+      <h3 class="sub" id="quienes-titulo">Quiénes son los propietarios que figuran en Wikidata</h3>
+      {% for o in wd_owners %}{{ owner_desc(o.qid) }}{% endfor %}
+    </section>
+    {% endif %}
 
     {{ ownership_section(m.ownership, m.name) }}
 

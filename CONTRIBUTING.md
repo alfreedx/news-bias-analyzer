@@ -33,7 +33,13 @@ Edita `data/ownership.json` (clave por id de grupo o de medio). Cada fila necesi
 4. Personas físicas: solo si figuran en un registro público (CNMV) o el medio las presenta como titulares reales; si solo las nombra su propia web, agrúpalas.
 5. No añadas cifras de publicidad o subvenciones, ni comparaciones entre medios. Wikipedia no basta como fuente.
 
+6. `qid` (opcional): el elemento de Wikidata del accionista, **solo si la correspondencia es segura** (nombre idéntico y descripción coherente). Con `qid`, la página muestra una descripción breve de Wikidata; sin él, solo el nombre. En caso de duda, no lo pongas.
+
 `python -m pytest tests/test_ownership.py` valida el formato.
+
+### Descripciones de propietarios (`data/owners.json`)
+
+Se generan desde Wikidata (CC0) con `python scripts/enrich_owners.py` (añade `--dry-run` para no escribir). Léelo para los propietarios de `data/media.json` y las filas con `qid` de `data/ownership.json`. Es manual: ejecútalo tras cambiar propietarios o accionistas (y de vez en cuando, para refrescar) y revisa el diff. Si Wikidata falla, se conservan los datos anteriores. Nunca se guardan fecha de nacimiento, familia, domicilio, patrimonio ni militancia en partidos.
 
 ## Altas automáticas de medios
 

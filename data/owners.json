@@ -1,0 +1,1140 @@
+{
+  "_meta": {
+    "description": "Descripción breve de propietarios y accionistas de los medios, leída de Wikidata. Solo datos profesionales o institucionales; no se guardan fecha de nacimiento, familia, domicilio, patrimonio ni militancia en partidos.",
+    "source": "Wikidata",
+    "license": "CC0",
+    "retrieved": "2026-11-21"
+  },
+  "owners": {
+    "Q1466106": {
+      "label": "Grupo Prisa",
+      "description": "conglomerado español de medios de comunicación",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q1466106",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "negocio",
+        "empresa"
+      ],
+      "industry": [
+        "medio de comunicación de masas"
+      ],
+      "country": "España",
+      "hq": "Madrid",
+      "parent": [
+        {
+          "qid": "Q89345695",
+          "label": "Amber Capital"
+        }
+      ],
+      "inception": 1972
+    },
+    "Q95735556": {
+      "label": "Liberty Acquisition Holdings",
+      "description": "Investment Fund managed by Niccolas Berggruen",
+      "description_lang": "en",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q95735556",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "Fondo de inversión"
+      ],
+      "industry": [],
+      "country": null,
+      "hq": null,
+      "parent": [
+        {
+          "qid": "Q88917",
+          "label": "Nicolas Berggruen"
+        },
+        {
+          "qid": "Q20752551",
+          "label": "Martin E. Franklin"
+        }
+      ],
+      "inception": null
+    },
+    "Q89345695": {
+      "label": "Amber Capital",
+      "description": "Fondo de inversión",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q89345695",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "Fondo de inversión"
+      ],
+      "industry": [],
+      "country": "Reino Unido",
+      "hq": "Londres",
+      "parent": [],
+      "inception": 2005
+    },
+    "Q88917": {
+      "label": "Nicolas Berggruen",
+      "description": "Businessperson, billionaire",
+      "description_lang": "en",
+      "kind": "person",
+      "url": "https://www.wikidata.org/wiki/Q88917",
+      "retrieved": "2026-11-21",
+      "occupations": [
+        "inversor en bienes raíces",
+        "coleccionista de arte",
+        "agente inmobiliario"
+      ],
+      "positions": [
+        {
+          "label": "presidente de Instituto Nicolas Berggruen",
+          "start": null,
+          "end": null
+        }
+      ],
+      "employers": [],
+      "country": "Estados Unidos"
+    },
+    "Q20752551": {
+      "label": "Martin E. Franklin",
+      "description": "diplomático estadounidense",
+      "description_lang": "es",
+      "kind": "person",
+      "url": "https://www.wikidata.org/wiki/Q20752551",
+      "retrieved": "2026-11-21",
+      "occupations": [
+        "diplomático",
+        "empresario"
+      ],
+      "positions": [],
+      "employers": [],
+      "country": "Estados Unidos"
+    },
+    "Q2056424": {
+      "label": "Unidad Editorial",
+      "description": "sociedad española de medios de comunicación",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q2056424",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "empresa de medios",
+        "editorial"
+      ],
+      "industry": [
+        "medio de comunicación de masas"
+      ],
+      "country": "España",
+      "hq": "España",
+      "parent": [
+        {
+          "qid": "Q1327389",
+          "label": "RCS MediaGroup"
+        }
+      ],
+      "inception": 2007
+    },
+    "Q3649899": {
+      "label": "Cairo Communication",
+      "description": "Italian media and publishing company",
+      "description_lang": "en",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q3649899",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "editorial"
+      ],
+      "industry": [],
+      "country": "Italia",
+      "hq": "Milán",
+      "parent": [],
+      "inception": 1995
+    },
+    "Q1337706": {
+      "label": "Vocento",
+      "description": "grupo de comunicación español",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q1337706",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "empresa privada"
+      ],
+      "industry": [
+        "medio de comunicación de masas"
+      ],
+      "country": "España",
+      "hq": "Madrid",
+      "parent": [],
+      "inception": 2002
+    },
+    "Q51993928": {
+      "label": "La Vanguardia Ediciones, SL",
+      "description": "Empresa que edita La Vanguardia",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q51993928",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "empresa"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "Barcelona",
+      "parent": [
+        {
+          "qid": "Q35710",
+          "label": "Grupo Godó"
+        }
+      ],
+      "inception": null
+    },
+    "Q3109084": {
+      "label": "Grupo Planeta",
+      "description": "grupo multimedia con sede en Madrid, España",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q3109084",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "grupo de empresas",
+        "empresa familiar"
+      ],
+      "industry": [
+        "edición",
+        "industria audiovisual",
+        "educación"
+      ],
+      "country": "España",
+      "hq": "Madrid",
+      "parent": [],
+      "inception": 1949
+    },
+    "Q3572134": {
+      "label": "Heraldo de Aragón",
+      "description": "periódico aragonés conservador",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q3572134",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "periódico"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "Zaragoza",
+      "parent": [],
+      "inception": 1895
+    },
+    "Q3121614": {
+      "label": "Pedro J. Ramírez",
+      "description": "periodista español",
+      "description_lang": "es",
+      "kind": "person",
+      "url": "https://www.wikidata.org/wiki/Q3121614",
+      "retrieved": "2026-11-21",
+      "occupations": [
+        "periodista",
+        "escritor",
+        "profesor universitario",
+        "corresponsal"
+      ],
+      "positions": [
+        {
+          "label": "presidente de El Español",
+          "start": 2015,
+          "end": null
+        },
+        {
+          "label": "director de periódico de El Mundo",
+          "start": 1989,
+          "end": 2014
+        },
+        {
+          "label": "director de periódico de Diario 16",
+          "start": 1980,
+          "end": 1989
+        }
+      ],
+      "employers": [
+        {
+          "label": "El Español",
+          "start": 2015,
+          "end": null
+        },
+        {
+          "label": "Unidad Editorial",
+          "start": 1989,
+          "end": 2014
+        },
+        {
+          "label": "Diario 16",
+          "start": 1980,
+          "end": 1989
+        }
+      ],
+      "country": "España"
+    },
+    "Q108525544": {
+      "label": "Libertad Digital, S.A.",
+      "description": "grupo de comunicación español",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q108525544",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "empresa de medios"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": null,
+      "parent": [],
+      "inception": null
+    },
+    "Q124880725": {
+      "label": "The Objective Media",
+      "description": "media group",
+      "description_lang": "en",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q124880725",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "conglomerado mediático"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "Madrid",
+      "parent": [
+        {
+          "qid": "Q20653729",
+          "label": "Paula Quinteros"
+        }
+      ],
+      "inception": 2013
+    },
+    "Q20653729": {
+      "label": "Paula Quinteros",
+      "description": "periodista y empresaria hispanoargentina",
+      "description_lang": "es",
+      "kind": "person",
+      "url": "https://www.wikidata.org/wiki/Q20653729",
+      "retrieved": "2026-11-21",
+      "occupations": [
+        "periodista",
+        "empresario"
+      ],
+      "positions": [
+        {
+          "label": "director ejecutivo de The Objective Media",
+          "start": 2018,
+          "end": null
+        }
+      ],
+      "employers": [],
+      "country": "España"
+    },
+    "Q1194749": {
+      "label": "Gobierno de España",
+      "description": "Órgano constitucional que encabeza el poder ejecutivo del Reino de España",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q1194749",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "poder ejecutivo"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "Palacio de la Moncloa",
+      "parent": [],
+      "inception": null
+    },
+    "Q1518168": {
+      "label": "Conferencia Episcopal Española",
+      "description": "Entidad permanente que reúne a todos los obispos de España (latinos y de ritos orientales) para ejercer conjuntamente los ministerios pastorales, promoviendo unidad, solidaridad y evangelización",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q1518168",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "conferencia episcopal",
+        "organización religiosa"
+      ],
+      "industry": [
+        "congregaciones y asociaciones religiosas"
+      ],
+      "country": "España",
+      "hq": "edificio sede de la Conferencia Episcopal Española",
+      "parent": [],
+      "inception": 1966
+    },
+    "Q3118227": {
+      "label": "Atresmedia",
+      "description": "grupo de comunicación de España",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q3118227",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "negocio",
+        "empresa"
+      ],
+      "industry": [
+        "industria mediática"
+      ],
+      "country": "España",
+      "hq": "San Sebastián de los Reyes",
+      "parent": [
+        {
+          "qid": "Q2526307",
+          "label": "Planeta DeAgostini"
+        },
+        {
+          "qid": "Q921159",
+          "label": "RTL Group"
+        },
+        {
+          "qid": "Q1516464",
+          "label": "Autocartera"
+        }
+      ],
+      "inception": 1989
+    },
+    "Q2521786": {
+      "label": "De Agostini",
+      "description": "editorial y holding empresarial de Italia",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q2521786",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "negocio",
+        "organización"
+      ],
+      "industry": [
+        "holding"
+      ],
+      "country": "Italia",
+      "hq": "Novara",
+      "parent": [],
+      "inception": 1901
+    },
+    "Q3777384": {
+      "label": "MFE - MediaForEurope",
+      "description": "grupo de empresas de radio y televisión italianas",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q3777384",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "negocio",
+        "empresa",
+        "organización"
+      ],
+      "industry": [
+        "industria mediática"
+      ],
+      "country": "Italia",
+      "hq": "Cologno Monzese",
+      "parent": [
+        {
+          "qid": "Q1417245",
+          "label": "Fininvest"
+        }
+      ],
+      "inception": 1993
+    },
+    "Q1417245": {
+      "label": "Fininvest",
+      "description": "holding italiano",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q1417245",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "negocio",
+        "empresa"
+      ],
+      "industry": [
+        "sector financiero"
+      ],
+      "country": "Italia",
+      "hq": "Milán",
+      "parent": [
+        {
+          "qid": "Q11860",
+          "label": "Silvio Berlusconi"
+        },
+        {
+          "qid": "Q940243",
+          "label": "Pier Silvio Berlusconi"
+        },
+        {
+          "qid": "Q468797",
+          "label": "Marina Berlusconi"
+        }
+      ],
+      "inception": 1975
+    },
+    "Q6426448": {
+      "label": "Prensa Ibérica",
+      "description": "sociedad española de medios de prensa escrita",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q6426448",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "empresa privada"
+      ],
+      "industry": [
+        "medio de comunicación de masas"
+      ],
+      "country": "España",
+      "hq": "Barcelona",
+      "parent": [],
+      "inception": 1978
+    },
+    "Q18049522": {
+      "label": "HuffPost",
+      "description": "agregador de noticias en línea y blog estadounidense",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q18049522",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "periódico en línea",
+        "news aggregation website"
+      ],
+      "industry": [
+        "periodismo"
+      ],
+      "country": "Estados Unidos",
+      "hq": "Nueva York",
+      "parent": [
+        {
+          "qid": "Q5003490",
+          "label": "BuzzFeed"
+        }
+      ],
+      "inception": 2005
+    },
+    "Q5003490": {
+      "label": "BuzzFeed",
+      "description": "medio estadounidense de comunicación",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q5003490",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "empresa de medios",
+        "sitio web"
+      ],
+      "industry": [
+        "industria mediática",
+        "industria de medios y entretenimiento",
+        "publirreportaje"
+      ],
+      "country": "Estados Unidos",
+      "hq": "Nueva York",
+      "parent": [],
+      "inception": 2006
+    },
+    "Q114050946": {
+      "label": "Ediciones Catolicos y Vida Pública",
+      "description": "editorial española",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q114050946",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "editorial",
+        "empresa privada"
+      ],
+      "industry": [
+        "edición"
+      ],
+      "country": "España",
+      "hq": "Madrid",
+      "parent": [
+        {
+          "qid": "Q32536",
+          "label": "Asociación Católica de Propagandistas"
+        }
+      ],
+      "inception": 2021
+    },
+    "Q32536": {
+      "label": "Asociación Católica de Propagandistas",
+      "description": "asociación privada de fieles laicos en España",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q32536",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "asociación privada de fieles",
+        "Organización sin fines de lucro",
+        "asociación católica"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "Madrid",
+      "parent": [],
+      "inception": 1908
+    },
+    "Q54383987": {
+      "label": "Revista Contexto S.L",
+      "description": null,
+      "description_lang": null,
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q54383987",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "empresa"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "Madrid",
+      "parent": [],
+      "inception": null
+    },
+    "Q478811": {
+      "label": "Partido Comunista de España",
+      "description": "partido político español de ideología comunista",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q478811",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "partido político de España",
+        "partido comunista",
+        "partido político"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "Madrid",
+      "parent": [],
+      "inception": 1921
+    },
+    "Q18786914": {
+      "label": "Edició de Premsa Periòdica Ara",
+      "description": "Catalan media company, publisher of Ara",
+      "description_lang": "en",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q18786914",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "negocio"
+      ],
+      "industry": [],
+      "country": null,
+      "hq": null,
+      "parent": [],
+      "inception": null
+    },
+    "Q20106759": {
+      "label": "Hermes Comunicacions",
+      "description": null,
+      "description_lang": null,
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q20106759",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "empresa"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "Gerona",
+      "parent": [],
+      "inception": 1993
+    },
+    "Q60661822": {
+      "label": "Partal Maresma i Associats, S.L.",
+      "description": "Catalan press company",
+      "description_lang": "en",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q60661822",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "empresa de medios"
+      ],
+      "industry": [
+        "periodismo"
+      ],
+      "country": "España",
+      "hq": "Barcelona",
+      "parent": [],
+      "inception": 1996
+    },
+    "Q5612230": {
+      "label": "Grupo Joly",
+      "description": "grupo de comunicación español, fundado en Cádiz en 1867",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q5612230",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "empresa de medios",
+        "editorial"
+      ],
+      "industry": [
+        "industria mediática",
+        "industria editorial"
+      ],
+      "country": "España",
+      "hq": "Cádiz",
+      "parent": [],
+      "inception": 1867
+    },
+    "Q47007277": {
+      "label": "La Directa, SCCL",
+      "description": null,
+      "description_lang": null,
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q47007277",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "cooperativa"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "Barcelona",
+      "parent": [],
+      "inception": 2006
+    },
+    "Q558617": {
+      "label": "Ara",
+      "description": "periódico de información general en catalán",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q558617",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "diario"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "Barcelona",
+      "parent": [],
+      "inception": 2010
+    },
+    "Q5644522": {
+      "label": "Grupo Serra",
+      "description": null,
+      "description_lang": null,
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q5644522",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "grupo de empresas"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": null,
+      "parent": [],
+      "inception": null
+    },
+    "Q139753220": {
+      "label": "Edigrup Media",
+      "description": "grupo de comunicación español",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q139753220",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "conglomerado mediático"
+      ],
+      "industry": [
+        "industria mediática"
+      ],
+      "country": "España",
+      "hq": "Valladolid",
+      "parent": [],
+      "inception": 2012
+    },
+    "Q550420": {
+      "label": "Confederación Nacional del Trabajo",
+      "description": "sindicato anarcosindicalista español",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q550420",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "sindicato de trabajadores",
+        "confederación",
+        "movimiento político"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "Bilbao",
+      "parent": [],
+      "inception": 1910
+    },
+    "Q25406891": {
+      "label": "SpainMedia",
+      "description": "editorial española",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q25406891",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "editorial"
+      ],
+      "industry": [
+        "revista"
+      ],
+      "country": "España",
+      "hq": "Madrid",
+      "parent": [],
+      "inception": 2007
+    },
+    "Q28935326": {
+      "label": "À Punt Mèdia",
+      "description": "radio y televisión públicas valencianas (2018-)",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q28935326",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "medio de comunicación de masas",
+        "cadena de radiodifusión"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "Burjasot",
+      "parent": [
+        {
+          "qid": "Q130244359",
+          "label": "Corporación Audiovisual de la Comunitat Valenciana"
+        }
+      ],
+      "inception": 2017
+    },
+    "Q130244359": {
+      "label": "Corporación Audiovisual de la Comunitat Valenciana",
+      "description": "ente público valenciano de comunicaciones",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q130244359",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "corporación"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": null,
+      "parent": [],
+      "inception": 2024
+    },
+    "Q8341703": {
+      "label": "casa consistorial de Alcira",
+      "description": "edificio sede del Ayuntamiento de Alcira",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q8341703",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "casa consistorial",
+        "monumento"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": null,
+      "parent": [
+        {
+          "qid": "Q60053617",
+          "label": "Ayuntamiento de Alcira"
+        }
+      ],
+      "inception": null
+    },
+    "Q60053617": {
+      "label": "Ayuntamiento de Alcira",
+      "description": "ayuntamiento de España",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q60053617",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "ayuntamiento"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "casa consistorial de Alcira",
+      "parent": [],
+      "inception": null
+    },
+    "Q3129773": {
+      "label": "Ayuntamiento de Barcelona",
+      "description": "institución administrativa del municipio de Barcelona, España",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q3129773",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "ayuntamiento",
+        "editorial"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "Casa de la Ciudad de Barcelona",
+      "parent": [],
+      "inception": null
+    },
+    "Q6046156": {
+      "label": "Grupo Intereconomía",
+      "description": "grupo de comunicación español",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q6046156",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "grupo empresarial"
+      ],
+      "industry": [
+        "Media"
+      ],
+      "country": "España",
+      "hq": null,
+      "parent": [],
+      "inception": 1995
+    },
+    "Q54549433": {
+      "label": "Totmedia",
+      "description": null,
+      "description_lang": null,
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q54549433",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "negocio"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "San Cugat del Vallés",
+      "parent": [],
+      "inception": null
+    },
+    "Q4889716": {
+      "label": "Televisió de les Illes Balears",
+      "description": null,
+      "description_lang": null,
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q4889716",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "empresa pública"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": null,
+      "parent": [
+        {
+          "qid": "Q3295520",
+          "label": "Ente Público de Radiotelevisión de las Islas Baleares"
+        }
+      ],
+      "inception": null
+    },
+    "Q5714796": {
+      "label": "Ayuntamiento de Almería",
+      "description": "institución española",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q5714796",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "ayuntamiento"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "casa consistorial de Almería",
+      "parent": [],
+      "inception": null
+    },
+    "Q6456761": {
+      "label": "Radio Televisión Madrid",
+      "description": "empresa pública de radiodifusión de la Comunidad de Madrid, España",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q6456761",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "empresa pública"
+      ],
+      "industry": [
+        "industria audiovisual"
+      ],
+      "country": "España",
+      "hq": "Ciudad de la Imagen",
+      "parent": [
+        {
+          "qid": "Q578788",
+          "label": "Gobierno de la Comunidad de Madrid"
+        }
+      ],
+      "inception": 1984
+    },
+    "Q578788": {
+      "label": "Gobierno de la Comunidad de Madrid",
+      "description": "institución que encabeza el poder ejecutivo de la Comunidad de Madrid, España",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q578788",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "gobierno autonómico"
+      ],
+      "industry": [],
+      "country": "España",
+      "hq": "Real Casa de Correos",
+      "parent": [],
+      "inception": 1983
+    },
+    "Q47491482": {
+      "label": "Joseph Oughourlian",
+      "description": "empresario y financiero francés",
+      "description_lang": "es",
+      "kind": "person",
+      "url": "https://www.wikidata.org/wiki/Q47491482",
+      "retrieved": "2026-11-21",
+      "occupations": [
+        "emprendedor",
+        "financiero",
+        "empresario"
+      ],
+      "positions": [
+        {
+          "label": "presidente de Grupo Prisa",
+          "start": 2021,
+          "end": null
+        },
+        {
+          "label": "vicepresidente de Grupo Prisa",
+          "start": 2019,
+          "end": 2021
+        },
+        {
+          "label": "presidente del comité ejecutivo de Racing Club de Lens",
+          "start": 2018,
+          "end": null
+        },
+        {
+          "label": "socio gerente de Amber Capital",
+          "start": 2005,
+          "end": null
+        }
+      ],
+      "employers": [
+        {
+          "label": "Amber Capital",
+          "start": 2005,
+          "end": null
+        },
+        {
+          "label": "Société Générale",
+          "start": 1994,
+          "end": 2005
+        }
+      ],
+      "country": "Francia"
+    },
+    "Q1127887": {
+      "label": "Vivendi",
+      "description": "grupo francés con presencia en los mercados de telecomunicaciones y entretenimiento",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q1127887",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "organización",
+        "negocio"
+      ],
+      "industry": [
+        "activities of head offices"
+      ],
+      "country": "Francia",
+      "hq": "París",
+      "parent": [
+        {
+          "qid": "Q444172",
+          "label": "Bolloré"
+        },
+        {
+          "qid": "Q270363",
+          "label": "Société Générale"
+        },
+        {
+          "qid": "Q846484",
+          "label": "Caisse des dépôts et consignations"
+        }
+      ],
+      "inception": 1987
+    },
+    "Q6496310": {
+      "label": "Banco Santander",
+      "description": "banco español",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q6496310",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "Banco transnacional",
+        "empresa de capital abierto",
+        "banco"
+      ],
+      "industry": [
+        "banca",
+        "servicios financieros",
+        "sector financiero"
+      ],
+      "country": "España",
+      "hq": "Santander",
+      "parent": [
+        {
+          "qid": "Q806215",
+          "label": "Grupo Santander"
+        }
+      ],
+      "inception": 1857
+    },
+    "Q5865823": {
+      "label": "Francisco García Paramés",
+      "description": "economista español",
+      "description_lang": "es",
+      "kind": "person",
+      "url": "https://www.wikidata.org/wiki/Q5865823",
+      "retrieved": "2026-11-21",
+      "occupations": [
+        "economista",
+        "gerente"
+      ],
+      "positions": [],
+      "employers": [],
+      "country": "España"
+    },
+    "Q156913": {
+      "label": "Bertelsmann",
+      "description": "corporación de medios de comunicación multinacional",
+      "description_lang": "es",
+      "kind": "organisation",
+      "url": "https://www.wikidata.org/wiki/Q156913",
+      "retrieved": "2026-11-21",
+      "instance_of": [
+        "konzern",
+        "editorial de libros"
+      ],
+      "industry": [
+        "industria mediática",
+        "servicio",
+        "sistema educativo"
+      ],
+      "country": "Alemania",
+      "hq": "Gütersloh",
+      "parent": [
+        {
+          "qid": "Q317555",
+          "label": "Bertelsmann Stiftung"
+        }
+      ],
+      "inception": 1835
+    }
+  }
+}
