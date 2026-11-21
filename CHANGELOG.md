@@ -6,6 +6,8 @@ Todos los cambios relevantes se documentan aquí. El formato sigue
 
 ## [Unreleased]
 
+- Etiquetas citadas de Wikipedia en catalán, gallego e inglés para 11 medios que no tenían ninguna (cada una fijada a su revisión y comprobada); 17 medios menos sin posición.
+
 ### Cambiado
 - `data/groups.json`: RTVE ya no figura como «participada por la SEPI» (la Ley 17/2006 dice sociedad mercantil estatal con capital íntegramente estatal; se cita el BOE) y elDiario.es ya no cita el «70 %» que solo salía de Wikipedia, sino lo que dice el propio medio.
 - Verificaciones sin veredictos propios (decisión del consejo de revisión): una verificación trata de una afirmación (normalmente viral), no de una noticia, así que se elimina el emparejamiento por palabras clave entre historias y titulares de verificadores y el «lo califica» deducido del titular (`app/factcheck.py` y `verdict_cue` desaparecen). Ahora una historia muestra una verificación solo si el `ClaimReview` del propio verificador cita la dirección (normalizada) de una de sus noticias; si no, ofrece «Ver verificaciones sobre este tema» y el texto «No hemos encontrado verificaciones enlazadas a estas noticias. Eso no significa que sean ciertas ni falsas.». Los resúmenes de la búsqueda ya no llevan verificaciones y el panel se titula «Verificaciones que mencionan estos términos» (con aviso de que no tratan necesariamente de esas noticias); la calificación solo sale si viene del `ClaimReview`.

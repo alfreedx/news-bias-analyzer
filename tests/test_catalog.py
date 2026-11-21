@@ -8,7 +8,7 @@ from app.catalog import get_catalog
 from app.scoring import DESCRIPTIVE_LABELS, FACTUAL_MAP, IDEOLOGY_MAP, TERRITORIAL_LABELS, _norm
 
 catalog = get_catalog()
-ALLOWED_SOURCES = {"mbfc", "wikipedia", "wikidata"}
+ALLOWED_SOURCES = {"mbfc", "wikipedia", "wikipedia-ca", "wikipedia-gl", "wikipedia-en", "wikidata"}
 
 
 def test_catalog_loads():
@@ -58,7 +58,7 @@ def test_url_matching_uses_longest_suffix():
 def test_wikipedia_evidence_is_pinned_to_a_revision():
     for m in catalog.media.values():
         for item in m.evidence:
-            if item["source"] == "wikipedia":
+            if item["source"].startswith("wikipedia"):
                 assert isinstance(item.get("revid"), int), f"{m.id}: wikipedia evidence without revid"
                 assert item.get("retrieved"), f"{m.id}: evidence without retrieval date"
 

@@ -63,6 +63,17 @@ IDEOLOGY_MAP: dict[str, int] = {
     "anticomunismo": 2,
     "nacionalismo": 2,
     "tradicionalismo politico espanol": 2,
+    "izquierda independentista": -2,
+    "defensora del pensamiento liberal": 0,
+    # Wikipedia in other languages (ca, gl, en): same concepts, the label is kept as written
+    "esquerra independentista": -2,
+    "conservadorismo": 1,
+    "left-liberal": -1,
+    "centrism": 0,
+    "centre-right": 1,
+    "right-of-centre": 1,
+    "conservative": 1,
+    "conservatism": 1,
 }
 
 # Labels shown as quoted tags that place an outlet on neither axis.
@@ -80,6 +91,13 @@ TERRITORIAL_LABELS: dict[str, str] = {
     "navarrismo": "Navarrismo",
     "regionalismo": "Regionalismo",
     "constitucionalismo": "Constitucionalismo",
+    "izquierda independentista": "Independentismo",
+    "esquerra independentista": "Independentismo",
+    "independentism": "Independentismo",
+    "catalanism": "Catalanismo",
+    "rexionalismo galego": "Regionalismo gallego",
+    "mallorquinisme": "Mallorquinismo",
+    "blaverism": "Blaverismo",
 }
 
 FACTUAL_MAP: dict[str, tuple[int, str]] = {
@@ -102,6 +120,9 @@ POSITION_LABELS = {
 SOURCE_NAMES = {
     "mbfc": "Media Bias/Fact Check",
     "wikipedia": "Wikipedia (es)",
+    "wikipedia-ca": "Wikipedia (ca)",
+    "wikipedia-gl": "Wikipedia (gl)",
+    "wikipedia-en": "Wikipedia (en)",
     "wikidata": "Wikidata",
 }
 

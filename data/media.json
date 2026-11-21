@@ -1611,7 +1611,19 @@
    "feeds": [
     "https://feeds.elpais.com/mrss-s/pages/ep/site/cincodias.elpais.com/portada"
    ],
-   "evidence": [],
+   "evidence": [
+    {
+     "source": "wikipedia-en",
+     "kind": "ideology",
+     "labels": [
+      "Left-liberal"
+     ],
+     "quote": "political_position = Left-liberal",
+     "url": "https://en.wikipedia.org/wiki/Cinco_D%C3%ADas",
+     "revid": 1315135027,
+     "retrieved": "2026-11-21"
+    }
+   ],
    "facts": {
     "qid": "Q8346209",
     "languages": [
@@ -2328,7 +2340,20 @@
     "https://www.lavozdegalicia.es/index.xml",
     "https://www.lavozdegalicia.es/economia/index.xml"
    ],
-   "evidence": [],
+   "evidence": [
+    {
+     "source": "wikipedia-gl",
+     "kind": "ideology",
+     "labels": [
+      "conservadorismo",
+      "rexionalismo galego"
+     ],
+     "quote": "tendencia = conservadorismo, rexionalismo galego",
+     "url": "https://gl.wikipedia.org/wiki/La_Voz_de_Galicia",
+     "revid": 7245258,
+     "retrieved": "2026-11-21"
+    }
+   ],
    "facts": {
     "qid": "Q3312427",
     "languages": [
@@ -2645,7 +2670,20 @@
    "feeds": [
     "https://www.elnacional.cat/es/feed"
    ],
-   "evidence": []
+   "evidence": [
+    {
+     "source": "wikipedia-en",
+     "kind": "ideology",
+     "labels": [
+      "Catalanism",
+      "Independentism"
+     ],
+     "quote": "political_position = Catalanism, Independentism",
+     "url": "https://en.wikipedia.org/wiki/El_Nacional_(Catalonia)",
+     "revid": 1360715497,
+     "retrieved": "2026-11-21"
+    }
+   ]
   },
   {
    "id": "el-punt-avui",
@@ -2796,7 +2834,30 @@
    "feeds": [
     "https://www.vilaweb.cat/feed/"
    ],
-   "evidence": [],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "izquierda independentista"
+     ],
+     "quote": "El diario tiene una línea editorial de izquierda independentista.",
+     "url": "https://es.wikipedia.org/wiki/VilaWeb",
+     "revid": 175477384,
+     "retrieved": "2026-11-21"
+    },
+    {
+     "source": "wikipedia-ca",
+     "kind": "ideology",
+     "labels": [
+      "esquerra independentista"
+     ],
+     "quote": "El diari té una línia editorial d'esquerra independentista.",
+     "url": "https://ca.wikipedia.org/wiki/VilaWeb",
+     "revid": 38362900,
+     "retrieved": "2026-11-21"
+    }
+   ],
    "facts": {
     "qid": "Q3312518",
     "languages": [
@@ -2885,7 +2946,20 @@
    "feeds": [
     "https://www.lasprovincias.es/rss/2.0/portada"
    ],
-   "evidence": [],
+   "evidence": [
+    {
+     "source": "wikipedia-en",
+     "kind": "ideology",
+     "labels": [
+      "Conservatism",
+      "Blaverism"
+     ],
+     "quote": "political_position = Conservatism, Blaverism",
+     "url": "https://en.wikipedia.org/wiki/Las_Provincias",
+     "revid": 1382755607,
+     "retrieved": "2026-11-21"
+    }
+   ],
    "facts": {
     "qid": "Q2748855",
     "languages": [
@@ -2936,7 +3010,19 @@
    "founded": 1895,
    "group": "henneo",
    "feeds": [],
-   "evidence": [],
+   "evidence": [
+    {
+     "source": "wikipedia-en",
+     "kind": "ideology",
+     "labels": [
+      "Conservative"
+     ],
+     "quote": "political_position = Conservative",
+     "url": "https://en.wikipedia.org/wiki/Heraldo_de_Arag%C3%B3n",
+     "revid": 1379916278,
+     "retrieved": "2026-11-21"
+    }
+   ],
    "facts": {
     "qid": "Q3572134",
     "languages": [
@@ -3260,7 +3346,19 @@
    "feeds": [
     "https://www.hoy.es/rss/2.0/?section="
    ],
-   "evidence": [],
+   "evidence": [
+    {
+     "source": "wikipedia-en",
+     "kind": "ideology",
+     "labels": [
+      "Right-of-centre"
+     ],
+     "quote": "political_position = Right-of-centre",
+     "url": "https://en.wikipedia.org/wiki/Hoy_(Extremadura)",
+     "revid": 1315914293,
+     "retrieved": "2026-11-21"
+    }
+   ],
    "facts": {
     "qid": "Q3141644",
     "languages": [
@@ -3416,7 +3514,19 @@
    "feeds": [
     "https://www.atlantico.net/rss/"
    ],
-   "evidence": [],
+   "evidence": [
+    {
+     "source": "wikipedia-en",
+     "kind": "ideology",
+     "labels": [
+      "Centre-right"
+     ],
+     "quote": "political_position = Centre-right",
+     "url": "https://en.wikipedia.org/wiki/Atl%C3%A1ntico_Diario",
+     "revid": 1327210575,
+     "retrieved": "2026-11-21"
+    }
+   ],
    "group": null,
    "facts": {
     "qid": "Q3394943",
@@ -3491,7 +3601,19 @@
    "feeds": [
     "https://www.elmundo.es/rss/googlenews/economia.xml"
    ],
-   "evidence": [],
+   "evidence": [
+    {
+     "source": "wikipedia",
+     "kind": "ideology",
+     "labels": [
+      "defensora del pensamiento liberal"
+     ],
+     "quote": "ideología = defensora del pensamiento liberal",
+     "url": "https://es.wikipedia.org/wiki/Actualidad_Econ%C3%B3mica",
+     "revid": 175124126,
+     "retrieved": "2026-11-21"
+    }
+   ],
    "facts": {
     "qid": "Q5656999",
     "languages": [
@@ -4053,7 +4175,19 @@
    "feeds": [
     "https://www.dbalears.cat/feed.rss"
    ],
-   "evidence": [],
+   "evidence": [
+    {
+     "source": "wikipedia-ca",
+     "kind": "ideology",
+     "labels": [
+      "Mallorquinisme"
+     ],
+     "quote": "ideologia = Mallorquinisme (artículo «Diari de Balears», «abreujat recentment com a dBalears»)",
+     "url": "https://ca.wikipedia.org/wiki/Diari_de_Balears",
+     "revid": 37623747,
+     "retrieved": "2026-11-21"
+    }
+   ],
    "group": null,
    "facts": {
     "qid": "Q30250465",
@@ -4596,7 +4730,19 @@
    "feeds": [
     "https://www.diariodepontevedra.es/rss/"
    ],
-   "evidence": [],
+   "evidence": [
+    {
+     "source": "wikipedia-en",
+     "kind": "ideology",
+     "labels": [
+      "Centrism"
+     ],
+     "quote": "political_position = Centrism",
+     "url": "https://en.wikipedia.org/wiki/Diario_de_Pontevedra",
+     "revid": 1327282455,
+     "retrieved": "2026-11-21"
+    }
+   ],
    "group": null,
    "facts": {
     "qid": "Q8355302",
