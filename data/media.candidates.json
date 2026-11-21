@@ -1,0 +1,3044 @@
+{
+ "_meta": {
+  "description": "Medios candidatos generados por scripts/discover_media.py. NO forman parte del catálogo: un humano los revisa y los elegidos se añaden con --apply. Informe completo: candidates.json.",
+  "license": "CC BY-SA 4.0"
+ },
+ "media": [
+  {
+   "id": "3catinfo",
+   "name": "3CatInfo",
+   "domains": [
+    "3cat.cat"
+   ],
+   "type": "Televisión",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 2025,
+   "group": null,
+   "feeds": [
+    "https://api.3cat.cat/noticies?_format=rss&origen=frontal&frontal=n324-portada-noticia&version=2.0"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q135792871",
+    "kinds": [
+     "marca registrada",
+     "canal de televisión",
+     "periódico en línea",
+     "news aggregation website"
+    ],
+    "kinds_qids": [
+     "Q167270",
+     "Q2001305",
+     "Q1153191",
+     "Q28933155"
+    ],
+    "hq": "San Juan Despí",
+    "hq_qid": "Q15640",
+    "founded": 2025,
+    "source": "https://www.wikidata.org/wiki/Q135792871",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "3catinfo-tv",
+   "name": "3CatInfo (tv)",
+   "domains": [
+    "3catinfo.cat"
+   ],
+   "type": "Televisión",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 2003,
+   "group": null,
+   "publisher": "Corporación Catalana de Medios Audiovisuales",
+   "owner_source": "https://www.wikidata.org/wiki/Q2816022",
+   "feeds": [
+    "https://api.3cat.cat/noticies?_format=rss&origen=frontal&frontal=n324-portada-noticia&version=2.0"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q2816022",
+    "kinds": [
+     "canal de televisión temático"
+    ],
+    "kinds_qids": [
+     "Q561068"
+    ],
+    "owners": [
+     "Corporación Catalana de Medios Audiovisuales"
+    ],
+    "owners_qids": [
+     "Q3323383"
+    ],
+    "hq": "San Juan Despí",
+    "hq_qid": "Q15640",
+    "founded": 2003,
+    "source": "https://www.wikidata.org/wiki/Q2816022",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q3323383",
+      "label": "Corporación Catalana de Medios Audiovisuales",
+      "kinds_qids": [
+       "Q26398",
+       "Q167037"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "a-punt",
+   "name": "À Punt",
+   "domains": [
+    "apuntmedia.es"
+   ],
+   "type": "Televisión",
+   "scope": "Regional",
+   "region": "Comunidad Valenciana",
+   "founded": 2018,
+   "group": null,
+   "publisher": "À Punt Mèdia",
+   "owner_source": "https://www.wikidata.org/wiki/Q28918202",
+   "feeds": [
+    "https://www.apuntmedia.es/rss/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q28918202",
+    "kinds": [
+     "emisora de televisión"
+    ],
+    "kinds_qids": [
+     "Q1616075"
+    ],
+    "owners": [
+     "À Punt Mèdia"
+    ],
+    "owners_qids": [
+     "Q28935326"
+    ],
+    "hq": "Burjasot",
+    "hq_qid": "Q55688",
+    "founded": 2018,
+    "source": "https://www.wikidata.org/wiki/Q28918202",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q28935326",
+      "label": "À Punt Mèdia",
+      "kinds_qids": [
+       "Q11033",
+       "Q141683"
+      ],
+      "owned_by": [
+       "Corporación Audiovisual de la Comunitat Valenciana"
+      ],
+      "owned_by_qids": [
+       "Q130244359"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "actualidad-de-la-universidad-ceu-cardenal-herrera",
+   "name": "Actualidad de la Universidad CEU Cardenal Herrera",
+   "domains": [
+    "medios.uchceu.es"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": null,
+   "group": null,
+   "publisher": "Universidad CEU Cardenal Herrera",
+   "owner_source": "https://www.wikidata.org/wiki/Q141596102",
+   "feeds": [
+    "https://medios.uchceu.es/actualidad-ceu/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q141596102",
+    "languages": [
+     "español de España"
+    ],
+    "languages_qids": [
+     "Q7162990"
+    ],
+    "kinds": [
+     "sitio web de noticias"
+    ],
+    "kinds_qids": [
+     "Q17232649"
+    ],
+    "owners": [
+     "Universidad CEU Cardenal Herrera"
+    ],
+    "owners_qids": [
+     "Q28368"
+    ],
+    "source": "https://www.wikidata.org/wiki/Q141596102",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q28368",
+      "label": "Universidad CEU Cardenal Herrera",
+      "kinds_qids": [
+       "Q902104",
+       "Q557206",
+       "Q23002054"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "ahotsa-info",
+   "name": "Ahotsa.info",
+   "domains": [
+    "ahotsa.info"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2014,
+   "group": null,
+   "feeds": [
+    "https://ahotsa.info/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q36890369",
+    "languages": [
+     "español",
+     "euskera"
+    ],
+    "languages_qids": [
+     "Q1321",
+     "Q8752"
+    ],
+    "kinds": [
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q1153191"
+    ],
+    "founded": 2014,
+    "source": "https://www.wikidata.org/wiki/Q36890369",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "alzira-radio",
+   "name": "Alzira Ràdio",
+   "domains": [
+    "alziraradio.com"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": 1995,
+   "group": null,
+   "publisher": "casa consistorial de Alcira",
+   "owner_source": "https://www.wikidata.org/wiki/Q5671392",
+   "feeds": [
+    "https://alziraradio.com/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q5671392",
+    "kinds": [
+     "emisora de radio"
+    ],
+    "kinds_qids": [
+     "Q14350"
+    ],
+    "owners": [
+     "casa consistorial de Alcira"
+    ],
+    "owners_qids": [
+     "Q8341703"
+    ],
+    "founded": 1995,
+    "source": "https://www.wikidata.org/wiki/Q5671392",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q8341703",
+      "label": "casa consistorial de Alcira",
+      "kinds_qids": [
+       "Q112793351",
+       "Q4989906"
+      ],
+      "owned_by": [
+       "Ayuntamiento de Alcira"
+      ],
+      "owned_by_qids": [
+       "Q60053617"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "axn",
+   "name": "AXN",
+   "domains": [
+    "axn.pt"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": 2004,
+   "group": null,
+   "publisher": "Sony Pictures Television",
+   "owner_source": "https://www.wikidata.org/wiki/Q16148079",
+   "feeds": [
+    "https://www.axn.pt/feed"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q16148079",
+    "kinds": [
+     "canal de televisión"
+    ],
+    "kinds_qids": [
+     "Q2001305"
+    ],
+    "owners": [
+     "Sony Pictures Television"
+    ],
+    "owners_qids": [
+     "Q652390"
+    ],
+    "founded": 2004,
+    "source": "https://www.wikidata.org/wiki/Q16148079",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q652390",
+      "label": "Sony Pictures Television",
+      "kinds_qids": [
+       "Q10689397",
+       "Q334453"
+      ],
+      "owned_by": [
+       "Sony Entertainment"
+      ],
+      "owned_by_qids": [
+       "Q40889189"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "bandaancha",
+   "name": "BandaAncha",
+   "domains": [
+    "bandaancha.eu"
+   ],
+   "type": "Digital",
+   "scope": "Regional",
+   "region": "Comunidad Valenciana",
+   "founded": 2001,
+   "group": null,
+   "feeds": [
+    "https://bandaancha.eu/portada.atom"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q5718219",
+    "kinds": [
+     "sitio web",
+     "sitio web de noticias",
+     "organización",
+     "marca"
+    ],
+    "kinds_qids": [
+     "Q35127",
+     "Q17232649",
+     "Q43229",
+     "Q431289"
+    ],
+    "hq": "La Eliana",
+    "hq_qid": "Q24017180",
+    "founded": 2001,
+    "source": "https://www.wikidata.org/wiki/Q5718219",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "beteve",
+   "name": "Betevé",
+   "domains": [
+    "beteve.cat"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": 1994,
+   "group": null,
+   "publisher": "Ayuntamiento de Barcelona",
+   "owner_source": "https://www.wikidata.org/wiki/Q3444097",
+   "feeds": [
+    "https://beteve.cat/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q3444097",
+    "languages": [
+     "catalán"
+    ],
+    "languages_qids": [
+     "Q7026"
+    ],
+    "kinds": [
+     "canal de televisión local"
+    ],
+    "kinds_qids": [
+     "Q2961813"
+    ],
+    "owners": [
+     "Ayuntamiento de Barcelona"
+    ],
+    "owners_qids": [
+     "Q3129773"
+    ],
+    "hq": "El Parc i la Llacuna del Poblenou",
+    "hq_qid": "Q3294440",
+    "founded": 1994,
+    "source": "https://www.wikidata.org/wiki/Q3444097",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q3129773",
+      "label": "Ayuntamiento de Barcelona",
+      "kinds_qids": [
+       "Q22996476",
+       "Q2085381"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "boletin-oficial-de-la-provincia-de-albacete",
+   "name": "Boletín Oficial de la Provincia de Albacete",
+   "domains": [
+    "dipualba.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Castilla-La Mancha",
+   "founded": null,
+   "group": null,
+   "feeds": [
+    "https://web.dipualba.es/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q28648793",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "diario oficial"
+    ],
+    "kinds_qids": [
+     "Q2065227"
+    ],
+    "hq": "Albacete",
+    "hq_qid": "Q15095",
+    "source": "https://www.wikidata.org/wiki/Q28648793",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "busturialdeko-hitza",
+   "name": "Busturialdeko Hitza",
+   "domains": [
+    "busturialdea.hitza.eus"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "País Vasco",
+   "founded": 2005,
+   "group": null,
+   "feeds": [
+    "https://busturialdea.hitza.eus/rss/albisteak/azala.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q12255560",
+    "languages": [
+     "euskera"
+    ],
+    "languages_qids": [
+     "Q8752"
+    ],
+    "kinds": [
+     "periódico",
+     "medio de comunicación"
+    ],
+    "kinds_qids": [
+     "Q11032",
+     "Q340169"
+    ],
+    "founded": 2005,
+    "source": "https://www.wikidata.org/wiki/Q12255560",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "cadena-100",
+   "name": "Cadena 100",
+   "domains": [
+    "cadena100.es"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": 1992,
+   "group": null,
+   "publisher": "Ábside Media",
+   "owner_source": "https://www.wikidata.org/wiki/Q3326167",
+   "feeds": [
+    "https://www.cadena100.es/rss/home.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q3326167",
+    "kinds": [
+     "emisora de radio"
+    ],
+    "kinds_qids": [
+     "Q14350"
+    ],
+    "owners": [
+     "Ábside Media"
+    ],
+    "owners_qids": [
+     "Q113005111"
+    ],
+    "founded": 1992,
+    "source": "https://www.wikidata.org/wiki/Q3326167",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q113005111",
+      "label": "Ábside Media",
+      "kinds_qids": [
+       "Q4830453",
+       "Q6881511"
+      ],
+      "owned_by": [
+       "Conferencia Episcopal Española"
+      ],
+      "owned_by_qids": [
+       "Q1518168"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "cadena-dial",
+   "name": "Cadena Dial",
+   "domains": [
+    "cadenadial.com"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": 1990,
+   "group": "prisa",
+   "owner_source": "https://www.wikidata.org/wiki/Q1700228",
+   "feeds": [
+    "https://www.cadenadial.com/feed"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q1700228",
+    "kinds": [
+     "emisora de radio"
+    ],
+    "kinds_qids": [
+     "Q14350"
+    ],
+    "owners": [
+     "Grupo Prisa"
+    ],
+    "owners_qids": [
+     "Q1466106"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 1990,
+    "source": "https://www.wikidata.org/wiki/Q1700228",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q1466106",
+      "label": "Grupo Prisa",
+      "kinds_qids": [
+       "Q4830453",
+       "Q6881511"
+      ],
+      "owned_by": [
+       "Amber Capital"
+      ],
+      "owned_by_qids": [
+       "Q89345695"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "campina-digital",
+   "name": "Campiña Digital",
+   "domains": [
+    "campinadigital.me"
+   ],
+   "type": "Digital",
+   "scope": "Regional",
+   "region": "Andalucía",
+   "founded": 2002,
+   "group": null,
+   "feeds": [
+    "https://campinadigital.me/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q27961377",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q1153191"
+    ],
+    "hq": "Andújar",
+    "hq_qid": "Q528530",
+    "founded": 2002,
+    "source": "https://www.wikidata.org/wiki/Q27961377",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "canal-almeria-tv",
+   "name": "Canal Almería TV",
+   "domains": [
+    "canalalmeriatv.com"
+   ],
+   "type": "Televisión",
+   "scope": "Regional",
+   "region": "Andalucía",
+   "founded": null,
+   "group": null,
+   "feeds": [
+    "https://www.lavozdealmeria.com/rss/home.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q8261503",
+    "kinds": [
+     "emisora de televisión"
+    ],
+    "kinds_qids": [
+     "Q1616075"
+    ],
+    "hq": "Almería",
+    "hq_qid": "Q10400",
+    "source": "https://www.wikidata.org/wiki/Q8261503",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "canal-blau",
+   "name": "Canal Blau",
+   "domains": [
+    "canalblau.tv"
+   ],
+   "type": "Televisión",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": null,
+   "group": null,
+   "feeds": [
+    "https://canalblau.tv/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q17147619",
+    "kinds": [
+     "canal de televisión"
+    ],
+    "kinds_qids": [
+     "Q2001305"
+    ],
+    "hq": "Villanueva y Geltrú",
+    "hq_qid": "Q15553",
+    "source": "https://www.wikidata.org/wiki/Q17147619",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "cantabria-tv",
+   "name": "Cantabria TV",
+   "domains": [
+    "cantabriatv.es"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": 1995,
+   "group": null,
+   "feeds": [
+    "https://www.cantabriatv.es/rss/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q8262084",
+    "kinds": [
+     "emisora de televisión"
+    ],
+    "kinds_qids": [
+     "Q1616075"
+    ],
+    "founded": 1995,
+    "source": "https://www.wikidata.org/wiki/Q8262084",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "ceuta-television",
+   "name": "Ceuta Televisión",
+   "domains": [
+    "ceutatv.com"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": null,
+   "group": null,
+   "feeds": [
+    "https://www.ceutatv.com/rss/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q5763883",
+    "kinds": [
+     "emisora de televisión"
+    ],
+    "kinds_qids": [
+     "Q1616075"
+    ],
+    "hq": "Ceuta",
+    "hq_qid": "Q5823",
+    "source": "https://www.wikidata.org/wiki/Q5763883",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "cuac-fm",
+   "name": "Cuac FM",
+   "domains": [
+    "cuacfm.org"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": null,
+   "group": null,
+   "feeds": [
+    "https://cuacfm.org/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q3324575",
+    "languages": [
+     "gallego"
+    ],
+    "languages_qids": [
+     "Q9307"
+    ],
+    "kinds": [
+     "emisora de radio"
+    ],
+    "kinds_qids": [
+     "Q14350"
+    ],
+    "source": "https://www.wikidata.org/wiki/Q3324575",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "diari-de-sabadell",
+   "name": "Diari de Sabadell",
+   "domains": [
+    "diaridesabadell.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 1977,
+   "group": null,
+   "feeds": [
+    "https://www.diaridesabadell.com/feed"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q11917097",
+    "languages": [
+     "catalán",
+     "plurilingüe"
+    ],
+    "languages_qids": [
+     "Q7026",
+     "Q20923490"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "owners": [],
+    "owners_qids": [],
+    "hq": "Sabadell",
+    "hq_qid": "Q12258",
+    "founded": 1977,
+    "source": "https://www.wikidata.org/wiki/Q11917097",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "diari-de-tarragona",
+   "name": "Diari de Tarragona",
+   "domains": [
+    "diaridetarragona.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 1808,
+   "group": null,
+   "feeds": [
+    "https://www.diaridetarragona.com/rss/home.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q12162686",
+    "languages": [
+     "español",
+     "catalán"
+    ],
+    "languages_qids": [
+     "Q1321",
+     "Q7026"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Tarragona",
+    "hq_qid": "Q15088",
+    "founded": 1808,
+    "source": "https://www.wikidata.org/wiki/Q12162686",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "diari-de-terrassa",
+   "name": "Diari de Terrassa",
+   "domains": [
+    "diarideterrassa.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 1977,
+   "group": null,
+   "feeds": [
+    "https://www.diarideterrassa.com/feed"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q11917100",
+    "languages": [
+     "catalán"
+    ],
+    "languages_qids": [
+     "Q7026"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "hq": "Tarrasa",
+    "hq_qid": "Q13939",
+    "founded": 1977,
+    "source": "https://www.wikidata.org/wiki/Q11917100",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "diari-mes",
+   "name": "Diari Més",
+   "domains": [
+    "diarimes.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 2004,
+   "group": null,
+   "feeds": [
+    "https://www.diarimes.com/ca/rss/home.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q17023774",
+    "languages": [
+     "catalán"
+    ],
+    "languages_qids": [
+     "Q7026"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Tarragona",
+    "hq_qid": "Q15088",
+    "founded": 2004,
+    "source": "https://www.wikidata.org/wiki/Q17023774",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "diario-de-bergantinos",
+   "name": "Diario de Bergantiños",
+   "domains": [
+    "diariodebergantinos.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Galicia",
+   "founded": 2003,
+   "group": null,
+   "feeds": [
+    "https://diariodebergantinos.elidealgallego.com/rss/home.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q5805369",
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "founded": 2003,
+    "source": "https://www.wikidata.org/wiki/Q5805369",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "diario-de-ferrol",
+   "name": "Diario de Ferrol",
+   "domains": [
+    "diariodeferrol.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Galicia",
+   "founded": 1996,
+   "group": null,
+   "feeds": [
+    "https://diariodeferrol.elidealgallego.com/rss/home.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q5351145",
+    "languages": [
+     "español",
+     "gallego"
+    ],
+    "languages_qids": [
+     "Q1321",
+     "Q9307"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Ferrol",
+    "hq_qid": "Q485329",
+    "founded": 1996,
+    "source": "https://www.wikidata.org/wiki/Q5351145",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "divinity",
+   "name": "Divinity",
+   "domains": [
+    "divinity.es"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": 2011,
+   "group": null,
+   "publisher": "MFE - MediaForEurope",
+   "owner_source": "https://www.wikidata.org/wiki/Q3032306",
+   "feeds": [
+    "https://www.divinity.es/rss.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q3032306",
+    "kinds": [
+     "canal de televisión temático"
+    ],
+    "kinds_qids": [
+     "Q561068"
+    ],
+    "owners": [
+     "MFE - MediaForEurope"
+    ],
+    "owners_qids": [
+     "Q3777384"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2011,
+    "source": "https://www.wikidata.org/wiki/Q3032306",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q3777384",
+      "label": "MFE - MediaForEurope",
+      "kinds_qids": [
+       "Q4830453",
+       "Q6881511",
+       "Q43229"
+      ],
+      "owned_by": [
+       "Fininvest"
+      ],
+      "owned_by_qids": [
+       "Q1417245"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "dxtadaptado",
+   "name": "Dxtadaptado",
+   "domains": [
+    "dxtadaptado.com"
+   ],
+   "type": "Digital",
+   "scope": "Regional",
+   "region": "Andalucía",
+   "founded": 2011,
+   "group": null,
+   "publisher": "Tododisca",
+   "owner_source": "https://www.wikidata.org/wiki/Q142203706",
+   "feeds": [
+    "https://dxtadaptado.com/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q142203706",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "sitio web de noticias",
+     "empresa de medios"
+    ],
+    "kinds_qids": [
+     "Q17232649",
+     "Q1331793"
+    ],
+    "owners": [
+     "Tododisca"
+    ],
+    "owners_qids": [
+     "Q140077207"
+    ],
+    "hq": "Jerez de la Frontera",
+    "hq_qid": "Q12303",
+    "founded": 2011,
+    "source": "https://www.wikidata.org/wiki/Q142203706",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q140077207",
+      "label": "Tododisca",
+      "kinds_qids": [
+       "Q17232649",
+       "Q1331793"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "el-adelantado-de-segovia",
+   "name": "El Adelantado de Segovia",
+   "domains": [
+    "eladelantado.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Castilla y León",
+   "founded": 1901,
+   "group": null,
+   "feeds": [
+    "https://eladelantado.com/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q5820781",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Segovia",
+    "hq_qid": "Q15684",
+    "founded": 1901,
+    "source": "https://www.wikidata.org/wiki/Q5820781",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "el-cierre-digital",
+   "name": "El Cierre Digital",
+   "domains": [
+    "elcierredigital.com"
+   ],
+   "type": "Diario",
+   "scope": "Nacional",
+   "founded": 2017,
+   "group": null,
+   "feeds": [
+    "https://elcierredigital.com/feed"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q96250372",
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2017,
+    "source": "https://www.wikidata.org/wiki/Q96250372",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "el-dia-de-cordoba",
+   "name": "El Día de Córdoba",
+   "domains": [
+    "eldiadecordoba.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Andalucía",
+   "founded": 2000,
+   "group": "joly",
+   "owner_source": "https://www.wikidata.org/wiki/Q5821804",
+   "feeds": [
+    "https://www.eldiadecordoba.es/rss/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q5821804",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "owners": [
+     "Grupo Joly"
+    ],
+    "owners_qids": [
+     "Q5612230"
+    ],
+    "hq": "Córdoba",
+    "hq_qid": "Q5818",
+    "founded": 2000,
+    "source": "https://www.wikidata.org/wiki/Q5821804",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q5612230",
+      "label": "Grupo Joly",
+      "kinds_qids": [
+       "Q1331793",
+       "Q2085381"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "el-faro-astorgano",
+   "name": "El Faro Astorgano",
+   "domains": [
+    "elfaroastorgano.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Castilla y León",
+   "founded": 1903,
+   "group": null,
+   "feeds": [
+    "https://www.elfaroastorgano.net/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q107001839",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Astorga",
+    "hq_qid": "Q465078",
+    "founded": 1903,
+    "source": "https://www.wikidata.org/wiki/Q107001839",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "el-faro-de-ceuta",
+   "name": "El Faro de Ceuta",
+   "domains": [
+    "elfarodeceuta.es"
+   ],
+   "type": "Diario",
+   "scope": "Nacional",
+   "founded": 1934,
+   "group": null,
+   "feeds": [
+    "https://elfarodeceuta.es/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q17276360",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "founded": 1934,
+    "source": "https://www.wikidata.org/wiki/Q17276360",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "el-mundo-today",
+   "name": "El Mundo Today",
+   "domains": [
+    "elmundotoday.com"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2009,
+   "group": null,
+   "publisher": "Kike García",
+   "owner_source": "https://www.wikidata.org/wiki/Q10922539",
+   "feeds": [
+    "https://www.elmundotoday.com/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q10922539",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q1153191"
+    ],
+    "owners": [
+     "Kike García",
+     "Xavi Puig"
+    ],
+    "owners_qids": [
+     "Q50572379",
+     "Q50572772"
+    ],
+    "hq": "Barcelona",
+    "hq_qid": "Q1492",
+    "founded": 2009,
+    "source": "https://www.wikidata.org/wiki/Q10922539",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q50572379",
+      "label": "Kike García",
+      "kinds_qids": [
+       "Q5"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     },
+     {
+      "qid": "Q50572772",
+      "label": "Xavi Puig",
+      "kinds_qids": [
+       "Q5"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "el-orden-mundial",
+   "name": "El Orden Mundial",
+   "domains": [
+    "elordenmundial.com"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2012,
+   "group": null,
+   "feeds": [
+    "https://elordenmundial.com/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q139624974",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q1153191"
+    ],
+    "founded": 2012,
+    "source": "https://www.wikidata.org/wiki/Q139624974",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "el-toro-tv",
+   "name": "El Toro TV",
+   "domains": [
+    "eltorotv.com"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": 2005,
+   "group": null,
+   "publisher": "Grupo Intereconomía",
+   "owner_source": "https://www.wikidata.org/wiki/Q3064786",
+   "feeds": [
+    "https://eltorotv.com/feed"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q3064786",
+    "kinds": [
+     "emisora de televisión"
+    ],
+    "kinds_qids": [
+     "Q1616075"
+    ],
+    "owners": [
+     "Grupo Intereconomía"
+    ],
+    "owners_qids": [
+     "Q6046156"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2005,
+    "source": "https://www.wikidata.org/wiki/Q3064786",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q6046156",
+      "label": "Grupo Intereconomía",
+      "kinds_qids": [
+       "Q17326725"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "enpresabidea",
+   "name": "EnpresaBIDEA",
+   "domains": [
+    "enpresabidea.eus"
+   ],
+   "type": "Diario",
+   "scope": "Nacional",
+   "founded": 2022,
+   "group": null,
+   "publisher": "Totmedia",
+   "owner_source": "https://www.wikidata.org/wiki/Q128628517",
+   "feeds": [
+    "https://www.enpresabidea.eus/uploads/feeds/feed_via-empresa-euskera_eu.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q128628517",
+    "languages": [
+     "euskera"
+    ],
+    "languages_qids": [
+     "Q8752"
+    ],
+    "kinds": [
+     "periódico",
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q11032",
+     "Q1153191"
+    ],
+    "owners": [
+     "Totmedia"
+    ],
+    "owners_qids": [
+     "Q54549433"
+    ],
+    "founded": 2022,
+    "source": "https://www.wikidata.org/wiki/Q128628517",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q54549433",
+      "label": "Totmedia",
+      "kinds_qids": [
+       "Q4830453"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "esport3",
+   "name": "Esport3",
+   "domains": [
+    "ccma.cat"
+   ],
+   "type": "Televisión",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 2011,
+   "group": null,
+   "publisher": "Corporación Catalana de Medios Audiovisuales",
+   "owner_source": "https://www.wikidata.org/wiki/Q3321696",
+   "feeds": [
+    "https://api.3cat.cat/noticies?_format=rss&origen=frontal&frontal=pue3-home-noticia&version=2.0"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q3321696",
+    "kinds": [
+     "emisora de televisión"
+    ],
+    "kinds_qids": [
+     "Q1616075"
+    ],
+    "owners": [
+     "Corporación Catalana de Medios Audiovisuales"
+    ],
+    "owners_qids": [
+     "Q3323383"
+    ],
+    "hq": "San Juan Despí",
+    "hq_qid": "Q15640",
+    "founded": 2011,
+    "source": "https://www.wikidata.org/wiki/Q3321696",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q3323383",
+      "label": "Corporación Catalana de Medios Audiovisuales",
+      "kinds_qids": [
+       "Q26398",
+       "Q167037"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "europa-fm",
+   "name": "Europa FM",
+   "domains": [
+    "europafm.com"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": 1996,
+   "group": "planeta",
+   "owner_source": "https://www.wikidata.org/wiki/Q575995",
+   "feeds": [
+    "https://www.europafm.com/rss/234881.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q575995",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "emisora de radio"
+    ],
+    "kinds_qids": [
+     "Q14350"
+    ],
+    "owners": [
+     "Atresmedia"
+    ],
+    "owners_qids": [
+     "Q3118227"
+    ],
+    "founded": 1996,
+    "source": "https://www.wikidata.org/wiki/Q575995",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q3118227",
+      "label": "Atresmedia",
+      "kinds_qids": [
+       "Q4830453",
+       "Q6881511"
+      ],
+      "owned_by": [
+       "Grupo Planeta",
+       "De Agostini"
+      ],
+      "owned_by_qids": [
+       "Q3109084",
+       "Q2521786"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "ewtn-espana",
+   "name": "EWTN España",
+   "domains": [
+    "ewtn.es"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": 2020,
+   "group": null,
+   "publisher": "Fundación EWTN",
+   "owner_source": "https://www.wikidata.org/wiki/Q126057755",
+   "feeds": [
+    "https://www.ewtn.es/feed/rss2"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q126057755",
+    "kinds": [
+     "canal de televisión temático"
+    ],
+    "kinds_qids": [
+     "Q561068"
+    ],
+    "owners": [
+     "Fundación EWTN"
+    ],
+    "owners_qids": [
+     "Q126082421"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 2020,
+    "source": "https://www.wikidata.org/wiki/Q126057755",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q126082421",
+      "label": "Fundación EWTN",
+      "kinds_qids": [
+       "Q163740"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "granada-hoy",
+   "name": "Granada Hoy",
+   "domains": [
+    "granadahoy.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Andalucía",
+   "founded": 2003,
+   "group": null,
+   "feeds": [
+    "https://www.granadahoy.com/rss/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q5797249",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Granada",
+    "hq_qid": "Q8810",
+    "founded": 2003,
+    "source": "https://www.wikidata.org/wiki/Q5797249",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "hobby-consolas",
+   "name": "Hobby Consolas",
+   "domains": [
+    "hobbyconsolas.com"
+   ],
+   "type": "Revista",
+   "scope": "Nacional",
+   "founded": 1991,
+   "group": null,
+   "publisher": "Axel Springer SE",
+   "owner_source": "https://www.wikidata.org/wiki/Q3312463",
+   "feeds": [
+    "https://www.hobbyconsolas.com/rss/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q3312463",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "revista",
+     "sitio web de noticias de videojuegos"
+    ],
+    "kinds_qids": [
+     "Q41298",
+     "Q72398691"
+    ],
+    "owners": [
+     "Axel Springer SE"
+    ],
+    "owners_qids": [
+     "Q163560"
+    ],
+    "founded": 1991,
+    "source": "https://www.wikidata.org/wiki/Q3312463",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q163560",
+      "label": "Axel Springer SE",
+      "kinds_qids": [
+       "Q1331793"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "ib3-televisio",
+   "name": "IB3 Televisió",
+   "domains": [
+    "ib3.org"
+   ],
+   "type": "Televisión",
+   "scope": "Regional",
+   "region": "Islas Baleares",
+   "founded": 2005,
+   "group": null,
+   "publisher": "Televisió de les Illes Balears",
+   "owner_source": "https://www.wikidata.org/wiki/Q2742100",
+   "feeds": [
+    "https://ib3.org/feed"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q2742100",
+    "kinds": [
+     "emisora de televisión"
+    ],
+    "kinds_qids": [
+     "Q1616075"
+    ],
+    "owners": [
+     "Televisió de les Illes Balears"
+    ],
+    "owners_qids": [
+     "Q4889716"
+    ],
+    "hq": "Santa Ponsa",
+    "hq_qid": "Q1941746",
+    "founded": 2005,
+    "source": "https://www.wikidata.org/wiki/Q2742100",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q4889716",
+      "label": "Televisió de les Illes Balears",
+      "kinds_qids": [
+       "Q17990971"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "ideal",
+   "name": "Ideal",
+   "domains": [
+    "ideal.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Andalucía",
+   "founded": 1932,
+   "group": null,
+   "feeds": [
+    "https://www.ideal.es/rss/2.0/?section="
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q5908242",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Peligros",
+    "hq_qid": "Q538809",
+    "founded": 1932,
+    "source": "https://www.wikidata.org/wiki/Q5908242",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "interalmeria-tv",
+   "name": "Interalmería TV",
+   "domains": [
+    "interalmeria.tv"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": null,
+   "group": null,
+   "publisher": "Ayuntamiento de Almería",
+   "owner_source": "https://www.wikidata.org/wiki/Q5918848",
+   "feeds": [
+    "https://www.interalmeria.tv/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q5918848",
+    "kinds": [
+     "emisora de televisión"
+    ],
+    "kinds_qids": [
+     "Q1616075"
+    ],
+    "owners": [
+     "Ayuntamiento de Almería"
+    ],
+    "owners_qids": [
+     "Q5714796"
+    ],
+    "source": "https://www.wikidata.org/wiki/Q5918848",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q5714796",
+      "label": "Ayuntamiento de Almería",
+      "kinds_qids": [
+       "Q22996476"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "kiss-fm",
+   "name": "Kiss FM",
+   "domains": [
+    "kissfm.es"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": null,
+   "group": null,
+   "publisher": "Grupo KISS Media",
+   "owner_source": "https://www.wikidata.org/wiki/Q3325253",
+   "feeds": [
+    "https://www.kissfm.es/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q3325253",
+    "kinds": [
+     "emisora de radio"
+    ],
+    "kinds_qids": [
+     "Q14350"
+    ],
+    "owners": [
+     "Grupo KISS Media"
+    ],
+    "owners_qids": [
+     "Q113048085"
+    ],
+    "source": "https://www.wikidata.org/wiki/Q3325253",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q113048085",
+      "label": "Grupo KISS Media",
+      "kinds_qids": [
+       "Q4830453",
+       "Q6881511"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "l-hospitalet-tv",
+   "name": "L'Hospitalet TV",
+   "domains": [
+    "lhdigital.cat"
+   ],
+   "type": "Televisión",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 2000,
+   "group": null,
+   "feeds": [
+    "https://lhdigital.cat/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q11687513",
+    "kinds": [
+     "emisora de televisión"
+    ],
+    "kinds_qids": [
+     "Q1616075"
+    ],
+    "hq": "Hospitalet de Llobregat",
+    "hq_qid": "Q15470",
+    "founded": 2000,
+    "source": "https://www.wikidata.org/wiki/Q11687513",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "la-7",
+   "name": "La 7",
+   "domains": [
+    "la7tv.es"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": 2006,
+   "group": null,
+   "feeds": [
+    "https://www.la7tv.es/rss/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q3049833",
+    "kinds": [
+     "emisora de televisión"
+    ],
+    "kinds_qids": [
+     "Q1616075"
+    ],
+    "founded": 2006,
+    "source": "https://www.wikidata.org/wiki/Q3049833",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "la-manana",
+   "name": "La Mañana",
+   "domains": [
+    "lamanyana.cat"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 1938,
+   "group": null,
+   "feeds": [
+    "https://lamanyana.cat/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q4144532",
+    "languages": [
+     "catalán",
+     "español"
+    ],
+    "languages_qids": [
+     "Q7026",
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Lérida",
+    "hq_qid": "Q15090",
+    "founded": 1938,
+    "source": "https://www.wikidata.org/wiki/Q4144532",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "la-voz-de-almeria",
+   "name": "La Voz de Almería",
+   "domains": [
+    "lavozdealmeria.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Andalucía",
+   "founded": 1939,
+   "group": null,
+   "feeds": [
+    "https://www.lavozdealmeria.com/rss/home.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q1799243",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Almería",
+    "hq_qid": "Q10400",
+    "founded": 1939,
+    "source": "https://www.wikidata.org/wiki/Q1799243",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "la-voz-de-lanzarote",
+   "name": "La Voz de Lanzarote",
+   "domains": [
+    "lavozdelanzarote.com"
+   ],
+   "type": "Digital",
+   "scope": "Regional",
+   "region": "Canarias",
+   "founded": 1985,
+   "group": null,
+   "feeds": [
+    "https://www.lavozdelanzarote.com/uploads/feeds/feed_lavozdelanzarote_es.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q136502529",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q1153191"
+    ],
+    "hq": "Arrecife",
+    "hq_qid": "Q647543",
+    "founded": 1985,
+    "source": "https://www.wikidata.org/wiki/Q136502529",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "laotra",
+   "name": "LaOtra",
+   "domains": [
+    "laotra.es"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": 2001,
+   "group": null,
+   "publisher": "Radio Televisión Madrid",
+   "owner_source": "https://www.wikidata.org/wiki/Q1798568",
+   "feeds": [
+    "https://www.telemadrid.es/rss/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q1798568",
+    "kinds": [
+     "emisora de televisión"
+    ],
+    "kinds_qids": [
+     "Q1616075"
+    ],
+    "owners": [
+     "Radio Televisión Madrid"
+    ],
+    "owners_qids": [
+     "Q6456761"
+    ],
+    "hq": "Ciudad de la Imagen",
+    "hq_qid": "Q5770804",
+    "founded": 2001,
+    "source": "https://www.wikidata.org/wiki/Q1798568",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q6456761",
+      "label": "Radio Televisión Madrid",
+      "kinds_qids": [
+       "Q17990971"
+      ],
+      "owned_by": [
+       "Gobierno de la Comunidad de Madrid"
+      ],
+      "owned_by_qids": [
+       "Q578788"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "leonoticias",
+   "name": "Leonoticias",
+   "domains": [
+    "leonoticias.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Castilla y León",
+   "founded": 2007,
+   "group": null,
+   "feeds": [
+    "https://www.leonoticias.com/rss/2.0/?section="
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q115800455",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "founded": 2007,
+    "source": "https://www.wikidata.org/wiki/Q115800455",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "madridiario",
+   "name": "Madridiario",
+   "domains": [
+    "madridiario.es"
+   ],
+   "type": "Digital",
+   "scope": "Nacional",
+   "founded": 2000,
+   "group": null,
+   "feeds": [
+    "https://www.madridiario.es/rss/ultimasNoticias/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q61948838",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q1153191"
+    ],
+    "founded": 2000,
+    "source": "https://www.wikidata.org/wiki/Q61948838",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "malaga-hoy",
+   "name": "Málaga Hoy",
+   "domains": [
+    "malagahoy.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Andalucía",
+   "founded": 2004,
+   "group": null,
+   "feeds": [
+    "https://www.malagahoy.es/rss/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q6035365",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Málaga",
+    "hq_qid": "Q8851",
+    "founded": 2004,
+    "source": "https://www.wikidata.org/wiki/Q6035365",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "mundiario",
+   "name": "Mundiario",
+   "domains": [
+    "mundiario.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Galicia",
+   "founded": 2013,
+   "group": null,
+   "feeds": [
+    "https://www.mundiario.com/rss/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q106021085",
+    "kinds": [
+     "diario",
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q1110794",
+     "Q11032"
+    ],
+    "hq": "Galicia",
+    "hq_qid": "Q3908",
+    "founded": 2013,
+    "source": "https://www.wikidata.org/wiki/Q106021085",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "neox",
+   "name": "Neox",
+   "domains": [
+    "neox.atresmedia.com"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": 2005,
+   "group": "planeta",
+   "owner_source": "https://www.wikidata.org/wiki/Q429922",
+   "feeds": [
+    "https://neox.atresmedia.com/rss/347352.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q429922",
+    "kinds": [
+     "emisora de televisión"
+    ],
+    "kinds_qids": [
+     "Q1616075"
+    ],
+    "owners": [
+     "Atresmedia"
+    ],
+    "owners_qids": [
+     "Q3118227"
+    ],
+    "hq": "San Sebastián de los Reyes",
+    "hq_qid": "Q484717",
+    "founded": 2005,
+    "source": "https://www.wikidata.org/wiki/Q429922",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q3118227",
+      "label": "Atresmedia",
+      "kinds_qids": [
+       "Q4830453",
+       "Q6881511"
+      ],
+      "owned_by": [
+       "Grupo Planeta",
+       "De Agostini"
+      ],
+      "owned_by_qids": [
+       "Q3109084",
+       "Q2521786"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "q5391216",
+   "name": "Q5391216",
+   "domains": [
+    "hitfm.es"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": null,
+   "group": null,
+   "publisher": "Grupo KISS Media",
+   "owner_source": "https://www.wikidata.org/wiki/Q5391216",
+   "feeds": [
+    "https://www.hitfm.es/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q5391216",
+    "kinds": [
+     "emisora de radio"
+    ],
+    "kinds_qids": [
+     "Q14350"
+    ],
+    "owners": [
+     "Grupo KISS Media"
+    ],
+    "owners_qids": [
+     "Q113048085"
+    ],
+    "source": "https://www.wikidata.org/wiki/Q5391216",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q113048085",
+      "label": "Grupo KISS Media",
+      "kinds_qids": [
+       "Q4830453",
+       "Q6881511"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "rac-105",
+   "name": "RAC 105",
+   "domains": [
+    "rac105.cat"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": 1982,
+   "group": null,
+   "feeds": [
+    "https://www.rac105.cat/feed"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q5661076",
+    "kinds": [
+     "emisora de radio"
+    ],
+    "kinds_qids": [
+     "Q14350"
+    ],
+    "hq": "Torre Godó",
+    "hq_qid": "Q51999423",
+    "founded": 1982,
+    "source": "https://www.wikidata.org/wiki/Q5661076",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "radio-estel",
+   "name": "Ràdio Estel",
+   "domains": [
+    "radioestel.cat"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": 1994,
+   "group": null,
+   "publisher": "archidiócesis de Barcelona",
+   "owner_source": "https://www.wikidata.org/wiki/Q5572692",
+   "feeds": [
+    "https://www.radioestel.cat/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q5572692",
+    "kinds": [
+     "emisora de radio"
+    ],
+    "kinds_qids": [
+     "Q14350"
+    ],
+    "owners": [
+     "archidiócesis de Barcelona"
+    ],
+    "owners_qids": [
+     "Q1364117"
+    ],
+    "founded": 1994,
+    "source": "https://www.wikidata.org/wiki/Q5572692",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q1364117",
+      "label": "archidiócesis de Barcelona",
+      "kinds_qids": [
+       "Q105390172"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "radio-intereconomia",
+   "name": "Radio Intereconomía",
+   "domains": [
+    "intereconomia.com"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": 1994,
+   "group": null,
+   "feeds": [
+    "https://intereconomia.com/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q6096393",
+    "kinds": [
+     "emisora de radio"
+    ],
+    "kinds_qids": [
+     "Q14350"
+    ],
+    "hq": "Madrid",
+    "hq_qid": "Q2807",
+    "founded": 1994,
+    "source": "https://www.wikidata.org/wiki/Q6096393",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "radio-marca",
+   "name": "Radio Marca",
+   "domains": [
+    "radiomarca.com"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": 2001,
+   "group": null,
+   "feeds": [
+    "https://www.marca.com/rss/googlenews/portada.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q3416734",
+    "kinds": [
+     "emisora de radio"
+    ],
+    "kinds_qids": [
+     "Q14350"
+    ],
+    "founded": 2001,
+    "source": "https://www.wikidata.org/wiki/Q3416734",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "radio-marca-barcelona",
+   "name": "Radio Marca Barcelona",
+   "domains": [
+    "radiomarcabarcelona.com"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": null,
+   "group": null,
+   "feeds": [
+    "https://www.radiomarcabarcelona.com/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q6096442",
+    "kinds": [
+     "emisora de radio"
+    ],
+    "kinds_qids": [
+     "Q14350"
+    ],
+    "source": "https://www.wikidata.org/wiki/Q6096442",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "radio-sefarad",
+   "name": "Radio Sefarad",
+   "domains": [
+    "radiosefarad.com"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": 2004,
+   "group": null,
+   "publisher": "Federación de Comunidades Judías de España",
+   "owner_source": "https://www.wikidata.org/wiki/Q60873829",
+   "feeds": [
+    "https://www.radiosefarad.com/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q60873829",
+    "kinds": [
+     "emisora de radio"
+    ],
+    "kinds_qids": [
+     "Q14350"
+    ],
+    "owners": [
+     "Federación de Comunidades Judías de España"
+    ],
+    "owners_qids": [
+     "Q65160451"
+    ],
+    "founded": 2004,
+    "source": "https://www.wikidata.org/wiki/Q60873829",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q65160451",
+      "label": "Federación de Comunidades Judías de España",
+      "kinds_qids": [
+       "Q104805859"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "radio-television-ceuta",
+   "name": "Radio Televisión Ceuta",
+   "domains": [
+    "rtvce.es"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": 2000,
+   "group": null,
+   "feeds": [
+    "https://www.rtvce.es/rss/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q3824981",
+    "kinds": [
+     "emisora de televisión"
+    ],
+    "kinds_qids": [
+     "Q1616075"
+    ],
+    "hq": "Ceuta",
+    "hq_qid": "Q5823",
+    "founded": 2000,
+    "source": "https://www.wikidata.org/wiki/Q3824981",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "radiole",
+   "name": "Radiolé",
+   "domains": [
+    "radiole.com"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": null,
+   "group": null,
+   "feeds": [
+    "https://www.radiole.com/feed"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q933208",
+    "kinds": [
+     "emisora de radio"
+    ],
+    "kinds_qids": [
+     "Q14350"
+    ],
+    "source": "https://www.wikidata.org/wiki/Q933208",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "rock-fm",
+   "name": "Rock FM",
+   "domains": [
+    "rockfm.fm"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": null,
+   "group": null,
+   "publisher": "Ábside Media",
+   "owner_source": "https://www.wikidata.org/wiki/Q3068093",
+   "feeds": [
+    "https://www.rockfm.fm/rss/home.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q3068093",
+    "kinds": [
+     "emisora de radio"
+    ],
+    "kinds_qids": [
+     "Q14350"
+    ],
+    "owners": [
+     "Ábside Media"
+    ],
+    "owners_qids": [
+     "Q113005111"
+    ],
+    "source": "https://www.wikidata.org/wiki/Q3068093",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q113005111",
+      "label": "Ábside Media",
+      "kinds_qids": [
+       "Q4830453",
+       "Q6881511"
+      ],
+      "owned_by": [
+       "Conferencia Episcopal Española"
+      ],
+      "owned_by_qids": [
+       "Q1518168"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "segre",
+   "name": "Segre",
+   "domains": [
+    "segre.com"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 1982,
+   "group": null,
+   "feeds": [
+    "https://www.segre.com/ca/rss/home.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q10552566",
+    "languages": [
+     "español",
+     "catalán"
+    ],
+    "languages_qids": [
+     "Q1321",
+     "Q7026"
+    ],
+    "kinds": [
+     "diario"
+    ],
+    "kinds_qids": [
+     "Q1110794"
+    ],
+    "hq": "Lérida",
+    "hq_qid": "Q15090",
+    "founded": 1982,
+    "source": "https://www.wikidata.org/wiki/Q10552566",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "tele-elx",
+   "name": "Tele Elx",
+   "domains": [
+    "teleelx.es"
+   ],
+   "type": "Televisión",
+   "scope": "Regional",
+   "region": "Comunidad Valenciana",
+   "founded": null,
+   "group": null,
+   "feeds": [
+    "https://teleelx.es/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q9082373",
+    "kinds": [
+     "canal de televisión"
+    ],
+    "kinds_qids": [
+     "Q2001305"
+    ],
+    "hq": "Elche",
+    "hq_qid": "Q10509",
+    "source": "https://www.wikidata.org/wiki/Q9082373",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "telelugo",
+   "name": "Telelugo",
+   "domains": [
+    "telelugo.tv"
+   ],
+   "type": "Televisión",
+   "scope": "Regional",
+   "region": "Galicia",
+   "founded": 1994,
+   "group": null,
+   "feeds": [
+    "https://www.galiciae.com/rss/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q5664977",
+    "kinds": [
+     "canal de televisión local"
+    ],
+    "kinds_qids": [
+     "Q2961813"
+    ],
+    "hq": "Lugo",
+    "hq_qid": "Q11125",
+    "founded": 1994,
+    "source": "https://www.wikidata.org/wiki/Q5664977",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "telemadrid",
+   "name": "Telemadrid",
+   "domains": [
+    "telemadrid.es"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": 1989,
+   "group": null,
+   "publisher": "Radio Televisión Madrid",
+   "owner_source": "https://www.wikidata.org/wiki/Q279413",
+   "feeds": [
+    "https://www.telemadrid.es/rss/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q279413",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "emisora de televisión"
+    ],
+    "kinds_qids": [
+     "Q1616075"
+    ],
+    "owners": [
+     "Radio Televisión Madrid"
+    ],
+    "owners_qids": [
+     "Q6456761"
+    ],
+    "hq": "Pozuelo de Alarcón",
+    "hq_qid": "Q639422",
+    "founded": 1989,
+    "source": "https://www.wikidata.org/wiki/Q279413",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q6456761",
+      "label": "Radio Televisión Madrid",
+      "kinds_qids": [
+       "Q17990971"
+      ],
+      "owned_by": [
+       "Gobierno de la Comunidad de Madrid"
+      ],
+      "owned_by_qids": [
+       "Q578788"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "telemino",
+   "name": "Telemiño",
+   "domains": [
+    "teleminho.com"
+   ],
+   "type": "Televisión",
+   "scope": "Regional",
+   "region": "Galicia",
+   "founded": 1999,
+   "group": null,
+   "feeds": [
+    "https://www.laregion.es/rss/category/section/170000/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q6140553",
+    "kinds": [
+     "canal de televisión local"
+    ],
+    "kinds_qids": [
+     "Q2961813"
+    ],
+    "hq": "Orense",
+    "hq_qid": "Q99151",
+    "founded": 1999,
+    "source": "https://www.wikidata.org/wiki/Q6140553",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "television-sant-cugat",
+   "name": "Televisión Sant Cugat",
+   "domains": [
+    "tvsantcugat.cat"
+   ],
+   "type": "Televisión",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 1986,
+   "group": null,
+   "feeds": [
+    "https://www.tvsantcugat.cat/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q6140755",
+    "kinds": [
+     "cadena de televisión",
+     "canal de televisión"
+    ],
+    "kinds_qids": [
+     "Q1254874",
+     "Q2001305"
+    ],
+    "hq": "San Cugat del Vallés",
+    "hq_qid": "Q13936",
+    "founded": 1986,
+    "source": "https://www.wikidata.org/wiki/Q6140755",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "tot-cerdanyola",
+   "name": "Tot Cerdanyola",
+   "domains": [
+    "totcerdanyola.cat"
+   ],
+   "type": "Revista",
+   "scope": "Nacional",
+   "founded": 1987,
+   "group": null,
+   "publisher": "Totmedia",
+   "owner_source": "https://www.wikidata.org/wiki/Q43290029",
+   "feeds": [
+    "https://www.totcerdanyola.cat/uploads/feeds/feed_totcerdanyola_ca.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q43290029",
+    "languages": [
+     "catalán"
+    ],
+    "languages_qids": [
+     "Q7026"
+    ],
+    "kinds": [
+     "periódico semanal",
+     "revista"
+    ],
+    "kinds_qids": [
+     "Q2305295",
+     "Q41298"
+    ],
+    "owners": [
+     "Totmedia"
+    ],
+    "owners_qids": [
+     "Q54549433"
+    ],
+    "founded": 1987,
+    "source": "https://www.wikidata.org/wiki/Q43290029",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q54549433",
+      "label": "Totmedia",
+      "kinds_qids": [
+       "Q4830453"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "ultima-hora",
+   "name": "Última Hora",
+   "domains": [
+    "ultimahora.es"
+   ],
+   "type": "Diario",
+   "scope": "Regional",
+   "region": "Islas Baleares",
+   "founded": null,
+   "group": null,
+   "feeds": [
+    "https://www.ultimahora.es/feed.rss"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q9099031",
+    "languages": [
+     "español"
+    ],
+    "languages_qids": [
+     "Q1321"
+    ],
+    "kinds": [
+     "periódico"
+    ],
+    "kinds_qids": [
+     "Q11032"
+    ],
+    "hq": "Palma de Mallorca",
+    "hq_qid": "Q8826",
+    "source": "https://www.wikidata.org/wiki/Q9099031",
+    "retrieved": "2026-11-21"
+   }
+  },
+  {
+   "id": "via-empresa",
+   "name": "VIA Empresa",
+   "domains": [
+    "viaempresa.cat"
+   ],
+   "type": "Digital",
+   "scope": "Regional",
+   "region": "Cataluña",
+   "founded": 2013,
+   "group": null,
+   "publisher": "Totmedia",
+   "owner_source": "https://www.wikidata.org/wiki/Q54549084",
+   "feeds": [
+    "https://www.viaempresa.cat/uploads/feeds/feed_via-empresa-2024_ca.xml"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q54549084",
+    "languages": [
+     "catalán"
+    ],
+    "languages_qids": [
+     "Q7026"
+    ],
+    "kinds": [
+     "periódico en línea"
+    ],
+    "kinds_qids": [
+     "Q1153191"
+    ],
+    "owners": [
+     "Totmedia"
+    ],
+    "owners_qids": [
+     "Q54549433"
+    ],
+    "founded": 2013,
+    "source": "https://www.wikidata.org/wiki/Q54549084",
+    "retrieved": "2026-11-21",
+    "owner_parents": [
+     {
+      "qid": "Q54549433",
+      "label": "Totmedia",
+      "kinds_qids": [
+       "Q4830453"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  }
+ ]
+}
