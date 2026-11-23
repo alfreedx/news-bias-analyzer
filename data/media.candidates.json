@@ -111,6 +111,56 @@
    "id": "axn",
    "name": "AXN",
    "domains": [
+    "axn.es"
+   ],
+   "type": "Televisión",
+   "scope": "Nacional",
+   "founded": null,
+   "group": null,
+   "publisher": "Sony Pictures",
+   "owner_source": "https://www.wikidata.org/wiki/Q2373376",
+   "feeds": [
+    "https://www.axn.es/feed"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q2373376",
+    "kinds": [
+     "canal de televisión"
+    ],
+    "kinds_qids": [
+     "Q2001305"
+    ],
+    "owners": [
+     "Sony Pictures"
+    ],
+    "owners_qids": [
+     "Q822314"
+    ],
+    "source": "https://www.wikidata.org/wiki/Q2373376",
+    "retrieved": "2026-11-23",
+    "owner_parents": [
+     {
+      "qid": "Q822314",
+      "label": "Sony Pictures",
+      "kinds_qids": [
+       "Q658255",
+       "Q1762059"
+      ],
+      "owned_by": [
+       "Sony"
+      ],
+      "owned_by_qids": [
+       "Q41187"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "axn-q16148079",
+   "name": "AXN",
+   "domains": [
     "axn.pt"
    ],
    "type": "Televisión",
@@ -139,7 +189,7 @@
     ],
     "founded": 2004,
     "source": "https://www.wikidata.org/wiki/Q16148079",
-    "retrieved": "2026-11-21",
+    "retrieved": "2026-11-23",
     "owner_parents": [
      {
       "qid": "Q652390",
@@ -156,41 +206,6 @@
       ]
      }
     ]
-   }
-  },
-  {
-   "id": "boletin-oficial-de-la-provincia-de-albacete",
-   "name": "Boletín Oficial de la Provincia de Albacete",
-   "domains": [
-    "dipualba.es"
-   ],
-   "type": "Diario",
-   "scope": "Regional",
-   "region": "Castilla-La Mancha",
-   "founded": null,
-   "group": null,
-   "feeds": [
-    "https://web.dipualba.es/feed/"
-   ],
-   "evidence": [],
-   "facts": {
-    "qid": "Q28648793",
-    "languages": [
-     "español"
-    ],
-    "languages_qids": [
-     "Q1321"
-    ],
-    "kinds": [
-     "diario oficial"
-    ],
-    "kinds_qids": [
-     "Q2065227"
-    ],
-    "hq": "Albacete",
-    "hq_qid": "Q15095",
-    "source": "https://www.wikidata.org/wiki/Q28648793",
-    "retrieved": "2026-11-21"
    }
   },
   {
@@ -322,38 +337,6 @@
     "hq": "Almería",
     "hq_qid": "Q10400",
     "source": "https://www.wikidata.org/wiki/Q8261503",
-    "retrieved": "2026-11-21"
-   }
-  },
-  {
-   "id": "cuac-fm",
-   "name": "Cuac FM",
-   "domains": [
-    "cuacfm.org"
-   ],
-   "type": "Radio",
-   "scope": "Nacional",
-   "founded": null,
-   "group": null,
-   "feeds": [
-    "https://cuacfm.org/feed/"
-   ],
-   "evidence": [],
-   "facts": {
-    "qid": "Q3324575",
-    "languages": [
-     "gallego"
-    ],
-    "languages_qids": [
-     "Q9307"
-    ],
-    "kinds": [
-     "emisora de radio"
-    ],
-    "kinds_qids": [
-     "Q14350"
-    ],
-    "source": "https://www.wikidata.org/wiki/Q3324575",
     "retrieved": "2026-11-21"
    }
   },
@@ -843,6 +826,52 @@
    }
   },
   {
+   "id": "m21-radio",
+   "name": "M21 Radio",
+   "domains": [
+    "m21radio.es"
+   ],
+   "type": "Radio",
+   "scope": "Nacional",
+   "founded": 2016,
+   "group": null,
+   "publisher": "Ayuntamiento de Madrid",
+   "owner_source": "https://www.wikidata.org/wiki/Q30908921",
+   "feeds": [
+    "https://m21radio.es/feed/"
+   ],
+   "evidence": [],
+   "facts": {
+    "qid": "Q30908921",
+    "kinds": [
+     "emisora de radio"
+    ],
+    "kinds_qids": [
+     "Q14350"
+    ],
+    "owners": [
+     "Ayuntamiento de Madrid"
+    ],
+    "owners_qids": [
+     "Q3773976"
+    ],
+    "founded": 2016,
+    "source": "https://www.wikidata.org/wiki/Q30908921",
+    "retrieved": "2026-11-23",
+    "owner_parents": [
+     {
+      "qid": "Q3773976",
+      "label": "Ayuntamiento de Madrid",
+      "kinds_qids": [
+       "Q22996476"
+      ],
+      "owned_by": [],
+      "owned_by_qids": []
+     }
+    ]
+   }
+  },
+  {
    "id": "neox",
    "name": "Neox",
    "domains": [
@@ -1190,36 +1219,6 @@
       ]
      }
     ]
-   }
-  },
-  {
-   "id": "telelugo",
-   "name": "Telelugo",
-   "domains": [
-    "telelugo.tv"
-   ],
-   "type": "Televisión",
-   "scope": "Regional",
-   "region": "Galicia",
-   "founded": 1994,
-   "group": null,
-   "feeds": [
-    "https://www.galiciae.com/rss/"
-   ],
-   "evidence": [],
-   "facts": {
-    "qid": "Q5664977",
-    "kinds": [
-     "canal de televisión local"
-    ],
-    "kinds_qids": [
-     "Q2961813"
-    ],
-    "hq": "Lugo",
-    "hq_qid": "Q11125",
-    "founded": 1994,
-    "source": "https://www.wikidata.org/wiki/Q5664977",
-    "retrieved": "2026-11-21"
    }
   },
   {
