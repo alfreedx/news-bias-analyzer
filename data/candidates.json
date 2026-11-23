@@ -1,7 +1,7 @@
 {
  "_meta": {
   "version": 1,
-  "generated": "2026-11-21",
+  "generated": "2026-11-23",
   "description": "Informe de scripts/discover_media.py: todos los candidatos de Wikidata y el resultado de la validación (passed/failed y motivos).",
   "sources": [
    "https://www.wikidata.org",
@@ -9,54 +9,33 @@
   ],
   "license": "CC BY-SA 4.0",
   "counts": {
-   "sparql_candidates": 720,
-   "checked_sites": 583,
-   "with_feed": 194,
-   "passed": 75,
-   "failed": 645,
+   "sparql_candidates": 721,
+   "checked_sites": 533,
+   "with_feed": 143,
+   "passed": 27,
+   "failed": 694,
    "failure_reasons": {
+    "already_in_catalog": 168,
     "feed_unreachable": 138,
-    "already_in_catalog": 117,
-    "robots_unavailable": 84,
+    "robots_unavailable": 85,
     "homepage_unreachable": 65,
     "no_identity": 60,
-    "robots_disallowed": 53,
-    "feed_not_parseable": 46,
-    "feed_stale": 29,
+    "robots_disallowed": 51,
+    "feed_not_parseable": 48,
+    "feed_stale": 27,
     "topic_excluded": 20,
-    "feed_too_few_items": 11,
+    "feed_too_few_items": 10,
     "duplicate_candidate": 7,
-    "language_not_spanish": 6,
+    "language_not_spanish": 5,
     "no_feed_found": 3,
     "no_item_dates": 3,
-    "aggregator": 1,
+    "aggregator": 2,
     "feed_not_https": 1,
     "links_off_domain": 1
    }
   }
  },
  "candidates": [
-  {
-   "qid": "Q135792871",
-   "name": "3CatInfo",
-   "website": "https://www.3cat.cat/3catinfo/",
-   "domain": "3cat.cat",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/3CatInfo",
-   "feed": "https://api.3cat.cat/noticies?_format=rss&origen=frontal&frontal=n324-portada-noticia&version=2.0",
-   "items": 31,
-   "newest": "2026-11-21T08:19:07Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.371,
-   "requests": 2,
-   "id": "3catinfo",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/3CatInfo"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/3CatInfo"
-  },
   {
    "qid": "Q2816022",
    "name": "3CatInfo (tv)",
@@ -67,9 +46,9 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/3CatInfo_(canal_de_televisi%C3%B3n)",
    "feed": "https://api.3cat.cat/noticies?_format=rss&origen=frontal&frontal=n324-portada-noticia&version=2.0",
    "items": 31,
-   "newest": "2026-11-21T08:19:07Z",
+   "newest": "2026-11-23T15:47:41Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.371,
+   "spanish_share": 0.386,
    "requests": 2,
    "id": "3catinfo-tv",
    "identity": {
@@ -90,7 +69,7 @@
    "es_wikipedia": null,
    "feed": "https://medios.uchceu.es/actualidad-ceu/feed/",
    "items": 100,
-   "newest": "2026-11-21T08:35:29Z",
+   "newest": "2026-11-23T15:11:32Z",
    "own_domain_share": 1.0,
    "spanish_share": 0.446,
    "requests": 2,
@@ -102,50 +81,6 @@
     "es_wikipedia": null
    },
    "identity_source": "https://www.wikidata.org/wiki/Q141596102"
-  },
-  {
-   "qid": "Q36890369",
-   "name": "Ahotsa.info",
-   "website": "http://ahotsa.info",
-   "domain": "ahotsa.info",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Ahotsa.info",
-   "feed": "https://ahotsa.info/feed/",
-   "items": 10,
-   "newest": "2026-11-19T11:38:55Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.121,
-   "requests": 2,
-   "id": "ahotsa-info",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Ahotsa.info"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Ahotsa.info"
-  },
-  {
-   "qid": "Q5671392",
-   "name": "Alzira Ràdio",
-   "website": "https://alziraradio.com",
-   "domain": "alziraradio.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Alzira_radio",
-   "feed": "https://alziraradio.com/feed/",
-   "items": 10,
-   "newest": "2026-11-20T13:17:43Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.394,
-   "requests": 2,
-   "id": "alzira-radio",
-   "identity": {
-    "owners": [
-     "casa consistorial de Alcira"
-    ],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Alzira_radio"
-   },
-   "identity_source": "https://www.wikidata.org/wiki/Q5671392"
   },
   {
    "qid": "Q16148079",
@@ -161,7 +96,7 @@
    "own_domain_share": 1.0,
    "spanish_share": 0.314,
    "requests": 2,
-   "id": "axn",
+   "id": "axn-q16148079",
    "identity": {
     "owners": [
      "Sony Pictures Television"
@@ -171,90 +106,27 @@
    "identity_source": "https://www.wikidata.org/wiki/Q16148079"
   },
   {
-   "qid": "Q5718219",
-   "name": "BandaAncha",
-   "website": "https://bandaancha.eu",
-   "domain": "bandaancha.eu",
+   "qid": "Q2373376",
+   "name": "AXN",
+   "website": "http://www.axn.es/",
+   "domain": "axn.es",
    "status": "passed",
    "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/BandaAncha.eu",
-   "feed": "https://bandaancha.eu/portada.atom",
-   "items": 50,
-   "newest": "2026-11-20T21:36:08Z",
+   "es_wikipedia": "https://es.wikipedia.org/wiki/AXN_(Espa%C3%B1a)",
+   "feed": "https://www.axn.es/feed",
+   "items": 12,
+   "newest": "2026-11-23T11:17:14Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.464,
+   "spanish_share": 0.49,
    "requests": 2,
-   "id": "bandaancha",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/BandaAncha.eu"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/BandaAncha.eu"
-  },
-  {
-   "qid": "Q3444097",
-   "name": "Betevé",
-   "website": "https://beteve.cat/",
-   "domain": "beteve.cat",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Betev%C3%A9",
-   "feed": "https://beteve.cat/feed/",
-   "items": 15,
-   "newest": "2026-11-21T10:21:36Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.368,
-   "requests": 2,
-   "id": "beteve",
+   "id": "axn",
    "identity": {
     "owners": [
-     "Ayuntamiento de Barcelona"
+     "Sony Pictures"
     ],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Betev%C3%A9"
+    "es_wikipedia": "https://es.wikipedia.org/wiki/AXN_(Espa%C3%B1a)"
    },
-   "identity_source": "https://www.wikidata.org/wiki/Q3444097"
-  },
-  {
-   "qid": "Q28648793",
-   "name": "Boletín Oficial de la Provincia de Albacete",
-   "website": "http://www.dipualba.es/WebBop/",
-   "domain": "dipualba.es",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Bolet%C3%ADn_Oficial_de_la_Provincia_de_Albacete",
-   "feed": "https://web.dipualba.es/feed/",
-   "items": 10,
-   "newest": "2026-11-21T09:54:14Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.416,
-   "requests": 2,
-   "id": "boletin-oficial-de-la-provincia-de-albacete",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Bolet%C3%ADn_Oficial_de_la_Provincia_de_Albacete"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Bolet%C3%ADn_Oficial_de_la_Provincia_de_Albacete"
-  },
-  {
-   "qid": "Q12255560",
-   "name": "Busturialdeko Hitza",
-   "website": "http://busturialdea.hitza.eus",
-   "domain": "busturialdea.hitza.eus",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Busturialdeko_Hitza",
-   "feed": "https://busturialdea.hitza.eus/rss/albisteak/azala.xml",
-   "items": 23,
-   "newest": "2026-11-21T10:22:47Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.132,
-   "requests": 2,
-   "id": "busturialdeko-hitza",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Busturialdeko_Hitza"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Busturialdeko_Hitza"
+   "identity_source": "https://www.wikidata.org/wiki/Q2373376"
   },
   {
    "qid": "Q3326167",
@@ -265,10 +137,10 @@
    "reasons": [],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Cadena_100",
    "feed": "https://www.cadena100.es/rss/home.xml",
-   "items": 135,
-   "newest": "2026-11-21T09:06:00Z",
+   "items": 110,
+   "newest": "2026-11-23T15:10:05Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.486,
+   "spanish_share": 0.46,
    "requests": 2,
    "id": "cadena-100",
    "identity": {
@@ -289,9 +161,9 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/Cadena_Dial",
    "feed": "https://www.cadenadial.com/feed",
    "items": 40,
-   "newest": "2026-11-20T13:29:29Z",
+   "newest": "2026-11-23T15:01:19Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.44,
+   "spanish_share": 0.445,
    "requests": 2,
    "id": "cadena-dial",
    "identity": {
@@ -303,27 +175,6 @@
    "identity_source": "https://www.wikidata.org/wiki/Q1700228"
   },
   {
-   "qid": "Q27961377",
-   "name": "Campiña Digital",
-   "website": "https://campinadigital.me/",
-   "domain": "campinadigital.me",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Campi%C3%B1a_Digital",
-   "feed": "https://campinadigital.me/feed/",
-   "items": 15,
-   "newest": "2026-11-21T10:01:09Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.458,
-   "requests": 2,
-   "id": "campina-digital",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Campi%C3%B1a_Digital"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Campi%C3%B1a_Digital"
-  },
-  {
    "qid": "Q8261503",
    "name": "Canal Almería TV",
    "website": "http://www.canalalmeriatv.com",
@@ -332,10 +183,10 @@
    "reasons": [],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Canal_Almer%C3%ADa_TV",
    "feed": "https://www.lavozdealmeria.com/rss/home.xml",
-   "items": 80,
-   "newest": "2026-11-21T09:30:00Z",
+   "items": 78,
+   "newest": "2026-11-23T15:00:05Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.453,
+   "spanish_share": 0.458,
    "requests": 2,
    "id": "canal-almeria-tv",
    "identity": {
@@ -343,216 +194,6 @@
     "es_wikipedia": "https://es.wikipedia.org/wiki/Canal_Almer%C3%ADa_TV"
    },
    "identity_source": "https://es.wikipedia.org/wiki/Canal_Almer%C3%ADa_TV"
-  },
-  {
-   "qid": "Q17147619",
-   "name": "Canal Blau",
-   "website": "https://canalblau.tv/",
-   "domain": "canalblau.tv",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Canal_Blau",
-   "feed": "https://canalblau.tv/feed/",
-   "items": 10,
-   "newest": "2026-11-20T17:00:35Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.378,
-   "requests": 2,
-   "id": "canal-blau",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Canal_Blau"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Canal_Blau"
-  },
-  {
-   "qid": "Q8262084",
-   "name": "Cantabria TV",
-   "website": "http://www.cantabriatv.es/",
-   "domain": "cantabriatv.es",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Cantabria_TV",
-   "feed": "https://www.cantabriatv.es/rss/",
-   "items": 10,
-   "newest": "2026-11-20T17:58:42Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.445,
-   "requests": 2,
-   "id": "cantabria-tv",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Cantabria_TV"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Cantabria_TV"
-  },
-  {
-   "qid": "Q5763883",
-   "name": "Ceuta Televisión",
-   "website": "http://www.ceutatv.com",
-   "domain": "ceutatv.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Ceuta_Televisi%C3%B3n",
-   "feed": "https://www.ceutatv.com/rss/",
-   "items": 20,
-   "newest": "2026-11-21T08:38:54Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.476,
-   "requests": 2,
-   "id": "ceuta-television",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Ceuta_Televisi%C3%B3n"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Ceuta_Televisi%C3%B3n"
-  },
-  {
-   "qid": "Q3324575",
-   "name": "Cuac FM",
-   "website": "https://cuacfm.org/",
-   "domain": "cuacfm.org",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Cuac_FM",
-   "feed": "https://cuacfm.org/feed/",
-   "items": 10,
-   "newest": "2026-11-14T11:04:00Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.367,
-   "requests": 2,
-   "id": "cuac-fm",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Cuac_FM"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Cuac_FM"
-  },
-  {
-   "qid": "Q11917097",
-   "name": "Diari de Sabadell",
-   "website": "http://www.diaridesabadell.com/",
-   "domain": "diaridesabadell.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Diari_de_Sabadell",
-   "feed": "https://www.diaridesabadell.com/feed",
-   "items": 25,
-   "newest": "2026-11-21T09:00:02Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.388,
-   "requests": 2,
-   "id": "diari-de-sabadell",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Diari_de_Sabadell"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Diari_de_Sabadell"
-  },
-  {
-   "qid": "Q12162686",
-   "name": "Diari de Tarragona",
-   "website": "http://www.diaridetarragona.com/",
-   "domain": "diaridetarragona.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Diari_de_Tarragona",
-   "feed": "https://www.diaridetarragona.com/rss/home.xml",
-   "items": 62,
-   "newest": "2026-11-21T09:38:09Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.422,
-   "requests": 2,
-   "id": "diari-de-tarragona",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Diari_de_Tarragona"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Diari_de_Tarragona"
-  },
-  {
-   "qid": "Q11917100",
-   "name": "Diari de Terrassa",
-   "website": "http://www.diarideterrassa.com",
-   "domain": "diarideterrassa.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Diari_de_Terrassa",
-   "feed": "https://www.diarideterrassa.com/feed",
-   "items": 25,
-   "newest": "2026-11-20T20:17:43Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.369,
-   "requests": 2,
-   "id": "diari-de-terrassa",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Diari_de_Terrassa"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Diari_de_Terrassa"
-  },
-  {
-   "qid": "Q17023774",
-   "name": "Diari Més",
-   "website": "https://www.diarimes.com/",
-   "domain": "diarimes.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Diario_M%C3%A9s",
-   "feed": "https://www.diarimes.com/ca/rss/home.xml",
-   "items": 65,
-   "newest": "2026-11-20T22:16:41Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.383,
-   "requests": 2,
-   "id": "diari-mes",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Diario_M%C3%A9s"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Diario_M%C3%A9s"
-  },
-  {
-   "qid": "Q5805369",
-   "name": "Diario de Bergantiños",
-   "website": "https://www.diariodebergantinos.com/",
-   "domain": "diariodebergantinos.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Diario_de_Berganti%C3%B1os",
-   "feed": "https://diariodebergantinos.elidealgallego.com/rss/home.xml",
-   "items": 63,
-   "newest": "2026-11-21T10:14:05Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.417,
-   "requests": 3,
-   "id": "diario-de-bergantinos",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Diario_de_Berganti%C3%B1os"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Diario_de_Berganti%C3%B1os"
-  },
-  {
-   "qid": "Q5351145",
-   "name": "Diario de Ferrol",
-   "website": "https://www.diariodeferrol.com/",
-   "domain": "diariodeferrol.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Diario_de_Ferrol",
-   "feed": "https://diariodeferrol.elidealgallego.com/rss/home.xml",
-   "items": 52,
-   "newest": "2026-11-20T22:17:44Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.468,
-   "requests": 3,
-   "id": "diario-de-ferrol",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Diario_de_Ferrol"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Diario_de_Ferrol"
   },
   {
    "qid": "Q3032306",
@@ -564,9 +205,9 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/Divinity",
    "feed": "https://www.divinity.es/rss.xml",
    "items": 30,
-   "newest": "2026-11-21T10:01:33Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.46,
+   "newest": "2026-11-23T16:02:21Z",
+   "own_domain_share": 0.97,
+   "spanish_share": 0.436,
    "requests": 2,
    "id": "divinity",
    "identity": {
@@ -587,9 +228,9 @@
    "es_wikipedia": null,
    "feed": "https://dxtadaptado.com/feed/",
    "items": 21,
-   "newest": "2026-11-20T19:30:00Z",
+   "newest": "2026-11-23T11:36:07Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.467,
+   "spanish_share": 0.452,
    "requests": 2,
    "id": "dxtadaptado",
    "identity": {
@@ -601,113 +242,6 @@
    "identity_source": "https://www.wikidata.org/wiki/Q142203706"
   },
   {
-   "qid": "Q5820781",
-   "name": "El Adelantado de Segovia",
-   "website": "http://www.eladelantado.com",
-   "domain": "eladelantado.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/El_Adelantado_de_Segovia",
-   "feed": "https://eladelantado.com/feed/",
-   "items": 21,
-   "newest": "2026-11-21T04:30:50Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.444,
-   "requests": 2,
-   "id": "el-adelantado-de-segovia",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/El_Adelantado_de_Segovia"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/El_Adelantado_de_Segovia"
-  },
-  {
-   "qid": "Q96250372",
-   "name": "El Cierre Digital",
-   "website": "https://elcierredigital.com",
-   "domain": "elcierredigital.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/El_Cierre_Digital",
-   "feed": "https://elcierredigital.com/feed",
-   "items": 25,
-   "newest": "2026-11-21T09:41:23Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.445,
-   "requests": 2,
-   "id": "el-cierre-digital",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/El_Cierre_Digital"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/El_Cierre_Digital"
-  },
-  {
-   "qid": "Q5821804",
-   "name": "El Día de Córdoba",
-   "website": "http://www.eldiadecordoba.es/",
-   "domain": "eldiadecordoba.es",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/El_D%C3%ADa_de_C%C3%B3rdoba",
-   "feed": "https://www.eldiadecordoba.es/rss/",
-   "items": 148,
-   "newest": "2026-11-21T09:39:27Z",
-   "own_domain_share": 0.86,
-   "spanish_share": 0.46,
-   "requests": 2,
-   "id": "el-dia-de-cordoba",
-   "identity": {
-    "owners": [
-     "Grupo Joly"
-    ],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/El_D%C3%ADa_de_C%C3%B3rdoba"
-   },
-   "identity_source": "https://www.wikidata.org/wiki/Q5821804"
-  },
-  {
-   "qid": "Q107001839",
-   "name": "El Faro Astorgano",
-   "website": "https://elfaroastorgano.com/",
-   "domain": "elfaroastorgano.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/El_Faro_Astorgano",
-   "feed": "https://www.elfaroastorgano.net/feed/",
-   "items": 10,
-   "newest": "2026-11-20T12:42:39Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.45,
-   "requests": 2,
-   "id": "el-faro-astorgano",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/El_Faro_Astorgano"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/El_Faro_Astorgano"
-  },
-  {
-   "qid": "Q17276360",
-   "name": "El Faro de Ceuta",
-   "website": "http://elfarodeceuta.es/",
-   "domain": "elfarodeceuta.es",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/El_Faro_de_Ceuta",
-   "feed": "https://elfarodeceuta.es/feed/",
-   "items": 10,
-   "newest": "2026-11-21T10:29:18Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.465,
-   "requests": 2,
-   "id": "el-faro-de-ceuta",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/El_Faro_de_Ceuta"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/El_Faro_de_Ceuta"
-  },
-  {
    "qid": "Q10922539",
    "name": "El Mundo Today",
    "website": "https://www.elmundotoday.com",
@@ -717,9 +251,9 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/El_Mundo_Today",
    "feed": "https://www.elmundotoday.com/feed/",
    "items": 20,
-   "newest": "2026-11-20T10:48:37Z",
+   "newest": "2026-11-23T14:55:13Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.445,
+   "spanish_share": 0.454,
    "requests": 2,
    "id": "el-mundo-today",
    "identity": {
@@ -732,73 +266,6 @@
    "identity_source": "https://www.wikidata.org/wiki/Q10922539"
   },
   {
-   "qid": "Q139624974",
-   "name": "El Orden Mundial",
-   "website": "https://elordenmundial.com/",
-   "domain": "elordenmundial.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/El_Orden_Mundial",
-   "feed": "https://elordenmundial.com/feed/",
-   "items": 10,
-   "newest": "2026-11-17T06:00:00Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.44,
-   "requests": 2,
-   "id": "el-orden-mundial",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/El_Orden_Mundial"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/El_Orden_Mundial"
-  },
-  {
-   "qid": "Q3064786",
-   "name": "El Toro TV",
-   "website": "https://eltorotv.com/",
-   "domain": "eltorotv.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/El_Toro_TV",
-   "feed": "https://eltorotv.com/feed",
-   "items": 10,
-   "newest": "2026-11-20T11:37:51Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.434,
-   "requests": 2,
-   "id": "el-toro-tv",
-   "identity": {
-    "owners": [
-     "Grupo Intereconomía"
-    ],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/El_Toro_TV"
-   },
-   "identity_source": "https://www.wikidata.org/wiki/Q3064786"
-  },
-  {
-   "qid": "Q128628517",
-   "name": "EnpresaBIDEA",
-   "website": "https://www.enpresabidea.eus/",
-   "domain": "enpresabidea.eus",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": null,
-   "feed": "https://www.enpresabidea.eus/uploads/feeds/feed_via-empresa-euskera_eu.xml",
-   "items": 15,
-   "newest": "2026-11-21T04:30:00Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.137,
-   "requests": 2,
-   "id": "enpresabidea",
-   "identity": {
-    "owners": [
-     "Totmedia"
-    ],
-    "es_wikipedia": null
-   },
-   "identity_source": "https://www.wikidata.org/wiki/Q128628517"
-  },
-  {
    "qid": "Q3321696",
    "name": "Esport3",
    "website": "https://www.ccma.cat/esport3/",
@@ -808,9 +275,9 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/Esport3",
    "feed": "https://api.3cat.cat/noticies?_format=rss&origen=frontal&frontal=pue3-home-noticia&version=2.0",
    "items": 25,
-   "newest": "2026-11-21T09:58:29Z",
+   "newest": "2026-11-23T16:07:31Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.391,
+   "spanish_share": 0.386,
    "requests": 2,
    "id": "esport3",
    "identity": {
@@ -831,9 +298,9 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/Europa_FM",
    "feed": "https://www.europafm.com/rss/234881.xml",
    "items": 33,
-   "newest": "2026-11-20T16:47:49Z",
+   "newest": "2026-11-23T14:58:06Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.45,
+   "spanish_share": 0.449,
    "requests": 2,
    "id": "europa-fm",
    "identity": {
@@ -853,10 +320,10 @@
    "reasons": [],
    "es_wikipedia": null,
    "feed": "https://www.ewtn.es/feed/rss2",
-   "items": 1170,
-   "newest": "2026-11-21T06:00:00Z",
+   "items": 1176,
+   "newest": "2026-11-23T13:50:53Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.433,
+   "spanish_share": 0.439,
    "requests": 2,
    "id": "ewtn-espana",
    "identity": {
@@ -868,27 +335,6 @@
    "identity_source": "https://www.wikidata.org/wiki/Q126057755"
   },
   {
-   "qid": "Q5797249",
-   "name": "Granada Hoy",
-   "website": "https://www.granadahoy.com",
-   "domain": "granadahoy.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Granada_Hoy",
-   "feed": "https://www.granadahoy.com/rss/",
-   "items": 172,
-   "newest": "2026-11-21T10:21:52Z",
-   "own_domain_share": 0.88,
-   "spanish_share": 0.484,
-   "requests": 2,
-   "id": "granada-hoy",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Granada_Hoy"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Granada_Hoy"
-  },
-  {
    "qid": "Q3312463",
    "name": "Hobby Consolas",
    "website": "https://www.hobbyconsolas.com/",
@@ -898,9 +344,9 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/Hobby_Consolas",
    "feed": "https://www.hobbyconsolas.com/rss/",
    "items": 55,
-   "newest": "2026-11-21T10:05:00Z",
+   "newest": "2026-11-23T15:35:00Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.449,
+   "spanish_share": 0.438,
    "requests": 2,
    "id": "hobby-consolas",
    "identity": {
@@ -912,73 +358,6 @@
    "identity_source": "https://www.wikidata.org/wiki/Q3312463"
   },
   {
-   "qid": "Q2742100",
-   "name": "IB3 Televisió",
-   "website": "https://ib3.org/televisio",
-   "domain": "ib3.org",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/IB3",
-   "feed": "https://ib3.org/feed",
-   "items": 14,
-   "newest": "2026-11-20T19:30:54Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.386,
-   "requests": 2,
-   "id": "ib3-televisio",
-   "identity": {
-    "owners": [
-     "Televisió de les Illes Balears"
-    ],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/IB3"
-   },
-   "identity_source": "https://www.wikidata.org/wiki/Q2742100"
-  },
-  {
-   "qid": "Q5908242",
-   "name": "Ideal",
-   "website": "http://www.ideal.es/",
-   "domain": "ideal.es",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Ideal_(peri%C3%B3dico)",
-   "feed": "https://www.ideal.es/rss/2.0/?section=",
-   "items": 100,
-   "newest": "2026-11-21T10:18:35Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.462,
-   "requests": 2,
-   "id": "ideal",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Ideal_(peri%C3%B3dico)"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Ideal_(peri%C3%B3dico)"
-  },
-  {
-   "qid": "Q5918848",
-   "name": "Interalmería TV",
-   "website": "http://www.interalmeria.tv",
-   "domain": "interalmeria.tv",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Interalmer%C3%ADa_TV",
-   "feed": "https://www.interalmeria.tv/feed/",
-   "items": 12,
-   "newest": "2026-11-20T19:04:54Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.469,
-   "requests": 2,
-   "id": "interalmeria-tv",
-   "identity": {
-    "owners": [
-     "Ayuntamiento de Almería"
-    ],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Interalmer%C3%ADa_TV"
-   },
-   "identity_source": "https://www.wikidata.org/wiki/Q5918848"
-  },
-  {
    "qid": "Q3325253",
    "name": "Kiss FM",
    "website": "https://www.kissfm.es/",
@@ -988,9 +367,9 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/Kiss_FM_(Espa%C3%B1a)",
    "feed": "https://www.kissfm.es/feed/",
    "items": 100,
-   "newest": "2026-11-21T10:06:46Z",
+   "newest": "2026-11-23T10:49:00Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.414,
+   "spanish_share": 0.423,
    "requests": 2,
    "id": "kiss-fm",
    "identity": {
@@ -1002,111 +381,6 @@
    "identity_source": "https://www.wikidata.org/wiki/Q3325253"
   },
   {
-   "qid": "Q11687513",
-   "name": "L'Hospitalet TV",
-   "website": "https://lhdigital.cat/televisio-lh/",
-   "domain": "lhdigital.cat",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Televisi%C3%B3_de_l%27Hospitalet",
-   "feed": "https://lhdigital.cat/feed/",
-   "items": 10,
-   "newest": "2026-11-20T18:30:00Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.376,
-   "requests": 2,
-   "id": "l-hospitalet-tv",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Televisi%C3%B3_de_l%27Hospitalet"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Televisi%C3%B3_de_l%27Hospitalet"
-  },
-  {
-   "qid": "Q3049833",
-   "name": "La 7",
-   "website": "https://www.la7tv.es/",
-   "domain": "la7tv.es",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/La_7_(Regi%C3%B3n_de_Murcia)",
-   "feed": "https://www.la7tv.es/rss/",
-   "items": 20,
-   "newest": "2026-11-21T09:59:50Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.465,
-   "requests": 2,
-   "id": "la-7",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/La_7_(Regi%C3%B3n_de_Murcia)"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/La_7_(Regi%C3%B3n_de_Murcia)"
-  },
-  {
-   "qid": "Q4144532",
-   "name": "La Mañana",
-   "website": "https://www.lamanyana.cat/",
-   "domain": "lamanyana.cat",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/La_Ma%C3%B1ana_(L%C3%A9rida)",
-   "feed": "https://lamanyana.cat/feed/",
-   "items": 10,
-   "newest": "2026-11-21T02:54:38Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.379,
-   "requests": 2,
-   "id": "la-manana",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/La_Ma%C3%B1ana_(L%C3%A9rida)"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/La_Ma%C3%B1ana_(L%C3%A9rida)"
-  },
-  {
-   "qid": "Q1799243",
-   "name": "La Voz de Almería",
-   "website": "http://www.lavozdealmeria.es/",
-   "domain": "lavozdealmeria.es",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/La_Voz_de_Almer%C3%ADa",
-   "feed": "https://www.lavozdealmeria.com/rss/home.xml",
-   "items": 80,
-   "newest": "2026-11-21T09:30:00Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.453,
-   "requests": 2,
-   "id": "la-voz-de-almeria",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/La_Voz_de_Almer%C3%ADa"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/La_Voz_de_Almer%C3%ADa"
-  },
-  {
-   "qid": "Q136502529",
-   "name": "La Voz de Lanzarote",
-   "website": "https://www.lavozdelanzarote.com/",
-   "domain": "lavozdelanzarote.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/La_Voz_de_Lanzarote",
-   "feed": "https://www.lavozdelanzarote.com/uploads/feeds/feed_lavozdelanzarote_es.xml",
-   "items": 75,
-   "newest": "2026-11-21T08:54:31Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.451,
-   "requests": 3,
-   "id": "la-voz-de-lanzarote",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/La_Voz_de_Lanzarote"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/La_Voz_de_Lanzarote"
-  },
-  {
    "qid": "Q1798568",
    "name": "LaOtra",
    "website": "http://www.laotra.es/",
@@ -1116,9 +390,9 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/La_Otra_(TeleMadrid)",
    "feed": "https://www.telemadrid.es/rss/",
    "items": 45,
-   "newest": "2026-11-21T10:13:02Z",
+   "newest": "2026-11-23T14:22:16Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.453,
+   "spanish_share": 0.458,
    "requests": 2,
    "id": "laotra",
    "identity": {
@@ -1130,88 +404,27 @@
    "identity_source": "https://www.wikidata.org/wiki/Q1798568"
   },
   {
-   "qid": "Q115800455",
-   "name": "Leonoticias",
-   "website": "https://www.leonoticias.com/",
-   "domain": "leonoticias.com",
+   "qid": "Q30908921",
+   "name": "M21 Radio",
+   "website": "https://www.m21radio.es/",
+   "domain": "m21radio.es",
    "status": "passed",
    "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Leonoticias",
-   "feed": "https://www.leonoticias.com/rss/2.0/?section=",
-   "items": 100,
-   "newest": "2026-11-21T10:18:38Z",
+   "es_wikipedia": "https://es.wikipedia.org/wiki/M21_Radio",
+   "feed": "https://m21radio.es/feed/",
+   "items": 10,
+   "newest": "2026-11-23T10:59:27Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.468,
+   "spanish_share": 0.454,
    "requests": 2,
-   "id": "leonoticias",
+   "id": "m21-radio",
    "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Leonoticias"
+    "owners": [
+     "Ayuntamiento de Madrid"
+    ],
+    "es_wikipedia": "https://es.wikipedia.org/wiki/M21_Radio"
    },
-   "identity_source": "https://es.wikipedia.org/wiki/Leonoticias"
-  },
-  {
-   "qid": "Q61948838",
-   "name": "Madridiario",
-   "website": "https://www.madridiario.es/",
-   "domain": "madridiario.es",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Madridiario",
-   "feed": "https://www.madridiario.es/rss/ultimasNoticias/",
-   "items": 16,
-   "newest": "2026-11-21T10:00:00Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.415,
-   "requests": 2,
-   "id": "madridiario",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Madridiario"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Madridiario"
-  },
-  {
-   "qid": "Q106021085",
-   "name": "Mundiario",
-   "website": "https://www.mundiario.com/",
-   "domain": "mundiario.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Mundiario",
-   "feed": "https://www.mundiario.com/rss/",
-   "items": 49,
-   "newest": "2026-11-21T10:05:02Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.449,
-   "requests": 2,
-   "id": "mundiario",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Mundiario"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Mundiario"
-  },
-  {
-   "qid": "Q6035365",
-   "name": "Málaga Hoy",
-   "website": "https://www.malagahoy.es/",
-   "domain": "malagahoy.es",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/M%C3%A1laga_Hoy",
-   "feed": "https://www.malagahoy.es/rss/",
-   "items": 121,
-   "newest": "2026-11-21T09:52:46Z",
-   "own_domain_share": 0.83,
-   "spanish_share": 0.439,
-   "requests": 2,
-   "id": "malaga-hoy",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/M%C3%A1laga_Hoy"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/M%C3%A1laga_Hoy"
+   "identity_source": "https://www.wikidata.org/wiki/Q30908921"
   },
   {
    "qid": "Q429922",
@@ -1222,10 +435,10 @@
    "reasons": [],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Neox",
    "feed": "https://neox.atresmedia.com/rss/347352.xml",
-   "items": 20,
-   "newest": "2026-11-20T15:55:14Z",
+   "items": 19,
+   "newest": "2026-11-23T15:28:57Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.471,
+   "spanish_share": 0.469,
    "requests": 2,
    "id": "neox",
    "identity": {
@@ -1246,9 +459,9 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/Hit_FM",
    "feed": "https://www.hitfm.es/feed/",
    "items": 1000,
-   "newest": "2026-11-20T09:34:19Z",
+   "newest": "2026-11-23T09:28:30Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.409,
+   "spanish_share": 0.419,
    "requests": 2,
    "id": "q5391216",
    "identity": {
@@ -1281,27 +494,6 @@
    "identity_source": "https://es.wikipedia.org/wiki/RAC105"
   },
   {
-   "qid": "Q6096393",
-   "name": "Radio Intereconomía",
-   "website": "https://intereconomia.com/",
-   "domain": "intereconomia.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Radio_Intereconom%C3%ADa",
-   "feed": "https://intereconomia.com/feed/",
-   "items": 10,
-   "newest": "2026-11-20T13:40:06Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.441,
-   "requests": 2,
-   "id": "radio-intereconomia",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Radio_Intereconom%C3%ADa"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Radio_Intereconom%C3%ADa"
-  },
-  {
    "qid": "Q3416734",
    "name": "Radio Marca",
    "website": "http://www.radiomarca.com/",
@@ -1310,10 +502,10 @@
    "reasons": [],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Radio_Marca",
    "feed": "https://www.marca.com/rss/googlenews/portada.xml",
-   "items": 76,
-   "newest": "2026-11-21T10:13:53Z",
+   "items": 77,
+   "newest": "2026-11-23T15:58:11Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.45,
+   "spanish_share": 0.477,
    "requests": 2,
    "id": "radio-marca",
    "identity": {
@@ -1332,7 +524,7 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/Radio_Marca_Barcelona",
    "feed": "https://www.radiomarcabarcelona.com/feed/",
    "items": 16,
-   "newest": "2026-11-20T09:03:45Z",
+   "newest": "2026-11-22T20:40:03Z",
    "own_domain_share": 1.0,
    "spanish_share": 0.418,
    "requests": 2,
@@ -1353,9 +545,9 @@
    "es_wikipedia": null,
    "feed": "https://www.radiosefarad.com/feed/",
    "items": 20,
-   "newest": "2026-11-20T18:37:00Z",
+   "newest": "2026-11-22T18:37:00Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.397,
+   "spanish_share": 0.405,
    "requests": 2,
    "id": "radio-sefarad",
    "identity": {
@@ -1367,27 +559,6 @@
    "identity_source": "https://www.wikidata.org/wiki/Q60873829"
   },
   {
-   "qid": "Q3824981",
-   "name": "Radio Televisión Ceuta",
-   "website": "http://www.rtvce.es/",
-   "domain": "rtvce.es",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Radio_Televisi%C3%B3n_Ceuta",
-   "feed": "https://www.rtvce.es/rss/",
-   "items": 20,
-   "newest": "2026-11-20T20:15:01Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.462,
-   "requests": 2,
-   "id": "radio-television-ceuta",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Radio_Televisi%C3%B3n_Ceuta"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Radio_Televisi%C3%B3n_Ceuta"
-  },
-  {
    "qid": "Q933208",
    "name": "Radiolé",
    "website": "http://www.radiole.com/",
@@ -1397,9 +568,9 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/Radiol%C3%A9",
    "feed": "https://www.radiole.com/feed",
    "items": 10,
-   "newest": "2026-11-20T09:30:37Z",
+   "newest": "2026-11-23T12:21:32Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.429,
+   "spanish_share": 0.448,
    "requests": 2,
    "id": "radiole",
    "identity": {
@@ -1417,10 +588,10 @@
    "reasons": [],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Rock_FM",
    "feed": "https://www.rockfm.fm/rss/home.xml",
-   "items": 214,
-   "newest": "2026-11-21T09:05:00Z",
+   "items": 194,
+   "newest": "2026-11-23T11:33:52Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.454,
+   "spanish_share": 0.463,
    "requests": 2,
    "id": "rock-fm",
    "identity": {
@@ -1455,92 +626,6 @@
    "identity_source": "https://www.wikidata.org/wiki/Q5572692"
   },
   {
-   "qid": "Q10552566",
-   "name": "Segre",
-   "website": "https://www.segre.com",
-   "domain": "segre.com",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Segre_(peri%C3%B3dico)",
-   "feed": "https://www.segre.com/ca/rss/home.xml",
-   "items": 103,
-   "newest": "2026-11-21T09:24:21Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.364,
-   "requests": 2,
-   "id": "segre",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Segre_(peri%C3%B3dico)"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Segre_(peri%C3%B3dico)"
-  },
-  {
-   "qid": "Q9082373",
-   "name": "Tele Elx",
-   "website": "http://www.teleelx.es",
-   "domain": "teleelx.es",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Tele_Elx",
-   "feed": "https://teleelx.es/feed/",
-   "items": 10,
-   "newest": "2026-11-20T23:01:46Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.363,
-   "requests": 2,
-   "id": "tele-elx",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Tele_Elx"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Tele_Elx"
-  },
-  {
-   "qid": "Q5664977",
-   "name": "Telelugo",
-   "website": "http://www.telelugo.tv/",
-   "domain": "telelugo.tv",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Telelugo",
-   "feed": "https://www.galiciae.com/rss/",
-   "items": 34,
-   "newest": "2026-11-21T04:00:00Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.448,
-   "requests": 2,
-   "id": "telelugo",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Telelugo"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Telelugo"
-  },
-  {
-   "qid": "Q279413",
-   "name": "Telemadrid",
-   "website": "http://www.telemadrid.es",
-   "domain": "telemadrid.es",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Telemadrid",
-   "feed": "https://www.telemadrid.es/rss/",
-   "items": 45,
-   "newest": "2026-11-21T10:13:02Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.453,
-   "requests": 2,
-   "id": "telemadrid",
-   "identity": {
-    "owners": [
-     "Radio Televisión Madrid"
-    ],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Telemadrid"
-   },
-   "identity_source": "https://www.wikidata.org/wiki/Q279413"
-  },
-  {
    "qid": "Q6140553",
    "name": "Telemiño",
    "website": "https://www.teleminho.com/",
@@ -1560,117 +645,6 @@
     "es_wikipedia": "https://es.wikipedia.org/wiki/Telemi%C3%B1o"
    },
    "identity_source": "https://es.wikipedia.org/wiki/Telemi%C3%B1o"
-  },
-  {
-   "qid": "Q6140755",
-   "name": "Televisión Sant Cugat",
-   "website": "http://www.tvsantcugat.cat",
-   "domain": "tvsantcugat.cat",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Televisi%C3%B3n_Sant_Cugat",
-   "feed": "https://www.tvsantcugat.cat/feed/",
-   "items": 10,
-   "newest": "2026-11-20T14:53:12Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.336,
-   "requests": 2,
-   "id": "television-sant-cugat",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/Televisi%C3%B3n_Sant_Cugat"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/Televisi%C3%B3n_Sant_Cugat"
-  },
-  {
-   "qid": "Q43290029",
-   "name": "Tot Cerdanyola",
-   "website": "https://www.totcerdanyola.cat/",
-   "domain": "totcerdanyola.cat",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": null,
-   "feed": "https://www.totcerdanyola.cat/uploads/feeds/feed_totcerdanyola_ca.xml",
-   "items": 15,
-   "newest": "2026-11-21T03:00:00Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.379,
-   "requests": 2,
-   "id": "tot-cerdanyola",
-   "identity": {
-    "owners": [
-     "Totmedia"
-    ],
-    "es_wikipedia": null
-   },
-   "identity_source": "https://www.wikidata.org/wiki/Q43290029"
-  },
-  {
-   "qid": "Q54549084",
-   "name": "VIA Empresa",
-   "website": "https://www.viaempresa.cat",
-   "domain": "viaempresa.cat",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": null,
-   "feed": "https://www.viaempresa.cat/uploads/feeds/feed_via-empresa-2024_ca.xml",
-   "items": 15,
-   "newest": "2026-11-21T03:55:00Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.392,
-   "requests": 2,
-   "id": "via-empresa",
-   "identity": {
-    "owners": [
-     "Totmedia"
-    ],
-    "es_wikipedia": null
-   },
-   "identity_source": "https://www.wikidata.org/wiki/Q54549084"
-  },
-  {
-   "qid": "Q28918202",
-   "name": "À Punt",
-   "website": "https://www.apuntmedia.es/va/",
-   "domain": "apuntmedia.es",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/%C3%80_Punt",
-   "feed": "https://www.apuntmedia.es/rss/",
-   "items": 40,
-   "newest": "2026-11-21T09:39:04Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.369,
-   "requests": 2,
-   "id": "a-punt",
-   "identity": {
-    "owners": [
-     "À Punt Mèdia"
-    ],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/%C3%80_Punt"
-   },
-   "identity_source": "https://www.wikidata.org/wiki/Q28918202"
-  },
-  {
-   "qid": "Q9099031",
-   "name": "Última Hora",
-   "website": "http://ultimahora.es/",
-   "domain": "ultimahora.es",
-   "status": "passed",
-   "reasons": [],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/%C3%9Altima_Hora_(Espa%C3%B1a)",
-   "feed": "https://www.ultimahora.es/feed.rss",
-   "items": 40,
-   "newest": "2026-11-21T08:17:14Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.451,
-   "requests": 2,
-   "id": "ultima-hora",
-   "identity": {
-    "owners": [],
-    "es_wikipedia": "https://es.wikipedia.org/wiki/%C3%9Altima_Hora_(Espa%C3%B1a)"
-   },
-   "identity_source": "https://es.wikipedia.org/wiki/%C3%9Altima_Hora_(Espa%C3%B1a)"
   },
   {
    "qid": "Q111356699",
@@ -1697,6 +671,17 @@
    "requests": 3
   },
   {
+   "qid": "Q135792871",
+   "name": "3CatInfo",
+   "website": "https://www.3cat.cat/3catinfo/",
+   "domain": "3cat.cat",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/3CatInfo"
+  },
+  {
    "qid": "Q2941648",
    "name": "3CatInfo (radio)",
    "website": "http://3catinfo.cat",
@@ -1708,9 +693,9 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/3CatInfo_(emisora_de_radio)",
    "feed": "https://api.3cat.cat/noticies?_format=rss&origen=frontal&frontal=n324-portada-noticia&version=2.0",
    "items": 31,
-   "newest": "2026-11-21T08:19:07Z",
+   "newest": "2026-11-23T15:47:41Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.371,
+   "spanish_share": 0.385,
    "requests": 2
   },
   {
@@ -1791,10 +776,15 @@
    "domain": "8madrid.tv",
    "status": "failed",
    "reasons": [
-    "robots_unavailable"
+    "feed_stale"
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/8madrid",
-   "requests": 0
+   "feed": "https://8madrid.tv/feed/",
+   "items": 10,
+   "newest": "2026-10-26T11:00:28Z",
+   "own_domain_share": 1.0,
+   "spanish_share": 0.433,
+   "requests": 2
   },
   {
    "qid": "Q3311841",
@@ -1803,10 +793,16 @@
    "domain": "avozdevilalba.gal",
    "status": "failed",
    "reasons": [
-    "homepage_unreachable"
+    "feed_stale",
+    "feed_not_https"
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/A_Voz_de_Vilalba",
-   "requests": 1
+   "feed": "http://feeds.feedburner.com/AVozDeVilalba",
+   "items": 25,
+   "newest": "2023-05-05T05:31:00Z",
+   "own_domain_share": 1.0,
+   "spanish_share": 0.346,
+   "requests": 2
   },
   {
    "qid": "Q10926634",
@@ -1889,6 +885,17 @@
    "requests": 3
   },
   {
+   "qid": "Q36890369",
+   "name": "Ahotsa.info",
+   "website": "http://ahotsa.info",
+   "domain": "ahotsa.info",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Ahotsa.info"
+  },
+  {
    "qid": "Q49030342",
    "name": "Al-Basit",
    "website": "http://www.iealbacetenses.com/index.php?menu=76",
@@ -1943,15 +950,21 @@
    "domain": "almeriainformacion.com",
    "status": "failed",
    "reasons": [
-    "no_identity"
+    "homepage_unreachable"
    ],
    "es_wikipedia": null,
-   "feed": "https://almeriainformacion.com/?format=feed&type=rss",
-   "items": 30,
-   "newest": "2026-11-21T09:20:22Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.455,
-   "requests": 2
+   "requests": 1
+  },
+  {
+   "qid": "Q5671392",
+   "name": "Alzira Ràdio",
+   "website": "https://alziraradio.com",
+   "domain": "alziraradio.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Alzira_radio"
   },
   {
    "qid": "Q18416027",
@@ -2025,7 +1038,7 @@
    "es_wikipedia": null,
    "feed": "https://www.andaluciainformacion.es/rss/",
    "items": 40,
-   "newest": "2026-11-21T10:29:05Z",
+   "newest": "2026-11-23T16:08:35Z",
    "own_domain_share": 1.0,
    "spanish_share": 0.45,
    "requests": 2
@@ -2066,9 +1079,9 @@
    "es_wikipedia": null,
    "feed": "https://animux.es/rss.xml",
    "items": 30,
-   "newest": "2026-11-21T08:11:00Z",
+   "newest": "2026-11-23T15:47:00Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.412,
+   "spanish_share": 0.408,
    "requests": 2
   },
   {
@@ -2328,37 +1341,20 @@
    "requests": 2
   },
   {
-   "qid": "Q2373376",
-   "name": "AXN",
-   "website": "http://www.axn.es/",
-   "domain": "axn.es",
-   "status": "failed",
-   "reasons": [
-    "feed_stale"
-   ],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/AXN_(Espa%C3%B1a)",
-   "feed": "https://www.axn.es/feed",
-   "items": 12,
-   "newest": "2026-11-09T12:34:29Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.487,
-   "requests": 2
-  },
-  {
    "qid": "Q12154678",
    "name": "AXN HD",
    "website": "http://www.axn.es/",
    "domain": "axn.es",
    "status": "failed",
    "reasons": [
-    "feed_stale"
+    "duplicate_candidate"
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/AXN_HD_(Espa%C3%B1a)",
    "feed": "https://www.axn.es/feed",
    "items": 12,
-   "newest": "2026-11-09T12:34:29Z",
+   "newest": "2026-11-23T11:17:14Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.487,
+   "spanish_share": 0.49,
    "requests": 2
   },
   {
@@ -2368,14 +1364,14 @@
    "domain": "axn.es",
    "status": "failed",
    "reasons": [
-    "feed_stale"
+    "duplicate_candidate"
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/AXN_Movies",
    "feed": "https://www.axn.es/feed",
    "items": 12,
-   "newest": "2026-11-09T12:34:29Z",
+   "newest": "2026-11-23T11:17:14Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.487,
+   "spanish_share": 0.49,
    "requests": 2
   },
   {
@@ -2385,14 +1381,14 @@
    "domain": "axnwhite.es",
    "status": "failed",
    "reasons": [
-    "feed_stale"
+    "no_identity"
    ],
    "es_wikipedia": null,
    "feed": "https://www.axn.es/feed",
    "items": 12,
-   "newest": "2026-11-09T12:34:29Z",
+   "newest": "2026-11-23T11:17:14Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.487,
+   "spanish_share": 0.49,
    "requests": 2
   },
   {
@@ -2406,6 +1402,17 @@
    ],
    "es_wikipedia": null,
    "requests": 0
+  },
+  {
+   "qid": "Q5718219",
+   "name": "BandaAncha",
+   "website": "https://bandaancha.eu",
+   "domain": "bandaancha.eu",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/BandaAncha.eu"
   },
   {
    "qid": "Q94940548",
@@ -2512,9 +1519,9 @@
    "es_wikipedia": null,
    "feed": "https://www.benaventedigital.es/feed/",
    "items": 10,
-   "newest": "2026-11-20T21:20:11Z",
+   "newest": "2026-11-23T15:42:28Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.486,
+   "spanish_share": 0.461,
    "requests": 2
   },
   {
@@ -2527,6 +1534,17 @@
     "already_in_catalog"
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Berria"
+  },
+  {
+   "qid": "Q3444097",
+   "name": "Betevé",
+   "website": "https://beteve.cat/",
+   "domain": "beteve.cat",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Betev%C3%A9"
   },
   {
    "qid": "Q47499619",
@@ -2552,9 +1570,9 @@
    "es_wikipedia": null,
    "feed": "https://www.bilbohiria.eus/feed",
    "items": 10,
-   "newest": "2026-11-21T06:00:45Z",
+   "newest": "2026-11-23T12:20:31Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.131,
+   "spanish_share": 0.136,
    "requests": 2
   },
   {
@@ -2616,6 +1634,18 @@
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Bolet%C3%ADn_Oficial_de_la_Comunidad_de_Madrid",
    "requests": 3
+  },
+  {
+   "qid": "Q28648793",
+   "name": "Boletín Oficial de la Provincia de Albacete",
+   "website": "http://www.dipualba.es/WebBop/",
+   "domain": "dipualba.es",
+   "status": "failed",
+   "reasons": [
+    "robots_unavailable"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Bolet%C3%ADn_Oficial_de_la_Provincia_de_Albacete",
+   "requests": 0
   },
   {
    "qid": "Q138164447",
@@ -2856,6 +1886,17 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/Briega"
   },
   {
+   "qid": "Q12255560",
+   "name": "Busturialdeko Hitza",
+   "website": "http://busturialdea.hitza.eus",
+   "domain": "busturialdea.hitza.eus",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Busturialdeko_Hitza"
+  },
+  {
    "qid": "Q384665",
    "name": "Buzz",
    "website": "http://canalbuzz.es/",
@@ -2903,6 +1944,17 @@
    "requests": 3
   },
   {
+   "qid": "Q27961377",
+   "name": "Campiña Digital",
+   "website": "https://campinadigital.me/",
+   "domain": "campinadigital.me",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Campi%C3%B1a_Digital"
+  },
+  {
    "qid": "Q97216250",
    "name": "Campo Galego",
    "website": "https://www.campogalego.gal/",
@@ -2914,9 +1966,9 @@
    "es_wikipedia": null,
    "feed": "https://www.campogalego.gal/feed/",
    "items": 10,
-   "newest": "2026-11-21T09:32:34Z",
+   "newest": "2026-11-23T13:43:08Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.398,
+   "spanish_share": 0.415,
    "requests": 2
   },
   {
@@ -2995,9 +2047,9 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/Canal_6_Navarra",
    "feed": "https://c6na.tv/feed/",
    "items": 10,
-   "newest": "2026-11-16T08:56:09Z",
+   "newest": "2026-11-23T13:03:00Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.042,
+   "spanish_share": 0.043,
    "requests": 2
   },
   {
@@ -3011,6 +2063,17 @@
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Canal_AD",
    "requests": 0
+  },
+  {
+   "qid": "Q17147619",
+   "name": "Canal Blau",
+   "website": "https://canalblau.tv/",
+   "domain": "canalblau.tv",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Canal_Blau"
   },
   {
    "qid": "Q5391955",
@@ -3137,10 +2200,10 @@
    "domain": "canal9.es",
    "status": "failed",
    "reasons": [
-    "robots_disallowed"
+    "feed_not_parseable"
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Canal_Nou",
-   "requests": 0
+   "requests": 3
   },
   {
    "qid": "Q691231",
@@ -3149,10 +2212,10 @@
    "domain": "rtvv.es",
    "status": "failed",
    "reasons": [
-    "feed_unreachable"
+    "homepage_unreachable"
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Nou_24",
-   "requests": 3
+   "requests": 1
   },
   {
    "qid": "Q2935946",
@@ -3441,10 +2504,21 @@
    "es_wikipedia": null,
    "feed": "https://cannarias.net/feed/",
    "items": 10,
-   "newest": "2026-11-21T04:10:56Z",
+   "newest": "2026-11-23T04:10:22Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.417,
+   "spanish_share": 0.4,
    "requests": 2
+  },
+  {
+   "qid": "Q8262084",
+   "name": "Cantabria TV",
+   "website": "http://www.cantabriatv.es/",
+   "domain": "cantabriatv.es",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Cantabria_TV"
   },
   {
    "qid": "Q66114095",
@@ -3458,9 +2532,9 @@
    "es_wikipedia": null,
    "feed": "https://www.capitalradio.es/rss.xml",
    "items": 50,
-   "newest": "2026-11-20T19:00:00Z",
+   "newest": "2026-11-23T15:45:25Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.417,
+   "spanish_share": 0.415,
    "requests": 2
   },
   {
@@ -3475,9 +2549,9 @@
    "es_wikipedia": null,
    "feed": "https://capitolab.es/feed/",
    "items": 30,
-   "newest": "2026-11-21T10:27:12Z",
+   "newest": "2026-11-23T16:11:34Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.419,
+   "spanish_share": 0.424,
    "requests": 2
   },
   {
@@ -3540,7 +2614,7 @@
    "feed": "https://www.catalunyareligio.cat/ca/feed",
    "items": 10,
    "own_domain_share": 1.0,
-   "spanish_share": 0.417,
+   "spanish_share": 0.362,
    "requests": 2
   },
   {
@@ -3567,9 +2641,9 @@
    "es_wikipedia": null,
    "feed": "https://www.catalunyapress.cat/feed/all",
    "items": 50,
-   "newest": "2026-11-21T10:22:03Z",
+   "newest": "2026-11-23T16:04:15Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.392,
+   "spanish_share": 0.387,
    "requests": 2
   },
   {
@@ -3584,9 +2658,9 @@
    "es_wikipedia": null,
    "feed": "https://www.catorze.cat/uploads/feeds/feed_catorze_ca.xml",
    "items": 15,
-   "newest": "2026-11-21T09:31:05Z",
+   "newest": "2026-11-23T15:21:45Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.366,
+   "spanish_share": 0.374,
    "requests": 2
   },
   {
@@ -3600,6 +2674,17 @@
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Centro_Cultural_Hispano-Guineano",
    "requests": 1
+  },
+  {
+   "qid": "Q5763883",
+   "name": "Ceuta Televisión",
+   "website": "http://www.ceutatv.com",
+   "domain": "ceutatv.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Ceuta_Televisi%C3%B3n"
   },
   {
    "qid": "Q30902602",
@@ -3637,10 +2722,10 @@
    "domain": "cinestarteuve.com",
    "status": "failed",
    "reasons": [
-    "robots_unavailable"
+    "feed_unreachable"
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Cinestar",
-   "requests": 0
+   "requests": 3
   },
   {
    "qid": "Q2527617",
@@ -3748,9 +2833,9 @@
    "es_wikipedia": null,
    "feed": "https://confilegal.com/feed/",
    "items": 10,
-   "newest": "2026-11-21T04:44:00Z",
+   "newest": "2026-11-23T15:28:29Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.445,
+   "spanish_share": 0.451,
    "requests": 2
   },
   {
@@ -3760,15 +2845,10 @@
    "domain": "contrabanda.org",
    "status": "failed",
    "reasons": [
-    "no_identity"
+    "homepage_unreachable"
    ],
    "es_wikipedia": null,
-   "feed": "https://www.contrabanda.org/ca/feed/",
-   "items": 10,
-   "newest": "2026-11-20T12:48:40Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.364,
-   "requests": 2
+   "requests": 1
   },
   {
    "qid": "Q2748488",
@@ -3852,6 +2932,23 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/CTXT"
   },
   {
+   "qid": "Q3324575",
+   "name": "Cuac FM",
+   "website": "https://cuacfm.org/",
+   "domain": "cuacfm.org",
+   "status": "failed",
+   "reasons": [
+    "feed_stale"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Cuac_FM",
+   "feed": "https://cuacfm.org/feed/",
+   "items": 10,
+   "newest": "2026-11-14T11:04:00Z",
+   "own_domain_share": 1.0,
+   "spanish_share": 0.367,
+   "requests": 2
+  },
+  {
    "qid": "Q962340",
    "name": "Cuatro",
    "website": "https://www.cuatro.com/",
@@ -3874,9 +2971,9 @@
    "es_wikipedia": null,
    "feed": "https://www.cubainformacion.tv/rss",
    "items": 30,
-   "newest": "2026-11-21T08:44:00Z",
+   "newest": "2026-11-23T09:47:00Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.387,
+   "spanish_share": 0.379,
    "requests": 3
   },
   {
@@ -3891,9 +2988,9 @@
    "es_wikipedia": null,
    "feed": "https://www.cugat.cat/feed",
    "items": 10,
-   "newest": "2026-11-21T05:00:00Z",
+   "newest": "2026-11-23T12:27:58Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.387,
+   "spanish_share": 0.372,
    "requests": 2
   },
   {
@@ -3919,9 +3016,9 @@
    "es_wikipedia": null,
    "feed": "https://www.cadizdirecto.com/feed/",
    "items": 30,
-   "newest": "2026-11-21T08:53:05Z",
+   "newest": "2026-11-23T15:12:22Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.458,
+   "spanish_share": 0.445,
    "requests": 2
   },
   {
@@ -3936,9 +3033,9 @@
    "es_wikipedia": null,
    "feed": "https://codigocero.com/feed/",
    "items": 10,
-   "newest": "2026-11-20T22:16:00Z",
+   "newest": "2026-11-23T16:00:00Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.349,
+   "spanish_share": 0.398,
    "requests": 2
   },
   {
@@ -4064,10 +3161,43 @@
    "es_wikipedia": null,
    "feed": "https://diarieducacio.cat/feed/",
    "items": 10,
-   "newest": "2026-11-20T04:50:00Z",
+   "newest": "2026-11-23T13:50:04Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.391,
+   "spanish_share": 0.382,
    "requests": 2
+  },
+  {
+   "qid": "Q11917097",
+   "name": "Diari de Sabadell",
+   "website": "http://www.diaridesabadell.com/",
+   "domain": "diaridesabadell.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Diari_de_Sabadell"
+  },
+  {
+   "qid": "Q12162686",
+   "name": "Diari de Tarragona",
+   "website": "http://www.diaridetarragona.com/",
+   "domain": "diaridetarragona.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Diari_de_Tarragona"
+  },
+  {
+   "qid": "Q11917100",
+   "name": "Diari de Terrassa",
+   "website": "http://www.diarideterrassa.com",
+   "domain": "diarideterrassa.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Diari_de_Terrassa"
   },
   {
    "qid": "Q5271838",
@@ -4093,10 +3223,21 @@
    "es_wikipedia": null,
    "feed": "https://diarieljardi.cat/feed/",
    "items": 10,
-   "newest": "2026-11-21T07:00:00Z",
+   "newest": "2026-11-23T07:00:54Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.376,
+   "spanish_share": 0.373,
    "requests": 2
+  },
+  {
+   "qid": "Q17023774",
+   "name": "Diari Més",
+   "website": "https://www.diarimes.com/",
+   "domain": "diarimes.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Diario_M%C3%A9s"
   },
   {
    "qid": "Q3026336",
@@ -4157,6 +3298,17 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/Diario_de_Arousa"
   },
   {
+   "qid": "Q5805369",
+   "name": "Diario de Bergantiños",
+   "website": "https://www.diariodebergantinos.com/",
+   "domain": "diariodebergantinos.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Diario_de_Berganti%C3%B1os"
+  },
+  {
    "qid": "Q5805373",
    "name": "Diario de Burgos",
    "website": "http://www.diariodeburgos.es",
@@ -4201,6 +3353,17 @@
    ],
    "es_wikipedia": null,
    "requests": 0
+  },
+  {
+   "qid": "Q5351145",
+   "name": "Diario de Ferrol",
+   "website": "https://www.diariodeferrol.com/",
+   "domain": "diariodeferrol.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Diario_de_Ferrol"
   },
   {
    "qid": "Q24937943",
@@ -4317,9 +3480,9 @@
    "es_wikipedia": null,
    "feed": "https://www.diariodevalderrueda.es/feed/all",
    "items": 50,
-   "newest": "2026-11-21T10:07:50Z",
+   "newest": "2026-11-23T15:31:44Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.447,
+   "spanish_share": 0.453,
    "requests": 2
   },
   {
@@ -4357,7 +3520,7 @@
    "es_wikipedia": null,
    "feed": "https://www.diariodotamega.es/rss/",
    "items": 40,
-   "newest": "2026-11-20T18:02:58Z",
+   "newest": "2026-11-22T10:57:48Z",
    "own_domain_share": 1.0,
    "spanish_share": 0.415,
    "requests": 2
@@ -4518,16 +3681,10 @@
    "domain": "gz.diarioliberdade.org",
    "status": "failed",
    "reasons": [
-    "feed_too_few_items",
-    "feed_stale"
+    "robots_unavailable"
    ],
    "es_wikipedia": null,
-   "feed": "https://gz.diarioliberdade.org/?format=feed&type=rss",
-   "items": 2,
-   "newest": "2018-08-03T10:54:49Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.322,
-   "requests": 2
+   "requests": 0
   },
   {
    "qid": "Q5959992",
@@ -4707,8 +3864,19 @@
    "feed": "https://el9nou.cat/feed/",
    "items": 30,
    "own_domain_share": 1.0,
-   "spanish_share": 0.331,
+   "spanish_share": 0.326,
    "requests": 2
+  },
+  {
+   "qid": "Q5820781",
+   "name": "El Adelantado de Segovia",
+   "website": "http://www.eladelantado.com",
+   "domain": "eladelantado.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/El_Adelantado_de_Segovia"
   },
   {
    "qid": "Q53844870",
@@ -4733,6 +3901,17 @@
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/El_Censor_(Madrid)",
    "requests": 0
+  },
+  {
+   "qid": "Q96250372",
+   "name": "El Cierre Digital",
+   "website": "https://elcierredigital.com",
+   "domain": "elcierredigital.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/El_Cierre_Digital"
   },
   {
    "qid": "Q5821545",
@@ -4896,6 +4075,17 @@
    "requests": 0
   },
   {
+   "qid": "Q5821804",
+   "name": "El Día de Córdoba",
+   "website": "http://www.eldiadecordoba.es/",
+   "domain": "eldiadecordoba.es",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/El_D%C3%ADa_de_C%C3%B3rdoba"
+  },
+  {
    "qid": "Q55402005",
    "name": "El Día de Valladolid",
    "website": "http://www.eldiadevalladolid.com/",
@@ -4940,6 +4130,28 @@
     "already_in_catalog"
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/El_Espa%C3%B1ol_(peri%C3%B3dico_digital)"
+  },
+  {
+   "qid": "Q107001839",
+   "name": "El Faro Astorgano",
+   "website": "https://elfaroastorgano.com/",
+   "domain": "elfaroastorgano.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/El_Faro_Astorgano"
+  },
+  {
+   "qid": "Q17276360",
+   "name": "El Faro de Ceuta",
+   "website": "http://elfarodeceuta.es/",
+   "domain": "elfarodeceuta.es",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/El_Faro_de_Ceuta"
   },
   {
    "qid": "Q115658370",
@@ -5010,9 +4222,9 @@
    "es_wikipedia": null,
    "feed": "https://elmati.cat/feed/",
    "items": 10,
-   "newest": "2026-11-20T23:15:07Z",
+   "newest": "2026-11-22T23:15:43Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.409,
+   "spanish_share": 0.408,
    "requests": 2
   },
   {
@@ -5070,6 +4282,17 @@
     "already_in_catalog"
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/El_Norte_de_Castilla"
+  },
+  {
+   "qid": "Q139624974",
+   "name": "El Orden Mundial",
+   "website": "https://elordenmundial.com/",
+   "domain": "elordenmundial.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/El_Orden_Mundial"
   },
   {
    "qid": "Q50009",
@@ -5211,9 +4434,9 @@
    "es_wikipedia": null,
    "feed": "https://elsemanal.es/feed",
    "items": 10,
-   "newest": "2026-11-21T09:54:04Z",
+   "newest": "2026-11-23T12:20:24Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.432,
+   "spanish_share": 0.457,
    "requests": 2
   },
   {
@@ -5227,6 +4450,17 @@
    ],
    "es_wikipedia": null,
    "requests": 0
+  },
+  {
+   "qid": "Q3064786",
+   "name": "El Toro TV",
+   "website": "https://eltorotv.com/",
+   "domain": "eltorotv.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/El_Toro_TV"
   },
   {
    "qid": "Q28468719",
@@ -5277,6 +4511,17 @@
    "requests": 3
   },
   {
+   "qid": "Q128628517",
+   "name": "EnpresaBIDEA",
+   "website": "https://www.enpresabidea.eus/",
+   "domain": "enpresabidea.eus",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": null
+  },
+  {
    "qid": "Q136648223",
    "name": "es.millenium.gg",
    "website": "https://es.millenium.gg",
@@ -5307,10 +4552,10 @@
    "domain": "espanadiario.es",
    "status": "failed",
    "reasons": [
-    "robots_disallowed"
+    "feed_not_parseable"
    ],
    "es_wikipedia": null,
-   "requests": 0
+   "requests": 3
   },
   {
    "qid": "Q114383544",
@@ -5371,9 +4616,9 @@
    "es_wikipedia": null,
    "feed": "https://www.estrelladigital.es/rss/",
    "items": 20,
-   "newest": "2026-11-21T09:58:57Z",
+   "newest": "2026-11-23T15:05:13Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.46,
+   "spanish_share": 0.451,
    "requests": 2
   },
   {
@@ -5647,7 +4892,7 @@
    "es_wikipedia": null,
    "feed": "https://fuengirola.fi/feed/",
    "items": 10,
-   "newest": "2026-11-21T07:00:00Z",
+   "newest": "2026-11-23T16:10:00Z",
    "own_domain_share": 1.0,
    "spanish_share": 0.003,
    "requests": 2
@@ -5800,6 +5045,17 @@
    "requests": 3
   },
   {
+   "qid": "Q5797249",
+   "name": "Granada Hoy",
+   "website": "https://www.granadahoy.com",
+   "domain": "granadahoy.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Granada_Hoy"
+  },
+  {
    "qid": "Q3572134",
    "name": "Heraldo de Aragón",
    "website": "https://www.heraldo.es/",
@@ -5868,9 +5124,9 @@
    "es_wikipedia": null,
    "feed": "https://www.hortanoticias.com/feed/",
    "items": 50,
-   "newest": "2026-11-20T20:10:00Z",
+   "newest": "2026-11-23T16:08:22Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.472,
+   "spanish_share": 0.446,
    "requests": 2
   },
   {
@@ -5896,9 +5152,9 @@
    "es_wikipedia": null,
    "feed": "https://www.hoyaragon.es/rss/",
    "items": 20,
-   "newest": "2026-11-21T10:27:45Z",
+   "newest": "2026-11-23T14:48:23Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.459,
+   "spanish_share": 0.472,
    "requests": 2
   },
   {
@@ -5925,15 +5181,20 @@
    "domain": "ib3.org",
    "status": "failed",
    "reasons": [
-    "duplicate_candidate"
+    "already_in_catalog"
    ],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/IB3_R%C3%A0dio",
-   "feed": "https://ib3.org/feed",
-   "items": 14,
-   "newest": "2026-11-20T19:30:54Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.386,
-   "requests": 2
+   "es_wikipedia": "https://es.wikipedia.org/wiki/IB3_R%C3%A0dio"
+  },
+  {
+   "qid": "Q2742100",
+   "name": "IB3 Televisió",
+   "website": "https://ib3.org/televisio",
+   "domain": "ib3.org",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/IB3"
   },
   {
    "qid": "Q112730555",
@@ -5972,6 +5233,17 @@
    "requests": 3
   },
   {
+   "qid": "Q5908242",
+   "name": "Ideal",
+   "website": "http://www.ideal.es/",
+   "domain": "ideal.es",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Ideal_(peri%C3%B3dico)"
+  },
+  {
    "qid": "Q131918301",
    "name": "IdòFM",
    "website": "https://idofm.com/",
@@ -5995,9 +5267,9 @@
    "es_wikipedia": null,
    "feed": "https://es.ign.com/feed.xml",
    "items": 40,
-   "newest": "2026-11-21T10:00:40Z",
+   "newest": "2026-11-23T15:00:33Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.445,
+   "spanish_share": 0.452,
    "requests": 2
   },
   {
@@ -6024,6 +5296,17 @@
    "requests": 1
   },
   {
+   "qid": "Q5918848",
+   "name": "Interalmería TV",
+   "website": "http://www.interalmeria.tv",
+   "domain": "interalmeria.tv",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Interalmer%C3%ADa_TV"
+  },
+  {
    "qid": "Q12259752",
    "name": "Irola Irratia",
    "website": "https://irolairratia.org/",
@@ -6047,9 +5330,9 @@
    "es_wikipedia": null,
    "feed": "https://www.isabadell.cat/feed/",
    "items": 10,
-   "newest": "2026-11-21T07:00:00Z",
+   "newest": "2026-11-23T13:25:25Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.375,
+   "spanish_share": 0.403,
    "requests": 2
   },
   {
@@ -6077,6 +5360,17 @@
    "requests": 0
   },
   {
+   "qid": "Q11687513",
+   "name": "L'Hospitalet TV",
+   "website": "https://lhdigital.cat/televisio-lh/",
+   "domain": "lhdigital.cat",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Televisi%C3%B3_de_l%27Hospitalet"
+  },
+  {
    "qid": "Q11930204",
    "name": "L'independent de Gràcia",
    "website": "http://www.independent.cat/",
@@ -6088,7 +5382,7 @@
    "es_wikipedia": null,
    "feed": "https://www.independent.cat/rss",
    "items": 30,
-   "newest": "2026-11-21T08:00:00Z",
+   "newest": "2026-11-22T19:35:00Z",
    "own_domain_share": 1.0,
    "spanish_share": 0.375,
    "requests": 3
@@ -6114,6 +5408,17 @@
     "already_in_catalog"
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/La_2"
+  },
+  {
+   "qid": "Q3049833",
+   "name": "La 7",
+   "website": "https://www.la7tv.es/",
+   "domain": "la7tv.es",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/La_7_(Regi%C3%B3n_de_Murcia)"
   },
   {
    "qid": "Q3750737",
@@ -6269,6 +5574,17 @@
    "requests": 0
   },
   {
+   "qid": "Q4144532",
+   "name": "La Mañana",
+   "website": "https://www.lamanyana.cat/",
+   "domain": "lamanyana.cat",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/La_Ma%C3%B1ana_(L%C3%A9rida)"
+  },
+  {
    "qid": "Q44700798",
    "name": "La Mañana",
    "website": "http://hemerotecadigital.bne.es/issn/2171-7346",
@@ -6421,9 +5737,9 @@
    "es_wikipedia": null,
    "feed": "https://larella.cat/feed/",
    "items": 10,
-   "newest": "2026-11-20T09:44:32Z",
+   "newest": "2026-11-23T15:35:47Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.333,
+   "spanish_share": 0.352,
    "requests": 2
   },
   {
@@ -6532,9 +5848,9 @@
    "es_wikipedia": null,
    "feed": "https://lavalira.eu/feed/",
    "items": 10,
-   "newest": "2026-11-21T07:00:20Z",
+   "newest": "2026-11-23T16:11:34Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.383,
+   "spanish_share": 0.396,
    "requests": 2
   },
   {
@@ -6560,6 +5876,17 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/La_Verdad_(Espa%C3%B1a)"
   },
   {
+   "qid": "Q1799243",
+   "name": "La Voz de Almería",
+   "website": "http://www.lavozdealmeria.es/",
+   "domain": "lavozdealmeria.es",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/La_Voz_de_Almer%C3%ADa"
+  },
+  {
    "qid": "Q2472456",
    "name": "La Voz de Asturias",
    "website": "https://www.lavozdeasturias.es/",
@@ -6581,6 +5908,17 @@
     "already_in_catalog"
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/La_Voz_de_Galicia"
+  },
+  {
+   "qid": "Q136502529",
+   "name": "La Voz de Lanzarote",
+   "website": "https://www.lavozdelanzarote.com/",
+   "domain": "lavozdelanzarote.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/La_Voz_de_Lanzarote"
   },
   {
    "qid": "Q125389603",
@@ -6692,6 +6030,17 @@
     "already_in_catalog"
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/La_Siete_(canal_de_televisi%C3%B3n)"
+  },
+  {
+   "qid": "Q115800455",
+   "name": "Leonoticias",
+   "website": "https://www.leonoticias.com/",
+   "domain": "leonoticias.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Leonoticias"
   },
   {
    "qid": "Q1999224",
@@ -6812,21 +6161,15 @@
    "requests": 1
   },
   {
-   "qid": "Q30908921",
-   "name": "M21 Radio",
-   "website": "https://www.m21radio.es/",
-   "domain": "m21radio.es",
+   "qid": "Q61948838",
+   "name": "Madridiario",
+   "website": "https://www.madridiario.es/",
+   "domain": "madridiario.es",
    "status": "failed",
    "reasons": [
-    "feed_stale"
+    "already_in_catalog"
    ],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/M21_Radio",
-   "feed": "https://m21radio.es/feed/",
-   "items": 10,
-   "newest": "2026-11-10T17:38:30Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.452,
-   "requests": 2
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Madridiario"
   },
   {
    "qid": "Q21606885",
@@ -6864,9 +6207,9 @@
    "es_wikipedia": null,
    "feed": "https://www.mallorcamagazin.com/feed.rss",
    "items": 40,
-   "newest": "2026-11-21T09:13:00Z",
+   "newest": "2026-11-23T15:53:04Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.013,
+   "spanish_share": 0.016,
    "requests": 2
   },
   {
@@ -6963,10 +6306,10 @@
    "domain": "matadepera.cat",
    "status": "failed",
    "reasons": [
-    "homepage_unreachable"
+    "robots_unavailable"
    ],
    "es_wikipedia": null,
-   "requests": 1
+   "requests": 0
   },
   {
    "qid": "Q20015592",
@@ -6982,7 +6325,7 @@
    "items": 23,
    "newest": "2026-11-20T20:00:15Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.473,
+   "spanish_share": 0.476,
    "requests": 2
   },
   {
@@ -6997,9 +6340,9 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/MegaStar_FM",
    "feed": "https://www.megastar.fm/rss/home.xml",
    "items": 149,
-   "newest": "2026-11-10T10:09:00Z",
+   "newest": "2026-11-12T18:09:00Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.457,
+   "spanish_share": 0.459,
    "requests": 2
   },
   {
@@ -7014,9 +6357,9 @@
    "es_wikipedia": null,
    "feed": "https://melillahoy.es/feed/",
    "items": 50,
-   "newest": "2026-11-21T09:15:18Z",
+   "newest": "2026-11-23T11:12:30Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.438,
+   "spanish_share": 0.436,
    "requests": 2
   },
   {
@@ -7043,9 +6386,9 @@
    "es_wikipedia": null,
    "feed": "https://www.metadata.cat/sindica",
    "items": 30,
-   "newest": "2026-11-20T10:50:00Z",
+   "newest": "2026-11-23T15:09:00Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.354,
+   "spanish_share": 0.362,
    "requests": 2
   },
   {
@@ -7060,9 +6403,9 @@
    "es_wikipedia": null,
    "feed": "https://www.tiempo.com/feed/",
    "items": 25,
-   "newest": "2026-11-21T09:30:00Z",
+   "newest": "2026-11-23T13:47:13Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.438,
+   "spanish_share": 0.451,
    "requests": 2
   },
   {
@@ -7168,6 +6511,17 @@
    "requests": 2
   },
   {
+   "qid": "Q106021085",
+   "name": "Mundiario",
+   "website": "https://www.mundiario.com/",
+   "domain": "mundiario.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Mundiario"
+  },
+  {
    "qid": "Q1458864",
    "name": "Mundo Deportivo",
    "website": "https://www.mundodeportivo.com/",
@@ -7191,6 +6545,17 @@
    "requests": 3
   },
   {
+   "qid": "Q6035365",
+   "name": "Málaga Hoy",
+   "website": "https://www.malagahoy.es/",
+   "domain": "malagahoy.es",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/M%C3%A1laga_Hoy"
+  },
+  {
    "qid": "Q140385571",
    "name": "Món Esport",
    "website": "https://monesport.cat",
@@ -7202,9 +6567,9 @@
    "es_wikipedia": null,
    "feed": "https://monesport.cat/feed/",
    "items": 10,
-   "newest": "2026-11-21T09:53:03Z",
+   "newest": "2026-11-23T13:07:40Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.374,
+   "spanish_share": 0.391,
    "requests": 2
   },
   {
@@ -7324,10 +6689,10 @@
    ],
    "es_wikipedia": null,
    "feed": "https://www.telecinco.es/rss.xml",
-   "items": 18,
-   "newest": "2026-11-20T22:15:11Z",
-   "own_domain_share": 0.5,
-   "spanish_share": 0.423,
+   "items": 19,
+   "newest": "2026-11-23T10:33:02Z",
+   "own_domain_share": 0.53,
+   "spanish_share": 0.421,
    "requests": 2
   },
   {
@@ -7354,9 +6719,9 @@
    "es_wikipedia": null,
    "feed": "https://www.noticiasdealmeria.com/rss/ultimasNoticias/",
    "items": 20,
-   "newest": "2026-11-21T05:00:00Z",
+   "newest": "2026-11-23T15:54:51Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.381,
+   "spanish_share": 0.412,
    "requests": 2
   },
   {
@@ -7371,9 +6736,9 @@
    "es_wikipedia": null,
    "feed": "https://www.noticiasdealmeria.com/rss/ultimasNoticias/",
    "items": 20,
-   "newest": "2026-11-21T05:00:00Z",
+   "newest": "2026-11-23T15:54:51Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.381,
+   "spanish_share": 0.412,
    "requests": 2
   },
   {
@@ -7388,9 +6753,9 @@
    "es_wikipedia": null,
    "feed": "https://www.noticiastrabajo.es/portada.xml",
    "items": 91,
-   "newest": "2026-11-21T09:50:17Z",
+   "newest": "2026-11-23T15:33:04Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.469,
+   "spanish_share": 0.475,
    "requests": 2
   },
   {
@@ -7557,16 +6922,9 @@
    "domain": "telemadrid.es",
    "status": "failed",
    "reasons": [
-    "feed_stale",
-    "duplicate_candidate"
+    "already_in_catalog"
    ],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/Onda_Madrid",
-   "feed": "https://www.telemadrid.es/rss/category/section/1000209/",
-   "items": 20,
-   "newest": "2026-10-24T12:01:00Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.25,
-   "requests": 2
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Onda_Madrid"
   },
   {
    "qid": "Q3352494",
@@ -7579,10 +6937,10 @@
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Onda_Regional_de_Murcia",
    "feed": "https://www.orm.es/rss/",
-   "items": 1,
-   "newest": "2026-11-20T18:28:40Z",
+   "items": 4,
+   "newest": "2026-11-23T13:33:15Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.507,
+   "spanish_share": 0.485,
    "requests": 3
   },
   {
@@ -7649,9 +7007,9 @@
    "es_wikipedia": null,
    "feed": "https://www.periodicodeibiza.es/feed.rss",
    "items": 40,
-   "newest": "2026-11-21T10:21:47Z",
+   "newest": "2026-11-23T14:57:41Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.468,
+   "spanish_share": 0.457,
    "requests": 2
   },
   {
@@ -7666,9 +7024,9 @@
    "es_wikipedia": null,
    "feed": "https://pickandroll.tv/feed/",
    "items": 10,
-   "newest": "2026-11-21T10:30:00Z",
+   "newest": "2026-11-23T16:00:00Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.454,
+   "spanish_share": 0.44,
    "requests": 2
   },
   {
@@ -7877,7 +7235,7 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/RAC1",
    "feed": "https://api.audioteca.rac1.cat/rss/versio",
    "items": 100,
-   "newest": "2026-11-20T18:00:00Z",
+   "newest": "2026-11-23T15:00:00Z",
    "own_domain_share": 0.0,
    "spanish_share": 0.0,
    "requests": 2
@@ -7929,9 +7287,9 @@
    "es_wikipedia": null,
    "feed": "https://radioalmaina.org/feed/",
    "items": 10,
-   "newest": "2026-11-21T03:23:41Z",
+   "newest": "2026-11-23T13:47:41Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.359,
+   "spanish_share": 0.35,
    "requests": 2
   },
   {
@@ -7952,10 +7310,10 @@
    "domain": "radiobarcelona.cat",
    "status": "failed",
    "reasons": [
-    "homepage_unreachable"
+    "feed_unreachable"
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Radio_Barcelona",
-   "requests": 1
+   "requests": 3
   },
   {
    "qid": "Q6096196",
@@ -8041,10 +7399,10 @@
    "domain": "www2.radioecca.org",
    "status": "failed",
    "reasons": [
-    "homepage_unreachable"
+    "robots_unavailable"
    ],
    "es_wikipedia": null,
-   "requests": 1
+   "requests": 0
   },
   {
    "qid": "Q3100760",
@@ -8133,6 +7491,17 @@
    "requests": 2
   },
   {
+   "qid": "Q6096393",
+   "name": "Radio Intereconomía",
+   "website": "https://intereconomia.com/",
+   "domain": "intereconomia.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Radio_Intereconom%C3%ADa"
+  },
+  {
    "qid": "Q53371974",
    "name": "Radio Libertad",
    "website": "https://radiolibertad.es",
@@ -8144,9 +7513,9 @@
    "es_wikipedia": null,
    "feed": "https://radiolibertad.es/feed/",
    "items": 10,
-   "newest": "2026-11-19T14:25:24Z",
+   "newest": "2026-11-23T12:31:33Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.438,
+   "spanish_share": 0.433,
    "requests": 2
   },
   {
@@ -8297,16 +7666,26 @@
    "domain": "radioteletaxi.com",
    "status": "failed",
    "reasons": [
-    "feed_too_few_items",
-    "feed_stale"
+    "feed_too_few_items"
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Radio_Tele-Taxi",
    "feed": "https://radioteletaxi.com/feed/",
    "items": 1,
-   "newest": "2026-02-18T12:16:43Z",
+   "newest": "2026-11-23T10:59:58Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.464,
+   "spanish_share": 0.446,
    "requests": 2
+  },
+  {
+   "qid": "Q3824981",
+   "name": "Radio Televisión Ceuta",
+   "website": "http://www.rtvce.es/",
+   "domain": "rtvce.es",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Radio_Televisi%C3%B3n_Ceuta"
   },
   {
    "qid": "Q13049968",
@@ -8439,9 +7818,9 @@
    "es_wikipedia": null,
    "feed": "https://www.regiondigital.com/rss/1-portada/",
    "items": 30,
-   "newest": "2026-11-20T19:39:00Z",
+   "newest": "2026-11-23T16:11:34Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.438,
+   "spanish_share": 0.435,
    "requests": 2
   },
   {
@@ -8456,9 +7835,9 @@
    "es_wikipedia": null,
    "feed": "https://reinasdelbalon.com/feed/",
    "items": 100,
-   "newest": "2026-11-20T23:37:34Z",
+   "newest": "2026-11-23T16:09:53Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.428,
+   "spanish_share": 0.413,
    "requests": 2
   },
   {
@@ -8497,9 +7876,9 @@
    "es_wikipedia": null,
    "feed": "https://www.revistasix.es/rss/2.0/?section=",
    "items": 100,
-   "newest": "2026-11-20T16:50:21Z",
+   "newest": "2026-11-23T15:32:03Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.445,
+   "spanish_share": 0.444,
    "requests": 2
   },
   {
@@ -8526,14 +7905,14 @@
    "domain": "riberatelevisio.com",
    "status": "failed",
    "reasons": [
-    "language_not_spanish"
+    "no_identity"
    ],
    "es_wikipedia": null,
    "feed": "https://riberatelevisio.com/feed/",
    "items": 10,
-   "newest": "2026-11-21T06:31:21Z",
+   "newest": "2026-11-23T14:34:42Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.042,
+   "spanish_share": 0.385,
    "requests": 2
   },
   {
@@ -8589,9 +7968,9 @@
    "es_wikipedia": null,
    "feed": "https://rab.cat/feed/",
    "items": 10,
-   "newest": "2026-11-19T08:00:00Z",
+   "newest": "2026-11-23T14:00:00Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.363,
+   "spanish_share": 0.358,
    "requests": 2
   },
   {
@@ -8618,9 +7997,9 @@
    "es_wikipedia": null,
    "feed": "https://www.radiocapital.cat/feed/",
    "items": 16,
-   "newest": "2026-11-20T21:41:48Z",
+   "newest": "2026-11-23T14:21:17Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.355,
+   "spanish_share": 0.37,
    "requests": 2
   },
   {
@@ -8635,9 +8014,9 @@
    "es_wikipedia": null,
    "feed": "https://radiociutat.com/feed/",
    "items": 10,
-   "newest": "2026-11-21T09:11:04Z",
+   "newest": "2026-11-23T16:00:00Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.358,
+   "spanish_share": 0.394,
    "requests": 2
   },
   {
@@ -8729,9 +8108,9 @@
    "es_wikipedia": null,
    "feed": "https://premiamedia.cat/feed/",
    "items": 12,
-   "newest": "2026-11-20T12:23:13Z",
+   "newest": "2026-11-23T12:22:06Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.336,
+   "spanish_share": 0.387,
    "requests": 2
   },
   {
@@ -8793,9 +8172,9 @@
    "es_wikipedia": null,
    "feed": "https://www.cugat.cat/feed",
    "items": 10,
-   "newest": "2026-11-21T05:00:00Z",
+   "newest": "2026-11-23T12:27:58Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.387,
+   "spanish_share": 0.372,
    "requests": 2
   },
   {
@@ -8833,6 +8212,17 @@
    ],
    "es_wikipedia": null,
    "requests": 0
+  },
+  {
+   "qid": "Q10552566",
+   "name": "Segre",
+   "website": "https://www.segre.com",
+   "domain": "segre.com",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Segre_(peri%C3%B3dico)"
   },
   {
    "qid": "Q31074957",
@@ -8958,9 +8348,9 @@
    "es_wikipedia": null,
    "feed": "https://spectrumfm.net/feed/",
    "items": 10,
-   "newest": "2026-11-21T10:01:39Z",
+   "newest": "2026-11-23T15:01:42Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.028,
+   "spanish_share": 0.037,
    "requests": 2
   },
   {
@@ -9021,10 +8411,10 @@
    ],
    "es_wikipedia": null,
    "feed": "https://www.sudoku-online.org/feed.php",
-   "items": 50,
-   "newest": "2026-11-20T23:00:00Z",
+   "items": 52,
+   "newest": "2026-11-22T23:00:00Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.387,
+   "spanish_share": 0.389,
    "requests": 2
   },
   {
@@ -9111,9 +8501,9 @@
    "es_wikipedia": null,
    "feed": "https://www.tarragonaradio.cat/feed/",
    "items": 10,
-   "newest": "2026-11-20T22:25:21Z",
+   "newest": "2026-11-23T16:00:46Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.407,
+   "spanish_share": 0.417,
    "requests": 2
   },
   {
@@ -9159,7 +8549,7 @@
    "domain": "tecnologiaexperto.com",
    "status": "failed",
    "reasons": [
-    "no_identity"
+    "feed_stale"
    ],
    "es_wikipedia": null,
    "feed": "https://tecnologiaexperto.com/feed/",
@@ -9180,6 +8570,17 @@
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Tele_Cartagena",
    "requests": 0
+  },
+  {
+   "qid": "Q9082373",
+   "name": "Tele Elx",
+   "website": "http://www.teleelx.es",
+   "domain": "teleelx.es",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Tele_Elx"
   },
   {
    "qid": "Q11175852",
@@ -9256,21 +8657,38 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/Teledeporte"
   },
   {
+   "qid": "Q5664977",
+   "name": "Telelugo",
+   "website": "http://www.telelugo.tv/",
+   "domain": "telelugo.tv",
+   "status": "failed",
+   "reasons": [
+    "homepage_unreachable"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Telelugo",
+   "requests": 1
+  },
+  {
+   "qid": "Q279413",
+   "name": "Telemadrid",
+   "website": "http://www.telemadrid.es",
+   "domain": "telemadrid.es",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Telemadrid"
+  },
+  {
    "qid": "Q5849297",
    "name": "Telemadrid HD",
    "website": "http://www.telemadrid.es/",
    "domain": "telemadrid.es",
    "status": "failed",
    "reasons": [
-    "duplicate_candidate"
+    "already_in_catalog"
    ],
-   "es_wikipedia": null,
-   "feed": "https://www.telemadrid.es/rss/",
-   "items": 45,
-   "newest": "2026-11-21T10:13:02Z",
-   "own_domain_share": 1.0,
-   "spanish_share": 0.453,
-   "requests": 2
+   "es_wikipedia": null
   },
   {
    "qid": "Q131622007",
@@ -9429,6 +8847,17 @@
    "requests": 0
   },
   {
+   "qid": "Q6140755",
+   "name": "Televisión Sant Cugat",
+   "website": "http://www.tvsantcugat.cat",
+   "domain": "tvsantcugat.cat",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/Televisi%C3%B3n_Sant_Cugat"
+  },
+  {
    "qid": "Q21834504",
    "name": "Ten",
    "website": "https://tentv.es/",
@@ -9471,10 +8900,15 @@
    "domain": "thenewbarcelonapost.com",
    "status": "failed",
    "reasons": [
-    "robots_unavailable"
+    "aggregator"
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/The_New_Barcelona_Post",
-   "requests": 0
+   "feed": "https://www.thenewbarcelonapost.cat/uploads/feeds/feed_the-new-barcelona-post_ca.xml",
+   "items": 50,
+   "newest": "2026-11-23T16:00:18Z",
+   "own_domain_share": 0.0,
+   "spanish_share": 0.4,
+   "requests": 2
   },
   {
    "qid": "Q7753921",
@@ -9500,6 +8934,23 @@
    "es_wikipedia": "https://es.wikipedia.org/wiki/The_Objective"
   },
   {
+   "qid": "Q142258066",
+   "name": "The Officer",
+   "website": "https://theofficer.es",
+   "domain": "theofficer.es",
+   "status": "failed",
+   "reasons": [
+    "no_identity"
+   ],
+   "es_wikipedia": null,
+   "feed": "https://theofficer.es/feed/",
+   "items": 10,
+   "newest": "2026-11-23T15:40:21Z",
+   "own_domain_share": 1.0,
+   "spanish_share": 0.425,
+   "requests": 2
+  },
+  {
    "qid": "Q140077207",
    "name": "Tododisca",
    "website": "https://tododisca.es",
@@ -9511,9 +8962,9 @@
    "es_wikipedia": null,
    "feed": "https://tododisca.es/feed/",
    "items": 21,
-   "newest": "2026-11-21T09:00:07Z",
+   "newest": "2026-11-23T16:00:40Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.47,
+   "spanish_share": 0.433,
    "requests": 2
   },
   {
@@ -9527,6 +8978,17 @@
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Togayther",
    "requests": 0
+  },
+  {
+   "qid": "Q43290029",
+   "name": "Tot Cerdanyola",
+   "website": "https://www.totcerdanyola.cat/",
+   "domain": "totcerdanyola.cat",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": null
   },
   {
    "qid": "Q3124530",
@@ -9704,9 +9166,9 @@
    "es_wikipedia": null,
    "feed": "https://valenciafruits.com/feed/",
    "items": 10,
-   "newest": "2026-11-21T07:12:00Z",
+   "newest": "2026-11-23T12:34:21Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.377,
+   "spanish_share": 0.379,
    "requests": 2
   },
   {
@@ -9720,6 +9182,17 @@
    ],
    "es_wikipedia": "https://es.wikipedia.org/wiki/Veo7",
    "requests": 3
+  },
+  {
+   "qid": "Q54549084",
+   "name": "VIA Empresa",
+   "website": "https://www.viaempresa.cat",
+   "domain": "viaempresa.cat",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": null
   },
   {
    "qid": "Q16645965",
@@ -9769,9 +9242,9 @@
    "es_wikipedia": null,
    "feed": "https://www.vigoalminuto.com/feed/",
    "items": 10,
-   "newest": "2026-11-21T08:12:00Z",
+   "newest": "2026-11-23T14:08:00Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.412,
+   "spanish_share": 0.429,
    "requests": 2
   },
   {
@@ -9786,9 +9259,9 @@
    "es_wikipedia": null,
    "feed": "https://www.viladeroses.cat/feed/",
    "items": 20,
-   "newest": "2026-11-21T09:06:48Z",
+   "newest": "2026-11-23T16:07:49Z",
    "own_domain_share": 1.0,
-   "spanish_share": 0.393,
+   "spanish_share": 0.392,
    "requests": 2
   },
   {
@@ -9874,17 +9347,37 @@
    "requests": 3
   },
   {
+   "qid": "Q28918202",
+   "name": "À Punt",
+   "website": "https://www.apuntmedia.es/va/",
+   "domain": "apuntmedia.es",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/%C3%80_Punt"
+  },
+  {
    "qid": "Q41445720",
    "name": "À Punt FM",
    "website": "https://www.apuntmedia.es/radio",
    "domain": "apuntmedia.es",
    "status": "failed",
    "reasons": [
-    "feed_unreachable",
-    "duplicate_candidate"
+    "already_in_catalog"
    ],
-   "es_wikipedia": "https://es.wikipedia.org/wiki/%C3%80_Punt_FM",
-   "requests": 3
+   "es_wikipedia": "https://es.wikipedia.org/wiki/%C3%80_Punt_FM"
+  },
+  {
+   "qid": "Q9099031",
+   "name": "Última Hora",
+   "website": "http://ultimahora.es/",
+   "domain": "ultimahora.es",
+   "status": "failed",
+   "reasons": [
+    "already_in_catalog"
+   ],
+   "es_wikipedia": "https://es.wikipedia.org/wiki/%C3%9Altima_Hora_(Espa%C3%B1a)"
   }
  ]
 }
