@@ -1,6 +1,6 @@
 -r requirements.txt
 pytest==9.2.0
-ruff==0.17.5
+ruff==0.17.6
 pip-audit==2.10.1
 playwright==1.65.2
 pytest-playwright==0.10.0
